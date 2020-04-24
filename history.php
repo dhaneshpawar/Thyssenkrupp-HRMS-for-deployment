@@ -68,6 +68,15 @@ if(isset($_COOKIE['sid']))
           </div>
         </nav>
         <br><br>
+ <!-- Filter Added  End-->
+ <select id='deptchoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+          <option value="" disabled selected style="color: white">Select Department</option>
+        </select>
+        <select id='zonechoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+          <option value="" disabled selected style="color: white">Select Zone</option>
+        </select>
+<!-- Filter Added End-->
+
  <div class="row">
 <div class="col s12  blue lighten-4">
   <table class="striped">
@@ -503,6 +512,9 @@ $("#emailcollection").append(txt);
 }
 var arr=[]
 $(document).ready(function(){
+
+$('#zonechoice').hide();
+
   $('#allocation').hide();
   $('.datepicker').datepicker
   ({
@@ -514,6 +526,141 @@ $(document).ready(function(){
 		    $('.filled-in').not(this).prop('checked', false);  
 
 	}); 
+
+//Gives unique values from set
+function removeusingSet(arr) { 
+            let outputArray = Array.from(new Set(arr)) 
+            return outputArray 
+        } 
+
+//Added by Sarang - 03/14/2020
+
+
+//get filtered department
+$('#deptchoice').change(function(){
+  
+$('#rawdata').empty();
+//Sarang Yesterday  13/03/2020
+$.ajax({
+url:"http://localhost/thyssenkrup/api/histgetfiltereddept.php",
+type:"POST",
+data: {"dept": $('#deptchoice').val()},
+success:function(arr)
+{ 
+  if(arr == 'No data')
+  {
+    $('#nodata').fadeIn(300);
+  
+  }
+  else
+  {
+    
+    // console.log("This is my data : "+arr)
+    $('#nodata').hide();
+    
+    arr=JSON.parse(arr);
+    console.log("this are prflist = ",arr)
+
+    for(let j=0;j<arr.length;j++)
+    {
+      var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
+      $('#rawdata').append(x);
+    }
+    $('#zonechoice').fadeIn(300);
+
+   //Added by Sarang - 03/14/2020
+    //---------------------------------Sarang -------------get unique zones
+      $.ajax({
+          url:'http://localhost/thyssenkrup/api/getzones.php',
+          type:'POST',
+          // data:{'arr1':arr1},
+          success : function(para)
+          {
+             zone=[]
+            para = JSON.parse(para)
+
+            
+            for(let i =0 ;i<para.length;i++)
+            {
+              zone[i] = para[i]
+            }
+            $("#zonechoice").empty();
+            uniquezone = removeusingSet(zone);
+
+            for(i=0;i<uniquezone.length;i++)
+            {
+              var str = '<option value="'+uniquezone[i]+'"  style="color: white">'+uniquezone[i]+'</option>'
+              $('#zonechoice').append(str);
+            }
+          },
+        })
+
+    //end unique zones 
+
+
+
+
+  }
+
+
+}
+
+})
+
+})
+
+
+//-------------------------------------------Get Filtered Zones -------------------------------------------------
+
+//get filtered department
+$('#zonechoice').change(function(){
+  
+  $('#rawdata').empty();
+  //Sarang Yesterday  13/03/2020
+  $.ajax({
+  url:"http://localhost/thyssenkrup/api/histgetfilteredzones.php",
+  type:"POST",
+  data: {
+    "dept": $('#deptchoice').val(),
+    "zone": $('#zonechoice').val()
+    },
+  success:function(arr)
+  { 
+    if(arr == 'No data')
+    {
+      $('#nodata').fadeIn(300);
+    
+    }
+    else
+    {
+      
+  
+      $('#nodata').hide();
+      console.log("This is my data : "+arr)
+      arr=JSON.parse(arr);
+      console.log("this are prflist = ",arr)
+  
+      for(let j=0;j<arr.length;j++)
+      {
+        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
+        $('#rawdata').append(x);
+      }
+      $('#zonechoice').fadeIn(300);
+    }
+  
+  
+  }
+  
+  })
+  
+  })
+
+//----------------------------------------------END---------------------------------------------------------------
+
+
+
+
+
 
  $("#mytabs").hide()
  $.ajax({
