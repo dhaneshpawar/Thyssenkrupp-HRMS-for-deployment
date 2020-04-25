@@ -36,7 +36,7 @@ else
 
 $rid =(string) sprintf("%02s",$rid);
 $result3 = $db->prfs->findOne(array("prf"=>$digit13[0]));
-$db->interviews->insertOne(array("rid"=>$rid,"prf"=>$digit13[0],'pos'=>$digit13[1],"iid"=>$digit13[2],"members"=>$_POST['emails'],"evaluated"=>array(),"intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"date"=>$_POST['date'],"time"=>$_POST['time'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"status"=>"0","invstatus"=>"0","accepted"=>"no"));
+$db->interviews->insertOne(array("rid"=>$rid,"prf"=>$digit13[0],'pos'=>$digit13[1],"iid"=>$digit13[2],"members"=>$_POST['emails'],"dates"=>$_POST['dates'],"evaluated"=>array(),"intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"date"=>$_POST['date'],"time"=>$_POST['time'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"status"=>"0","invstatus"=>"0","accepted"=>"no"));
 $mail->addAddress($_POST['intv']);
     $mail->Subject = 'Interview schedule for '.$result3['department'].' - '.$result3['position'].' .';
     $mail->Body    = nl2br('Dear '.$_POST['iname'].',
@@ -106,8 +106,6 @@ $mail->addAddress($_POST['intv']);
     else
     {
         echo "Status not Changed";
-
-
     }
 
 

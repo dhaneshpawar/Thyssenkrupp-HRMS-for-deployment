@@ -96,24 +96,7 @@ if(isset($_COOKIE['sid']))
                   <b><p id="pleasewait" style="color:red">Updating Information Please Wait...</p></b>
 
                   </center>
-                  <b id="nomems"  style="color:red;margin-left:25%;font-size:20px;"> Application Blank Not Submitted By The Members </b>
-
-                  <div class="row">
-                    <div class="col s5 offset-m3" id=showmembersdiv>
-                      <table class="stripped">
-                      <thead>
-                        <tr class="blue darken-1 white-text">
-                          <br>
-                          <th>Sr No.</th>
-                          <th>Email ID</th>
-                        </tr>
-                      </thead>
-                      
-                      <tbody id="memberstable">
-                      </tbody>
-                      </table>
-                    </div>
-                  </div>
+                  <center><b id="nomems"  style="color:red;margin-left:10%;font-size:20px;"> Application Blank Not Submitted By The Members </b></center>
 
                   <div class="row" id="allocatingcandidate" >
                     <div class="col s12 m12">
@@ -180,6 +163,7 @@ if(isset($_COOKIE['sid']))
                                 <th>Name</th>
                                 <th>Mail ID</th>
                                 <th>Select</th>
+                                <th>Time</th>
                                 <th class="btn blue darken-1" name="submit" id="submit" disabled>Assign Interviewer</th>
                                 <th class="btn red" style="margin-left: 25px;" id="abort" onclick="abort_round()"> Abort</th>
                                 
@@ -203,24 +187,18 @@ if(isset($_COOKIE['sid']))
     <style>
     html{
     scroll-behaviour:smooth;
-    }
 
+  }
     </style>
 <script>
-
-
-
-
+$("#nomems").hide()
 var id_round = "0";
 var selectedmail = []
+var selectedmailID = []
+var selecteddate = []
+var timearray=[]
 var allmail = []
 $(document).ready(function(){
-
-  $("#nomems").hide()
-  $("#showmembersdiv").hide()
-
-
-
   
   $('.datepicker').datepicker
   ({
@@ -302,17 +280,28 @@ $(document).ready(function(){
       var idesg = $('#idesg').val();
       var iloc = $('#location').val();
       var iperson = $('#contactperson').val();
+      var candidatetime
 
       if(imail != "" && iname != "" && idate != "" && itime != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
       {
         $('#allocation').hide(600);
-      $("#pleasewait").fadeIn(600);
+        $("#pleasewait").fadeIn(600);
+        for(let i=0;i<selectedmailID.length;i++)
+        {
+          var b = selectedmailID[i]
+          b = b+'date'
+          console.log(b)
+          selecteddate.push($(b).val()) 
+          console.log("Email:",selectedmail[i]) 
+          console.log("Time:",selecteddate[i])
+        }
       $.ajax({
         url:'http://localhost/thyssenkrup/api/interviewer.php',
         type:'POST',
         data:{
           //dept needed to be submitted
           'emails':selectedmail,
+          'dates':selecteddate,
           'intv':imail,
           'date':idate,
           'time':itime,
@@ -335,6 +324,7 @@ $(document).ready(function(){
              var ml = selectedmail[i];
              var id = allmail.indexOf(ml) 
              var str='#check'+id+'row';
+             
               $(str).remove();
               //document.location.reload();
               $("#pleasewait").hide();
@@ -342,6 +332,8 @@ $(document).ready(function(){
 
             }
             selectedmail = []
+            selecteddate = []
+            selectedmailID=[]
         }
       })
       }
@@ -349,6 +341,7 @@ $(document).ready(function(){
       {
         alert("Please Fill All Data")
       }
+      
       
       
     })
@@ -368,7 +361,9 @@ function selection(x)
   if($(b).prop("checked") == true)
   {
     selectedmail.push($(y).text())
-    console.log(selectedmail)
+    selectedmailID.push(b)
+    console.log('mail:'+selectedmail)
+    console.log('ID:'+selectedmailID)
   }
   else
   {                                               
@@ -377,26 +372,27 @@ function selection(x)
       if ( selectedmail[i] === $(y).text()) 
       {
         selectedmail.splice(i, 1); 
+        selectedmailID.splice(i, 1)
         i--;
       }
     }
     console.log(selectedmail)
+    console.log(selectedmailID)
   }
 }
 
- 
+
+
+
 var id_round
+
 function createnextround(id)
 {
-
+  // $('.timepicker').timepicker();
   window.iid=id;
   id_round = id
   console.log(id_round)
   $('#allocatingcandidate').fadeIn(600);
-
-  
-
-  
 
   var p1='<b>ID:'+id_round+'<b>'
   $('#rid').replaceWith(p1);
@@ -408,28 +404,16 @@ function createnextround(id)
          },
     success:function(para)
     {
-
+      
 
       para = JSON.parse(para)
-      var arr1=[]
-      var j=0
-      $("#nomems").click(function()
-      {
-        $("#showmembersdiv").fadeIn(1200);
-        j=1;
-        for(let i=0;i<para[1];i++)
-        {
-          var membersdata='<tr><td>'+i+1+'</td><td>'+para[2][i]+'</td</tr>'    
-          $("#memberstable").append(membersdata)
-        }        
-      })
-       console.log("this are base round mems  = ",para)
+       console.log("this are base round mems  = ",para[1])
        if(para[0] == null)
        {
          $("#submit").hide()
          $("#abort").hide()
-         var linkabc = 
-         $("#nomems").text('Application Blank Not Submitted By '+para[1]+' Member(s)')
+         $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
+
          $("#nomems").show()
        }
       else if(para[1] != 0)
@@ -440,19 +424,21 @@ function createnextround(id)
 
       $('#adddetail').text("")
       var arr = para[0]
-  
+      // $('.timepicker').timepicker();
       for(let i =0;i<arr.length;i++)
       {
         allmail[i] = arr[i];
         console.log("Name - ",allmail[i][0]);
         console.log("Email - ",allmail[i][1]);
         var s1='<tr id="check'+i+'row"><td><a href="http://localhost/thyssenkrup/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td><td><p id="check'+i+'mail">'+arr[i][1]+'</p></td><td><label>'
-        var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
-        var s3='<span class="blue-text darken-1" ></span></label></td><td></td></tr>'
-        var str=s1+s2+s3
-       
+        var s2='<input type="checkbox" class="filled-in" id="check'+i+'" />'
+        var s3='<span class="blue-text darken-1" ></span></label></td>'
+        var s4='<td><input type="text" id="check'+i+'date" class="timepicker"></td></tr>'
+        var str=s1+s2+s3+s4
         $('#adddetail').append(str)
+        $('.timepicker').timepicker();
       }
+      
     }
     else
     {
@@ -469,10 +455,12 @@ function createnextround(id)
         console.log("Email - ",allmail[i][1]);
         var s1='<tr id="check'+i+'row"><td><a href="http://localhost/thyssenkrup/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td><td><p id="check'+i+'mail">'+arr[i][1]+'</p></td><td><label>'
         var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
-        var s3='<span class="blue-text darken-1" ></span></label></td><td></td></tr>'
-        var str=s1+s2+s3
+        var s3='<span class="blue-text darken-1" ></span></label></td>'
+        var s4='<td><input id="check'+i+'date" class="timepicker" ></td></tr>'
+        var str=s1+s2+s3+s4
        
         $('#adddetail').append(str)
+        $('.timepicker').timepicker();
       }
     }
     }
