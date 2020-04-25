@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-
+// added comment to index.php to check the change....
 if(isset($_COOKIE['sid']))
 {
   include 'api/db.php';
