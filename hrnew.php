@@ -135,9 +135,12 @@ if(isset($_COOKIE['sid']))
           </button>
           <br>
           <br>
-          <select id='rgchoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+          <select id='deptchoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
           <option value="" disabled selected style="color: white">Select Department</option>
           </select>
+          <select id='zonechoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+          <option value="" disabled selected style="color: white">Select Zone</option>
+        </select>
           <br>
         <br>
 
@@ -427,8 +430,8 @@ function removeusingSet(arr) {
 
 function filterbydept()
 {
-  $('#rgchoice').fadeIn(600)
-  $('#rgchoice').empty()
+  $('#deptchoice').fadeIn(600)
+  $('#deptchoice').empty()
 
   $.ajax({
     url:'http://localhost/thyssenkrup/api/getdepartments.php',
@@ -440,7 +443,7 @@ function filterbydept()
       for(i=0;i<uniquedept.length;i++)
       {
         var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
-         $('#rgchoice').append(str);
+         $('#deptchoice').append(str);
       }
       
 
@@ -572,7 +575,11 @@ function showupdump()
   }
 }
 
-$('#rgchoice').change(function(){
+//Added by Sarang - 03/14/2020
+
+
+
+$('#deptchoice').change(function(){
 
 $("#prfno").empty()   
 var ap1 = "<option disabled selected style='color: white'>Select PRF</option>"
@@ -583,12 +590,12 @@ $('#rawdata').empty();
 $.ajax({
 url:"http://localhost/thyssenkrup/api/getfilteredprf.php",
 type:"POST",
-data: {"dept": $('#rgchoice').val()},
+data: {"dept": $('#deptchoice').val()},
 success:function(arr)
 { 
-  
+  // console.log("this are prflist = ",arr.length)
   arr=JSON.parse(arr);
-  console.log("this are prflist = ",arr)
+  console.log("this are prflist = ",arr.length)
   for(let j=0;j<arr.length;j++)
   {
     
@@ -603,11 +610,92 @@ success:function(arr)
 
     $('#rawdata').append(x);
   }
+  $('#zonechoice').fadeIn(300);
+
+  //---------------------------------Sarang -------------get unique zones
+  $.ajax({
+          url:'http://localhost/thyssenkrup/api/getzones.php',
+          type:'POST',
+          // data:{'arr1':arr1},
+          success : function(para)
+          {
+             zone=[]
+            para = JSON.parse(para)
+
+            
+            for(let i =0 ;i<para.length;i++)
+            {
+              zone[i] = para[i]
+            }
+            $("#zonechoice").empty();
+            uniquezone = removeusingSet(zone);
+
+            for(i=0;i<uniquezone.length;i++)
+            {
+              var str = '<option value="'+uniquezone[i]+'"  style="color: white">'+uniquezone[i]+'</option>'
+              $('#zonechoice').append(str);
+            }
+          },
+        })
 }
 
 })
 
 })
+
+
+//-------------------------------------------Get Filtered Zones -------------------------------------------------
+
+//get filtered department
+$('#zonechoice').change(function(){
+  
+  $('#rawdata').empty();
+  //Sarang Yesterday  13/03/2020
+  $.ajax({
+  url:"http://localhost/thyssenkrup/api/hrgetfilteredzones.php",
+  type:"POST",
+  data: {
+    "dept": $('#deptchoice').val(),
+    "zone": $('#zonechoice').val()
+    },
+  success:function(arr)
+  { 
+    if(arr == 'No data')
+    {
+      $('#nodata').fadeIn(300);
+    
+    }
+    else
+    {
+      $('#nodata').hide();
+      console.log("This is my data : "+arr)
+      arr=JSON.parse(arr);
+      console.log("this are prflist = ",arr)
+  
+      for(let j=0;j<arr.length;j++)
+      {
+        if(arr[j][6] == "initiated")
+        {
+          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'
+        }
+        else
+        {
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'
+        }
+        $('#rawdata').append(x);
+      }
+     
+    }
+  
+  
+  }
+  
+  })
+  
+  })
+
+//----------------------------------------------END---------------------------------------------------------------
+
 
 
 </script>
