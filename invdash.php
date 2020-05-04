@@ -78,6 +78,7 @@ if(isset($_COOKIE['sid']))
                                 <th>INTERVIEWS</th>
                                 <th>DATE</th>
                                 <th>TIME</th>
+                                <th>SEE MEMBERS</th>
                                 <th>ACTION</th>
                                 <th>ACCEPT</th>
                                 <th>REJECT</th>
@@ -186,6 +187,87 @@ if(isset($_COOKIE['sid']))
         
     }
 
+    //Sarang - 16/03/2020
+function modifyMail(id,name)
+{
+    // console.log("Data  : "+id );
+    id=id.split("*");
+    console.log("Name  : "+name );
+    name = '#'+name+'tp';
+    updatedTime = $(name).val()
+    console.log('This is time : ',$(name).val())
+    // console.log("This is : ")
+    // console.log("Split data : "+id[0]+" & "+id[1]+"&"+id[2])
+
+    $.ajax({
+        url:"http://localhost/thyssenkrup/api/invmodifytime.php",
+        type:"POST",
+        data:{
+            "index":id[0],
+            "time":id[1],
+            "digit13":id[2],
+            "updatedTime":updatedTime
+        },
+        success:function(para)
+        {
+            console.log("This is my data:  "  +para)
+        }
+
+    })
+}
+
+
+
+
+
+
+
+//Changed by Sarang - 15/03/2020
+function displayreadonlymail(id)
+{
+    id = id.split("*");
+    console.log("This is : "+id[0])
+    $.ajax({
+                url:"http://localhost/thyssenkrup/api/showmembersfirst.php",
+                type:"POST",
+                data:{
+                    "id": id[0] 
+                },
+                success:function(para)
+                {
+                    console.log("This is my - "+id[0])
+                     para=JSON.parse(para);
+                    
+                    // $(y).css("background","red")    
+                    // $("#emailrow").fadeOut(600)
+                    $("#emailrow10").show(600)
+                    $("#emailbody10").text("")
+                    // Dummy Data
+                    //para = ['Tanny@gmail.com',"rb@gmail.com","ad@gmail.com"]
+                    
+                    for(let i =0 ;i< para.length;i++)
+                    {
+                        console.log("Loop"+id[0])
+                        //along with modify button
+                        var txt1 = '<tr id="'+para[i]+'"><td><a href="http://localhost/thyssenkrup/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td><td><input type="text" style="width:50%;" id="'+i+'tp" value="'+para[i][2]+'" class="timepicker"></td><td><button class="btn waves-effect green"  id="'+i+'*'+para[i][2]+'*'+id[0]+'" name="'+i+'" onclick="modifyMail(this.id,this.name)">Modify Time<i class="material-icons right">send</i></button></td></tr>'
+                        // var txt1 = '<tr id="'+para[i]+'"><td><a href="http://localhost/thyssenkrup/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td><td><p>'+para[i][2]+'</p></td></tr>'                   
+                        $("#emailbody10").append(txt1)
+                        $('.timepicker').timepicker();
+                    }
+                    }   
+              
+            
+            })
+}
+
+
+
+
+
+
+
+
+
     $(document).ready(function(){
          window.mail = "<?php echo $cursor["mail"]; ?>"
        // mail = JSON.stringify(mail)
@@ -252,7 +334,7 @@ if(isset($_COOKIE['sid']))
                 var status = temparr[3]=="yes"?"disabled":" ";
                 var txt1 = '<tr><td><label class="waves-effect blue darken-1 btn">'+temparr[0]+'</label></td>'
                 var txt2 = '<td>'+temparr[1]+'</td><td>'+temparr[2]+'</td>' 
-                //var txt6 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'2" onclick="displayreadonlymail(this.id)">See Members<i class="material-icons right">send</i>'                       
+                var txt6 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'*2" onclick="displayreadonlymail(this.id)">See Members<i class="material-icons right">send</i>'                       
                 var txt5 = '<td><button class="btn waves-effect green"  id="act'+temparr[0]+'" onclick="acceptintr(this.id)" '+status+'>Accept<i class="material-icons right">send</i></button></td>' 
                 var txt4 = '<td><button class="btn waves-effect red"  id="act'+temparr[0]+'1" '+status+' onclick="rejectInterview(this.id)">Reject<i class="material-icons right">send</i></button></td>' 
                
