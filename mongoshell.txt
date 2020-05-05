@@ -1,0 +1,3 @@
+//Mongodb
+//To run mongoDB Database "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
+//To run mongoDB Shell    "C:\Program Files\MongoDB\Server\3.6\bin\mongo.exe"
