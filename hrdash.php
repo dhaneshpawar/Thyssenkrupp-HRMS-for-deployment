@@ -62,12 +62,23 @@ if(isset($_COOKIE['sid']))
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-}</style>
+}
+.sidemenu{
+  width: 50%;
+}
+
+@media screen and (min-width: 800px) {
+  .sidemenu{
+  width: 25%;
+}
+}
+</style>
 
 <body>
-<div class="w3-sidebar blue w3-bar-block" style="width:15%;border: 5px solid white;z-index: 2;">
+<div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="border: 5px solid white;z-index: 1000">
 
-  <h3 class="w3-bar-item white"><a href="/hrms/"><center>Home</center></a></h3> <br><br>
+  <h3 class="w3-bar-item white"> <center>Home <i id="remin" class="material-icons" style="float: right;cursor: pointer;">close</i></center>  
+</a></h3> <br><br>
   <a href="/hrms/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
   <a href="/hrms/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
   <a href="/hrms/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
@@ -78,19 +89,18 @@ if(isset($_COOKIE['sid']))
   <a href="/hrms/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
 
 </div>
-<div style="margin-left:15%">
+<div id="remin">
 
     <nav>
         <div class="nav-wrapper blue darken-1">
-       
           <a href="#!" class="brand-logo center">thyssenkrupp</a>
           <div id="logoutuser" class="row">
-    <button class="btn waves-effect blue darken-1" type="submit" name="action" style="float:right;margin-top: 18px;margin-right: 18px ">LOGOUT</button>
   </div>
 
         </div>
       </nav>
-      <br>
+      <button class="btn waves-effect blue darken-1" style="float:right;margin-top: 18px;margin-right: 18px ">LOGOUT</button>
+      <button id="showsidenbutton" class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-left: 18px ">MENU</button>
     <center>
 <!-- <button class="button">You Are Logged In As HR Of  <?php echo $cursor['rg']; ?> Region and Department Of <?php echo $cursor['dept']; ?> </button> -->
 </center>
@@ -237,8 +247,16 @@ if(isset($_COOKIE['sid']))
     <!-- main card ends here -->
 
     <script>
-    
-    
+
+    $('#remin').click(function(){
+      $("#sidenn").hide(1000)
+    })    
+
+      $("#sidenn").hide()
+    $('#showsidenbutton').click(function(){
+      $("#sidenn").show(1000)
+    })    
+
 $('#logoutuser').click(function(){
 
 $.ajax({
