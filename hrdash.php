@@ -87,20 +87,18 @@ if(isset($_COOKIE['sid']))
   <a href="/hrms/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
   <a href="/hrms/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
   <a href="/hrms/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
+  <a href="#" id="logoutuser" class="w3-bar-item w3-button">Logout</a> <br>
 
 </div>
 <div id="remin">
-
-    <nav>
-        <div class="nav-wrapper blue darken-1">
-          <a href="#!" class="brand-logo center">thyssenkrupp</a>
-          <div id="logoutuser" class="row">
-  </div>
-
-        </div>
-      </nav>
-      <button class="btn waves-effect blue darken-1" style="float:right;margin-top: 18px;margin-right: 18px ">LOGOUT</button>
-      <button id="showsidenbutton" class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-left: 18px ">MENU</button>
+<nav> 
+    <div class="nav-wrapper blue darken-1">
+      <a href="#!" class="brand-logo left" style="margin-left: 2%;"><i id="showsidenbutton" class="material-icons">menu</i>
+    </a>
+    <a href="/hrms/" class="brand-logo center">thyssenkrupp</a>
+    </div>
+  </nav>
+<br><br>
     <center>
 <!-- <button class="button">You Are Logged In As HR Of  <?php echo $cursor['rg']; ?> Region and Department Of <?php echo $cursor['dept']; ?> </button> -->
 </center>
