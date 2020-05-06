@@ -52,22 +52,22 @@ function abort_round()
 <div class="w3-sidebar blue w3-bar-block" style="width:15%;border: 5px solid white;">
 
 
-<h3 class="w3-bar-item"><a href="/thyssenkrup/"><center>Home</center></a></h3> <br><br>
-  <a href="/thyssenkrup/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
-  <a href="/thyssenkrup/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
-  <a href="/thyssenkrup/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
-  <a href="/thyssenkrup/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
-  <a href="/thyssenkrup/history.php" class="w3-bar-item w3-button">See History  </a> <br>
-  <a href="/thyssenkrup/allocateround2.php" class="w3-bar-item w3-button white">Rescheduling</a> <br>
-  <a href="/thyssenkrup/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
-  <a href="/thyssenkrup/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
+<h3 class="w3-bar-item"><a href="/hrms/"><center>Home</center></a></h3> <br><br>
+  <a href="/hrms/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
+  <a href="/hrms/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
+  <a href="/hrms/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
+  <a href="/hrms/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
+  <a href="/hrms/history.php" class="w3-bar-item w3-button">See History  </a> <br>
+  <a href="/hrms/allocateround2.php" class="w3-bar-item w3-button white">Rescheduling</a> <br>
+  <a href="/hrms/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
+  <a href="/hrms/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
 
 </div>
 <div style="margin-left:15%">
 
               <nav>
                     <div class="nav-wrapper blue darken-1">
-                    <a href="/thyssenkrup/">
+                    <a href="/hrms/">
       <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
       </a> 
 
@@ -203,7 +203,7 @@ $(document).ready(function(){
   $("#pleasewait").hide();
   $.ajax(
     {
-      url:'http://localhost/thyssenkrup/api/rejectedinv.php',
+      url:'http://localhost/hrms/api/rejectedinv.php',
       type:'POST',
       success:function(para){
         console.log(para)
@@ -287,7 +287,7 @@ $(document).ready(function(){
       $('#allocation').hide(600);
       $("#pleasewait").fadeIn(600);
       $.ajax({
-        url:'http://localhost/thyssenkrup/api/updateintv.php',
+        url:'http://localhost/hrms/api/updateintv.php',
         type:'POST',
         data:{
           //dept needed to be submitted
@@ -370,7 +370,7 @@ function createnextround(ids)
   $('#allocatingcandidate').slideDown(600);
  
   $.ajax({
-    url:'http://localhost/thyssenkrup/api/invrejectroundmembs.php',
+    url:'http://localhost/hrms/api/invrejectroundmembs.php',
     type:'POST',
     data:{
           "id":id_round,
@@ -419,7 +419,7 @@ function terminateround(id)
 $('#logoutuser').click(function(){
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/logout.php",
+url:"http://localhost/hrms/api/logout.php",
 type:"POST",
 success:function(para){
 
@@ -427,12 +427,12 @@ if(para=="success")
 {
 $("#row").hide()
 $("#logout").show()
-document.location.replace("http://localhost/thyssenkrup/index.php")
+document.location.replace("http://localhost/hrms/index.php")
 }
 else
 {
 $("#notlogout").show()
-document.location.replace("/thyssenkrup/")
+document.location.replace("/hrms/")
 }
 } 
 

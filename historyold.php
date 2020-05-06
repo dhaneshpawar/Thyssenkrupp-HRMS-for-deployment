@@ -39,7 +39,7 @@ if(isset($_COOKIE['sid']))
 
     <nav>
     <div class="nav-wrapper blue darken-1">
-    <a href="/thyssenkrup/">
+    <a href="/hrms/">
       <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
       </a> 
     <a href="#!" class="brand-logo center">thyssenkrupp</a>
@@ -213,7 +213,7 @@ document.location.replace('/showdocs.php')
 
     console.log(dept)
     $.ajax({
-      url:'http://localhost/thyssenkrup/api/getinstances.php',
+      url:'http://localhost/hrms/api/getinstances.php',
       type:'POST',
       data:{'dept':dept,'prf':prf,'pos':pos},
       success:function(para)
@@ -249,7 +249,7 @@ document.location.replace('/showdocs.php')
 
         for(let i = 0;i<selected_members.length;i++)
           {
-            var str2 = "<tr><td><a href='http://localhost/thyssenkrup/documentcheck.php?aid="+selected_members[i]+"' target='_blank'>"+selected_members[i]+"</a></td></tr>"
+            var str2 = "<tr><td><a href='http://localhost/hrms/documentcheck.php?aid="+selected_members[i]+"' target='_blank'>"+selected_members[i]+"</a></td></tr>"
             $("#tabledataselect").append(str2)
           }
           
@@ -267,7 +267,7 @@ document.location.replace('/showdocs.php')
       var instance = $('#deptchoice').val()
       $('#tabledataselect').text("")
      $.ajax({
-      url:'http://localhost/thyssenkrup/api/getrounds.php',
+      url:'http://localhost/hrms/api/getrounds.php',
       type:'POST',
       data:{'dept':dept,'prf':prf,'iid':instance,"pos":pos},
       success: function(para)
@@ -298,7 +298,7 @@ document.location.replace('/showdocs.php')
 
           for(let i = 0;i<selected_members.length;i++)
           {
-            var str2 = '<tr><td><a href="http://localhost/thyssenkrup/documentcheck.php?aid='+selected_members[i]+'" target="_blank" ">'+selected_members[i]+'</a></td></tr>'
+            var str2 = '<tr><td><a href="http://localhost/hrms/documentcheck.php?aid='+selected_members[i]+'" target="_blank" ">'+selected_members[i]+'</a></td></tr>'
             $("#tabledataselect").append(str2)
           }
         }
@@ -355,7 +355,7 @@ document.location.replace('/showdocs.php')
 
       $.ajax({
 
-              url : 'http://localhost/thyssenkrup/api/getselected.php',
+              url : 'http://localhost/hrms/api/getselected.php',
               type : 'POST',
               data : {'dept':dept,'prf':prf,"pos":pos,'iid':$("#deptchoice").val(),'rid':roundid},
 
@@ -369,7 +369,7 @@ document.location.replace('/showdocs.php')
 
                 var element = JSON.parse(para)
                 for (let i = 0; i < element.length; i++) {
-                  var str = "<tr><td><a href='http://localhost/thyssenkrup/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i]+"</td></tr>"
+                  var str = "<tr><td><a href='http://localhost/hrms/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i]+"</td></tr>"
                   
                   $('#tabledataselect').append(str)
                     
@@ -402,7 +402,7 @@ document.location.replace('/showdocs.php')
     
     $.ajax({
 
-                  url : 'http://localhost/thyssenkrup/api/getrejected.php',
+                  url : 'http://localhost/hrms/api/getrejected.php',
                   type : 'POST',
                   data : {'dept':dept,'prf':prf,"pos":pos,'iid':$("#deptchoice").val(),'rid':$("#roundchoice").val()},
                   success:function(para)
@@ -416,7 +416,7 @@ document.location.replace('/showdocs.php')
                       var element = JSON.parse(para)
                       for (let i = 0; i < element.length; i++) {
 
-                        var str = "<tr><td><a href='http://localhost/thyssenkrup/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i]+"</a></td><td></tr>"
+                        var str = "<tr><td><a href='http://localhost/hrms/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i]+"</a></td><td></tr>"
                         
                         
                         $('#tabledatareject').append(str)
@@ -449,7 +449,7 @@ document.location.replace('/showdocs.php')
     $('#tabledatahold').empty()    
               $.ajax({
 
-              url : 'http://localhost/thyssenkrup/api/gethold.php',
+              url : 'http://localhost/hrms/api/gethold.php',
               type : 'POST',
               data : {'dept':dept,'prf':prf,"pos":pos,'iid':$("#deptchoice").val(),'rid':$("#roundchoice").val()},
                   success:function(para)
@@ -460,7 +460,7 @@ document.location.replace('/showdocs.php')
                     var element = JSON.parse(para)
                     for (let i = 0; i < element.length; i++) {
 
-                      var str = "<tr><td><a href='http://localhost/thyssenkrup/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i]+"</td><td></tr>"
+                      var str = "<tr><td><a href='http://localhost/hrms/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i]+"</td><td></tr>"
                       
                       
                       $('#tabledatahold').append(str)
@@ -490,7 +490,7 @@ document.location.replace('/showdocs.php')
 $('#logoutuser').click(function(){
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/logout.php",
+url:"http://localhost/hrms/api/logout.php",
 type:"POST",
 success:function(para){
 
@@ -498,12 +498,12 @@ if(para=="success")
 {
 $("#row").hide()
 $("#logout").show()
-document.location.replace("http://localhost/thyssenkrup/index.php")
+document.location.replace("http://localhost/hrms/index.php")
 }
 else
 {
 $("#notlogout").show()
-document.location.replace("/thyssenkrup/")
+document.location.replace("/hrms/")
 }
 } 
 
@@ -515,14 +515,14 @@ document.location.replace("/thyssenkrup/")
 
 // $.ajax({
   
-//   url:"http://localhost/thyssenkrup/excel/excel1.php",
+//   url:"http://localhost/hrms/excel/excel1.php",
 //   type:"POST",
 //   success:function(para){
 //     console.log(para)
 //     // para = JSON.parse(para)
 // //     $.ajax({
   
-// //     url:"http://localhost/thyssenkrup/excel/excel1.php",
+// //     url:"http://localhost/hrms/excel/excel1.php",
 // //     type:"POST",
 // //     data:{"para":para},
 // //     success:function(para1){

@@ -30,21 +30,21 @@
 <div class="w3-sidebar blue w3-bar-block" style="width:15%;border: 5px solid white;">
 
 
-<h3 class="w3-bar-item"><a href="/thyssenkrup/"><center>Home</center></a></h3> <br><br>
-  <a href="/thyssenkrup/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
-  <a href="/thyssenkrup/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
-  <a href="/thyssenkrup/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
-  <a href="/thyssenkrup/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
-  <a href="/thyssenkrup/history.php" class="w3-bar-item w3-button">See History  </a> <br>
-  <a href="/thyssenkrup/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
-  <a href="/thyssenkrup/interview.php" class="w3-bar-item w3-button white">Update Interviews</a> <br>
-  <a href="/thyssenkrup/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
+<h3 class="w3-bar-item"><a href="/hrms/"><center>Home</center></a></h3> <br><br>
+  <a href="/hrms/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
+  <a href="/hrms/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
+  <a href="/hrms/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
+  <a href="/hrms/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
+  <a href="/hrms/history.php" class="w3-bar-item w3-button">See History  </a> <br>
+  <a href="/hrms/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
+  <a href="/hrms/interview.php" class="w3-bar-item w3-button white">Update Interviews</a> <br>
+  <a href="/hrms/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
 
 </div>
 <div style="margin-left:15%">
     <nav>
         <div class="nav-wrapper blue darken-1">
-        <a href="/thyssenkrup/">
+        <a href="/hrms/">
             <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
             </a> 
       
@@ -184,7 +184,7 @@ function xyz(x)
   prfints=id.split('*')
   // alert(prfint)
   $.ajax({
-      url:"http://localhost/thyssenkrup/api/getthatintvmembers.php",
+      url:"http://localhost/hrms/api/getthatintvmembers.php",
       type:"POST",
       data:{'prfint':prfint},
       success:function(para)
@@ -240,7 +240,7 @@ $(document).ready(function(){
   })
   $('.timepicker').timepicker();
  $.ajax({
-    url:'http://localhost/thyssenkrup/api/getinterviewer.php',
+    url:'http://localhost/hrms/api/getinterviewer.php',
     type:'POST',
     data:{
         'arr':arr,
@@ -266,7 +266,7 @@ $(document).ready(function(){
 $('#logoutuser').click(function(){
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/logout.php",
+url:"http://localhost/hrms/api/logout.php",
 type:"POST",
 success:function(para){
 
@@ -274,12 +274,12 @@ if(para=="success")
 {
 $("#row").hide()
 $("#logout").show()
-document.location.replace("http://localhost/thyssenkrup/index.php")
+document.location.replace("http://localhost/hrms/index.php")
 }
 else
 {
 $("#notlogout").show()
-document.location.replace("/thyssenkrup/")
+document.location.replace("/hrms/")
 }
 } 
 
@@ -306,7 +306,7 @@ console.log("Members", members)
         // alert("Button clicked");  
         $.ajax({
           
-            url:"http://localhost/thyssenkrup/api/updateint.php",
+            url:"http://localhost/hrms/api/updateint.php",
             type:"POST",
             data:
             {

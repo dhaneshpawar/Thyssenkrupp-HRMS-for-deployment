@@ -341,7 +341,7 @@ $(document).ready(function(){
     else
     {
         $.ajax({
-        url:"http://localhost/thyssenkrup/api/getvaliddoc.php",
+        url:"http://localhost/hrms/api/getvaliddoc.php",
         type:'POST',
         data:
         {

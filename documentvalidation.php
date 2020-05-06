@@ -503,7 +503,7 @@ function valid(x)
     $.ajax({
 
     type:"POST",
-    url:"http://localhost/thyssenkrup/api/validdoc.php",
+    url:"http://localhost/hrms/api/validdoc.php",
 
     data:
     {
@@ -543,7 +543,7 @@ function invalid(x)
     $.ajax({
 
         type:"POST",
-        url:"http://localhost/thyssenkrup/api/invaliddoc.php",
+        url:"http://localhost/hrms/api/invaliddoc.php",
         data:
         {
             'doc':va,
@@ -1158,7 +1158,7 @@ $("#rcc1").hide()
 $("#rdiploma1").hide()
 
 $.ajax({
-    url:"http://localhost/thyssenkrup/api/getdocuments.php",
+    url:"http://localhost/hrms/api/getdocuments.php",
     data:{
         "mail" : m
     },
@@ -1227,7 +1227,7 @@ $("#submit").click(function(){
     $('#parent').append('<center><h4><b style="color:red;">Submitting Details Please Wait</b></h4></center>')
    // alert(cv)
     $.ajax({
-        url:"http://localhost/thyssenkrup/api/submitvalidation.php",
+        url:"http://localhost/hrms/api/submitvalidation.php",
         type:"POST",
         data:{
             "valid":valid,

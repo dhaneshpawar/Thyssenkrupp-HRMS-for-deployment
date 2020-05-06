@@ -17,7 +17,7 @@ foreach($_POST['emails'] as $d)
     $mail->addAddress($d);
     $token=sha1($d);
     $db->tokens->insertOne(array("email"=>$d,"token"=>$token));
-    $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.html?token='.$token;
+    $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.html?token='.$token;
     $mail->Subject = 'Mail Regarding to take Interview for interviewer';
     $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this date.'.$url;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';

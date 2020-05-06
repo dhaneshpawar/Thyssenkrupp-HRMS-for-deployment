@@ -114,7 +114,7 @@
      $result=$db->tokens->updateOne(array("email"=>$mail),array('$set'=>array("afterselection"=>"1")));
 
        echo "success";
-       header("refresh:0;url=http://localhost/thyssenkrup/reupload.php?token=1");
+       header("refresh:0;url=http://localhost/hrms/reupload.php?token=1");
    }        
     else
     {

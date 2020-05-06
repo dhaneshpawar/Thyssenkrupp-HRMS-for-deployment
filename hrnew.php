@@ -102,15 +102,15 @@ if(isset($_COOKIE['sid']))
 
 <div class="w3-sidebar blue w3-bar-block" style="width:15%;border: 5px solid white;">
 
-<h3 class="w3-bar-item"><a href="/thyssenkrup/"><center>Home</center></a></h3> <br><br>
-  <a href="/thyssenkrup/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
-  <a href="/thyssenkrup/hrnew.php" class="w3-bar-item w3-button white">Create New Instance</a> <br>
-  <a href="/thyssenkrup/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
-  <a href="/thyssenkrup/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
-  <a href="/thyssenkrup/history.php" class="w3-bar-item w3-button">See History  </a> <br>
-  <a href="/thyssenkrup/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
-  <a href="/thyssenkrup/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
-  <a href="/thyssenkrup/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
+<h3 class="w3-bar-item"><a href="/hrms/"><center>Home</center></a></h3> <br><br>
+  <a href="/hrms/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
+  <a href="/hrms/hrnew.php" class="w3-bar-item w3-button white">Create New Instance</a> <br>
+  <a href="/hrms/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
+  <a href="/hrms/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
+  <a href="/hrms/history.php" class="w3-bar-item w3-button">See History  </a> <br>
+  <a href="/hrms/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
+  <a href="/hrms/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
+  <a href="/hrms/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
 
 
 </div>
@@ -118,7 +118,7 @@ if(isset($_COOKIE['sid']))
 
     <nav>
         <div class="nav-wrapper blue darken-1">
-        <a href="/thyssenkrup/">
+        <a href="/hrms/">
             <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
             </a> 
       
@@ -213,7 +213,7 @@ if(isset($_COOKIE['sid']))
 function withdraw(id)
   {
     $.ajax({
-      url:'http://localhost/thyssenkrup/api/withdrawposition.php',
+      url:'http://localhost/hrms/api/withdrawposition.php',
       type:'POST',
       data:{'id':id},
       success : function(para)
@@ -241,7 +241,7 @@ function showmodal(x)
 {
   $("#modalrow").text("")      
   $.ajax({
-    url:'http://localhost/thyssenkrup/api/getfullprf.php',
+    url:'http://localhost/hrms/api/getfullprf.php',
     type:'POST',
     data:
     {
@@ -269,7 +269,7 @@ $('#selectedrow').hide();
 $('#logoutuser').click(function(){
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/logout.php",
+url:"http://localhost/hrms/api/logout.php",
 type:"POST",
 success:function(para){
 
@@ -277,12 +277,12 @@ if(para=="success")
 {
 $("#row").hide()
 $("#logout").show()
-document.location.replace("http://localhost/thyssenkrup/index.php")
+document.location.replace("http://localhost/hrms/index.php")
 }
 else
 {
 $("#notlogout").show()
-document.location.replace("/thyssenkrup/")
+document.location.replace("/hrms/")
 }
 } 
 
@@ -462,7 +462,7 @@ function filterbydept()
   $('#deptchoice').empty()
 
   $.ajax({
-    url:'http://localhost/thyssenkrup/api/getdepartments.php',
+    url:'http://localhost/hrms/api/getdepartments.php',
     type:'POST',
     success:function(para)
     {
@@ -494,7 +494,7 @@ $(document).ready(function(){
 
  $("#uploaddump").hide()
  $.ajax({
-    url:'http://localhost/thyssenkrup/api/getprfdump.php',
+    url:'http://localhost/hrms/api/getprfdump.php',
     type:'POST',
     // data:{'arr1':arr1},
     success : function(para)
@@ -543,7 +543,7 @@ $('#submitmail').click(function()
   }
   
   $.ajax({
-    url : 'http://localhost/thyssenkrup/api/sendmail.php',
+    url : 'http://localhost/hrms/api/sendmail.php',
 
     type:'POST',
 
@@ -615,7 +615,7 @@ $('#rawdata').empty();
 
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/getfilteredprf.php",
+url:"http://localhost/hrms/api/getfilteredprf.php",
 type:"POST",
 data: {"dept": $('#deptchoice').val()},
 success:function(arr)
@@ -641,7 +641,7 @@ success:function(arr)
 
   //---------------------------------Sarang -------------get unique zones
   $.ajax({
-          url:'http://localhost/thyssenkrup/api/getzones.php',
+          url:'http://localhost/hrms/api/getzones.php',
           type:'POST',
           // data:{'arr1':arr1},
           success : function(para)
@@ -679,7 +679,7 @@ $('#zonechoice').change(function(){
   $('#rawdata').empty();
   //Sarang Yesterday  13/03/2020
   $.ajax({
-  url:"http://localhost/thyssenkrup/api/hrgetfilteredzones.php",
+  url:"http://localhost/hrms/api/hrgetfilteredzones.php",
   type:"POST",
   data: {
     "dept": $('#deptchoice').val(),

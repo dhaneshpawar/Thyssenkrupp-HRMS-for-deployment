@@ -40,7 +40,7 @@ if(isset($_COOKIE['sid']))
 <body>
     <nav>
         <div class="nav-wrapper blue darken-1">
-        <a href="http://localhost/thyssenkrup/invdash.php">
+        <a href="http://localhost/hrms/invdash.php">
             <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
             </a> 
 
@@ -89,7 +89,7 @@ if(isset($_COOKIE['sid']))
     $('#logoutuser').click(function(){
     
     $.ajax({
-    url:"http://localhost/thyssenkrup/api/logout.php",
+    url:"http://localhost/hrms/api/logout.php",
     type:"POST",
     success:function(para){
     
@@ -97,12 +97,12 @@ if(isset($_COOKIE['sid']))
     {
     $("#row").hide()
     $("#logout").show()
-    document.location.replace("http://localhost/thyssenkrup/index.php")
+    document.location.replace("http://localhost/hrms/index.php")
     }
     else
     {
     $("#notlogout").show()
-    document.location.replace("/thyssenkrup/")
+    document.location.replace("/hrms/")
     }
     } 
     
@@ -122,7 +122,7 @@ var arr=[]
 $(document).ready(function(){
 
  $.ajax({
-    url:'http://localhost/thyssenkrup/api/viewrejectioninv.php',
+    url:'http://localhost/hrms/api/viewrejectioninv.php',
     type:'POST',
     // data:{'arr1':arr1},
     success : function(para)

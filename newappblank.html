@@ -26,7 +26,7 @@
         var data={"token":token};
        // console.log(token);
         $.ajax({
-                                            url : 'http://localhost/thyssenkrup/api/checkExpiry.php',
+                                            url : 'http://localhost/hrms/api/checkExpiry.php',
                                             type : 'POST',
                                             data :(data),          
                                              success : function(para){

@@ -45,7 +45,7 @@ if($cursor)
                 {
                     $mail->addAddress($d);
                     $token=sha1($d);
-                    $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.php?token='.$token.'&position='.$position;
+                    $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position;
 
                     $mail->Subject = 'Your Application at tkEI';
                     $mail->Body    =   nl2br('Dear Candidate,
@@ -104,7 +104,7 @@ if($cursor)
                 {
                     $mail->addAddress($d);
                     $token=sha1($d);
-                    $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.php?token='.$token.'&position='.$position;
+                    $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position;
 
                     $mail->Subject = 'Your Application at tkEI';
                     $mail->Body    = nl2br('Dear Candidate,
@@ -164,7 +164,7 @@ if($cursor)
                 {
                     $mail->addAddress($d);
                     $token=sha1($d);
-                    $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.php?token='.$token.'&position='.$position;
+                    $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position;
 
                     $mail->Subject = 'Your Application at tkEI';
                     $mail->Body    = nl2br('Dear Candidate,

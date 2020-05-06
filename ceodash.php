@@ -73,7 +73,7 @@ if(isset($_COOKIE['sid']))
                                     
                                     <div class="row" id="cardsradius">
 
-                                    <a href="/thyssenkrup/createusers.php">
+                                    <a href="/hrms/createusers.php">
                                             <div class="col  m6 s6">
                                               <div class="card " style="background: orange">
                                                 <div class="card-content white-text">
@@ -85,7 +85,7 @@ if(isset($_COOKIE['sid']))
                                             </div>
                                         </a>
 
-                                        <a href="/thyssenkrup/createdepartment.php">
+                                        <a href="/hrms/createdepartment.php">
                                             <div class="col  m6 s6">
                                               <div class="card " style="background: #677E8C">
                                                 <div class="card-content white-text">
@@ -99,7 +99,7 @@ if(isset($_COOKIE['sid']))
                                         </div>
                                         <div class="row" id="cardsradius">
 
-                                        <a href="/thyssenkrup/createiid.php">
+                                        <a href="/hrms/createiid.php">
 
                                             <div class="col  m6 s6">
                                               <div class="card " style="background: #EA5455;">
@@ -114,7 +114,7 @@ if(isset($_COOKIE['sid']))
                                             </div>
 
                                         </a> 
-                                        <a href="/thyssenkrup/initiateround.php">
+                                        <a href="/hrms/initiateround.php">
                                             <div class="col  m6 s6">
                                               <div class="card " style="background: #28C76F;">
                                                 <div class="card-content white-text">
@@ -126,7 +126,7 @@ if(isset($_COOKIE['sid']))
                                             </div>
                                         </a>
                                        
-                                        <a href="/thyssenkrup/allocateround.php">
+                                        <a href="/hrms/allocateround.php">
 
                                             <div class="col  m6 s6">
                                               <div class="card " style="background: #9F44D3;">
@@ -138,7 +138,7 @@ if(isset($_COOKIE['sid']))
                                             </div>
                                         </a>
 
-                                        <a href="/thyssenkrup/allocateround2.php">
+                                        <a href="/hrms/allocateround2.php">
 
                                             <div class="col  m6 s6">
                                               <div class="card " style="background: #9F44D3;">
@@ -187,7 +187,7 @@ if(isset($_COOKIE['sid']))
 $('#logoutuser').click(function(){
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/logout.php",
+url:"http://localhost/hrms/api/logout.php",
 type:"POST",
 success:function(para){
 
@@ -195,12 +195,12 @@ if(para=="success")
 {
 $("#row").hide()
 $("#logout").show()
-document.location.replace("http://localhost/thyssenkrup/index.php")
+document.location.replace("http://localhost/hrms/index.php")
 }
 else
 {
 $("#notlogout").show()
-document.location.replace("/thyssenkrup/")
+document.location.replace("/hrms/")
 }
 } 
 

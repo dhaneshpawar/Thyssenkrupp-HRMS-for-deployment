@@ -88,7 +88,7 @@ if($count==1) //if round collection is present
                 echo $d;
                 $mail->addAddress($d);
                 $token=sha1($d);
-                $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.php?token='.$token;
+                $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token;
 
                 $mail->Subject = 'Mail Regarding Interview';
                 $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this date.'.$url;
@@ -187,7 +187,7 @@ if($count==1) //if round collection is present
             {
                 $mail->addAddress($d);
                 $token=sha1($d);
-                $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.php?token='.$token;
+                $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token;
 
                 $mail->Subject = 'Mail Regarding Interview';
                 $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this date.'.$url;
@@ -261,7 +261,7 @@ if($count==1) //if round collection is present
                     "onhold"=>array()
                 ));    
                 echo "sent";
-                header("refresh:0;url=http://localhost/thyssenkrup/hrnew.php");
+                header("refresh:0;url=http://localhost/hrms/hrnew.php");
             }
             else
             {
@@ -282,7 +282,7 @@ else
             {
                 $mail->addAddress($d);
                 $token=sha1($d);
-                $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.php?token='.$token;
+                $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token;
 
                 $mail->Subject = 'Mail Regarding Interview';
                 $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this date.'.$url;

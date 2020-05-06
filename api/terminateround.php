@@ -38,7 +38,7 @@ if(isset($_POST))
                 $q1 = $db->prfs->findOne(array("prf"=>$digit13[0]));
                 $mail->addAddress($d);
                 $token=sha1($d);
-                $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/post-candidate-selection.php?token='.$d;
+                $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/post-candidate-selection.php?token='.$d;
 
                 $mail->Subject = 'Your interview at tkEI - Next Steps';
                 $mail->Body    = nl2br('Dear '.$q['full_name'].',

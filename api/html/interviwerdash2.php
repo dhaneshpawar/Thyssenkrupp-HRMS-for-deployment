@@ -111,7 +111,7 @@ if(isset($_COOKIE['sid']))
             var reason = prompt("Specify Reason For Rejecting : ");
             alert(x)
             $.ajax({
-                url:"http://localhost/thyssenkrup/api/updateinterviewstatus.php",
+                url:"http://localhost/hrms/api/updateinterviewstatus.php",
                 type:'GET',
                 data:{
                     "id":x ,
@@ -142,7 +142,7 @@ if(isset($_COOKIE['sid']))
         if(cnfrm)
         {
             $.ajax({
-                url:"http://localhost/thyssenkrup/api/endinterview.php",
+                url:"http://localhost/hrms/api/endinterview.php",
                 type:"POST",
                 data:{
                     "id": id13digit 
@@ -168,7 +168,7 @@ if(isset($_COOKIE['sid']))
     alert(window.mail)
     // Ajax Call For Tking data of to do list
     $.ajax({
-        url:"http://localhost/thyssenkrup/api/interviewertodo.php",
+        url:"http://localhost/hrms/api/interviewertodo.php",
         type:"GET",
         data:{
             "mail": window.mail 
@@ -209,7 +209,7 @@ if(isset($_COOKIE['sid']))
         window.digit13=id13digit
        // alert(id13digit)
         $.ajax({
-            url:"http://localhost/thyssenkrup/api/evaluationsetup.php",
+            url:"http://localhost/hrms/api/evaluationsetup.php",
             type:"POST",
             data:{
                 "id":x,
@@ -253,7 +253,7 @@ if(isset($_COOKIE['sid']))
         localStorage.setItem('currentemail',x)
         localStorage.setItem('id',window.digit13)
         $(document.getElementById(x)).remove()
-        window.open("http://localhost/thyssenkrup/evaluation.php", '_blank');
+        window.open("http://localhost/hrms/evaluation.php", '_blank');
         }
     }
 
@@ -265,7 +265,7 @@ if(isset($_COOKIE['sid']))
     $('#logoutuser').click(function(){
     
     $.ajax({
-    url:"http://localhost/thyssenkrup/api/logout.php",
+    url:"http://localhost/hrms/api/logout.php",
     type:"POST",
     success:function(para){
     
@@ -273,12 +273,12 @@ if(isset($_COOKIE['sid']))
     {
     $("#row").hide()
     $("#logout").show()
-    document.location.replace("http://localhost/thyssenkrup/index.php")
+    document.location.replace("http://localhost/hrms/index.php")
     }
     else
     {
     $("#notlogout").show()
-    document.location.replace("/thyssenkrup/")
+    document.location.replace("/hrms/")
     }
     } 
     

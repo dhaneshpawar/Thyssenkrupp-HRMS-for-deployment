@@ -81,7 +81,7 @@
     
     $.ajax(
       {
-        url : 'http://localhost/thyssenkrup/api/login.php',
+        url : 'http://localhost/hrms/api/login.php',
         type : 'POST',
         data : data,
         
@@ -93,7 +93,7 @@
           
           if(para != "404")
           {
-            var result = "http://localhost/thyssenkrup/hr.html"
+            var result = "http://localhost/hrms/hr.html"
             document.location.replace(result)
           }
           

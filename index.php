@@ -107,7 +107,7 @@ else
     
     $.ajax(
       {
-        url : 'http://localhost/thyssenkrup/api/login.php',
+        url : 'http://localhost/hrms/api/login.php',
         type : 'POST',
         data : {"uid":id,"pwd":pwd},
         
@@ -119,7 +119,7 @@ else
           
           if(para != "404")
           {
-            var result = "http://localhost/thyssenkrup/"+para+"dash.php"
+            var result = "http://localhost/hrms/"+para+"dash.php"
             document.location.replace(result)
           }
           

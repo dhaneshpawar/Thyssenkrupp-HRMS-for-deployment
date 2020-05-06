@@ -96,7 +96,7 @@ if(isset($_FILES))
     else
     {
         echo "<script>alert('Data Not Submitted. Please Reupload')</script>";
-        header("refresh:0;url=http://localhost/thyssenkrup/csvupload.php");
+        header("refresh:0;url=http://localhost/hrms/csvupload.php");
 
     }
     

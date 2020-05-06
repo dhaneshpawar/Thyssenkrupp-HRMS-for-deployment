@@ -45,7 +45,7 @@ function abort_round()
   {
  
     $.ajax({
-  url:"http://localhost/thyssenkrup/api/abortround.php",
+  url:"http://localhost/hrms/api/abortround.php",
 type:"POST",
 data: {
   "digit13" :  id_round
@@ -72,22 +72,22 @@ else
 <div class="w3-sidebar blue w3-bar-block" style="width:15%;border: 5px solid white;">
 
 
-<h3 class="w3-bar-item"><a href="/thyssenkrup/"><center>Home</center></a></h3> <br><br>
-  <a href="/thyssenkrup/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
-  <a href="/thyssenkrup/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
-  <a href="/thyssenkrup/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
-  <a href="/thyssenkrup/allocateround.php" class="w3-bar-item w3-button white">On going rounds</a> <br>
-  <a href="/thyssenkrup/history.php" class="w3-bar-item w3-button">See History  </a> <br>
-  <a href="/thyssenkrup/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
-  <a href="/thyssenkrup/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
-  <a href="/thyssenkrup/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
+<h3 class="w3-bar-item"><a href="/hrms/"><center>Home</center></a></h3> <br><br>
+  <a href="/hrms/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
+  <a href="/hrms/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
+  <a href="/hrms/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
+  <a href="/hrms/allocateround.php" class="w3-bar-item w3-button white">On going rounds</a> <br>
+  <a href="/hrms/history.php" class="w3-bar-item w3-button">See History  </a> <br>
+  <a href="/hrms/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
+  <a href="/hrms/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
+  <a href="/hrms/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
 
 </div>
 <div style="margin-left:15%">
 
               <nav>
                     <div class="nav-wrapper blue darken-1">
-                    <a href="/thyssenkrup/">
+                    <a href="/hrms/">
       <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
       </a> 
 
@@ -245,7 +245,7 @@ $(document).ready(function(){
 $("#waiting").hide();
 $.ajax(
   {
-    url:'http://localhost/thyssenkrup/api/allocateround.php',
+    url:'http://localhost/hrms/api/allocateround.php',
     type:'GET',
     success:function(para){
       if(para=='no data')
@@ -317,7 +317,7 @@ $('#allocatesubmit').click(function()
 
   $('#allocation').hide(600);
   $.ajax({
-  url:'http://localhost/thyssenkrup/api/interviewerongoing.php',
+  url:'http://localhost/hrms/api/interviewerongoing.php',
   type:'POST',
   data:{
         "emails":selectedmail,
@@ -390,7 +390,7 @@ function createnextround(id)
   $('#rid').replaceWith(p1)
   console.log("prffalkjsdf;lakjsfd = ",id_round)
   $.ajax({
-    url:'http://localhost/thyssenkrup/api/nextround.php',
+    url:'http://localhost/hrms/api/nextround.php',
     type:'POST',
     data:{
           "prf" : id_round
@@ -420,7 +420,7 @@ function createnextround(id)
         for(let i =0;i<para.length;i++)
         {
           allmail[i] = arr[i]
-          var s1='<tr id="check'+i+'row"><td><a href="http://localhost/thyssenkrup/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p >'+arr[i][0]+'</p></a></td><td><a href="http://localhost/thyssenkrup/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p id="check'+i+'mail">'+arr[i][1]+'</p></a></td><td><label>'
+          var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p >'+arr[i][0]+'</p></a></td><td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p id="check'+i+'mail">'+arr[i][1]+'</p></a></td><td><label>'
           var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
           var s3='<span class="blue-text darken-1" ></span></label></td><td></td></tr>'
           var str=s1+s2+s3
@@ -463,7 +463,7 @@ function terminateround()
         }
         // alert(selectedmail);
         $.ajax({
-        url:'http://localhost/thyssenkrup/api/terminateround.php',
+        url:'http://localhost/hrms/api/terminateround.php',
         type:'POST',
         data:{
           'prf':groupid,
@@ -506,7 +506,7 @@ function terminateround()
 $('#logoutuser').click(function(){
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/logout.php",
+url:"http://localhost/hrms/api/logout.php",
 type:"POST",
 success:function(para){
 
@@ -514,12 +514,12 @@ if(para=="success")
 {
 $("#row").hide()
 $("#logout").show()
-document.location.replace("http://localhost/thyssenkrup/index.php")
+document.location.replace("http://localhost/hrms/index.php")
 }
 else
 {
 $("#notlogout").show()
-document.location.replace("/thyssenkrup/")
+document.location.replace("/hrms/")
 }
 } 
 

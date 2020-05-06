@@ -42,22 +42,22 @@ if(isset($_COOKIE['sid']))
 <div class="w3-sidebar blue w3-bar-block" style="width:15%;border: 5px solid white;">
 
 
-<h3 class="w3-bar-item"><a href="/thyssenkrup/"><center>Home</center></a></h3> <br><br>
-  <a href="/thyssenkrup/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
-  <a href="/thyssenkrup/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
-  <a href="/thyssenkrup/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
-  <a href="/thyssenkrup/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
-  <a href="/thyssenkrup/history.php" class="w3-bar-item w3-button white">See History  </a> <br>
-  <a href="/thyssenkrup/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
-  <a href="/thyssenkrup/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
-  <a href="/thyssenkrup/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
+<h3 class="w3-bar-item"><a href="/hrms/"><center>Home</center></a></h3> <br><br>
+  <a href="/hrms/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
+  <a href="/hrms/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
+  <a href="/hrms/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
+  <a href="/hrms/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
+  <a href="/hrms/history.php" class="w3-bar-item w3-button white">See History  </a> <br>
+  <a href="/hrms/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
+  <a href="/hrms/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
+  <a href="/hrms/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
 
 </div>
 <div style="margin-left:15%">
 
     <nav>
         <div class="nav-wrapper blue darken-1">
-        <a href="/thyssenkrup/">
+        <a href="/hrms/">
             <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
             </a> 
       
@@ -339,7 +339,7 @@ $('#submithold').click(function(){
 $('#logoutuser').click(function(){
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/logout.php",
+url:"http://localhost/hrms/api/logout.php",
 type:"POST",
 success:function(para){
 
@@ -347,12 +347,12 @@ if(para=="success")
 {
 $("#row").hide()
 $("#logout").show()
-document.location.replace("http://localhost/thyssenkrup/index.php")
+document.location.replace("http://localhost/hrms/index.php")
 }
 else
 {
 $("#notlogout").show()
-document.location.replace("/thyssenkrup/")
+document.location.replace("/hrms/")
 }
 } 
 
@@ -419,7 +419,7 @@ function xyz(x)
 
       $.ajax({
 
-              url : 'http://localhost/thyssenkrup/api/getprfs2.php',
+              url : 'http://localhost/hrms/api/getprfs2.php',
               type : 'POST',
               data : {
                 'prf':roundid[0],
@@ -439,7 +439,7 @@ function xyz(x)
                 var element = parseddata[0].selected
                 for (let i = 0; i < element.length; i++) 
                 {
-                  var str = "<tr><td><p>"+element[i][1]+"</p></td><td><a href='http://localhost/thyssenkrup/documentcheck.php?aid="+element[i][0]+"' target='_blank'>"+element[i][0]+"</a></td><td> <a class='waves-effect waves-light btn' href='http://localhost/thyssenkrup/documentcheck.php?aid="+element[i][0]+"' target='_blank'>Evaluation Sheet</a></td><td><a class='waves-effect waves-light btn' href='http://localhost/thyssenkrup/viewcv.php?aid="+element[i][0]+"' target='_blank'>View CV</a></td></tr>"
+                  var str = "<tr><td><p>"+element[i][1]+"</p></td><td><a href='http://localhost/hrms/documentcheck.php?aid="+element[i][0]+"' target='_blank'>"+element[i][0]+"</a></td><td> <a class='waves-effect waves-light btn' href='http://localhost/hrms/documentcheck.php?aid="+element[i][0]+"' target='_blank'>Evaluation Sheet</a></td><td><a class='waves-effect waves-light btn' href='http://localhost/hrms/viewcv.php?aid="+element[i][0]+"' target='_blank'>View CV</a></td></tr>"
                   
                   $('#tabledataselect').append(str)
                     
@@ -451,12 +451,12 @@ function xyz(x)
                 {
                   if(element[i][0][1] == "Aborted")
                   {
-                    var str = "<tr><td><p>"+element[i][1]+"</p></td><td><a href='http://localhost/thyssenkrup/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i][0][0]+"</a> </td><td>Aborted</td><td><a class='waves-effect waves-light btn' href='http://localhost/thyssenkrup/viewcv.php?aid="+element[i]+"' target='_blank'>View CV</a></td></tr>"
+                    var str = "<tr><td><p>"+element[i][1]+"</p></td><td><a href='http://localhost/hrms/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i][0][0]+"</a> </td><td>Aborted</td><td><a class='waves-effect waves-light btn' href='http://localhost/hrms/viewcv.php?aid="+element[i]+"' target='_blank'>View CV</a></td></tr>"
                     $('#tabledatareject').append(str)
                   }
                   else
                   {
-                    var str = "<tr><td><p>"+element[i][1]+"</p></td><td><a href='http://localhost/thyssenkrup/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i][0]+"</a> </td><td> <a class='waves-effect waves-light btn' href='http://localhost/thyssenkrup/documentcheck.php?aid="+element[i]+"' target='_blank'>Evaluation Sheet</a></td><td><a class='waves-effect waves-light btn' href='http://localhost/thyssenkrup/viewcv.php?aid="+element[i]+"' target='_blank'>View CV</a></td></tr>"
+                    var str = "<tr><td><p>"+element[i][1]+"</p></td><td><a href='http://localhost/hrms/documentcheck.php?aid="+element[i]+"' target='_blank'>"+element[i][0]+"</a> </td><td> <a class='waves-effect waves-light btn' href='http://localhost/hrms/documentcheck.php?aid="+element[i]+"' target='_blank'>Evaluation Sheet</a></td><td><a class='waves-effect waves-light btn' href='http://localhost/hrms/viewcv.php?aid="+element[i]+"' target='_blank'>View CV</a></td></tr>"
                   
                   $('#tabledatareject').append(str)
                   }
@@ -474,12 +474,12 @@ function xyz(x)
                   mailidonly = element[i][0].split(",")
                   if(mailidonly[1] == "absent")
                   {
-                    var str = "<tr><td><p id='"+i+"mail'>"+mailidonly[0]+"</p></td><td><p>"+element[i][1]+"</p></td><td><p>Absent</p>&nbsp;&nbsp;</td><td><a class='waves-effect waves-light btn' href='http://localhost/thyssenkrup/viewcv.php?aid="+mailidonly[0]+"' target='_blank'>View CV</a></td><td><p><label><input type='checkbox' class='filled-in' id='"+i+"check' name='"+i+"mail' onclick='selection(this.id,this.name)' /><span></span></label></p></td></tr>"
+                    var str = "<tr><td><p id='"+i+"mail'>"+mailidonly[0]+"</p></td><td><p>"+element[i][1]+"</p></td><td><p>Absent</p>&nbsp;&nbsp;</td><td><a class='waves-effect waves-light btn' href='http://localhost/hrms/viewcv.php?aid="+mailidonly[0]+"' target='_blank'>View CV</a></td><td><p><label><input type='checkbox' class='filled-in' id='"+i+"check' name='"+i+"mail' onclick='selection(this.id,this.name)' /><span></span></label></p></td></tr>"
                   $('#tabledatahold').append(str)
                   }
                   else
                   {
-                    var str = "<tr><td><a href='http://localhost/thyssenkrup/documentcheck.php?aid="+mailidonly[0]+"' target='_blank'><p id='"+i+"mail'>"+mailidonly[0]+"</p></a> </td><td><p>"+element[i][1]+"</p></td><td> <a class='waves-effect waves-light btn' href='http://localhost/thyssenkrup/documentcheck.php?aid="+mailidonly[0]+"' target='_blank'>Evaluation Sheet</a>&nbsp;&nbsp;</td><td><a class='waves-effect waves-light btn' href='http://localhost/thyssenkrup/viewcv.php?aid="+mailidonly[0]+"' target='_blank'>View CV</a></td><td><p><label><input type='checkbox' class='filled-in' id='"+i+"check' name='"+i+"mail' onclick='selection(this.id,this.name)' /><span></span></label></p></td></tr>"
+                    var str = "<tr><td><a href='http://localhost/hrms/documentcheck.php?aid="+mailidonly[0]+"' target='_blank'><p id='"+i+"mail'>"+mailidonly[0]+"</p></a> </td><td><p>"+element[i][1]+"</p></td><td> <a class='waves-effect waves-light btn' href='http://localhost/hrms/documentcheck.php?aid="+mailidonly[0]+"' target='_blank'>Evaluation Sheet</a>&nbsp;&nbsp;</td><td><a class='waves-effect waves-light btn' href='http://localhost/hrms/viewcv.php?aid="+mailidonly[0]+"' target='_blank'>View CV</a></td><td><p><label><input type='checkbox' class='filled-in' id='"+i+"check' name='"+i+"mail' onclick='selection(this.id,this.name)' /><span></span></label></p></td></tr>"
                   $('#tabledatahold').append(str)
                   }
                   
@@ -542,7 +542,7 @@ $('#deptchoice').change(function(){
 $('#rawdata').empty();
 //Sarang Yesterday  13/03/2020
 $.ajax({
-url:"http://localhost/thyssenkrup/api/histgetfiltereddept.php",
+url:"http://localhost/hrms/api/histgetfiltereddept.php",
 type:"POST",
 data: {"dept": $('#deptchoice').val()},
 success:function(arr)
@@ -571,7 +571,7 @@ success:function(arr)
    //Added by Sarang - 03/14/2020
     //---------------------------------Sarang -------------get unique zones
       $.ajax({
-          url:'http://localhost/thyssenkrup/api/getzones.php',
+          url:'http://localhost/hrms/api/getzones.php',
           type:'POST',
           // data:{'arr1':arr1},
           success : function(para)
@@ -618,7 +618,7 @@ $('#zonechoice').change(function(){
   $('#rawdata').empty();
   //Sarang Yesterday  13/03/2020
   $.ajax({
-  url:"http://localhost/thyssenkrup/api/histgetfilteredzones.php",
+  url:"http://localhost/hrms/api/histgetfilteredzones.php",
   type:"POST",
   data: {
     "dept": $('#deptchoice').val(),
@@ -664,7 +664,7 @@ $('#zonechoice').change(function(){
 
  $("#mytabs").hide()
  $.ajax({
-    url:'http://localhost/thyssenkrup/api/getprfs.php',
+    url:'http://localhost/hrms/api/getprfs.php',
     type:'POST',
     // data:{'arr1':arr1},
     success : function(para)
@@ -705,7 +705,7 @@ $('#allocatesubmit').click(function()
 
   $('#allocation').hide(600);
   $.ajax({
-  url:'http://localhost/thyssenkrup/api/assignonhold.php',
+  url:'http://localhost/hrms/api/assignonhold.php',
   type:'POST',
   data:{
         "emails":selectedmail,

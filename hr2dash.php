@@ -33,10 +33,10 @@ if(isset($_COOKIE['sid']))
 <body>
 <nav>
                     <div class="nav-wrapper blue darken-1">
-                    <a href="http://localhost/thyssenkrup/hr2history.php">
+                    <a href="http://localhost/hrms/hr2history.php">
                     <button class="btn waves-effect blue darken-1" type="submit" name="action" style="float:left;margin-top: 18px;margin-right: 18px ">SEE HISTORY</button>
                     </a>
-                    <a href="/thyssenkrup/"></a>
+                    <a href="/hrms/"></a>
                       <a href="#!" class="brand-logo center">thyssenkrupp</a>
                       <div id="logoutuser" class="row">
     <button class="btn waves-effect blue darken-1" type="submit" id="logoutuser" name="action" style="float:right;margin-top: 18px;margin-right: 18px ">LOGOUT</button>
@@ -172,7 +172,7 @@ if(isset($_COOKIE['sid']))
     $('#logoutuser').click(function(){
     
     $.ajax({
-    url:"http://localhost/thyssenkrup/api/logout.php",
+    url:"http://localhost/hrms/api/logout.php",
     type:"POST",
     success:function(para){
     
@@ -180,12 +180,12 @@ if(isset($_COOKIE['sid']))
     {
     $("#row").hide()
     $("#logout").show()
-    document.location.replace("http://localhost/thyssenkrup/index.php")
+    document.location.replace("http://localhost/hrms/index.php")
     }
     else
     {
     $("#notlogout").show()
-    document.location.replace("/thyssenkrup/")
+    document.location.replace("/hrms/")
     }
     } 
     
@@ -230,7 +230,7 @@ $("#validated").click(function(){
 
 // Ajax Call For Tking data of Grops for validation
 $.ajax({
-    url:"http://localhost/thyssenkrup/api/getprfvalidate.php",
+    url:"http://localhost/hrms/api/getprfvalidate.php",
     type:"GET",
     success:function(para)
     {   
@@ -274,7 +274,7 @@ function completeValidation(digit13)
     $("#"+digit13).attr('disabled','disabled')
     id=digit13.split("-");
     $.ajax({
-        url:"http://localhost/thyssenkrup/api/completevalidation.php",
+        url:"http://localhost/hrms/api/completevalidation.php",
         type:"POST",
         data:{
             "prf":id[0],
@@ -306,7 +306,7 @@ function displayMail(x)
     alert(x)
     
     $.ajax({
-        url:"http://localhost/thyssenkrup/api/getemailvalidate.php",
+        url:"http://localhost/hrms/api/getemailvalidate.php",
         type:"GET",
         data:{
             "id":x
@@ -426,7 +426,7 @@ function rol(para,name)
     // alert(s)
 
     $.ajax({
-        url:"http://localhost/thyssenkrup/api/reqofferletter.php",
+        url:"http://localhost/hrms/api/reqofferletter.php",
         type:"POST",
         data:{
             "mail":name,
@@ -457,7 +457,7 @@ function evaluateMail(x)
     
     localStorage.setItem('currentemail',x)
     // alert(localStorage.getItem('currentemail'))
-     window.open("/thyssenkrup/documentvalidation.php?token="+x+"", '_blank');
+     window.open("/hrms/documentvalidation.php?token="+x+"", '_blank');
      window.setTimeout(function(){location.reload()},1000)
 
 }

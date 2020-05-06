@@ -39,7 +39,7 @@ input[id="uan"]
     <center>
     <h1><p  id="details"style="color:Green">Deteails Submitted Successfully</p></h1>
     </center>
-    <form method="POST" action="http://localhost/thyssenkrup/api/submitevalform.php" enctype="multipart/form-data" id="postForm">
+    <form method="POST" action="http://localhost/hrms/api/submitevalform.php" enctype="multipart/form-data" id="postForm">
     
     <div class="row">
         <div class="col s12 m6 offset-m3">
@@ -161,7 +161,7 @@ $(document).ready(function(){
         var data={"token":token};
        // console.log(token);
         $.ajax({
-                                            url : 'http://localhost/thyssenkrup/api/checkExpiry2.php',
+                                            url : 'http://localhost/hrms/api/checkExpiry2.php',
                                             type : 'POST',
                                             data :(data),          
                                              success : function(para){
@@ -301,7 +301,7 @@ var nom4
 // $.ajax({
 
 
-//     url:'http://localhost/thyssenkrup/api/submitevalform.php',
+//     url:'http://localhost/hrms/api/submitevalform.php',
 //     type:"POST",
 //     data:
 //     {

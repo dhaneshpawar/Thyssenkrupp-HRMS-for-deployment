@@ -283,7 +283,7 @@ $("#submit").click(function(){
     $("#submitting").show(600)
    
     $.ajax({
-        url:"http://localhost/thyssenkrup/api/intereval.php",
+        url:"http://localhost/hrms/api/intereval.php",
         type:"GET",
         data : {
             "candidateknowledge":candidateknowledge,

@@ -52,13 +52,13 @@ if(isset($_COOKIE['sid']))
       <div class="card  white">
         <div class="card-content white-text">
           <div class="col s12 ">
-              <a href="/thyssenkrup/createdepartment.php"><button>Create Department and PRF</button></a>
+              <a href="/hrms/createdepartment.php"><button>Create Department and PRF</button></a>
               <br><br>
-                <a href="/thyssenkrup/createiid.php"><button>Create Instance or see Instance history </button></a>
+                <a href="/hrms/createiid.php"><button>Create Instance or see Instance history </button></a>
                 <br><br>
-                <a href="/thyssenkrup/initiateround.php"><button>Initiate rounds for instances  </button></a>
+                <a href="/hrms/initiateround.php"><button>Initiate rounds for instances  </button></a>
                 <br><br>
-                <a href="/thyssenkrup/allocateround.php"><button>On going rounds  </button></a>
+                <a href="/hrms/allocateround.php"><button>On going rounds  </button></a>
                 <br><br>
             <br><br>
           </div>  
@@ -234,7 +234,7 @@ $('#newgroup').show(600);
 
 //retrive depts
 $.ajax({
-url:"http://localhost/thyssenkrup/api/deptlist.php",
+url:"http://localhost/hrms/api/deptlist.php",
 type:"GET",
 success:function(para)
 {
@@ -272,7 +272,7 @@ $('#deptchoice').change(function(){
 
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/prflist.php",
+url:"http://localhost/hrms/api/prflist.php",
 type:"POST",
 data: {"dept": $('#deptchoice').val()},
 success:function(para)
@@ -319,7 +319,7 @@ var ap1 = "<option disabled selected style='color: white'>Select Position</optio
 $("#pos").append(ap1)    
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/poslist.php",
+url:"http://localhost/hrms/api/poslist.php",
 type:"POST",
 data: {"dept": $('#deptchoice').val(),"prf":$('#prfno').val()},
 success:function(para)
@@ -391,7 +391,7 @@ arr= arr.filter(function(entry) { return entry.trim() != ""; });
 
 console.log(data)
 $.ajax({
-url : 'http://localhost/thyssenkrup/api/sendmail.php',
+url : 'http://localhost/hrms/api/sendmail.php',
 type : 'POST',
 data:(data),
 success : function(para){
@@ -435,7 +435,7 @@ document.location.replace('history.php')
 $('#logoutuser').click(function(){
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/logout.php",
+url:"http://localhost/hrms/api/logout.php",
 type:"POST",
 success:function(para){
 
@@ -443,12 +443,12 @@ if(para=="success")
 {
 $("#row").hide()
 $("#logout").show()
-document.location.replace("http://localhost/thyssenkrup/index.php")
+document.location.replace("http://localhost/hrms/index.php")
 }
 else
 {
 $("#notlogout").show()
-document.location.replace("/thyssenkrup/")
+document.location.replace("/hrms/")
 }
 } 
 

@@ -39,7 +39,7 @@ if(isset($_COOKIE['sid']))
 
   <nav>
   <div class="nav-wrapper blue darken-1">
-  <a href="/thyssenkrup/">
+  <a href="/hrms/">
       <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
       </a> 
 
@@ -251,7 +251,7 @@ console.log(data)
 
 
 $.ajax({
-url : 'http://localhost/thyssenkrup/api/createprf.php',
+url : 'http://localhost/hrms/api/createprf.php',
 type : 'POST',
 data : {'deptchoice':department,"prfno":prfno,"pos":pos},
 
@@ -307,7 +307,7 @@ $('#notexist').fadeIn(600);
 $('#logoutuser').click(function(){
 
 $.ajax({
-url:"http://localhost/thyssenkrup/api/logout.php",
+url:"http://localhost/hrms/api/logout.php",
 type:"POST",
 success:function(para){
 
@@ -315,12 +315,12 @@ if(para=="success")
 {
 $("#row").hide()
 $("#logout").show()
-document.location.replace("http://localhost/thyssenkrup/index.php")
+document.location.replace("http://localhost/hrms/index.php")
 }
 else
 {
 $("#notlogout").show()
-document.location.replace("/thyssenkrup/")
+document.location.replace("/hrms/")
 }
 } 
 

@@ -90,7 +90,7 @@ if($count==1) //if round collection is present
                 // echo $d;
                 $mail->addAddress($d);
                 $token=sha1($d);
-                $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.php?token='.$token.'&position='.$position2;
+                $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position2;
 
                 $mail->Subject = 'Your Application at tkEI';
                 $mail->Body    =   nl2br('Dear Candidate,
@@ -135,13 +135,13 @@ if($count==1) //if round collection is present
                 $emails = json_decode(json_encode($emails), true);
                 $db->rounds->insertOne(array("status"=>"bstart","prf"=>$prf,"dept"=>$dept,"pos"=>$pos,"position"=>$position,"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid,"members"=>$emails,"selected"=>array(),"rejected"=>array(),"onhold"=>array()));    
                 echo "<script>alert('File Uploaded Successfully')</script>";
-                header("refresh:0;url=http://localhost/thyssenkrup/hrnew.php");
+                header("refresh:0;url=http://localhost/hrms/hrnew.php");
             }
             else
             {
                 
                 echo "<script>alert('File Upload Failed')</script>";
-                header("refresh:0;url=http://localhost/thyssenkrup/hrnew.php");
+                header("refresh:0;url=http://localhost/hrms/hrnew.php");
             }
         }
         else
@@ -154,7 +154,7 @@ if($count==1) //if round collection is present
             {
                 $mail->addAddress($d);
                 $token=sha1($d);
-                $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.php?token='.$token.'&position='.$position2;
+                $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position2;
 
                 $mail->Subject = 'Your Application at tkEI';
                 $mail->Body    = nl2br('Dear Candidate,
@@ -200,14 +200,14 @@ if($count==1) //if round collection is present
                 // echo "sent";
                 echo "<script>alert('File Uploade Successfully')</script>";
 
-                header("refresh:0;url=http://localhost/thyssenkrup/hrnew.php");
+                header("refresh:0;url=http://localhost/hrms/hrnew.php");
             }
             else
             {
                 // echo "notsent2";
                 echo "<script>alert('File Upload Failed')</script>";
 
-                header("refresh:0;url=http://localhost/thyssenkrup/hrnew.php");
+                header("refresh:0;url=http://localhost/hrms/hrnew.php");
             }
            
         
@@ -224,7 +224,7 @@ else
             {
                 $mail->addAddress($d);
                 $token=sha1($d);
-                $url='http://'.$_SERVER['SERVER_NAME'].'/thyssenkrup/applicationblank.php?token='.$token.'&position='.$position2;
+                $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position2;
 
                 $mail->Subject = 'Your Application at tkEI';
                 $mail->Body    = nl2br('Dear Candidate,
@@ -272,14 +272,14 @@ else
                 // echo "sent";
                 echo "<script>alert('File Uploaded Successfully')</script>";
 
-                header("refresh:0;url=http://localhost/thyssenkrup/hrnew.php");
+                header("refresh:0;url=http://localhost/hrms/hrnew.php");
             }
             else
             {
                 // echo "notsent3";
                 echo "<script>alert('File Upload Failed')</script>";
 
-                header("refresh:0;url=http://localhost/thyssenkrup/hrnew.php");
+                header("refresh:0;url=http://localhost/hrms/hrnew.php");
             }
    
 

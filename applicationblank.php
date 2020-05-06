@@ -54,7 +54,7 @@ $_SESSION['positionapplied'] = $position;
                           <div class="card white">
                             <div class="card-content blue-text darken-1" id="form">
                       
-                         <form method="POST" enctype='multipart/form-data' action="http://localhost/thyssenkrup/api/submitapplication.php">
+                         <form method="POST" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php">
                                  
 
                                 <!-- form starts -->
@@ -705,7 +705,7 @@ $(document).ready(function(){
         var data={"token":token};
        // console.log(token);
         $.ajax({
-                                            url : 'http://localhost/thyssenkrup/api/checkExpiry.php',
+                                            url : 'http://localhost/hrms/api/checkExpiry.php',
                                             type : 'POST',
                                             data :(data),          
                                              success : function(para){

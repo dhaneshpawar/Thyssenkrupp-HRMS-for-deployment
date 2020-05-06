@@ -48,7 +48,7 @@ if(isset($_COOKIE['sid']))
 
     <nav>
         <div class="nav-wrapper blue darken-1">
-        <a href="http://localhost/thyssenkrup/invhistory.php">
+        <a href="http://localhost/hrms/invhistory.php">
         <button class="btn waves-effect blue darken-1" type="submit" name="action" style="float:left;margin-top: 18px;margin-right: 18px ">SEE HISTORY</button>
         </a>
             <a href="#!" class="brand-logo center">thyssenkrupp</a>
@@ -140,7 +140,7 @@ if(isset($_COOKIE['sid']))
             var reason = prompt("Specify Reason For Rejecting : ");
             // alert(x)
             $.ajax({
-                url:"http://localhost/thyssenkrup/api/updateinterviewstatus.php",
+                url:"http://localhost/hrms/api/updateinterviewstatus.php",
                 type:'POST',
                 data:{
                     "id":x ,
@@ -171,7 +171,7 @@ if(isset($_COOKIE['sid']))
             $(acbtnid).attr('disabled','disabled')
             $(rjbtnid).attr('disabled','disabled')     
             $.ajax({
-                url:"http://localhost/thyssenkrup/api/accepted.php",
+                url:"http://localhost/hrms/api/accepted.php",
                 type:"POST",
                 data:{
                     "prf13":x1
@@ -200,7 +200,7 @@ function modifyMail(id,name)
     // console.log("Split data : "+id[0]+" & "+id[1]+"&"+id[2])
 
     $.ajax({
-        url:"http://localhost/thyssenkrup/api/invmodifytime.php",
+        url:"http://localhost/hrms/api/invmodifytime.php",
         type:"POST",
         data:{
             "index":id[0],
@@ -228,7 +228,7 @@ function displayreadonlymail(id)
     id = id.split("*");
     console.log("This is : "+id[0])
     $.ajax({
-                url:"http://localhost/thyssenkrup/api/showmembersfirst.php",
+                url:"http://localhost/hrms/api/showmembersfirst.php",
                 type:"POST",
                 data:{
                     "id": id[0] 
@@ -249,8 +249,8 @@ function displayreadonlymail(id)
                     {
                         console.log("Loop"+id[0])
                         //along with modify button
-                        var txt1 = '<tr id="'+para[i]+'"><td><a href="http://localhost/thyssenkrup/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td><td><input type="text" style="width:50%;" id="'+i+'tp" value="'+para[i][2]+'" class="timepicker"></td><td><button class="btn waves-effect green"  id="'+i+'*'+para[i][2]+'*'+id[0]+'" name="'+i+'" onclick="modifyMail(this.id,this.name)">Modify Time<i class="material-icons right">send</i></button></td></tr>'
-                        // var txt1 = '<tr id="'+para[i]+'"><td><a href="http://localhost/thyssenkrup/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td><td><p>'+para[i][2]+'</p></td></tr>'                   
+                        var txt1 = '<tr id="'+para[i]+'"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td><td><input type="text" style="width:50%;" id="'+i+'tp" value="'+para[i][2]+'" class="timepicker"></td><td><button class="btn waves-effect green"  id="'+i+'*'+para[i][2]+'*'+id[0]+'" name="'+i+'" onclick="modifyMail(this.id,this.name)">Modify Time<i class="material-icons right">send</i></button></td></tr>'
+                        // var txt1 = '<tr id="'+para[i]+'"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td><td><p>'+para[i][2]+'</p></td></tr>'                   
                         $("#emailbody10").append(txt1)
                         $('.timepicker').timepicker();
                     }
@@ -283,7 +283,7 @@ function displayreadonlymail(id)
         if(cnfrm)
         {
             $.ajax({
-                url:"http://localhost/thyssenkrup/api/endinterview.php",
+                url:"http://localhost/hrms/api/endinterview.php",
                 type:"POST",
                 data:{
                     "id": id13digit 
@@ -313,7 +313,7 @@ function displayreadonlymail(id)
     // alert(window.mail)
 
     $.ajax({
-        url:"http://localhost/thyssenkrup/api/interviewertodo.php",
+        url:"http://localhost/hrms/api/interviewertodo.php",
         type:"GET",
         data:{
             "mail": window.mail 
@@ -449,7 +449,7 @@ function displayreadonlymail(id)
         window.digit13=id13digit
        console.log(id13digit)
         $.ajax({
-            url:"http://localhost/thyssenkrup/api/evaluationsetup.php",
+            url:"http://localhost/hrms/api/evaluationsetup.php",
             type:"POST",
             data:{
                 "id":x,
@@ -471,7 +471,7 @@ function displayreadonlymail(id)
                 for(let i =0 ;i< para.length;i++)
                 {
                     
-                    var txt1 = '<tr id="'+para[i][1]+'"><td><a href="http://localhost/thyssenkrup/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td>'
+                    var txt1 = '<tr id="'+para[i][1]+'"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td>'
                     var txt2 = '<td><button class="btn waves-effect green"  id="'+para[i][1]+'" onclick="evaluateMail(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
                     var txt3 = '<td><button class="btn waves-effect red"  id="'+para[i][1]+'" onclick="onholdMail(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
                     var str = txt1+txt2+txt3;
@@ -494,7 +494,7 @@ function displayreadonlymail(id)
         localStorage.setItem('currentemail',x)
         localStorage.setItem('id',window.digit13)
         $(document.getElementById(x)).remove()
-        window.open("http://localhost/thyssenkrup/evaluation.php", '_blank');
+        window.open("http://localhost/hrms/evaluation.php", '_blank');
         }
     }
     function onholdMail(x)
@@ -507,10 +507,10 @@ function displayreadonlymail(id)
         localStorage.setItem('currentemail',x)
         localStorage.setItem('id',window.digit13)
         // $(document.getElementById(x)).remove()
-        // window.open("http://localhost/thyssenkrup/evaluation.php", '_blank');
+        // window.open("http://localhost/hrms/evaluation.php", '_blank');
         
         $.ajax({
-            url:"http://localhost/thyssenkrup/api/putonhold.php",
+            url:"http://localhost/hrms/api/putonhold.php",
             type:"POST",
             data:{
                 "id":window.digit13,
@@ -545,7 +545,7 @@ function displayreadonlymail(id)
     $('#logoutuser').click(function(){
     
     $.ajax({
-    url:"http://localhost/thyssenkrup/api/logout.php",
+    url:"http://localhost/hrms/api/logout.php",
     type:"POST",
     success:function(para){
     
@@ -553,12 +553,12 @@ function displayreadonlymail(id)
     {
     $("#row").hide()
     $("#logout").show()
-    document.location.replace("http://localhost/thyssenkrup/index.php")
+    document.location.replace("http://localhost/hrms/index.php")
     }
     else
     {
     $("#notlogout").show()
-    document.location.replace("/thyssenkrup/")
+    document.location.replace("/hrms/")
     }
     } 
     

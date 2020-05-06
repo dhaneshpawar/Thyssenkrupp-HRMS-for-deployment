@@ -53,14 +53,14 @@ if(isset($_COOKIE['sid']))
 <body>
 <div class="w3-sidebar blue w3-bar-block" style="width:15%;border: 5px solid white;">
 
-<h3 class="w3-bar-item"><a href="/thyssenkrup/"><center>Home</center></a></h3> <br><br>
-  <a href="/thyssenkrup/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
-  <a href="/thyssenkrup/hrnew.php" class="w3-bar-item w3-button white">Create New Instance</a> <br>
-  <a href="/thyssenkrup/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
-  <a href="/thyssenkrup/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
-  <a href="/thyssenkrup/history.php" class="w3-bar-item w3-button">See History  </a> <br>
-  <a href="/thyssenkrup/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
-  <a href="/thyssenkrup/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
+<h3 class="w3-bar-item"><a href="/hrms/"><center>Home</center></a></h3> <br><br>
+  <a href="/hrms/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
+  <a href="/hrms/hrnew.php" class="w3-bar-item w3-button white">Create New Instance</a> <br>
+  <a href="/hrms/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
+  <a href="/hrms/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
+  <a href="/hrms/history.php" class="w3-bar-item w3-button">See History  </a> <br>
+  <a href="/hrms/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
+  <a href="/hrms/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
 
 
 </div>
@@ -68,7 +68,7 @@ if(isset($_COOKIE['sid']))
 
     <nav>
         <div class="nav-wrapper blue darken-1">
-        <a href="/thyssenkrup/">
+        <a href="/hrms/">
             <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
             </a> 
       
@@ -157,7 +157,7 @@ if(isset($_COOKIE['sid']))
 
           </center>
                         
-          <!-- <form action="http://localhost/thyssenkrup/uploademails.php" method="POST" enctype="multipart/form-data">
+          <!-- <form action="http://localhost/hrms/uploademails.php" method="POST" enctype="multipart/form-data">
           <div class="row">
             <div class="input-field col s4 offset-m4">
                 <label class="custom-file-upload">
@@ -309,7 +309,7 @@ var arr=[]
 $(document).ready(function(){
 
  $.ajax({
-    url:'http://localhost/thyssenkrup/api/getprfdump.php',
+    url:'http://localhost/hrms/api/getprfdump.php',
     type:'POST',
     // data:{'arr1':arr1},
     success : function(para)
@@ -351,7 +351,7 @@ $('#submitmail').click(function()
     arr1= arr1.filter(function(entry) { return entry.trim() != ""; });
   }
   $.ajax({
-    url : 'http://localhost/thyssenkrup/api/sendmail.php',
+    url : 'http://localhost/hrms/api/sendmail.php',
 
     type:'POST',
 
