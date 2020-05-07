@@ -25,10 +25,11 @@ if(isset($_COOKIE['sid']))
 
     <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.css">
     <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         
         <!-- for sidenav -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" type="text/css" media="screen" href="public/css/common.css">
 
     <script src="public/jquery-3.2.1.min.js"></script>
 
@@ -49,36 +50,34 @@ function abort_round()
 </script>
 <body>
 
-<div class="w3-sidebar blue w3-bar-block" style="width:15%;border: 5px solid white;">
+<div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="border: 5px solid white;z-index: 1000">
 
+  <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
+  <i id="remin" class="material-icons" style="float: right;cursor: pointer;">close</i></center>   
+  </a></h3> <br><br>
 
-<h3 class="w3-bar-item"><a href="/hrms/"><center>Home</center></a></h3> <br><br>
   <a href="/hrms/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
   <a href="/hrms/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
   <a href="/hrms/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
   <a href="/hrms/allocateround.php" class="w3-bar-item w3-button">On going rounds</a> <br>
   <a href="/hrms/history.php" class="w3-bar-item w3-button">See History  </a> <br>
-  <a href="/hrms/allocateround2.php" class="w3-bar-item w3-button white">Rescheduling</a> <br>
+  <a href="/hrms/allocateround2.php" class="w3-bar-item w3-button">Rescheduling</a> <br>
   <a href="/hrms/interview.php" class="w3-bar-item w3-button">Update Interviews</a> <br>
   <a href="/hrms/offerletter.php" class="w3-bar-item w3-button">Offer Letter</a> <br>
+  <a href="#" id="logoutuser" class="w3-bar-item w3-button">Logout</a> <br>
 
 </div>
-<div style="margin-left:15%">
 
-              <nav>
-                    <div class="nav-wrapper blue darken-1">
-                    <a href="/hrms/">
-      <button class="btn waves-effect blue darken-1" style="float:left;margin-top: 18px;margin-right: 18px "> <- BACK</button>
-      </a> 
-
-                      <a href="#!" class="brand-logo center">thyssenkrupp</a>
-                      <div id="logoutuser" class="row">
-    <button class="btn waves-effect blue darken-1" type="submit" name="action" style="float:right;margin-top: 18px;margin-right: 18px ">LOGOUT</button>
-  </div>
-                     </div>
-                  </nav>
-
-                  <br><br>
+<div id="remin">
+<nav> 
+    <div class="nav-wrapper blue darken-1">
+      <a href="#!" class="brand-logo left" style="margin-left: 2%;"><i id="showsidenbutton" class="material-icons">menu</i>
+    </a>
+    <a href="/hrms/" class="brand-logo center">thyssenkrupp</a>
+    </div>
+</nav>
+<br><br>
+<!-- nav and side menu ended -->
 
                   <div class="row">
                     <div class="col s12 m12">
@@ -194,6 +193,7 @@ function abort_round()
 <center>
 <p id="nodata"><b style="color:red;margin-left:12%">No Data Available..!</b></p>
 </center>
+<script src="public/js/common.js"></script>
 <script>
 
 var selectedmail = []

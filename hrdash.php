@@ -41,10 +41,10 @@ if(isset($_COOKIE['sid']))
     
         <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.css">
         <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         
         <!-- for sidenav -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" type="text/css" media="screen" href="public/css/common.css">
 
         <script src="public/jquery-3.2.1.min.js"></script>
@@ -70,8 +70,10 @@ if(isset($_COOKIE['sid']))
 <body>
 <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="border: 5px solid white;z-index: 1000">
 
-  <h3 class="w3-bar-item white"> <center>Home <i id="remin" class="material-icons" style="float: right;cursor: pointer;">close</i></center>  
-</a></h3> <br><br>
+  <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
+  <i id="remin" class="material-icons" style="float: right;cursor: pointer;">close</i></center>   
+  </a></h3> <br><br>
+
   <a href="/hrms/csvupload.php" class="w3-bar-item w3-button">Create new Department and PRF</a> <br>
   <a href="/hrms/hrnew.php" class="w3-bar-item w3-button">Create New Instance</a> <br>
   <a href="/hrms/initiateround.php" class="w3-bar-item w3-button">Initiate rounds for instances</a> <br>
@@ -83,6 +85,7 @@ if(isset($_COOKIE['sid']))
   <a href="#" id="logoutuser" class="w3-bar-item w3-button">Logout</a> <br>
 
 </div>
+
 <div id="remin">
 <nav> 
     <div class="nav-wrapper blue darken-1">
@@ -90,8 +93,10 @@ if(isset($_COOKIE['sid']))
     </a>
     <a href="/hrms/" class="brand-logo center">thyssenkrupp</a>
     </div>
-  </nav>
+</nav>
 <br><br>
+<!-- nav and side menu ended -->
+
     <center>
 <!-- <button class="button">You Are Logged In As HR Of  <?php echo $cursor['rg']; ?> Region and Department Of <?php echo $cursor['dept']; ?> </button> -->
 </center>
