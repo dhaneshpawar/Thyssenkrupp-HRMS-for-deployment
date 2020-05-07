@@ -45,6 +45,7 @@ if(isset($_COOKIE['sid']))
         
         <!-- for sidenav -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="public/css/common.css">
 
         <script src="public/jquery-3.2.1.min.js"></script>
     
@@ -62,14 +63,6 @@ if(isset($_COOKIE['sid']))
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-}
-.sidemenu{
-  width: 50%;
-}
-
-@media screen and (min-width: 800px) {
-  .sidemenu{
-  width: 25%;
 }
 }
 </style>
@@ -243,17 +236,10 @@ if(isset($_COOKIE['sid']))
             
       
     <!-- main card ends here -->
+    <script src="public/js/common.js"></script>
 
     <script>
 
-    $('#remin').click(function(){
-      $("#sidenn").hide(1000)
-    })    
-
-      $("#sidenn").hide()
-    $('#showsidenbutton').click(function(){
-      $("#sidenn").show(1000)
-    })    
 
 $('#logoutuser').click(function(){
 

@@ -1,0 +1,9 @@
+.sidemenu{
+    width: 50%;
+  }
+  
+  @media screen and (min-width: 800px) {
+    .sidemenu{
+    width: 25%;
+  }
+  
