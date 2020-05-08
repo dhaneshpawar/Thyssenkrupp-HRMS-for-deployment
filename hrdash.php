@@ -127,8 +127,8 @@ if(isset($_COOKIE['sid']))
                                             <div class="col  m6 s6">
                                               <div class="card " style="background: #EA5455;">
                                                 <div class="card-content white-text">
-                                                  <span class="card-title">Open PRFs</span>
-                                                  <br> Open PRFs : <?php echo $countInstances; ?> <p></p>
+                                                  <span class="card-title">Total Open PRFs</span>
+                                                  <br>Open PRFs : <?php echo $countInstances; ?> <p></p>
                                                 </div>
 
                                                 
@@ -168,8 +168,8 @@ if(isset($_COOKIE['sid']))
                                             <div class="col  m6 s6">
                                               <div class="card " style="background: #9F44D3;">
                                                 <div class="card-content white-text">
-                                                  <span class="card-title">History  </span>
-                                                  <br> Completed PRFs : <?php echo $countHistory; ?><p></p>
+                                                  <span class="card-title">See History  </span>
+                                                  <br>Total Completed PRFs : <?php echo $countHistory; ?><p></p>
                                                 </div>
                                               </div>
                                             </div>
@@ -180,8 +180,8 @@ if(isset($_COOKIE['sid']))
                                             <div class="col  m6 s6">
                                               <div class="card " style="background: #28C76F; ">
                                                 <div class="card-content white-text">
-                                                  <span class="card-title">Rescheduling  </span>
-                                                  <br> Interviews to be Resheduled : <?php echo $countSchedule; ?><p></p>
+                                                  <span class="card-title">Reschedule Interviews  </span>
+                                                  <br> Interviews to Resheduled : <?php echo $countSchedule; ?><p></p>
                                                 </div>
                                               </div>
                                             </div>
@@ -205,7 +205,7 @@ if(isset($_COOKIE['sid']))
                                               <div class="card " style="background: #EA5455; ">
                                                 <div class="card-content white-text">
                                                   <span class="card-title">Offer Letters  </span>
-                                                  <br> Offer Letter Requests : <?php echo $countOffers; ?><p></p>
+                                                  <br>Total Offer Letter Requests : <?php echo $countOffers; ?><p></p>
                                                 <!-- </div> -->
                                               </div>
                                             </div>

@@ -70,7 +70,7 @@ if(isset($_COOKIE['sid']))
 <!-- nav and side menu ended -->
 
  <div class="row">
-<div class="col s10  offset-m1 blue lighten-4">
+<div class="col s12  offset-m1 blue lighten-4" style="max-width: 304%;overflow-y: scroll;">
   <table class="striped">
     <thead>
       <tr>

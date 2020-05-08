@@ -78,8 +78,8 @@ if(isset($_COOKIE['sid']))
         </select>
 <!-- Filter Added End-->
 
- <div class="row">
-<div class="col s12  blue lighten-4">
+ <div class="row" >
+<div class="col s12  blue lighten-4" style="max-width: 304%;overflow-y: scroll;">
   <table class="striped">
     <thead>
       <tr>
@@ -217,7 +217,7 @@ if(isset($_COOKIE['sid']))
       <div class="row" id="selected">
       <div class="col s12 ">
       <div class="card white">
-      <div class="card-content ">
+      <div class="card-content" style="max-width: 304%;overflow-y: scroll;">
   
       <table class="striped">
         <thead >
@@ -244,7 +244,7 @@ if(isset($_COOKIE['sid']))
       <div class="row" id="rejected">
       <div class="col s12 ">
       <div class="card white">
-      <div class="card-content ">
+      <div class="card-content" style="max-width: 304%;overflow-y: scroll;">
   
       <table class="striped">
         <thead>
@@ -271,7 +271,7 @@ if(isset($_COOKIE['sid']))
       <div class="row" id="hold">
       <div class="col s12 ">
       <div class="card white">
-      <div class="card-content">
+      <div class="card-content" style="max-width: 304%;overflow-y: scroll;">
   
       <table class="striped">
       <thead>
@@ -314,6 +314,16 @@ if(isset($_COOKIE['sid']))
             height: 7px;
         } /*Color of underline*/
       
+        @media screen and (max-width: 800px) {
+    .dropdown-trigger{
+    min-width: 62%;
+    margin: 5%;
+  }  
+  .row .col.s4{
+    width: 100%;
+  }
+}
+
   </style>
     <script src="public/js/common.js"></script>
 
@@ -565,7 +575,7 @@ success:function(arr)
 
     for(let j=0;j<arr.length;j++)
     {
-      var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
+      var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View </a></td></tr>'
       $('#rawdata').append(x);
     }
     $('#zonechoice').fadeIn(300);
@@ -644,7 +654,7 @@ $('#zonechoice').change(function(){
   
       for(let j=0;j<arr.length;j++)
       {
-        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
+        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View</a></td></tr>'
         $('#rawdata').append(x);
       }
       $('#zonechoice').fadeIn(300);
@@ -684,7 +694,7 @@ $('#zonechoice').change(function(){
      
       for(let j=0;j<arr.length;j++)
       {
-        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][5]+'</td><td id="status">'+arr[j][6]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
+        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][5]+'</td><td id="status">'+arr[j][6]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn small green darken-1" onclick="xyz(this.id)">View</a></td></tr>'
        $('#rawdata').append(x);
       }
      
