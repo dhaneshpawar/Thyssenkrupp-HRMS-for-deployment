@@ -130,11 +130,6 @@ if(isset($_COOKIE['sid']))
 <br><br>
 <!-- nav and side menu ended -->
 
-        <button class="btn waves-effect waves-light " type="submit" id="filter" onclick='filterbydept()' name="action">Filter by Department
-            <i class="material-icons right">filter_list</i>
-          </button>
-          <br>
-          <br>
           <select id='deptchoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
           <option value="" disabled selected style="color: white">Select Department</option>
           </select>
@@ -491,9 +486,10 @@ var txt="<div class='row'><div class='input-field col s4 offset-m5  blue-text' >
 $("#emailcollection").append(txt);
 }
 var arr=[]
+var dept=[]
 $(document).ready(function(){
   $('.modal').modal();
-
+  $('#zonechoice').hide();
  $("#uploaddump").hide()
  $.ajax({
     url:'http://localhost/hrms/api/getprfdump.php',
@@ -510,7 +506,17 @@ $(document).ready(function(){
       {
         arr[i]=para[i];
       }
-     
+      dept[0]="All"
+      for(let i =1 ;i<para.length;i++)
+      {
+        dept[i] = para[i][3]
+      }
+      uniquedept = removeusingSet(dept);
+      for(i=0;i<uniquedept.length;i++)
+      {
+        var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
+         $('#deptchoice').append(str);
+      }
       for(let j=0;j<arr.length-1;j++)
       {
         
@@ -526,6 +532,7 @@ $(document).ready(function(){
      
     },
   })
+
   
 
 })
@@ -629,13 +636,12 @@ success:function(arr)
   {
     
     if(arr[j][6] == "initiated")
-    {
-      var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'
-    }
-    else
-    {
-      var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'
-    }
+        {
+          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'
+        }else
+        {
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'          
+        }
 
     $('#rawdata').append(x);
   }
@@ -651,12 +657,13 @@ success:function(arr)
              zone=[]
             para = JSON.parse(para)
 
-            
-            for(let i =0 ;i<para.length;i++)
+            zone[0]="All"
+            for(let i =1 ;i<para.length;i++)
             {
               zone[i] = para[i]
             }
             $("#zonechoice").empty();
+            $("#zonechoice").append('<option value="" disabled selected style="color: white">Select Zone</option>')
             uniquezone = removeusingSet(zone);
 
             for(i=0;i<uniquezone.length;i++)
@@ -677,6 +684,8 @@ success:function(arr)
 
 //get filtered department
 $('#zonechoice').change(function(){
+
+  console.log("Selected Zones : "+ $('#deptchoice').val()+$('#zonechoice').val())
   
   $('#rawdata').empty();
   //Sarang Yesterday  13/03/2020
@@ -689,6 +698,7 @@ $('#zonechoice').change(function(){
     },
   success:function(arr)
   { 
+    console.log("OUTPUT FROM BACK "+arr)
     if(arr == 'No data')
     {
       $('#nodata').fadeIn(300);
@@ -705,11 +715,10 @@ $('#zonechoice').change(function(){
       {
         if(arr[j][6] == "initiated")
         {
-          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'
-        }
-        else
+          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'
+        }else
         {
-          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'          
         }
         $('#rawdata').append(x);
       }
