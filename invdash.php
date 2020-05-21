@@ -118,7 +118,9 @@ if(isset($_COOKIE['sid']))
                         <!-- End of Email Body -->
                     </table>
                     <center>
-                    <button class="btn waves-effect blue darken-1" id="submitinterview">Complete Interview</button>
+                    <br><br><button class="btn waves-effect blue darken-1" id="submitinterview">Complete Interview</button><br><br>
+                    <i><p style="color:red;">Note : If no candidates found, click above button to complete the process </p></i>
+
                     </center>
                 </div>
             </div>
@@ -279,7 +281,7 @@ function displayreadonlymail(id)
     //submitting complete interview
     
     $("#submitinterview").click(function(){
-        var cnfrm = confirm("Are You Sure ?")
+        var cnfrm = confirm("Once you click OK, Round will be completed and only be seen in your History. Are you Sure?")
         if(cnfrm)
         {
             $.ajax({
