@@ -6,8 +6,8 @@
   top: 0;
   left: 0;
   background-color: #111;
-  overflow-x: hidden;
-  overflow-y:hidden;
+  overflow-x: scroll;
+  overflow-y: scroll;
   transition: 0.5s;
   padding-top: 60px;
 }
