@@ -4,7 +4,7 @@
 if(isset($_COOKIE['sid']))
 {
   include 'api/db.php';
-  
+  //hii by AD
   $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
   
   if($cursor)
