@@ -35,7 +35,7 @@ $cursor = $db->tokens->find();
             <div class="card-content blue-text">
                 <span class="card-title"><p id="mail" style="color: green"></p></span> <br>
                 <input type="text" value="" id="uan" name="uan" disabled style="color:green;text-align:center;font-weight: bold;font-size:30px;">
-                <a class="waves-effect green btn" onclick=freezall()><i class="material-icons right">done</i>Freez All</a>
+               
                 <table class="striped">
                     <thead>
                       <tr>
@@ -369,6 +369,28 @@ $cursor = $db->tokens->find();
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>
+
+                            </td>
+
+                            <td>
+                            
+                            </td> 
+
+                            <td>
+                               
+                            </td>
+
+                            <td>
+                               
+                            </td>
+
+                            <td>
+                            <a class="waves-effect green btn" onclick=freezall()><i class="material-icons right">done</i>Freez All</a>
+                            </td>
+                        </tr>
+                        
                     </tbody>
 
                   </table>
