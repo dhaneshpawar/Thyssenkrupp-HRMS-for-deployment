@@ -75,7 +75,7 @@ if(isset($_COOKIE['sid']))
         </select>
         <select id='zonechoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
           <option value="" disabled selected style="color: white">Select Zone</option>
-        </select>
+ </select>
 <!-- Filter Added End-->
 
  <div class="row">
@@ -536,6 +536,29 @@ function removeusingSet(arr) {
         } 
 
 //Added by Sarang - 03/14/2020
+var dept=[]
+$.ajax({
+
+  url:"http://localhost/hrms/api/getdepartments.php",
+  type:"POST",
+  success:function(arr)
+  {
+    arr = JSON.parse(arr)
+       dept[0]="All"
+      for(let i =1 ;i<arr.length;i++)
+      {
+        dept[i] = arr[i]
+      }
+      uniquedept = removeusingSet(dept);
+      console.log(uniquedept)
+      for(i=0;i<uniquedept.length;i++)
+      {
+        var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
+         $('#deptchoice').append(str);
+      }
+  }
+
+})
 
 
 //get filtered department
@@ -549,6 +572,7 @@ type:"POST",
 data: {"dept": $('#deptchoice').val()},
 success:function(arr)
 { 
+  console.log(arr)
   if(arr == 'No data')
   {
     $('#nodata').fadeIn(300);
@@ -581,12 +605,14 @@ success:function(arr)
              zone=[]
             para = JSON.parse(para)
 
-            
+            zone[0] = "All"
             for(let i =0 ;i<para.length;i++)
             {
               zone[i] = para[i]
             }
             $("#zonechoice").empty();
+            $("#zonechoice").empty();
+            $("#zonechoice").append('<option value="" disabled selected style="color: white">Select Zone</option>')
             uniquezone = removeusingSet(zone);
 
             for(i=0;i<uniquezone.length;i++)
@@ -619,41 +645,41 @@ $('#zonechoice').change(function(){
   
   $('#rawdata').empty();
   //Sarang Yesterday  13/03/2020
-  $.ajax({
-  url:"http://localhost/hrms/api/histgetfilteredzones.php",
-  type:"POST",
-  data: {
-    "dept": $('#deptchoice').val(),
-    "zone": $('#zonechoice').val()
-    },
-  success:function(arr)
-  { 
-    if(arr == 'No data')
-    {
-      $('#nodata').fadeIn(300);
+  // $.ajax({
+  // url:"http://localhost/hrms/api/histgetfilteredzones.php",
+  // type:"POST",
+  // data: {
+  //   "dept": $('#deptchoice').val(),
+  //   "zone": $('#zonechoice').val()
+  //   },
+  // success:function(arr)
+  // { 
+  //   if(arr == 'No data')
+  //   {
+  //     $('#nodata').fadeIn(300);
     
-    }
-    else
-    {
+  //   }
+  //   else
+  //   {
       
   
-      $('#nodata').hide();
-      console.log("This is my data : "+arr)
-      arr=JSON.parse(arr);
-      console.log("this are prflist = ",arr)
+  //     $('#nodata').hide();
+  //     console.log("This is my data : "+arr)
+  //     arr=JSON.parse(arr);
+  //     console.log("this are prflist = ",arr)
   
-      for(let j=0;j<arr.length;j++)
-      {
-        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
-        $('#rawdata').append(x);
-      }
-      $('#zonechoice').fadeIn(300);
-    }
+  //     for(let j=0;j<arr.length;j++)
+  //     {
+  //       var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
+  //       $('#rawdata').append(x);
+  //     }
+  //     $('#zonechoice').fadeIn(300);
+  //   }
   
   
-  }
+  // }
   
-  })
+  // })
   
   })
 

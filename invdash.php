@@ -118,14 +118,64 @@ if(isset($_COOKIE['sid']))
                         <!-- End of Email Body -->
                     </table>
                     <center>
-                    <br><br><button class="btn waves-effect blue darken-1" id="submitinterview">Complete Interview</button><br><br>
-                    <i><p style="color:red;">Note : If no candidates found, click above button to complete the process </p></i>
-
+                    <button class="btn waves-effect blue darken-1" id="submitinterview">Complete Interview</button>
                     </center>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+    <div class="row" id="emailrow10">
+        <div class="col s12 m12">
+            <div class="card white-text">
+                <div class="card-content blue-text">
+                    <span class="card-title">Candidates Mail</span>
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <!-- Email Body  -->
+                        <tbody id="emailbody10">
+
+
+                        </tbody>
+                        <!-- End of Email Body -->
+                    </table>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -189,7 +239,8 @@ if(isset($_COOKIE['sid']))
         
     }
 
-    //Sarang - 16/03/2020
+    
+//Sarang - 16/03/2020
 function modifyMail(id,name)
 {
     // console.log("Data  : "+id );
@@ -263,17 +314,11 @@ function displayreadonlymail(id)
 }
 
 
-
-
-
-
-
-
-
     $(document).ready(function(){
          window.mail = "<?php echo $cursor["mail"]; ?>"
+         $('.timepicker').timepicker();
        // mail = JSON.stringify(mail)
-   
+       $("#emailrow10").hide()
     window.focus(function(){
         location. reload(true);
     })
@@ -281,7 +326,7 @@ function displayreadonlymail(id)
     //submitting complete interview
     
     $("#submitinterview").click(function(){
-        var cnfrm = confirm("Once you click OK, Round will be completed and only be seen in your History. Are you Sure?")
+        var cnfrm = confirm("Are You Sure ?")
         if(cnfrm)
         {
             $.ajax({
@@ -431,7 +476,7 @@ function displayreadonlymail(id)
                     
                   
                 }
-                var str = txt1+txt2+txt3+txt5+txt4;
+                var str = txt1+txt2+txt6+txt3+txt5+txt4;
                 $("#todolistbody").append(str)             
             }            
         }    
