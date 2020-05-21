@@ -74,6 +74,7 @@
           <th>Time</th>
           <th>Accepted</th>
           <th>Update</th>
+          <th>Notify Candidates</th>
       </tr>      
     </thead>
     <tbody id='rawdata'>
@@ -260,16 +261,44 @@ $(document).ready(function(){
       console.log("this is : ",para)
       //para=JSON.parse(para)
       //para=[['1111','ABCD','Accept','28/11/19','4.00'],['1111','ABCD','Accept','28/11/19','4.00'],['1111','ABCD','Accept','28/11/19','4.00']]
-     
+    
       for(let j=0;j<para.length;j++)
       {
-          var x='<tr id="rows" class="rows"><td>'+para[j][0]+'</td><td>'+para[j][1]+'</td><td>'+para[j][2]+'</td><td>'+para[j][7]+'</td><td>'+para[j][3]+'</td><td>'+para[j][5]+'</td><td>'+para[j][6]+'</td><td>'+para[j][10]+'</td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][4]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][8]+'*'+para[j][9]+'*'+para[j][10]+'*'+para[j][11]+'*'+para[j][12]+'" class="btn green darken-1" onclick="xyz(this.id)">Update</a></td></tr>'
-          $('#rawdata').append(x);
+          if(para[j][10] == "yes" && para[j][13] == "done")
+          {
+            var x='<tr id="rows" class="rows"><td>'+para[j][0]+'</td><td>'+para[j][1]+'</td><td>'+para[j][2]+'</td><td>'+para[j][7]+'</td><td>'+para[j][3]+'</td><td>'+para[j][5]+'</td><td>'+para[j][6]+'</td><td>'+para[j][10]+'</td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][4]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][8]+'*'+para[j][9]+'*'+para[j][10]+'*'+para[j][11]+'*'+para[j][12]+'" class="btn green darken-1" onclick="xyz(this.id)">Update</a></td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][10]+'*'+para[j][12]+'*'+para[j][11]+'" class="btn green darken-1" onclick="notifyCandidate(this.id)" name="notify" disabled>Mail Sent</a></td></tr>'
+          }
+          else if(para[j][10] == "yes")
+          {
+            var x='<tr id="rows" class="rows"><td>'+para[j][0]+'</td><td>'+para[j][1]+'</td><td>'+para[j][2]+'</td><td>'+para[j][7]+'</td><td>'+para[j][3]+'</td><td>'+para[j][5]+'</td><td>'+para[j][6]+'</td><td>'+para[j][10]+'</td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][4]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][8]+'*'+para[j][9]+'*'+para[j][10]+'*'+para[j][11]+'*'+para[j][12]+'" class="btn green darken-1" onclick="xyz(this.id)">Update</a></td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][10]+'*'+para[j][12]+'*'+para[j][11]+'" class="btn green darken-1" onclick="notifyCandidate(this.id)" name="notify" >Send Mail</a></td></tr>'
+          }
+          else
+          {
+            var x='<tr id="rows" class="rows"><td>'+para[j][0]+'</td><td>'+para[j][1]+'</td><td>'+para[j][2]+'</td><td>'+para[j][7]+'</td><td>'+para[j][3]+'</td><td>'+para[j][5]+'</td><td>'+para[j][6]+'</td><td>'+para[j][10]+'</td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][4]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][8]+'*'+para[j][9]+'*'+para[j][10]+'*'+para[j][11]+'*'+para[j][12]+'" class="btn green darken-1" onclick="xyz(this.id)">Update</a></td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][10]+'*'+para[j][12]+'*'+para[j][11]+'" class="btn green darken-1" onclick="notifyCandidate(this.id)" name="notify" disabled>Send Mail</a></td></tr>'
+          }
+          $('#rawdata').append(x);  
         
       }
     },
   })
 })
+
+
+function notifyCandidate(id)
+{
+  alert(id)
+  $.ajax({
+    url:"http://localhost/hrms/api/notifyCandidate.php",
+    type:"POST",
+    data:{
+      "prf13":id
+    },
+    success:function(){
+      window.setTimeout(function(){location.reload()},1000)
+      
+    }
+  })
+}
 
 $('#logoutuser').click(function(){
 
