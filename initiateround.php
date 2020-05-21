@@ -97,7 +97,25 @@ if(isset($_COOKIE['sid']))
                   <b><p id="pleasewait" style="color:red">Updating Information Please Wait...</p></b>
 
                   </center>
-                  <center><b id="nomems"  style="color:red;margin-left:10%;font-size:20px;"> Application Blank Not Submitted By The Members </b></center>
+                  <u><b id="nomems"  style="color:red;margin-left:25%;font-size:20px;cursor:pointer;"> Application Blank Not Submitted By The Members </b></u>
+
+                  <div class="row">
+                    <div class="col s5 offset-m3" id=showmembersdiv>
+                      <table class="stripped">
+                      <thead>
+                        <tr class="blue darken-1 white-text">
+                          <br>
+                          <th>Sr No.</th>
+                          <th>Email ID</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody id="memberstable">
+                      </tbody>
+                      </table>
+                    </div>
+                  </div>
+
 
                   <div class="row" id="allocatingcandidate" >
                     <div class="col s12 m12">
@@ -202,6 +220,10 @@ var selecteddate = []
 var timearray=[]
 var allmail = []
 $(document).ready(function(){
+
+  $("#nomems").hide()
+  $("#showmembersdiv").hide()
+
   
   $('.datepicker').datepicker
   ({
@@ -407,9 +429,29 @@ function createnextround(id)
          },
     success:function(para)
     {
-      
-
       para = JSON.parse(para)
+      var arr1=[]
+      var toggle = 0      
+      $("#nomems").click(function()
+      {
+        $("#memberstable").empty()
+        if(toggle == 0)
+        {
+          toggle = 1
+          $("#showmembersdiv").fadeIn(1200);
+            for(let i=0;i<para[1];i++)
+            {
+              var membersdata='<tr><td>'+i+1+'</td><td>'+para[2][i]+'</td</tr>'
+              $("#memberstable").append(membersdata)
+            }
+        }
+        else
+        {
+          toggle = 0
+          $("#showmembersdiv").fadeOut(100);
+
+        }    
+      })
        console.log("this are base round mems  = ",para[1])
        if(para[0] == null)
        {
@@ -446,7 +488,7 @@ function createnextround(id)
     else
     {
       $("#nomems").hide()
-
+ 
  
       $('#adddetail').text("")
       var arr = para[0]
