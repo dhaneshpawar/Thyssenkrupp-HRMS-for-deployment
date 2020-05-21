@@ -6,7 +6,7 @@ include 'db.php';
 $mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
 $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);   
-// $mail->SMTPDebug = 4;                               // Enable verbose debug output
+$mail->SMTPDebug = 4;                               // Enable verbose debug output
 
 
 $_SESSION['department'] = $_POST['dept'];
