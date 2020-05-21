@@ -35,7 +35,7 @@ $cursor = $db->tokens->find();
             <div class="card-content blue-text">
                 <span class="card-title"><p id="mail" style="color: green"></p></span> <br>
                 <input type="text" value="" id="uan" name="uan" disabled style="color:green;text-align:center;font-weight: bold;font-size:30px;">
-
+                <a class="waves-effect green btn" onclick=freezall()><i class="material-icons right">done</i>Freez All</a>
                 <table class="striped">
                     <thead>
                       <tr>
@@ -78,7 +78,7 @@ $cursor = $db->tokens->find();
                             </td>
 
                             <td>
-                            <a class="waves-effect green btn" id="cvf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d1" id="cvf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
 
                         </tr>
@@ -112,7 +112,7 @@ $cursor = $db->tokens->find();
                             </td>
 
                             <td>
-                            <a class="waves-effect green btn" id="panf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d2" id="panf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
 
                         </tr>
@@ -144,7 +144,7 @@ $cursor = $db->tokens->find();
                             </td>
 
                             <td>
-                            <a class="waves-effect green btn" id="Adhaarf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d3" id="Adhaarf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
                         </tr>
 
@@ -174,7 +174,7 @@ $cursor = $db->tokens->find();
                                 </div>
                             </td>
                             <td>
-                            <a class="waves-effect green btn" id="Photof" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d4" id="Photof" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
                         </tr>
 
@@ -208,7 +208,7 @@ $cursor = $db->tokens->find();
                             </td>
 
                             <td>
-                            <a class="waves-effect green btn" id="graduationf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d5" id="graduationf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
                         </tr>
 
@@ -239,7 +239,7 @@ $cursor = $db->tokens->find();
                             </td>
 
                             <td>
-                            <a class="waves-effect green btn" id="apf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d6" id="apf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
                         </tr>
 
@@ -270,7 +270,7 @@ $cursor = $db->tokens->find();
                             </td>
 
                             <td>
-                            <a class="waves-effect green btn" id="alf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d7" id="alf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
                         </tr>
 
@@ -301,7 +301,7 @@ $cursor = $db->tokens->find();
                             </td>
 
                             <td>
-                            <a class="waves-effect green btn" id="rlf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d8" id="rlf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
                         </tr>
 
@@ -333,7 +333,7 @@ $cursor = $db->tokens->find();
                             </td>
 
                             <td>
-                            <a class="waves-effect green btn" id="payslipf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d9" id="payslipf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
                         </tr>
 
@@ -365,7 +365,7 @@ $cursor = $db->tokens->find();
                             </td>
 
                             <td>
-                            <a class="waves-effect green btn" id="ccf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
+                            <a class="waves-effect green btn" name="d10" id="ccf" onclick=freez(this.id) ><i class="material-icons right">done</i>Freez</a>
                             </td>
                         </tr>
 
@@ -463,6 +463,20 @@ function freez(id)
     
 
 
+}
+
+function freezall()
+{
+    $("a[name='d1']").click();
+    $("a[name='d2']").click();
+    $("a[name='d3']").click();
+    $("a[name='d4']").click();
+    $("a[name='d5']").click();
+    $("a[name='d6']").click();
+    $("a[name='d7']").click();
+    $("a[name='d8']").click();
+    $("a[name='d9']").click();
+    $("a[name='d10']").click();
 }
 
 function clicked(x)

@@ -538,6 +538,7 @@ $(document).ready(function(){
 })
 $('#submitmail').click(function()
 {
+  $('#submitmail').prop('disabled', true);
   $('#emailcollection').fadeOut(600)
   $('#creatinggrp').fadeIn(600)
 
@@ -571,12 +572,13 @@ $('#submitmail').click(function()
       if(para == "sent")
       {
         $('#groupcreated').show();
-      // alert("This is 2 : "+id)
-      $(id).attr('disabled','disabled')
-      $(id).text('Initiated')
-      console.log("sent")
-      $('#creatinggrp').fadeOut(600)
-      window.setTimeout(function(){location.reload()},1000)
+        $('#submitmail').prop('disabled', false);
+        // alert("This is 2 : "+id)
+        $(id).attr('disabled','disabled')
+        $(id).text('Initiated')
+        console.log("sent")
+        $('#creatinggrp').fadeOut(600)
+        window.setTimeout(function(){location.reload()},1000)
 
 
       }
