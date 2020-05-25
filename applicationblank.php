@@ -21,9 +21,9 @@ session_start();
 
 </head>
 <style>
- input[type="file"] {
+ /* input[type="file"] {
     display: none;
-}
+} */
 input[type="text"] {
   text-transform: uppercase;
 } 
@@ -54,7 +54,7 @@ $_SESSION['positionapplied'] = $position;
                           <div class="card white">
                             <div class="card-content blue-text darken-1" id="form">
                       
-                         <form method="POST" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php">
+                         <form method="POST" name="applicationblank" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php" >
                                  
 
                                 <!-- form starts -->
@@ -72,26 +72,31 @@ $_SESSION['positionapplied'] = $position;
                                        
                                 </div>
                                 <div class="row"> 
-                                    
-                                    <div class="input-field col s12" id="uphoto">
-                                            <label class="custom-file-upload" id="prof">
-                                               <a class="btn blue darken-1"> 
-                                                       <input id="photo"  required  name='photo' type="file" accept=".png, .jpg, .jpeg"><p id='myfile0'>Upload File</p></a>
-                                                       <div>                                                            
-                                                    </div>
-                                            </label>
+
+                                        <div class="file-field input-field">
+                                                <div class="btn blue darken-1">
+                                                        <span>Upload Photo</span>
+                                                        <input id="photo"  required  name='photo' type="file" accept=".png, .jpg, .jpeg">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                </div>
                                         </div>
+                                        
                                     </div><br><br>
                                 
                                      
                                     <b style="font-size:20px;">Candidate CV</b>
-                                        <div class="row">
-                                                        <div class="input-field col s12" id="ucv">
-                                                                <label class="custom-file-upload" id="cv">
-                                                                        <a class="btn blue darken-1"> <input id="mycv" name="mycv"   required type="file" accept=".png, .jpg, .jpeg, .pdf, .docx"><p id='myfilecv'>Upload CV</p></a>
-                                                                </label>
-                                                        </div>
-                                        </div>                                        
+                                
+                                        <div class="file-field input-field">
+                                                <div class="btn blue darken-1">
+                                                        <span>Upload CV</span>
+                                                        <input id="mycv" name="mycv"   required type="file" accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                </div>
+                                        </div>
                                         <br><br>
                                       
                                           <div class="row">
@@ -180,12 +185,17 @@ $_SESSION['positionapplied'] = $position;
                                                 <div class="row">
                                                                
                                                       <div class="col s12">
-                                                                <b style="color: red;">Please Upload all Documents until Highest Qualification</b>
-                                                                        <label class="custom-file-upload">
-                    
-                                                                                        <br><br>
-                                                                           <a class="btn blue darken-1"> <input id="alldocs" name="alldocs" type="file"  required accept=".png, .jpg, .jpeg, .pdf, .docx"> <p id='mydocs'> Upload Document</p></a>
-                                                                        </label>
+                                                                <b style="font-size:20px;color:red">Please Upload all Documents until Highest Qualification</b>
+                                                                        
+                                                                        <div class="file-field input-field">
+                                                                                <div class="btn blue darken-1">
+                                                                                        <span>Upload Documents</span>
+                                                                                        <input id="alldocs" name="alldocs" type="file"  required accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                                                </div>
+                                                                                <div class="file-path-wrapper">
+                                                                                        <input class="file-path validate" type="text">
+                                                                                </div>
+                                        </div>
                                                                     
                                                         </div>
                                                 </div>
@@ -317,45 +327,47 @@ $_SESSION['positionapplied'] = $position;
 
                                           
                                           <b style="font-size:20px;">Upload your Aadhar Card as Proof Of Identity</b>
-                                          <div class="row">
-                                                <!-- <div class="input-field col s12">
-                                                        <a class="btn green" id="yesforaadhar">YES</a>                                                                                                               
-                                                        <a class="btn red" id="noforaadhar">NO</a>
-                                                </div> -->
-                                                                                        
-                                                <div class="input-field col s12" id="showaddharupload">
-                                                                <label class="custom-file-upload">
-                                                                        <a class="btn blue darken-1"><input  id="proof_identity_addhar" name="proof_identity_addhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx" required><p id='myfile_adhar'>Upload Aadhar Card </p></a>
-                                                                </label>
+                                                                                                                                  
+                                                
+                                                <div class="file-field input-field">
+                                                        <div class="btn blue darken-1">
+                                                                <span>Upload File</span>
+                                                                <input id="proof_identity_addhar" name="proof_identity_addhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx" required>
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                                <input class="file-path validate" type="text">
+                                                        </div>
                                                 </div>
-                                        </div><br>
+                                                <br>
                                          <div id="uploadotherdoc">
-                                                        <b>Proof Of Identity(PAN/Voter ID/Driving Licence/Passport)</b>
+                                                        <b style="font-size:20px;">Proof Of Identity(PAN/Voter ID/Driving Licence/Passport)</b>
 
 
-                                                        <div class="row">
-                                                                <div class="input-field col s12" >
-                                                                                  <label class="custom-file-upload">
-                                                                                           <a class="btn blue darken-1"> <input id="proof_otherthanadhar" name="proof_otherthanadhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx"> <p id='myfile1'> Upload file </p></a>
-                                                                                  </label>
-                                                                              </div>
-                                                              </div><br>                                                        
+                                                                <div class="file-field input-field">
+                                                                        <div class="btn blue darken-1">
+                                                                                <span>Upload File</span>
+                                                                                <input id="proof_otherthanadhar" name="proof_otherthanadhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                                        </div>
+                                                                        <div class="file-path-wrapper">
+                                                                                <input class="file-path validate" type="text">
+                                                                        </div>
+                                                                </div>
                                          </div>
                                          
-                                            
+                                            <br>
 
                                             <b style="font-size:20px;">Proof Of Address(Rent Agreement/Voter ID/Driving Licence/Passport)</b>
                                                 
-                                          <div class="row">
-
-                                                <div class="input-field col s12" >
-                                                    <label class="custom-file-upload">
-
-                                                    
-                                                       <a class="btn blue darken-1"> <input id="proof_address" name="proof_address"   required type="file" accept=".png, .jpg, .jpeg, .pdf, .docx"> <p id='myfile2'> Upload file </p></a>
-                                                    </label>
+                                         
+                                          <div class="file-field input-field">
+                                                <div class="btn blue darken-1">
+                                                        <span>Upload File</span>
+                                                        <input id="proof_address" name="proof_address"   required type="file" accept=".png, .jpg, .jpeg, .pdf, .docx">
                                                 </div>
-                                          </div>
+                                                <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                </div>
+                                        </div>
 
                                           <br><br>
 
@@ -606,7 +618,7 @@ $_SESSION['positionapplied'] = $position;
                                 <div class="row">
                                         <div class=" col s6 offset-s3 center" id="submitform">
                                         
-                                              <button class="btn blue darken-2" type="submit" id="submitformdata" name="action" >Submit
+                                              <button class="btn blue darken-2" type="submit" id="submitformdata" name="action" value="Submit">Submit
                                                 <i class="material-icons right">send</i>
                                               </button>
                                         </div>                                    
@@ -637,6 +649,8 @@ $_SESSION['token'] = $_GET['token'];
 ?>
                         
 <script>
+
+
 var expctr=0        
 var ctr=0
 var ctr2=0
