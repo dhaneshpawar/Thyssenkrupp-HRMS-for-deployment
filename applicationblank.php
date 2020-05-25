@@ -21,9 +21,9 @@ session_start();
 
 </head>
 <style>
- input[type="file"] {
+ /* input[type="file"] {
     display: none;
-}
+} */
 input[type="text"] {
   text-transform: uppercase;
 } 
@@ -54,7 +54,7 @@ $_SESSION['positionapplied'] = $position;
                           <div class="card white">
                             <div class="card-content blue-text darken-1" id="form">
                       
-                         <form method="POST" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php">
+                         <form method="POST" name="applicationblank" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php" onsubmit="return submitapplication()">
                                  
 
                                 <!-- form starts -->
@@ -72,26 +72,31 @@ $_SESSION['positionapplied'] = $position;
                                        
                                 </div>
                                 <div class="row"> 
-                                    
-                                    <div class="input-field col s12" id="uphoto">
-                                            <label class="custom-file-upload" id="prof">
-                                               <a class="btn blue darken-1"> 
-                                                       <input id="photo"  required  name='photo' type="file" accept=".png, .jpg, .jpeg"><p id='myfile0'>Upload File</p></a>
-                                                       <div>                                                            
-                                                    </div>
-                                            </label>
+
+                                        <div class="file-field input-field">
+                                                <div class="btn blue darken-1">
+                                                        <span>Upload Photo</span>
+                                                        <input id="photo"  required  name='photo' type="file" accept=".png, .jpg, .jpeg">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                </div>
                                         </div>
+                                        
                                     </div><br><br>
                                 
                                      
                                     <b style="font-size:20px;">Candidate CV</b>
-                                        <div class="row">
-                                                        <div class="input-field col s12" id="ucv">
-                                                                <label class="custom-file-upload" id="cv">
-                                                                        <a class="btn blue darken-1"> <input id="mycv" name="mycv"   required type="file" accept=".pdf"><p id='myfilecv'>Upload CV</p></a>
-                                                                </label>
-                                                        </div>
-                                        </div>                                        
+                                
+                                        <div class="file-field input-field">
+                                                <div class="btn blue darken-1">
+                                                        <span>Upload CV</span>
+                                                        <input id="mycv" name="mycv"   required type="file" accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                </div>
+                                        </div>
                                         <br><br>
                                       
                                           <div class="row">
@@ -180,12 +185,17 @@ $_SESSION['positionapplied'] = $position;
                                                 <div class="row">
                                                                
                                                       <div class="col s12">
-                                                                <b style="color: red;">Please Upload Document of Highest Qualification</b>
-                                                                        <label class="custom-file-upload">
-                    
-                                                                                        <br><br>
-                                                                           <a class="btn blue darken-1"> <input id="alldocs" name="alldocs" type="file"  required accept=".png, .jpg, .jpeg, .pdf"> <p id='mydocs'> Upload Document</p></a>
-                                                                        </label>
+                                                                <b style="font-size:20px;color:red">Please Upload all Documents until Highest Qualification</b>
+                                                                        
+                                                                        <div class="file-field input-field">
+                                                                                <div class="btn blue darken-1">
+                                                                                        <span>Upload Documents</span>
+                                                                                        <input id="alldocs" name="alldocs" type="file"  required accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                                                </div>
+                                                                                <div class="file-path-wrapper">
+                                                                                        <input class="file-path validate" type="text">
+                                                                                </div>
+                                        </div>
                                                                     
                                                         </div>
                                                 </div>
@@ -198,7 +208,7 @@ $_SESSION['positionapplied'] = $position;
 
                                           <b style="font-size:20px;">Professional Experience (Mention Company Name And Designation)</b>
                                           <br>
-                                          <b style="font-size:20px;color:red">If you don't have any experience then fill NA in fields !</b>
+                                          <b style="font-size:20px;color:red">If you are Experienced,hit the below button...!</b>
                                           <div class="row">
                                                 
                                                 <div class="input-field col s12">
@@ -210,33 +220,33 @@ $_SESSION['positionapplied'] = $position;
                                                   <div class="col s12" id="myexpdiv">
                                                           
                                                         <div class="input-field col s6">
-                                                                <input id="orgname0" name="orgname0[]" type="text" class="validate"  aria-required="true" required>
+                                                                <input id="orgname0" name="orgname0[]" type="text" class="validate"  aria-required="true">
                                                                 <label for="orgname0" style="font-size: 11px">Current Organization Name</label>
                                                         </div>
                                   
                                                                               
                                                         <div class="input-field col s6">
-                                                                <input id="olddesignation0" name="olddesignation0[]" type="text"class="validate"  aria-required="true" required>
+                                                                <input id="olddesignation0" name="olddesignation0[]" type="text"class="validate"  aria-required="true" >
                                                                 <label for="olddesignation0" style="font-size: 11px">Designation</label>
                                                         </div>
                                                         
                                                         <div class="input-field col s6">
-                                                                <input id="fromdate0" name="fromdate0[]" type="text" class="datepicker" required>
+                                                                <input id="fromdate0" name="fromdate0[]" type="text" class="datepicker">
                                                                 <label for="fromdate0" style="font-size: 11px">From</label>
                                                         </div>
 
                                                         <div class="input-field col s6">
-                                                                <input id="todate0" name="todate0[]" type="text" class="datepicker" required>
+                                                                <input id="todate0" name="todate0[]" type="text" class="datepicker">
                                                                 <label for="todate0" style="font-size: 11px">To</label>
                                                         </div> 
 
                                                         <div class="input-field col s6">
-                                                                <input id="managername0" name="managername0[]" type="text" class="validate"  aria-required="true" required>
+                                                                <input id="managername0" name="managername0[]" type="text" class="validate"  aria-required="true">
                                                                 <label for="managername0" style="font-size: 11px">Reporting Manager Name</label>
                                                         </div> 
                                                               
                                                         <div class="input-field col s6">
-                                                                <input id="managermail0" name="managermail0[]" type="text" class="validate"  aria-required="true" required>
+                                                                <input id="managermail0" name="managermail0[]" type="email" class="validate"  aria-required="true">
                                                                 <label for="managermail0" style="font-size: 11px">Enter Manager Email</label>
                                                         </div> 
                                                         <div class="row" id="addnextexp"x>
@@ -269,12 +279,12 @@ $_SESSION['positionapplied'] = $position;
                                                 </label><br>
 
                                                 <label class="col s12">
-                                                         <input type="checkbox" id="website" name="website" class="filled-in" >
+                                                         <input type="checkbox" id="website" name="website" class="filled-in">
                                                         <span>Company Website</span>
                                                 </label><br>
 
                                                 <label class="col s12">
-                                                        <input type="checkbox" id="other" name="other" class="filled-in" >
+                                                        <input type="checkbox" id="other" name="other" class="filled-in">
                                                         <span>Other</span>
                                                         <input placeholder="Enter Specific Details" id="otherdetails" name="otherdetails" type="text" class="validate">                                                        
                                                 </label>
@@ -316,46 +326,48 @@ $_SESSION['positionapplied'] = $position;
 
 
                                           
-                                          <b style="font-size:20px;">Upload your Aadhar Card </b>
-                                          <div class="row">
-                                                <!-- <div class="input-field col s12">
-                                                        <a class="btn green" id="yesforaadhar">YES</a>                                                                                                               
-                                                        <a class="btn red" id="noforaadhar">NO</a>
-                                                </div> -->
-                                                                                        
-                                                <div class="input-field col s12" id="showaddharupload">
-                                                                <label class="custom-file-upload">
-                                                                        <a class="btn blue darken-1"><input  id="proof_identity_addhar" name="proof_identity_addhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx" required><p id='myfile_adhar'>Upload Aadhar Card </p></a>
-                                                                </label>
+                                          <b style="font-size:20px;">Upload your Aadhar Card as Proof Of Identity</b>
+                                                                                                                                  
+                                                
+                                                <div class="file-field input-field">
+                                                        <div class="btn blue darken-1">
+                                                                <span>Upload File</span>
+                                                                <input id="proof_identity_addhar" name="proof_identity_addhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx" required>
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                                <input class="file-path validate" type="text">
+                                                        </div>
                                                 </div>
-                                        </div><br>
+                                                <br>
                                          <div id="uploadotherdoc">
-                                                        <b>Proof Of Identity(PAN/Voter ID/Driving Licence/Passport/Aadhar)</b>
+                                                        <b style="font-size:20px;">Proof Of Identity(PAN/Voter ID/Driving Licence/Passport)</b>
 
 
-                                                        <div class="row">
-                                                                <div class="input-field col s12" >
-                                                                                  <label class="custom-file-upload">
-                                                                                           <a class="btn blue darken-1"> <input id="proof_otherthanadhar" name="proof_otherthanadhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx" required> <p id='myfile1'> Upload file </p></a>
-                                                                                  </label>
-                                                                              </div>
-                                                              </div><br>                                                        
+                                                                <div class="file-field input-field">
+                                                                        <div class="btn blue darken-1">
+                                                                                <span>Upload File</span>
+                                                                                <input id="proof_otherthanadhar" name="proof_otherthanadhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                                        </div>
+                                                                        <div class="file-path-wrapper">
+                                                                                <input class="file-path validate" type="text">
+                                                                        </div>
+                                                                </div>
                                          </div>
                                          
-                                            
+                                            <br>
 
                                             <b style="font-size:20px;">Proof Of Address(Rent Agreement/Voter ID/Driving Licence/Passport)</b>
                                                 
-                                          <div class="row">
-
-                                                <div class="input-field col s12" >
-                                                    <label class="custom-file-upload">
-
-                                                    
-                                                       <a class="btn blue darken-1"> <input id="proof_address" name="proof_address"   required type="file" accept=".png, .jpg, .jpeg, .pdf, .docx" required> <p id='myfile2'> Upload file </p></a>
-                                                    </label>
+                                         
+                                          <div class="file-field input-field">
+                                                <div class="btn blue darken-1">
+                                                        <span>Upload File</span>
+                                                        <input id="proof_address" name="proof_address"   required type="file" accept=".png, .jpg, .jpeg, .pdf, .docx">
                                                 </div>
-                                          </div>
+                                                <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                </div>
+                                        </div>
 
                                           <br><br>
 
@@ -365,26 +377,26 @@ $_SESSION['positionapplied'] = $position;
 
                                                 
                                             <div class="input-field col s6">
-                                                    <input id="father" name="father" type="text" required>
+                                                    <input id="father" name="father" type="text">
                                                     <label for="father">Father Name</label>
                                             </div>
 
                                             
                                             <div class="input-field col s6">
-                                                    <input id="fdob" name="fdob" type="text" class="datepicker"  required>
+                                                    <input id="fdob" name="fdob" type="text" class="datepicker"  >
                                                     <label for="fdob">DOB</label>
                                             </div>
 
 
                                             
                                             <div class="input-field col s6">
-                                                    <input id="mother" name="mother" type="text" required>
+                                                    <input id="mother" name="mother" type="text">
                                                     <label for="mother">Mother Name</label>
                                             </div>
 
                                             
                                             <div class="input-field col s6">
-                                                    <input id="mdob" name="mdob" type="text" class="datepicker" required>
+                                                    <input id="mdob" name="mdob" type="text" class="datepicker" >
                                                     <label for="mdob">DOB</label>
                                             </div>
 
@@ -397,7 +409,7 @@ $_SESSION['positionapplied'] = $position;
 
                                             
                                             <div class="input-field col s3">
-                                                    <input id="spdob" name="spdob" type="text" class="datepicker">
+                                                    <input id="spdob" name="spdob" type="text" class="datepicker" >
                                                     <label for="spdob">DOB</label>
                                             </div>
                                             
@@ -415,7 +427,7 @@ $_SESSION['positionapplied'] = $position;
 
                                             
                                             <div class="input-field col s6">
-                                                    <input id="child1" name="child1" type="text" >
+                                                    <input id="child1" name="child1" type="text">
                                                     <label for="child1">Child1 Name</label>
                                             </div>
 
@@ -438,7 +450,7 @@ $_SESSION['positionapplied'] = $position;
 
                                             
                                             <div class="input-field col s6">
-                                                    <input id="child2" name="child2" type="text" >
+                                                    <input id="child2" name="child2" type="text">
                                                     <label for="child2">Child2 Name</label>
                                             </div>
 
@@ -467,36 +479,36 @@ $_SESSION['positionapplied'] = $position;
                                           <div class="row">
 
                                                 <div class="input-field col s6">
-                                                        <input id="monthhome" name="monthhome" type="text" disabled value="Annual Gross(CTC)" style="color: black" required>
+                                                        <input id="monthhome" name="monthhome" type="text" disabled value="Annual Gross(CTC)" style="color: black">
                                                         
                                                 </div>
     
                                                 
                                                 <div class="input-field col s3">
-                                                        <input id="homepresent" name="homepresent" type="number" required>
+                                                        <input id="homepresent" name="homepresent" type="number" >
                                                         <label for="homepresent">Present</label>
                                                 </div>
                                                 
                                                 <div class="input-field col s3">
-                                                        <input id="homeexp" name="homeexp" type="number" required>
+                                                        <input id="homeexp" name="homeexp" type="number">
                                                         <label for="homeexp">Expected</label>
                                                 </div>
                                                 
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="monthgross" type="text" disabled value="Monthly Gross(CTC)" style="color: black" required>
+                                                        <input id="monthgross" type="text" disabled value="Monthly Gross(CTC)" style="color: black">
                                                         
                                                 </div>
     
                                                 
                                                 <div class="input-field col s3">
-                                                        <input id="grosspresent" name="grosspresent" type="number" required>
+                                                        <input id="grosspresent" name="grosspresent" type="number">
                                                         <label for="grosspresent">Present</label>
                                                 </div>
                                                 
                                                 
                                                 <div class="input-field col s3">
-                                                        <input id="grossexp" name="grossexp" type="number" required>
+                                                        <input id="grossexp" name="grossexp" type="number">
                                                         <label for="grossexp">Expected</label>
                                                 </div>
                                                 
@@ -504,18 +516,18 @@ $_SESSION['positionapplied'] = $position;
 
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="ypresent" type="text" disabled value="Monthly Take Home" style="color: black" required>
+                                                        <input id="ypresent" type="text" disabled value="Monthly Take Home" style="color: black">
                                                         
                                                 </div>
     
                                                 
                                                 <div class="input-field col s3">
-                                                        <input id="yearpresent" name="yearpresent" type="number" required>
+                                                        <input id="yearpresent" name="yearpresent" type="number">
                                                         <label for="yearpresent">Present</label>
                                                 </div>
                                                 
                                                 <div class="input-field col s3">
-                                                        <input id="yearexp" name="yearexp" type="number" required>
+                                                        <input id="yearexp" name="yearexp" type="number">
                                                         <label for="yearexp">Expected</label>
                                                 </div>
     
@@ -528,13 +540,13 @@ $_SESSION['positionapplied'] = $position;
                                                   <div id="ref" class="col">
 
                                                 <div class="input-field col s6">
-                                                        <input id="refname" type="text" disabled value="Name" style="color: black" required>
+                                                        <input id="refname" type="text" disabled value="Name" style="color: black">
                                                         
                                                 </div>
     
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="nameref0" name="nameref0[]" type="text" required>
+                                                        <input id="nameref0" name="nameref0[]" type="text">
                                                         <label for="nameref0">Reference</label>
                                                 </div>
                                                 
@@ -542,26 +554,26 @@ $_SESSION['positionapplied'] = $position;
                                                 
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="dsgref" type="text" disabled value="Designation" style="color: black" required>
+                                                        <input id="dsgref" type="text" disabled value="Designation" style="color: black">
                                                         
                                                 </div>
     
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="designationref0" name="designationref0[]" type="text" required>
+                                                        <input id="designationref0" name="designationref0[]" type="text">
                                                         <label for="designationref0">Reference</label>
                                                 </div>
                                                 
                                                
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="cnameref" type="text" disabled value="Company Name" style="color: black" required>
+                                                        <input id="cnameref" type="text" disabled value="Company Name" style="color: black">
                                                         
                                                 </div>
     
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="cmpnmref0" name="cmpnmref0[]" type="text" required>
+                                                        <input id="cmpnmref0" name="cmpnmref0[]" type="text">
                                                         <label for="cmpnmref0">Reference </label>
                                                 </div>
                                                 
@@ -570,7 +582,7 @@ $_SESSION['positionapplied'] = $position;
 
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="cnoref" type="text" disabled value="Contact Number" style="color: black" required>
+                                                        <input id="cnoref" type="text" disabled value="Contact Number" style="color: black">
                                                         
                                                 </div>
     
@@ -583,7 +595,7 @@ $_SESSION['positionapplied'] = $position;
                                                 
 
                                                 <div class="input-field col s6">
-                                                         <input id="emailref" type="email" disabled value="Email" style="color: black" required>
+                                                         <input id="emailref" type="email" disabled value="Email" style="color: black">
                                                 </div>
 
                                                 <div class="input-field col s6">
@@ -606,7 +618,7 @@ $_SESSION['positionapplied'] = $position;
                                 <div class="row">
                                         <div class=" col s6 offset-s3 center" id="submitform">
                                         
-                                              <button class="btn blue darken-2" type="submit" id="submitformdata" name="action" >Submit
+                                              <button class="btn blue darken-2" type="submit" id="submitformdata" name="action" value="Submit">Submit
                                                 <i class="material-icons right">send</i>
                                               </button>
                                         </div>                                    
@@ -637,33 +649,11 @@ $_SESSION['token'] = $_GET['token'];
 ?>
                         
 <script>
-//array for filled or correct documents
-var filled=[];
-//array for not filled or incorrect documennts
-var notfilled=[];
+
 
 var expctr=0        
 var ctr=0
 var ctr2=0
-
-function changecont(x)
-{
-        var id="#"+x;
-        var phone=$(id).val();
-        console.log(id)
-        console.log(phone)
-
-        if(phone.length!=10)
-        {
-                alert("Enter Valid Contact Details")
-                $(id).val(" ")
-                notfilled.push("phone number")
-        }
-       
-
-}
-
-
 
 function checkcont(x)
 {
@@ -676,14 +666,10 @@ function checkcont(x)
         {
                 alert("Enter Valid Contact Details")
                 $(id).val(" ")
-                notfilled.push("phone number")
         }
        
 
 }
-
-
-
 function addnewexp(x)
 {
         expctr = expctr+1
@@ -698,9 +684,7 @@ function addnewexp(x)
                         
                         //changeYear:true
                
-        }); 
-
-
+        });            
 
 }
 
@@ -947,7 +931,6 @@ $('#photo').change(function(){
    else
    {
         alert('Invalid File \n Only IMAGE accepted')
-      
    }
    
   
@@ -963,15 +946,10 @@ $('#mycv').change(function(){
         else
         {
         alert('Invalid File \n Only PDF accepted')
-      
                 
         }
         
 })
-
-
-        
-
 
 
 
