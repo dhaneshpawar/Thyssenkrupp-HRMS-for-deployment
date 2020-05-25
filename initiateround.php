@@ -249,10 +249,11 @@ $(document).ready(function(){
         for(let i =0;i<arr.length;i++)
         {
           var appended=arr[i].prf+"-"+arr[i].pos+"-"+arr[i].iid+"-"+arr[i].rid
+          var appended2=arr[i].prf+"/"+arr[i].pos+"/"+arr[i].iid+"/"+arr[i].rid+"/"+arr[i].dept
           var s1='<tr id="'+appended+'row">'
           var s2='<td>'
           var s3='<p class="btn waves-effect blue darken-1" >'+appended+'</p></td><td>'
-          var s4='<button class="waves-effect green  btn"  id='+appended+' onclick="createnextround(this.id)">Initiate Round</button></td></tr>'
+          var s4='<button class="waves-effect green  btn"  id='+appended2+' onclick="createnextround(this.id)">Initiate Round</button></td></tr>'
           var str=s1+s2+s3+s4
            $('#addtr').append(str)
         }
@@ -296,7 +297,7 @@ $(document).ready(function(){
   })
 
   $('#allocatesubmit').click(function(){
-      console.log(iid);
+      console.log("This is my "+iid);
       var imail = $('#imail').val();
       var iname = $('#iname').val();
       var idate = $('#idate').val();
@@ -415,7 +416,8 @@ function createnextround(id)
 {
   // $('.timepicker').timepicker();
   window.iid=id;
-  id_round = id
+  id = id.split("/")
+  id_round = id[0]+"-"+id[1]+"-"+id[2]
   console.log(id_round)
   $('#allocatingcandidate').fadeIn(600);
 

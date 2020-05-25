@@ -50,6 +50,31 @@ $arr2=array();
         }
         else
         {
+            // foreach($cursor1 as $d)
+            // {
+            //     $iids[$j][0] = $d['prf'];
+            //     $iids[$j][1] = $d['iid'];
+            //     $j++;
+            // }
+            // $j=0;
+            // foreach ($iids as $i)
+            // {
+            //     $cursor = $db->prfs->findOne(array("prf"=>$i[0],"department"=>$_POST['dept'],"status"=>"completed"));
+            //     $arr[0]=$cursor['prf'];
+            //     $arr[1]=$cursor['position'];
+            //     $arr[2]=$cursor['zone'];
+            //     $arr[3]=$cursor['department'];
+            //     $arr[4]=$cursor['pos'];
+            //     $arr[5]=$cursor['status'];
+            //     $arr[6] = $i[1];
+            //     $arr2[$j] = $arr;
+            //     $j++;
+            // }
+
+
+
+
+
             $iids=array();
             $cursor = $db->prfs->find(array("department"=>$_POST['dept'],"zone"=>$_POST['zone'],"status"=>"completed"));
             $i=0;

@@ -9,7 +9,7 @@ $mail->isHTML(true);
 $invname=$_POST['intv'];
 $date=$_POST['date'];
 $time=$_POST['time'];
-$digit13 = preg_split('/[-]/', $_POST['prf']);
+$digit13 = explode("/", $_POST['prf']);
 
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
@@ -67,7 +67,7 @@ $mail->addAddress($_POST['intv']);
    
 ///newly added
 
-    $criteria=array("status"=>"ristart","prf"=>$digit13[0],"pos"=>$digit13[1],"rid"=>"01",'iid'=>$digit13[2]);
+    $criteria=array("status"=>"ristart","prf"=>$digit13[0],"pos"=>$digit13[1],"rid"=>"01",'iid'=>$digit13[2],"dept"=>$digit13[4]);
     
     foreach($_POST['emails'] as $d)
     {
