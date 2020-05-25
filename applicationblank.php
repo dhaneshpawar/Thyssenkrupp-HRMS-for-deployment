@@ -54,7 +54,7 @@ $_SESSION['positionapplied'] = $position;
                           <div class="card white">
                             <div class="card-content blue-text darken-1" id="form">
                       
-                         <form method="POST" name="applicationblank" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php" onsubmit="return submitapplication()">
+                         <form method="POST" name="applicationblank" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php" >
                                  
 
                                 <!-- form starts -->
