@@ -8,44 +8,47 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.css">
     <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="public/css/preloader.css">
-
+   
     <script src="public/jquery-3.2.1.min.js"></script>
 
     <script src="public/js/materialize.js"></script>
     <script src="public/js/materialize.min.js"></script>
 
-    <script>
-    //Preloader
-         $(window).on('load', function() {
-              $(".sk-cube-grid").fadeOut();
-            $("#preloder").fadeOut("slow");
-        });
-    </script>
+   
     
 
 </head>
-<div id="preloder"> 
-    
-    <div class="sk-cube-grid">
-        <div class="sk-cube sk-cube1"></div>
-        <div class="sk-cube sk-cube2"></div>
-        <div class="sk-cube sk-cube3"></div>
-        <div class="sk-cube sk-cube4"></div>
-        <div class="sk-cube sk-cube5"></div>
-        <div class="sk-cube sk-cube6"></div>
-        <div class="sk-cube sk-cube7"></div>
-        <div class="sk-cube sk-cube8"></div>
-        <div class="sk-cube sk-cube9"></div>
-            <b style="font-size:15px;">thyssenkrupp<br> 
-            
-    </div>
-</div>
+
 <style>
+#note{
+        background-color:white !important;
+        margin-left:30% !important;
+        margin-top:25% !important;
+        width:30%;
+        height:20%;
+        font-size:20;
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.75)  url(loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#loader > #txt{
+        font-size:25;
+        margin-left:35% !important;
+        margin-top:18% !important; 
+}
  /* input[type="file"] {
     display: none;
 } */
@@ -67,8 +70,6 @@ $_SESSION['positionapplied'] = $position;
 
 
 
-
-
               <nav>
                     <div class="nav-wrapper blue darken-1">
                       <a href="#!" class="brand-logo center">thyssenkrupp</a>
@@ -83,7 +84,7 @@ $_SESSION['positionapplied'] = $position;
                           <div class="card white">
                             <div class="card-content blue-text darken-1" id="form">
                       
-                         <form method="POST" id="myform" name="applicationblank" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php" >
+                         <form method="POST" id="myform" name="applicationblank" enctype='multipart/form-data' action="./api/submitapplication.php" >
                                  
 
                                 <!-- form starts -->
@@ -652,9 +653,16 @@ $_SESSION['positionapplied'] = $position;
                                               </button>
                                               <br>
                                               <b style="color:green" id="pleasewait">Submitting Your Form .. Please Wait</b>
+                                             
                                         </div>                                    
                                 </div>   
-
+                                <div id="loader">
+                                <div id="txt">
+                                        <b>Please wait while we submit your form</b>
+                                </div>
+                                      
+                                </div>
+                                
 
                                 <!-- form end -->
 
@@ -730,7 +738,9 @@ function addnewref(x)
 
 $("#myform").submit(function(){
         $("#submitformdata").prop('disabled',true);
+        $('#loader').show()
         $("#pleasewait").show()
+
 })
 $("#image_upload_preview").hide()
 $("#myexpdiv").hide();
@@ -742,6 +752,7 @@ $("#otherdetails").hide();
 
 $(document).ready(function(){
         $('#warn').hide()
+        $('#loader').hide()
         function getUrlVars() {
             var vars = {};
             var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -761,8 +772,10 @@ $(document).ready(function(){
                                              if(para == "expired")
                                              {
                                                console.log("Expired Page");
+                                                $('#loader').hide()
                                                 $('#form').hide()
                                                 $('#warn').show()
+                                                
                                            
                                              }
                                              else if(para=='success')
