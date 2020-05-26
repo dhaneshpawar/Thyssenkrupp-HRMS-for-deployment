@@ -12,14 +12,39 @@ session_start();
     <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.css">
     <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="public/css/preloader.css">
 
     <script src="public/jquery-3.2.1.min.js"></script>
 
     <script src="public/js/materialize.js"></script>
     <script src="public/js/materialize.min.js"></script>
+
+    <script>
+    //Preloader
+         $(window).on('load', function() {
+              $(".sk-cube-grid").fadeOut();
+            $("#preloder").fadeOut("slow");
+        });
+    </script>
     
 
 </head>
+<div id="preloder"> 
+    
+    <div class="sk-cube-grid">
+        <div class="sk-cube sk-cube1"></div>
+        <div class="sk-cube sk-cube2"></div>
+        <div class="sk-cube sk-cube3"></div>
+        <div class="sk-cube sk-cube4"></div>
+        <div class="sk-cube sk-cube5"></div>
+        <div class="sk-cube sk-cube6"></div>
+        <div class="sk-cube sk-cube7"></div>
+        <div class="sk-cube sk-cube8"></div>
+        <div class="sk-cube sk-cube9"></div>
+            <b style="font-size:15px;">thyssenkrupp<br> 
+            
+    </div>
+</div>
 <style>
  /* input[type="file"] {
     display: none;
@@ -37,7 +62,11 @@ $_SESSION['positionapplied'] = $position;
 
 
 </style>
+
 <body>
+
+
+
 
 
               <nav>
@@ -54,7 +83,7 @@ $_SESSION['positionapplied'] = $position;
                           <div class="card white">
                             <div class="card-content blue-text darken-1" id="form">
                       
-                         <form method="POST" name="applicationblank" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php" >
+                         <form method="POST" id="myform" name="applicationblank" enctype='multipart/form-data' action="http://localhost/hrms/api/submitapplication.php" >
                                  
 
                                 <!-- form starts -->
@@ -621,6 +650,8 @@ $_SESSION['positionapplied'] = $position;
                                               <button class="btn blue darken-2" type="submit" id="submitformdata" name="action" value="Submit">Submit
                                                 <i class="material-icons right">send</i>
                                               </button>
+                                              <br>
+                                              <b style="color:green" id="pleasewait">Submitting Your Form .. Please Wait</b>
                                         </div>                                    
                                 </div>   
 
@@ -650,6 +681,7 @@ $_SESSION['token'] = $_GET['token'];
                         
 <script>
 
+$("#pleasewait").hide()
 
 var expctr=0        
 var ctr=0
@@ -696,8 +728,10 @@ function addnewref(x)
         $("#mainref").append(txt);
 }
 
-
-
+$("#myform").submit(function(){
+        $("#submitformdata").prop('disabled',true);
+        $("#pleasewait").show()
+})
 $("#image_upload_preview").hide()
 $("#myexpdiv").hide();
 $("#otherdetails").hide();
