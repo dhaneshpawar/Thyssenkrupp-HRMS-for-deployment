@@ -50,7 +50,7 @@ if($cursor)
                     $mail->Subject = 'Your Application at tkEI';
                     $mail->Body    =   nl2br('Dear Candidate,
 
-                    Further to our discussion for the profile of '. $positionorg.'in'.$_POST['dept'].' You are required to provide your basic
+                    Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
                     To access the link, please click here '.$url.'
@@ -109,7 +109,7 @@ if($cursor)
                     $mail->Subject = 'Your Application at tkEI';
                     $mail->Body    = nl2br('Dear Candidate,
 
-                    Further to our discussion for the profile of '. $positionorg.'in'.$_POST['dept'].' You are required to provide your basic
+                    Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
                     To access the link, please click here '.$url.'
@@ -169,7 +169,7 @@ if($cursor)
                     $mail->Subject = 'Your Application at tkEI';
                     $mail->Body    = nl2br('Dear Candidate,
 
-                    Further to our discussion for the profile of '. $positionorg.'in'.$_POST['dept']. ' You are required to provide your basic
+                    Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept']. ' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
                     To access the link, please click here '.$url.'
