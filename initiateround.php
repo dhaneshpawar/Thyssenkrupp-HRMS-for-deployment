@@ -443,7 +443,9 @@ function createnextround(id)
           $("#showmembersdiv").fadeIn(1200);
             for(let i=0;i<para[1];i++)
             {
-              var membersdata='<tr><td>'+i+1+'</td><td>'+para[2][i]+'</td</tr>'
+              j = parseInt(i)
+              j += 1
+              var membersdata='<tr><td>'+j+'</td><td>'+para[2][i]+'</td</tr>'
               $("#memberstable").append(membersdata)
             }
         }
