@@ -480,7 +480,7 @@ function createnextround(id)
         console.log("Name - ",allmail[i][0]);
         console.log("Email - ",allmail[i][1]);
         var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td><td><p id="check'+i+'mail">'+arr[i][1]+'</p></td><td><label>'
-        var s2='<input type="checkbox" class="filled-in" id="check'+i+'" />'
+        var s2='<input type="checkbox" class="filled-in" id="check'+i+'"onclick="selection(this.id)"/>'
         var s3='<span class="blue-text darken-1" ></span></label></td>'
         var s4='<td><input type="text" id="check'+i+'date" class="timepicker"></td></tr>'
         var str=s1+s2+s3+s4
