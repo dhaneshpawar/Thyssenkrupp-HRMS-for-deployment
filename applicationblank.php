@@ -120,7 +120,7 @@ $_SESSION['positionapplied'] = $position;
                                         <div class="file-field input-field">
                                                 <div class="btn blue darken-1">
                                                         <span>Upload CV</span>
-                                                        <input id="mycv" name="mycv"   required type="file" accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                        <input id="mycv" name="mycv"   required type="file" accept=".png, .jpg, .jpeg, .pdf">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                         <input class="file-path validate" type="text">
@@ -219,7 +219,7 @@ $_SESSION['positionapplied'] = $position;
                                                                         <div class="file-field input-field">
                                                                                 <div class="btn blue darken-1">
                                                                                         <span>Upload Documents</span>
-                                                                                        <input id="alldocs" name="alldocs" type="file"  required accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                                                        <input id="alldocs" name="alldocs" type="file"  required accept=".png, .jpg, .jpeg, .pdf">
                                                                                 </div>
                                                                                 <div class="file-path-wrapper">
                                                                                         <input class="file-path validate" type="text">
@@ -361,7 +361,7 @@ $_SESSION['positionapplied'] = $position;
                                                 <div class="file-field input-field">
                                                         <div class="btn blue darken-1">
                                                                 <span>Upload File</span>
-                                                                <input id="proof_identity_addhar" name="proof_identity_addhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx" required>
+                                                                <input id="proof_identity_addhar" name="proof_identity_addhar" type="file" accept=".png, .jpg, .jpeg, .pdf" required>
                                                         </div>
                                                         <div class="file-path-wrapper">
                                                                 <input class="file-path validate" type="text">
@@ -375,7 +375,7 @@ $_SESSION['positionapplied'] = $position;
                                                                 <div class="file-field input-field">
                                                                         <div class="btn blue darken-1">
                                                                                 <span>Upload File</span>
-                                                                                <input id="proof_otherthanadhar" name="proof_otherthanadhar" type="file" accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                                                <input id="proof_otherthanadhar" name="proof_otherthanadhar" type="file" accept=".png, .jpg, .jpeg, .pdf">
                                                                         </div>
                                                                         <div class="file-path-wrapper">
                                                                                 <input class="file-path validate" type="text">
@@ -391,7 +391,7 @@ $_SESSION['positionapplied'] = $position;
                                           <div class="file-field input-field">
                                                 <div class="btn blue darken-1">
                                                         <span>Upload File</span>
-                                                        <input id="proof_address" name="proof_address"   required type="file" accept=".png, .jpg, .jpeg, .pdf, .docx">
+                                                        <input id="proof_address" name="proof_address"   required type="file" accept=".png, .jpg, .jpeg, .pdf">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                         <input class="file-path validate" type="text">
