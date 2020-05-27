@@ -41,7 +41,7 @@ if(isset($_COOKIE['sid']))
 <script>
 function abort_round()
 {
-  var confr = confirm("Are You Sure ?");
+  var confr = confirm("This Rouncd Will Be Removed From The Process \n Are You Sure ?");
   if(confr)
   {
  
@@ -397,7 +397,7 @@ function createnextround(id)
          
     success:function(para)
     {
-      alert(para)  
+      // alert(para)  
       para = JSON.parse(para)
       
       window.allmembers = para
@@ -445,7 +445,7 @@ function terminateround()
     else
     {
       counter=1;
-      var confrm = confirm("Are You sure ? ");
+      var confrm = confirm("Interview Process Will Be Completed \n You Can See These Memebers in Your History \n Are You sure ? ");
       console.log(selectedmail)
       var groupid=window.groupid
       console.log(groupid)
