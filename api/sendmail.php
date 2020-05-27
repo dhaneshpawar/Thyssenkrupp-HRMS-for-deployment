@@ -77,9 +77,24 @@ if($cursor)
                 }
                 if($ctr==0)
                 {
+                    //"poszone"=>$_POST['poszone']
                     $r = $db->prfs->updateOne(array("prf"=>$_POST['prf'],"department"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position']),array('$set'=>array("progress"=>"initiated")));
                     
-                    $db->rounds->insertOne(array("status"=>"bstart","prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid,"members"=>$_POST['emails'],"selected"=>array(),"rejected"=>array(),"onhold"=>array()));
+                    $db->rounds->insertOne(array(
+                        "status"=>"bstart",
+                        "prf"=>$_POST['prf'],
+                        "dept"=>$_POST['dept'],
+                        "pos"=>$_POST['pos'],
+                        "poszone"=>$_POST['poszone'],
+                        "position"=>$_POST['position'],
+                        "rg"=>$cursor["rg"],
+                        "rid"=>"00",
+                        "iid"=>$instanceid,
+                        "members"=>$_POST['emails'],
+                        "selected"=>array(),
+                        "rejected"=>array(),
+                        "onhold"=>array())
+                    );
                     $fp = fopen('prflogs.txt', 'a');
                     $d = date("Y/m/d");
                     $m = $cursor['mail'];
@@ -137,7 +152,21 @@ if($cursor)
                 {
                     $r = $db->prfs->updateOne(array("prf"=>$_POST['prf'],"department"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position']),array('$set'=>array("progress"=>"initiated")));
 
-                    $db->rounds->insertOne(array("status"=>"bstart","prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid,"members"=>$_POST['emails'],"selected"=>array(),"rejected"=>array(),"onhold"=>array()));    
+                    $db->rounds->insertOne(array(
+                        "status"=>"bstart",
+                        "prf"=>$_POST['prf'],
+                        "dept"=>$_POST['dept'],
+                        "pos"=>$_POST['pos'],
+                        "poszone"=>$_POST['poszone'],
+                        "position"=>$_POST['position'],
+                        "rg"=>$cursor["rg"],
+                        "rid"=>"00",
+                        "iid"=>$instanceid,
+                        "members"=>$_POST['emails'],
+                        "selected"=>array(),
+                        "rejected"=>array(),
+                        "onhold"=>array())
+                    );    
                     $fp = fopen('prflogs.txt', 'a');
                     $d = date("Y/m/d");
                     $m = $cursor['mail'];
@@ -199,7 +228,21 @@ if($cursor)
                 {
                     $r = $db->prfs->updateOne(array("prf"=>$_POST['prf'],"department"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position']),array('$set'=>array("progress"=>"initiated")));
                    
-                    $db->rounds->insertOne(array("status"=>"bstart","prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid,"members"=>$_POST['emails'],"selected"=>array(),"rejected"=>array(),"onhold"=>array()));
+                    $db->rounds->insertOne(
+                        array(
+                            "status"=>"bstart",
+                            "prf"=>$_POST['prf'],
+                            "dept"=>$_POST['dept'],
+                            "pos"=>$_POST['pos'],
+                            "poszone"=>$_POST['poszone'],
+                            "position"=>$_POST['position'],
+                            "rg"=>$cursor["rg"],
+                            "rid"=>"00",
+                            "iid"=>$instanceid,
+                            "members"=>$_POST['emails'],
+                            "selected"=>array(),
+                            "rejected"=>array(),
+                            "onhold"=>array()));
                     
                     $fp = fopen('prflogs.txt', 'a');
                     $d = date("Y/m/d");

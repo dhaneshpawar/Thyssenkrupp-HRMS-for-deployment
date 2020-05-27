@@ -249,11 +249,12 @@ $(document).ready(function(){
         for(let i =0;i<arr.length;i++)
         {
           var appended=arr[i].prf+"-"+arr[i].pos+"-"+arr[i].iid+"-"+arr[i].rid
-          var appended2=arr[i].prf+"/"+arr[i].pos+"/"+arr[i].iid+"/"+arr[i].rid+"/"+arr[i].dept
+          var appended2=arr[i].prf+"/"+arr[i].pos+"/"+arr[i].iid+"/"+arr[i].rid+"/"+arr[i].dept+"/"+arr[i].poszone;
+          console.log(appended2)
           var s1='<tr id="'+appended+'row">'
           var s2='<td>'
           var s3='<p class="btn waves-effect blue darken-1" >'+appended+'</p></td><td>'
-          var s4='<button class="waves-effect green  btn"  id='+appended2+' onclick="createnextround(this.id)">Initiate Round</button></td></tr>'
+          var s4='<button class="waves-effect green  btn"  id="'+appended2+'" onclick="createnextround(this.id)">Initiate Round</button></td></tr>'
           var str=s1+s2+s3+s4
            $('#addtr').append(str)
         }
@@ -297,7 +298,9 @@ $(document).ready(function(){
   })
 
   $('#allocatesubmit').click(function(){
-      console.log("This is my "+iid);
+
+      
+
       var imail = $('#imail').val();
       var iname = $('#iname').val();
       var idate = $('#idate').val();
@@ -306,8 +309,10 @@ $(document).ready(function(){
       var idesg = $('#idesg').val();
       var iloc = $('#location').val();
       var iperson = $('#contactperson').val();
+      var posdept = window.dept
+      var poszone = window.zone
       var candidatetime
-
+    
       if(imail != "" && iname != "" && idate != "" && itime != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
       {
         $('#allocation').hide(600);
@@ -336,9 +341,9 @@ $(document).ready(function(){
           "idesg":idesg,
           "idept":idept,
           "iloc":iloc,
-          "iperson":iperson
-
-
+          "iperson":iperson,
+          "dept":posdept,
+          "poszone":poszone
           //"dept":"sales"
 
         },
@@ -354,7 +359,7 @@ $(document).ready(function(){
               $(str).remove();
               //document.location.reload();
               $("#pleasewait").hide();
-              window.setTimeout(function(){location.reload()},1000)
+              // window.setTimeout(function(){location.reload()},1000)
 
             }
             selectedmail = []
@@ -416,8 +421,14 @@ function createnextround(id)
 {
   // $('.timepicker').timepicker();
   window.iid=id;
+  console.log(iid)
   id = id.split("/")
   id_round = id[0]+"-"+id[1]+"-"+id[2]
+
+  //dept zone added to database
+  window.dept = id[4]
+  window.zone = id[5]
+  // console.log(zone)
   console.log(id_round)
   $('#allocatingcandidate').fadeIn(600);
 

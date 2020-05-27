@@ -4,7 +4,7 @@ $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
 if($cursor)
 {
-       $cursor = $db->rounds->find(array("rid"=>"00","status"=>"bstart"));
+       $cursor = $db->rounds->find(array("rid"=>"00","status"=>"bstart"),array('projection' => array('prf' => 1,'pos'=>1,'iid'=>1,'rid'=>1,'dept'=>1,'poszone'=>1,'_id' => 1)));
 
        $i = 0;
        foreach($cursor as $doc)

@@ -547,7 +547,7 @@ $.ajax({
        dept[0]="All"
       for(let i =1 ;i<arr.length;i++)
       {
-        dept[i] = arr[i]
+        dept[i] = arr[i-1]
       }
       uniquedept = removeusingSet(dept);
       console.log(uniquedept)
@@ -645,41 +645,41 @@ $('#zonechoice').change(function(){
   
   $('#rawdata').empty();
   //Sarang Yesterday  13/03/2020
-  // $.ajax({
-  // url:"http://localhost/hrms/api/histgetfilteredzones.php",
-  // type:"POST",
-  // data: {
-  //   "dept": $('#deptchoice').val(),
-  //   "zone": $('#zonechoice').val()
-  //   },
-  // success:function(arr)
-  // { 
-  //   if(arr == 'No data')
-  //   {
-  //     $('#nodata').fadeIn(300);
+  $.ajax({
+  url:"http://localhost/hrms/api/histgetfilteredzones.php",
+  type:"POST",
+  data: {
+    "dept": $('#deptchoice').val(),
+    "zone": $('#zonechoice').val()
+    },
+  success:function(arr)
+  { 
+    if(arr == 'No data')
+    {
+      $('#nodata').fadeIn(300);
     
-  //   }
-  //   else
-  //   {
+    }
+    else
+    {
       
   
-  //     $('#nodata').hide();
-  //     console.log("This is my data : "+arr)
-  //     arr=JSON.parse(arr);
-  //     console.log("this are prflist = ",arr)
+      $('#nodata').hide();
+      console.log("This is my data : "+arr)
+      arr=JSON.parse(arr);
+      console.log("this are prflist = ",arr)
   
-  //     for(let j=0;j<arr.length;j++)
-  //     {
-  //       var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
-  //       $('#rawdata').append(x);
-  //     }
-  //     $('#zonechoice').fadeIn(300);
-  //   }
+      for(let j=0;j<arr.length;j++)
+      {
+        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][6]+'</td><td id="status">'+arr[j][5]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][6]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
+        $('#rawdata').append(x);
+      }
+      $('#zonechoice').fadeIn(300);
+    }
   
   
-  // }
+  }
   
-  // })
+  })
   
   })
 

@@ -10,7 +10,7 @@ if(isset($_GET))
         $i = 0;
         foreach($cursor as $document)
         {
-            $arr[$i] = $document['prf']."-".$document['pos']."-".$document['iid']."-".$document['rid'];
+            $arr[$i] = array($document['prf'],$document['pos'],$document['iid'],$document['rid'],$document['dept'],$document['poszone']);
             $i++;
         }
         if(count($arr)==0)
