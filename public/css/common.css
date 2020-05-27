@@ -15,7 +15,23 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
-  
+
+  #loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.75)  url(../../loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#loader > #txt{
+  font-size:20px;
+  color:lightskyblue;
+  margin-left:23% !important;
+  margin-top:18% !important; 
+}
   /* @media screen and (min-width: 800px) {
     .sidemenu{
     width: 25%;

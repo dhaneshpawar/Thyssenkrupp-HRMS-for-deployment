@@ -7,7 +7,7 @@ if(isset($_POST))
     $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
     $criteria = array("prf"=>$prf13[0],"rid"=>$prf13[3],"iid"=>$prf13[2],"pos"=>$prf13[1],"intvmail"=>$cursor['mail']);
-    $res = $db->interviews->updateOne($criteria,array('$set'=>array("accepted"=>"yes")));
+    $res = $db->interviews->updateOne($criteria,array('$set'=>array("accepted"=>"pending")));
 
 }
 
