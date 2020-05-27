@@ -379,7 +379,7 @@ console.log("Members", members)
                 }
                 else{
                   alert("Done")
-                  //window.setTimeout(function(){location.reload()},1000)
+                  window.setTimeout(function(){location.reload()},1000)
                   
                 }
                 

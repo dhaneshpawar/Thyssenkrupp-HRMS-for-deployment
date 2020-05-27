@@ -898,6 +898,8 @@ $('#proof_identity_addhar').change(function(){
       else
       {
         alert('Invalid File\n Only PDF/IMAGES accepted')
+        document.getElementById("proof_identity_addhar").value=null
+
         
       }
         
@@ -914,6 +916,7 @@ $('#proof_otherthanadhar').change(function(){
       else
       {
         alert('Invalid File\n Only PDF/IMAGES accepted')
+        document.getElementById("proof_otherthanadhar").value=null
         
       }
         
@@ -932,6 +935,7 @@ $('#proof_address').change(function(){
       else
       {
         alert('Invalid File\n Only PDF/IMAGE accepted')
+        document.getElementById("proof_address").value=null
         
       }
 })
@@ -947,6 +951,7 @@ $('#alldocs').change(function(){
       else
       {
         alert('Invalid File\n Only PDF accepted')
+        document.getElementById("alldocs").value=null
         
       }
         
@@ -978,6 +983,8 @@ $('#photo').change(function(){
    else
    {
         alert('Invalid File \n Only IMAGE accepted')
+        document.getElementById("photo").value=null
+
    }
    
   
@@ -993,7 +1000,7 @@ $('#mycv').change(function(){
         else
         {
         alert('Invalid File \n Only PDF accepted')
-                
+        document.getElementById("mycv").value=null
         }
         
 })
