@@ -291,7 +291,7 @@ function displayreadonlymail(id)
                 },
                 success:function(para)
                 {
-                    console.log("This is my - "+id[0])
+                    console.log("This is my - "+para)
                      para=JSON.parse(para);
                     
                     // $(y).css("background","red")    

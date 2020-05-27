@@ -389,6 +389,10 @@ function xyz(x)
   </div>
 
   </div>
+
+  <div id="nodata" style="margin-left:40%;color:white;background-color:red;width:15%;height:5%;border-radius:5px;text-align:center;">
+    <b>NO PRF's AVAILABLE</b>
+  </div>
   
 </body>
 <style>
@@ -491,6 +495,7 @@ $(document).ready(function(){
   $('.modal').modal();
   $('#zonechoice').hide();
  $("#uploaddump").hide()
+ $("#nodata").hide()
  $.ajax({
     url:'http://localhost/hrms/api/getprfdump.php',
     type:'POST',
@@ -562,7 +567,8 @@ $('#submitmail').click(function()
       'dept':window.dept,
       'pos':window.pos,
       'status':window.status,
-      'position':window.position
+      'position':window.position,
+      'poszone':window.zone
     },
     success : function(para)
     {
@@ -659,8 +665,7 @@ success:function(arr)
              zone=[]
             para = JSON.parse(para)
 
-            zone[0]="All"
-            for(let i =1 ;i<para.length;i++)
+            for(let i =0 ;i<para.length;i++)
             {
               zone[i] = para[i]
             }
@@ -700,9 +705,10 @@ $('#zonechoice').change(function(){
     },
   success:function(arr)
   { 
-    console.log("OUTPUT FROM BACK "+arr)
-    if(arr == 'No data')
+    console.log(arr)
+    if(arr == "No data")
     {
+      console.log("Entered");
       $('#nodata').fadeIn(300);
     
     }

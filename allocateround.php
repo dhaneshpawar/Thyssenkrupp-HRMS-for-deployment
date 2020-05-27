@@ -253,23 +253,27 @@ $.ajax(
       }
       else
       {
+        
         var arr = JSON.parse(para)
-        console.log(para)
+        console.log(arr[0])
         var oldarr = []
-
+        arr
 
 
         for(let i =0;i<arr.length;i++)
         {
+           
             if(oldarr.indexOf(arr[i]) == -1)
             {
-              oldarr.push(arr[i])
-              var s1='<tr id="'+arr[i]+'row">'
-            var s2='<td>'
-            var s3='<p class="btn waves-effect blue darken-1" >'+arr[i]+'</p></td><td>'
-            var s4='<button class="waves-effect green  btn"  id='+arr[i]+' onclick="createnextround(this.id)">See Members</button></td></tr>'
-            var str=s1+s2+s3+s4
-            $('#addtr').append(str)
+              digit13 = arr[i][0]+"-"+arr[i][1]+"-"+arr[i][2]+"-"+arr[i][3]
+              appended2=  arr[i][0]+"/"+arr[i][1]+"/"+arr[i][2]+"/"+arr[i][3]+"/"+arr[i][4]+"/"+arr[i][5]
+              oldarr.push(digit13)
+              var s1='<tr id="'+digit13+'row">'
+              var s2='<td>'
+              var s3='<p class="btn waves-effect blue darken-1" >'+digit13+'</p></td><td>'
+              var s4='<button class="waves-effect green  btn"  id="'+appended2+'" onclick="createnextround(this.id)">See Members</button></td></tr>'
+              var str=s1+s2+s3+s4
+              $('#addtr').append(str)
             }
         }
       }
@@ -304,6 +308,8 @@ $('#allocation').show(600);
 $('#allocatesubmit').click(function()
 {
   $("#waiting").fadeIn(600);
+  console.log("dept - ",window.dept)
+  console.log("zone - ",window.zone)
   var groupid=window.groupid
   var iname = $('#iname').val();
   var idate = $('#idate').val();
@@ -328,7 +334,9 @@ $('#allocatesubmit').click(function()
         "iloc":iloc,
         "iperson":iperson,
         "idesg":idesg,
-        "dept":idept
+        "dept":idept,
+        "posdept":window.dept,
+        "poszone":window.zone
       },
   success:function(para){
     console.log(para);
@@ -380,6 +388,15 @@ function selection(x)
 var id_round
 function createnextround(id)
 {
+  
+  id = id.split("/")
+  console.log("This is my - "+id[0])
+  window.dept = id[4]
+  window.zone = id[5]
+  console.log("Department : "+id[4])
+  console.log("Zone : "+id[5])
+  id = id[0]+"-"+id[1]+"-"+id[2]+"-"+id[3]
+
   $('#adddetail').text('')
   // alert(id)
   id_round = id
@@ -387,7 +404,7 @@ function createnextround(id)
   $('#allocatingcandidate').fadeIn(600);
   var p1='<b>ID:'+id_round+'<b>'
   $('#rid').replaceWith(p1)
-  console.log("prffalkjsdf;lakjsfd = ",id_round)
+  console.log(" ID  = ",id_round)
   $.ajax({
     url:'http://localhost/hrms/api/nextround.php',
     type:'POST',
