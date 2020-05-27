@@ -157,6 +157,11 @@ if(isset($_COOKIE['sid']))
         </div>
     </div>
 
+    <div id="status"style="background-color:green;border-radius:10px;font-size:25px;width:40%;margin-left:32%;">
+        <center>    
+            Please wait till HR confirms this acceptance...
+        </center>    
+    </div>
 
 
 
@@ -186,6 +191,7 @@ if(isset($_COOKIE['sid']))
     <script>
     var id13digit;
     var rjctid;
+
     function rejectInterview(x)
     {
     //    alert(x)
@@ -233,9 +239,9 @@ if(isset($_COOKIE['sid']))
                 },
                 success:function(para)
                 {
+                    $("#status").fadeIn(300)
                     console.log(para)
-                window.setTimeout(function(){location.reload()},10)
-                    
+                     window.setTimeout(function(){location.reload()},3000)  
                 }
         })
         }
@@ -318,6 +324,7 @@ function displayreadonlymail(id)
 
 
     $(document).ready(function(){
+        $("#status").hide()
          window.mail = "<?php echo $cursor["mail"]; ?>"
          $('.timepicker').timepicker();
        // mail = JSON.stringify(mail)
@@ -381,7 +388,8 @@ function displayreadonlymail(id)
                 {
                     temparr[j] = para[i][j];
                 }
-                var status = temparr[3]=="yes"?"disabled":" ";
+                 console.log("Status - ",temparr[3])
+                var status = temparr[3]=="yes" ||temparr[3]=="pending"?"disabled":" ";
                 var txt1 = '<tr><td><label class="waves-effect blue darken-1 btn">'+temparr[0]+'</label></td>'
                 var txt2 = '<td>'+temparr[1]+'</td><td>'+temparr[2]+'</td>' 
                 var txt6 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'*2" onclick="displayreadonlymail(this.id)">See Members<i class="material-icons right">send</i>'                       
@@ -459,6 +467,7 @@ function displayreadonlymail(id)
                     //comparing time 
                     if(temparr[3]=="yes")
                     {
+                        $("#status").hide()
                         if(intertime <=curintertime)
                         {
                             var txt3 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
@@ -468,6 +477,14 @@ function displayreadonlymail(id)
                         {
                             var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Start<i class="material-icons right">send</i>'                       
                             console.log("invalid");
+                        }
+                    }
+                    else if(temparr[3]=="pending")
+                    {
+                        if(intertime <=curintertime)
+                        {
+                            var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
+                            console.log("valid");
                         }
                     }
                     else if(temparr[3]=="no")

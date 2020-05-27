@@ -162,10 +162,13 @@
 
 
 </div>
+<div id="loader">
+    <div id="txt">
+        <b>Please wait while we send confirmation to candidates and interviewer</b>    
+  </div>  
+</div>
 </body>
-<style>
 
-</style>
 
 <script src="public/js/common.js"></script>
 
@@ -242,7 +245,8 @@ function xyz(x)
 
 var prf
 var arr=[]
-$(document).ready(function(){     
+$(document).ready(function(){ 
+  $('#loader').hide()    
   $('.datepicker').datepicker
   ({
       minDate:new Date(),
@@ -268,7 +272,7 @@ $(document).ready(function(){
           {
             var x='<tr id="rows" class="rows"><td>'+para[j][0]+'</td><td>'+para[j][1]+'</td><td>'+para[j][2]+'</td><td>'+para[j][7]+'</td><td>'+para[j][3]+'</td><td>'+para[j][5]+'</td><td>'+para[j][6]+'</td><td>'+para[j][10]+'</td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][4]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][8]+'*'+para[j][9]+'*'+para[j][10]+'*'+para[j][11]+'*'+para[j][12]+'" class="btn green darken-1" onclick="xyz(this.id)">Update</a></td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][10]+'*'+para[j][12]+'*'+para[j][11]+'" class="btn green darken-1" onclick="notifyCandidate(this.id)" name="notify" disabled>Mail Sent</a></td></tr>'
           }
-          else if(para[j][10] == "yes")
+          else if(para[j][10] == "pending")
           {
             var x='<tr id="rows" class="rows"><td>'+para[j][0]+'</td><td>'+para[j][1]+'</td><td>'+para[j][2]+'</td><td>'+para[j][7]+'</td><td>'+para[j][3]+'</td><td>'+para[j][5]+'</td><td>'+para[j][6]+'</td><td>'+para[j][10]+'</td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][4]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][8]+'*'+para[j][9]+'*'+para[j][10]+'*'+para[j][11]+'*'+para[j][12]+'" class="btn green darken-1" onclick="xyz(this.id)">Update</a></td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][10]+'*'+para[j][12]+'*'+para[j][11]+'" class="btn green darken-1" onclick="notifyCandidate(this.id)" name="notify" >Send Mail</a></td></tr>'
           }
@@ -286,7 +290,8 @@ $(document).ready(function(){
 
 function notifyCandidate(id)
 {
-  alert(id)
+  $('#loader').show()
+  // alert(id)
   $.ajax({
     url:"http://localhost/hrms/api/notifyCandidate.php",
     type:"POST",
@@ -294,6 +299,7 @@ function notifyCandidate(id)
       "prf13":id
     },
     success:function(){
+      $('#loader').hide()
       window.setTimeout(function(){location.reload()},1000)
       
     }

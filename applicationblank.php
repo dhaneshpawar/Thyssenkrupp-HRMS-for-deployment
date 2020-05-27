@@ -25,14 +25,7 @@ session_start();
 </head>
 
 <style>
-#note{
-        background-color:white !important;
-        margin-left:30% !important;
-        margin-top:25% !important;
-        width:30%;
-        height:20%;
-        font-size:20;
-}
+
 
 #loader {
   position: fixed;
