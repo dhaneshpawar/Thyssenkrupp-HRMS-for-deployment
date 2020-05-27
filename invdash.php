@@ -118,7 +118,10 @@ if(isset($_COOKIE['sid']))
                         <!-- End of Email Body -->
                     </table>
                     <center>
+                    <br><br>
                     <button class="btn waves-effect blue darken-1" id="submitinterview">Complete Interview</button>
+                    <br><br>
+                    <b style="color:green;">If No Candidates Found, You Can Click This Button</b>
                     </center>
                 </div>
             </div>
@@ -186,7 +189,7 @@ if(isset($_COOKIE['sid']))
     function rejectInterview(x)
     {
     //    alert(x)
-        var cnfrm = confirm("Are You Sure ?")
+        var cnfrm = confirm("This Request Will Be Rejected \n Are You Sure?")
         if(cnfrm)
         {
             var reason = prompt("Specify Reason For Rejecting : ");
@@ -199,7 +202,7 @@ if(isset($_COOKIE['sid']))
                     "reason":reason,
                 },
                 success:function(para){
-                    alert(para)
+                    // alert(para)
                     var p = "#"+x;
                     $(p).remove();
                     location.reload(true)
@@ -326,7 +329,7 @@ function displayreadonlymail(id)
     //submitting complete interview
     
     $("#submitinterview").click(function(){
-        var cnfrm = confirm("Are You Sure ?")
+        var cnfrm = confirm("The Interview Process Will Be Completed For This Round \n Are You Sure?")
         if(cnfrm)
         {
             $.ajax({
@@ -532,7 +535,7 @@ function displayreadonlymail(id)
     // function for jumping to evaluation form
     function evaluateMail(x)
     {   
-        var p = confirm("are you sure?")
+        var p = confirm("You Will Be Redirected To Evaluation Sheet of This Candidate \n Are You Sure?")
     
         
         
@@ -572,7 +575,7 @@ function displayreadonlymail(id)
                 if(para=="success")
                 {
                     $(document.getElementById(x)).remove()
-                    alert("Success")
+                    // alert("Success")
                 }
                 else
                 {
