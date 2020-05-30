@@ -201,7 +201,7 @@ $_SESSION['positionapplied'] = $position;
           
                                                       
                                                       <div class="input-field col s6">
-                                                          <input id="passing" name="passing" type="text" class="validate" required aria-required="true">
+                                                          <input id="passing" name="passing" type="number" class="validate" required aria-required="true">
                                                           <label for="passing">Passing Year</label>
                                                       </div>
                                                 </div>

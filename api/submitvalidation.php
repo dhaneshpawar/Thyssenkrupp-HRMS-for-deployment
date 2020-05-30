@@ -82,7 +82,7 @@ foreach($valid as $v)
         We are pleased to confirm that we have received your documents. Thank you. Please be
         updated that some more clarity is required on the following.
 
-        Click here to reupload documents '.$url.'
+        Click <a href='.$url.'>here</a> to reupload documents
         
         You are required to complete the same at the earliest.
         
