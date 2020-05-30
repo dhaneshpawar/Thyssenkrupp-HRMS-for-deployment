@@ -478,6 +478,8 @@ function terminateround()
           selectedmail="nomail";
         }
         // alert(selectedmail);
+
+        
         $.ajax({
         url:'http://localhost/hrms/api/terminateround.php',
         type:'POST',
@@ -485,6 +487,7 @@ function terminateround()
           'prf':groupid,
           "emails":selectedmail,
           "allmembers":window.allmembers
+
           },
         success:function(para)
         {

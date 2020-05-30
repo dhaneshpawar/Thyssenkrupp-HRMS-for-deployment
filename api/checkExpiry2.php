@@ -1,16 +1,27 @@
 <?php 
-require_once('vendor/autoload.php');
-    $token=$_POST['token'];
-    //echo $token;
+  error_reporting(0);
+  require_once('vendor/autoload.php');
+  $token=$_POST['token'];
   include "db.php";
-    $cursor=$db->tokens->findOne(array("email"=>$token));
-
-    if($cursor)
+  $cursor=$db->tokens->findOne(array("email"=>$token));
+  $count = count($cursor);
+  $expdate = date($_POST['expdate']);
+  if($cursor)
+  {
+    $currentdate = date("Y.m.d");
+    if(($currentdate < $expdate) and ($count<70))
     {
-            echo "success";
+      echo "success";
     }
-    else{
+    else
+    {
         echo "expired";
     }
+  }
+  else
+  {
+    echo "404";
+  }
+  
 
 ?>

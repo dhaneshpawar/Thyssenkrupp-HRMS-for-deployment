@@ -75,7 +75,11 @@ foreach($valid as $v)
         $result=$db->tokens->updateOne(array("email"=>$mails),array('$set'=>array("afterselection"=>"4","validationstatus"=>"1")));
         $mail->addAddress($mails); 
         $token=sha1($mails);
-        $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/reupload.php?token='.$mails;
+
+        $date = strtotime("+7 day");
+        $expdate = date("Y.m.d", $date);
+
+        $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/reupload.php?token='.$mails.'&expdate='.$expdate;
         $mail->Subject = 'Your Application at tkEI - Re-enter the requisite details';
         $mail->Body    = nl2br('Dear '.$find['full_name'].',
 
