@@ -53,7 +53,7 @@ if($cursor)
                     Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
-                    To access the link, please click here '.$url.'
+                    To access the link, please click <a href='.$url.'>here</a>
                    
                     Thank you for your interest in working with us.
                    
@@ -127,7 +127,7 @@ if($cursor)
                     Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
-                    To access the link, please click here '.$url.'
+                    To access the link, please click here <a href='.$url.'>here</a>
                    
                     Thank you for your interest in working with us.
                    
@@ -201,7 +201,7 @@ if($cursor)
                     Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept']. ' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
-                    To access the link, please click here '.$url.'
+                    To access the link, please click <a href='.$url.'>here</a>
                    
                     Thank you for your interest in working with us.
                    

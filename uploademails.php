@@ -98,7 +98,7 @@ if($count==1) //if round collection is present
                 Further to our discussion for the profile of '. $position. ' You are required to provide your basic
                 details by accessing the below link so that your application could be processed further.
                 
-                To access the link, please click here '.$url.'
+                To access the link, please click <a href='.$url.'>here</a>
                 
                 Thank you for your interest in working with us.
                 
@@ -162,7 +162,7 @@ if($count==1) //if round collection is present
                 Further to our discussion for the profile of '. $position. ' You are required to provide your basic
                 details by accessing the below link so that your application could be processed further.
                 
-                To access the link, please click here '.$url.'
+                To access the link, please click <a href='.$url.'>here</a>
                 
                 Thank you for your interest in working with us.
                 
@@ -232,7 +232,7 @@ else
                 Further to our discussion for the profile of '. $position. ' You are required to provide your basic
                 details by accessing the below link so that your application could be processed further.
                 
-                To access the link, please click here '.$url.'
+                To access the link, please click <a href='.$url.'>here</a>
                 
                 Thank you for your interest in working with us.
                 

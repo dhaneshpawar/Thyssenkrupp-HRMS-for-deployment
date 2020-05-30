@@ -49,7 +49,7 @@ if(isset($_POST))
                 As a next step, we want you to submit the requisite documents to process your application
                 further.
                 
-                Please click here '.$url.' to upload the documents.
+                Please click <a href='.$url.'>here</a> to upload the documents.
                 
                 Feel free to reach out in case of any query.
                 
