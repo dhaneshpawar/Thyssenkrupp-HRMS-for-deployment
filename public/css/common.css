@@ -16,7 +16,7 @@
   .sidenav a {font-size: 18px;}
 }
 
-  #loader {
+#loader {
   position: fixed;
   top: 0;
   left: 0;
@@ -29,7 +29,7 @@
 #loader > #txt{
   font-size:20px;
   color:lightskyblue;
-  margin-left:23% !important;
+  margin-left:25% !important;
   margin-top:18% !important; 
 }
   /* @media screen and (min-width: 800px) {

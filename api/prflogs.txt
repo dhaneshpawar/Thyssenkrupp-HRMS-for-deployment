@@ -39,3 +39,6 @@ Date		PRF	Initiated By		Department
 2020/05/26	441194	dbpawar@mitaoe.ac.in	U-Human Resources
 2020/05/26	520316	dbpawar@mitaoe.ac.in	U-Field Operations
 2020/05/27	520316	dbpawar@mitaoe.ac.in	U-Field Operations
+2020/05/31	431780	asdeshpande@mitaoe.ac.in	Service-Operations
+2020/05/31	433957	asdeshpande@mitaoe.ac.in	Service-Operations
+2020/05/31	441194	asdeshpande@mitaoe.ac.in	U-Human Resources

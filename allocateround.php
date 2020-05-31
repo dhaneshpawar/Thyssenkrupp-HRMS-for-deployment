@@ -190,6 +190,8 @@ else
                                 <th>Name</th>
                                 <th>Mail ID</th>
                                 <th>Select</th>
+                                <th>Time</th>
+                                <th>Date</th>
                                 <th class="btn blue darken-1" id="submit" disabled>Assign Interviewer</th>
                                 <th class="btn red" style="margin-left: 25px;" id="abort" onclick="abort_round()"> Abort</th>
 
@@ -229,8 +231,12 @@ $('#sentsuccess').hide()
 $('#fail').hide()
 $('#noselected').hide()
 $('#sendingmail').hide()
-var selectedmail = []
+
 var allmail = []
+var selectedmail = []
+var selectedmailID = []
+var selecteddate = []
+var selecteddate2 = []
 $(document).ready(function(){
   $('#nodata').hide()
   $('.datepicker').datepicker
@@ -321,39 +327,59 @@ $('#allocatesubmit').click(function()
   var iperson = $('#iperson').val();
 
   $('#allocation').hide(600);
-  $.ajax({
-  url:'http://localhost/hrms/api/interviewerongoing.php',
-  type:'POST',
-  data:{
-        "emails":selectedmail,
-        "iname":iname,
-        "intvmail":imail,
-        "date":idate,
-        "time":itime,
-        "prf":groupid,
-        "iloc":iloc,
-        "iperson":iperson,
-        "idesg":idesg,
-        "dept":idept,
-        "posdept":window.dept,
-        "poszone":window.zone
-      },
-  success:function(para){
-    console.log(para);
-   
-    $('#sentsuccess').fadeIn(600)
-    for(let i=0;i<selectedmail.length;i++)
+  if(imail != "" && iname != "" && idate != "" && itime != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
+  {
+    $('#allocation').hide(600);
+    $("#pleasewait").fadeIn(600);
+    for(let i=0;i<selectedmailID.length;i++)
     {
-      var ml = selectedmail[i];
-      var id = allmail.indexOf(ml) 
-      var str='#check'+id+'row';
-      $(str).remove();
-      $("#waiting").hide();
+      var b = selectedmailID[i]
+      b = b+'date'
+      b2 = b+'2'
+      console.log(b)
+      console.log(b2)
+      selecteddate.push($(b).val()) 
+      selecteddate2.push($(b2).val()) 
+      console.log("Email:",selectedmail[i]) 
+      console.log("Time:",selecteddate[i])
+      console.log("Date:",selecteddate2[i])
     }
-    selectedmail = []
+    $.ajax({
+    url:'http://localhost/hrms/api/interviewerongoing.php',
+    type:'POST',
+    data:{
+          "emails":selectedmail,
+          "cantimes" : selecteddate,
+          "candates" : selecteddate2,
+          "iname":iname,
+          "intvmail":imail,
+          "date":idate,
+          "time":itime,
+          "prf":groupid,
+          "iloc":iloc,
+          "iperson":iperson,
+          "idesg":idesg,
+          "dept":idept,
+          "posdept":window.dept,
+          "poszone":window.zone
+        },
+    success:function(para){
+      console.log(para);
+    
+      $('#sentsuccess').fadeIn(600)
+      for(let i=0;i<selectedmail.length;i++)
+      {
+        var ml = selectedmail[i];
+        var id = allmail.indexOf(ml) 
+        var str='#check'+id+'row';
+        $(str).remove();
+        $("#waiting").hide();
+      }
+      selectedmail = []
 
+    }
+    })
   }
-  })
 
  })
 })   
@@ -370,6 +396,9 @@ function selection(x)
   if($(b).prop("checked") == true)
   {
     selectedmail.push($(y).text())
+    selectedmailID.push(b)
+    console.log('mail:'+selectedmail)
+    console.log('ID:'+selectedmailID)
   }
   else
   {                                               
@@ -378,10 +407,12 @@ function selection(x)
       if ( selectedmail[i] === $(y).text()) 
       {
         selectedmail.splice(i, 1); 
+        selectedmailID.splice(i, 1)
         i--;
       }
     }
-
+    console.log(selectedmail)
+    console.log(selectedmailID)
   }
 }
 
@@ -438,9 +469,13 @@ function createnextround(id)
           allmail[i] = arr[i]
           var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p >'+arr[i][0]+'</p></a></td><td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p id="check'+i+'mail">'+arr[i][1]+'</p></a></td><td><label>'
           var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
-          var s3='<span class="blue-text darken-1" ></span></label></td><td></td></tr>'
-          var str=s1+s2+s3
+          var s3='<span class="blue-text darken-1" ></span></label></td>'
+          var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
+          var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td></tr>'
+          var str=s1+s2+s3+s4+s5
           $('#adddetail').append(str)
+          $('.timepicker').timepicker();
+          $('.datepicker').datepicker();
         }
       }
       // alert(para.length)

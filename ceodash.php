@@ -57,10 +57,7 @@ if(isset($_COOKIE['sid']))
         </div>
       </nav>
     <br>
-    <center>
-<button class="button">You are logged in as CEO</button>
-</center>
-
+   
     <br>
 
 

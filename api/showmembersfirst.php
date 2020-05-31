@@ -8,7 +8,8 @@
 
 
     $members = $findcandidate['members'];
-    $times = $findcandidate['dates'];
+    $times = $findcandidate['times'];
+    $dates = $findcandidate['dates'];
     $arr = array();
     $i=0;
     if($findcandidate)
@@ -17,7 +18,7 @@
         {
             // echo "Mail".$d;
             $getselectednames =  $db->tokens->findOne(array("prf"=>$digit13[0],"pos"=>$digit13[1],"email"=>$d));
-            $arr[$i]=array($getselectednames['full_name'],$d,$times[$i]);
+            $arr[$i]=array($getselectednames['full_name'],$d,$dates[$i],$times[$i]);
             $i++;
         }
          echo json_encode($arr);

@@ -57,9 +57,7 @@ if(isset($_COOKIE['sid']))
         </div>
       </nav>
     <br>
-    <center>
-<button class="button">You Are Logged In As Head Of   <?php echo $cursor['rg'] ?> Region</button>
-</center>
+    
 
     <br>
 

@@ -23,10 +23,41 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" type="text/css" media="screen" href="public/css/common.css">
 
-  <!-- <script src="jquery-3.2.1.min.js"></script>
-  
-  <script src="js/materialize.js"></script>
-  <script src="js/materialize.min.js"></script> -->
+<style>
+   
+   #loader {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     width: 100%;
+     background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+     z-index: 10000;
+   }
+   #loader > #txt{
+     font-size:23px;
+     color:lightskyblue;
+     margin-left:22% !important;
+     margin-top:18% !important; 
+   }
+   #updated {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     width: 100%;
+     background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+     z-index: 10000;
+   }
+   #updated > #txt{
+     font-size:23px;
+     color:lightskyblue;
+     margin-left:22% !important;
+     margin-top:18% !important; 
+   }
+   </style>
 
 </head>
 
@@ -138,11 +169,17 @@
                       <tr>
                       
                           <th style="font-size:15px;" >Members</th>
+                          <th style="font-size:15px;" >Date</th>
+                          <th style="font-size:15px;" >Time</th>
                       </tr>      
                     </thead>
                     <tbody id='memberdata'>
+                    
+
                     </tbody>
+                   
                 </table>
+              
                 <br>
 
             
@@ -162,10 +199,17 @@
 
 
 </div>
-<div id="loader">
+<div id="loader" >
     <div id="txt">
         <b>Please wait while we send confirmation to candidates and interviewer</b>    
-  </div>  
+    </div>  
+</div>
+
+<div id="updated" >
+    <div id="txt">
+        <b>Please wait while we send modification details to respective authority</b>    
+    </div>  
+  </div>
 </div>
 </body>
 
@@ -188,6 +232,64 @@ var oldtime;
 var intarr=['Member1','Member2','Member3']
 var newname;
 
+function modifyMail(id,name)
+{
+    newemail=$('#interviewer_email').val()    
+    console.log("id=",id)
+    console.log("name=",newemail)
+    console.log("mail=",newemail)
+    console.log("Data  : "+id );
+    id_ = id;
+    id=id.split("*");
+    // console.log("Name  : "+name );
+    date = '#check'+name+"date";
+    name = '#check'+name+'time';
+    console.log("Date id - ",date,name)
+    updatedTime = $(name).val()
+    updatedDate = $(date).val()
+    console.log("Updated Date - ",updatedDate)
+    console.log("Updated Time - ",updatedTime)
+    console.log('Exsiting is time : ',id[2])
+
+    if(id[2].localeCompare(updatedTime)==0 && id[1].localeCompare(updatedDate) == 0 )
+    {
+       alert("Same date time")
+    }
+    else
+    {
+        console.log("Not Equal")
+        $.ajax({
+        url:"http://localhost/hrms/api/hrmodifytime.php",
+        type:"POST",
+        data:{
+            "index":id[0],
+            "date":id[1],
+            'time':id[2],
+            "digit13":id[3],
+            "mail":newemail,
+            "updatedTime":updatedTime,
+            "updatedDate":updatedDate
+        },
+        success:function(para)
+        {
+            if(para=="modify")
+            {
+                alert("Modification Done");
+                window.setTimeout(function(){location.reload()},1000)
+      
+            }
+            console.log("This is my data:  "  +para)
+        }
+
+       })
+    }
+    console.log("This is : ")
+    console.log("Split data : "+id[0]+" & "+id[1]+"&"+id[2])
+
+    
+}
+
+
 function xyz(x)
 {
   $('#memberdata').text('')
@@ -205,11 +307,18 @@ function xyz(x)
         // intarr=para;
         para=JSON.parse(para);
         members=para
-        for (let i=0;i<para.length;i++)
+        for (let i=0;i<(para.members).length;i++)
         {
-            
-            var interviewdata='<tr><td>'+para[i]+'</td></tr><br>'
-            $('#memberdata').append(interviewdata)
+            $digit13 = para.prf+'-'+para.pos+'-'+para.iid+'-'+para.rid;
+            var s0 ='<tr><td>'+para.members[i]+'</td>'
+            var s1='<td><input type="text" id="check'+i+'date" value="'+para.dates[i]+'"class="datepicker"></td>'
+            var s2='<td><input type="text" id="check'+i+'time" value="'+para.times[i]+'"class="timepicker"></td>'
+            var s3 ='<td><button  class="btn waves-effect green"  id="'+i+'*'+para.dates[i]+'*'+para.times[i]+'*'+$digit13+'" name="'+i+'" onclick="modifyMail(this.id,this.name)">Modify Time<i class="material-icons right">send</i></button></td></tr>'
+            var str= s0+s1+s2+s3
+            // s2 = s0+s1;
+            $('#memberdata').append(str)
+            $('.timepicker').timepicker();
+            $('.datepicker').datepicker();
         }
       }
 
@@ -246,7 +355,9 @@ function xyz(x)
 var prf
 var arr=[]
 $(document).ready(function(){ 
-  $('#loader').hide()    
+  $('#loader').hide()
+  $('#updated').hide()
+ 
   $('.datepicker').datepicker
   ({
       minDate:new Date(),
@@ -332,6 +443,7 @@ document.location.replace("/hrms/")
 
 $('#updatebtn').click(function()
     {  
+        $('#updated').show()   
         newname=$('#interviewer_name').val()
         newdate=$('#interview_date').val()
         newtime=$('#interview_time').val()   
@@ -341,12 +453,7 @@ $('#updatebtn').click(function()
         iloc=$('#iloc').val()   
         iperson=$('#iperson').val()   
 
-console.log("Members", members)
-// console.log("Dept: "+newdept);
-
-       
-
-        // alert("Button clicked");  
+        console.log("Members", members) 
         $.ajax({
           
             url:"http://localhost/hrms/api/updateint.php",
@@ -377,26 +484,19 @@ console.log("Members", members)
             {
               console.log("para : ",para)
                 //console.log(oldname,olddate,oldtime,newname,newdate,newtime)
-                if(para=="success")
-                {
-                  // window.setTimeout(function(){location.reload()},1000)
+               
                    $('#updatediv').hide(800);
                   $('#successdiv').show(800);
-                }
-                else{
-                  alert("Done")
-                  window.setTimeout(function(){location.reload()},1000)
-                  
-                }
-                
-                
-
+                  $('#updated').hide()     
 
             }
 
         })       
               
     })
+
+
+
 
 
 </script>
