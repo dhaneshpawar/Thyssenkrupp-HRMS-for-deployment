@@ -10,7 +10,7 @@
   
   
   $updateStatus = $db->interviews->updateOne(
-    array("prf"=>$prf,"pos"=>$pos,"iid"=>$iid,"rid"=>$rid,"intvmail"=>$cursor['mail']),array('$set'=>array("invstatus"=>"1","reason"=>"modify")));
+    array("prf"=>$prf,"pos"=>$pos,"iid"=>$iid,"rid"=>$rid,"intvmail"=>$cursor['mail']),array('$set'=>array("invstatus"=>"1","reason"=>"modify","accepted"=>"no")));
 
   if($updateStatus)
   {
