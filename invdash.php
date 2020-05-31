@@ -123,7 +123,10 @@ if(isset($_COOKIE['sid']))
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Date</th>
+                                <th>Time</th>
                                 <th>Evaluate</th>
+                                <th>Absent</th>
                                 
                             </tr>
                         </thead>
@@ -500,14 +503,7 @@ function confirmmodifyAllMails(id)
                     temparr[j] = para[i][j];
                 }
                 console.log("Status - ",temparr[3])
-                // if(temparr[4] == "pending")
-                // {
-                //     alert("Pending")
-                // }
-                // else
-                // {
-                    
-                // }
+                
                 var status = temparr[3]=="yes" ||temparr[3]=="pending"?"disabled":" ";
                 var txt1 = '<tr><td><b>'+temparr[0]+'</b></td>'
                 var txt2 = '<td>'+temparr[1]+'</td><td>'+temparr[2]+'</td>' 
@@ -515,97 +511,76 @@ function confirmmodifyAllMails(id)
                 var txt5 = '<td><button class="btn waves-effect green"  id="act'+temparr[0]+'" onclick="acceptintr(this.id)" '+status+'>Accept<i class="material-icons right">send</i></button></td>' 
                 var txt4 = '<td><button class="btn waves-effect red"  id="act'+temparr[0]+'1" '+status+' onclick="rejectInterview(this.id)">Reject<i class="material-icons right">send</i></button></td>' 
                
-                var currdate = new Date()
-                var mydate=new Date(temparr[1])
-                const tempdate = new Date()
-                const options = {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: false
-                };
+               
 
                 
-                const time = new Intl.DateTimeFormat('en-US', options).format(tempdate)
-                console.log(time)
+                // const time = new Intl.DateTimeFormat('en-US', options).format(tempdate)
+                // console.log(time)
 
 
-                console.log("Existing : ",mydate);
-                console.log("curr : ",currdate);
+                // console.log("Existing : ",mydate);
+                // console.log("curr : ",currdate);
 
-                console.log("Existing : ",temparr[2]);
-                console.log("curr : ",time);
-                // alert(temparr)
-                //CONCAT CURRENT TIME 
-                tempampcursplit=time.split(" ");
-                tempcurtimesplit=tempampcursplit[0].split(":")
-                hours=parseInt(tempcurtimesplit[0]);
-                tempcurintertime="" + hours+tempcurtimesplit[1];
-                // alert("Hud "+tempcurintertime)
+                // console.log("Existing : ",temparr[2]);
+                // console.log("curr : ",time);
+                // // alert(temparr)
+                // //CONCAT CURRENT TIME 
+                // tempampcursplit=time.split(" ");
+                // tempcurtimesplit=tempampcursplit[0].split(":")
+                // hours=parseInt(tempcurtimesplit[0]);
+                // tempcurintertime="" + hours+tempcurtimesplit[1];
+                // // alert("Hud "+tempcurintertime)
 
-                // CALCULATED current time 
-                curintertime=parseInt(tempcurintertime);
+                // // CALCULATED current time 
+                // curintertime=parseInt(tempcurintertime);
 
-                //logic comparing
-                tempampmsplit=temparr[2].split(" ");
-                if(tempampmsplit[1]=="PM")
-                {
+                // //logic comparing
+                // tempampmsplit=temparr[2].split(" ");
+                // if(tempampmsplit[1]=="PM")
+                // {
                     
-                    temptimesplit=tempampmsplit[0].split(":")
-                    if(temptimesplit[0]=="12")
-                    {
-                        hours=parseInt(temptimesplit[0]);
-                    }
-                    else
-                    {
-                        hours=parseInt(temptimesplit[0])+12;
-                    }
+                //     temptimesplit=tempampmsplit[0].split(":")
+                //     if(temptimesplit[0]=="12")
+                //     {
+                //         hours=parseInt(temptimesplit[0]);
+                //     }
+                //     else
+                //     {
+                //         hours=parseInt(temptimesplit[0])+12;
+                //     }
                    
-                    tempintertime="" + hours+temptimesplit[1];
-                    intertime=parseInt(tempintertime);
-                    // alert("Hud PM "+tempintertime)
-                }
-                else if(tempampmsplit[1]=="AM")
-                {
-                    temptimesplit=tempampmsplit[0].split(":")
-                    hours=parseInt(temptimesplit[0]);
-                    tempintertime="" + hours+temptimesplit[1];
-                    // alert("Hud am "+tempintertime)
-                    intertime=parseInt(tempintertime);
-                }
-                console.log("Curr date - ",currdate)
-                console.log("Exisitng date - ",mydate)
-                if(currdate < mydate)
-                {
-                    console.log("entered ths");
-                    var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Start<i class="material-icons right">send</i>'                       
-                }
-                else{
-                    console.log("entered2");
-
-                    console.log("Existing : ",intertime);
-                    console.log("curr : ",curintertime);
+                //     tempintertime="" + hours+temptimesplit[1];
+                //     intertime=parseInt(tempintertime);
+                //     // alert("Hud PM "+tempintertime)
+                // }
+                // else if(tempampmsplit[1]=="AM")
+                // {
+                //     temptimesplit=tempampmsplit[0].split(":")
+                //     hours=parseInt(temptimesplit[0]);
+                //     tempintertime="" + hours+temptimesplit[1];
+                //     // alert("Hud am "+tempintertime)
+                //     intertime=parseInt(tempintertime);
+                // }
+                // console.log("Curr date - ",currdate)
+                // console.log("Exisitng date - ",mydate)
+                // console.log("entered2");
+                // console.log("Existing : ",intertime);
+                // console.log("curr : ",curintertime);
+                // console.log("Existing date : ",mydate);
+                // console.log("curr date : ",currdate);
                     //comparing time 
                     if(temparr[3]=="yes")
                     {
                         $("#status").hide()
-                        if(currdate > mydate && intertime >=curintertime)
-                        {
+                      
                             var txt3 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
                             console.log("valid");
-                        }
-                        else
-                        {
-                            var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Start<i class="material-icons right">send</i>'                       
-                            console.log("invalid");
-                        }
+                      
                     }
                     else if(temparr[3]=="pending")
                     {
-                        if(intertime <=curintertime)
-                        {
                             var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
                             console.log("valid");
-                        }
                     }
                     else if(temparr[3]=="no")
                     {
@@ -615,7 +590,7 @@ function confirmmodifyAllMails(id)
                     
                     
                   
-                }
+                
                 var str = txt1+txt2+txt6+txt3+txt5+txt4;
                 $("#todolistbody").append(str)             
             }            
@@ -635,6 +610,21 @@ function confirmmodifyAllMails(id)
         id13digit = x;
         window.digit13=id13digit
        console.log(id13digit)
+
+       var currdate = new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
+       currdate.setHours(0,0,0,0)
+                // var mydate=new Date(temparr[1])
+                const tempdate = new Date()
+                const options = {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: false
+                };
+
+                const currtime = new Intl.DateTimeFormat('en-US', options).format(tempdate)
+                console.log("Curr Date is - ",currtime)
+       
+        console.log("Curr Date - ",currdate.getTime())
         $.ajax({
             url:"http://localhost/hrms/api/evaluationsetup.php",
             type:"POST",
@@ -645,9 +635,11 @@ function confirmmodifyAllMails(id)
     
             success:function(para)
             {   
-                 console.log(para)
+                console.log(para)
                 para = JSON.parse(para)
-                
+                var splittime = currtime.split(":")
+                var finaltime = splittime[0]+splittime[1]
+                console.log("My time is - "+finaltime)
 
 
                 $("#emailrow").show(600)
@@ -657,12 +649,62 @@ function confirmmodifyAllMails(id)
                 
                 for(let i =0 ;i< para.length;i++)
                 {
-                    
-                    var txt1 = '<tr id="'+para[i][1]+'"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td>'
-                    var txt2 = '<td><button class="btn waves-effect green"  id="'+para[i][1]+'" onclick="evaluateMail(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
-                    var txt3 = '<td><button class="btn waves-effect red"  id="'+para[i][1]+'" onclick="onholdMail(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
-                    var str = txt1+txt2+txt3;
+                    setDate = new Date(para[i][2])
+                    // setDate = new Date("May 25, 2020")
+                    // const time = new Intl.DateTimeFormat('en-US', options).format(setDate)
+                    console.log("Set Time - "+para[i][3])
+                    var time = para[i][3]
+                    time = time.split(" ")
+                    if(time[1] == "PM")
+                    {
+                        time = time[0].split(":")
+                        hrs = Number(time[0])+12
+                        time= String(hrs)+time[1]
+                        console.log(time)
+                    }
+                    else
+                    {
+                        time = time[0].split(":")
+                        time= time[0]+time[1]
+                        console.log(time)
+                    }
+                    console.log("Final current time - "+finaltime)
+                    console.log("Final db time - "+time)
+                    setDate.setHours(0,0,0,0)
+                    console.log(setDate)
+                    // var status = para[i][2]=="yes"?"disabled":" ";
+                    var txt1 = '<tr id="'+para[i][1]+'"><td ><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td>'
+                    var txt2 = '<td ><p >'+para[i][1]+'</p></td>'
+                    var txt3 = '<td ><input disabled id="check'+i+'date2" value="'+para[i][2]+'" class="datepicker" ></td>'
+                    var txt4 = '<td ><input disabled type="text"  id="'+i+'tp" value="'+para[i][3]+'" class="timepicker"></td>'
+                    if(setDate >currdate)
+                    {
+                        var txt5 = '<td><button disabled class="btn waves-effect green"  id="'+para[i][1]+'" onclick="evaluateMail(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                        var txt6 = '<td><button disabled class="btn waves-effect red"  id="'+para[i][1]+'" onclick="onholdMail(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+                    }
+                    else
+                    {
+                        if(time <= finaltime)
+                        {
+                            // alert("Set time is lesser than current")
+                            var txt5 = '<td><button  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="evaluateMail(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                            var txt6 = '<td><button  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="onholdMail(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+
+                        }
+                        else
+                        {
+                            // alert("Set time is greater than current")
+                            var txt5 = '<td><button disabled  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="evaluateMail(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                            var txt6 = '<td><button disabled  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="onholdMail(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+
+                        }
+                    }
+                  
+                    var str = txt1+txt2+txt3+txt4+txt5+txt6;
+                    $('.timepicker').timepicker();
+                    $('.datepicker').datepicker();
                     $("#emailbody").append(str)
+
                     
                 }
             }

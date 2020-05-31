@@ -10,13 +10,14 @@ if(isset($_POST))
     // echo json_encode($members);
     $i=0;
     $arr = array();
+
     if($result)
     {
         foreach($members as $d)
         {
             // echo "Mail".$d;
             $getselectednames =  $db->tokens->findOne(array("prf"=>$digit13[0],"pos"=>$digit13[1],"email"=>$d));
-            $arr[$i]=array($getselectednames['full_name'],$d);
+            $arr[$i]=array($getselectednames['full_name'],$d,$result['dates'][$i],$result['times'][$i]);
             $i++;
         }
          echo json_encode($arr);
