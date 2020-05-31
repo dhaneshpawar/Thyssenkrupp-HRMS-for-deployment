@@ -118,7 +118,9 @@ if(isset($_COOKIE['sid']))
                   <b><p id="pleasewait" style="color:red">Updating Information Please Wait...</p></b>
 
                   </center>
-                  <u><b id="nomems"  style="color:red;margin-left:25%;font-size:20px;cursor:pointer;"> Application Blank Not Submitted By The Members </b></u>
+                  <u><b id="nomems"  style="color:red;margin-left:30%;font-size:20px;cursor:pointer;"> Application Blank Not Submitted By The Members </b></u>
+                  <br>
+                  <b id="expiry"  style="color:green;margin-left:35%;font-size:20px;cursor:pointer;"> Form Validity </b>
 
                   <div class="row">
                     <div class="col s5 offset-m3" id=showmembersdiv>
@@ -241,6 +243,8 @@ if(isset($_COOKIE['sid']))
 
 <script>
 $("#nomems").hide()
+$("#expiry").hide()
+
 var id_round = "0";
 var selectedmail = []
 var selectedmailID = []
@@ -251,6 +255,7 @@ var allmail = []
 $(document).ready(function(){
 
   $("#nomems").hide()
+  $("#expiry").hide()
   $("#showmembersdiv").hide()
   $("#loader").hide()
   
@@ -282,7 +287,7 @@ $(document).ready(function(){
           console.log(appended2)
           var s1='<tr id="'+appended+'row">'
           var s2='<td>'
-          var s3='<p class="btn waves-effect blue darken-1" >'+appended+'</p></td><td>'
+          var s3='<b >'+appended+'</b></td><td>'
           var s4='<button class="waves-effect green  btn"  id="'+appended2+'" onclick="createnextround(this.id)">Initiate Round</button></td></tr>'
           var str=s1+s2+s3+s4
            $('#addtr').append(str)
@@ -506,20 +511,41 @@ function createnextround(id)
 
         }    
       })
-       console.log("this are base round mems  = ",para[1])
+       console.log("this are base round mems  = ",para)
+
        if(para[0] == null)
        {
          $("#submit").hide()
          $("#abort").hide()
          $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
-
          $("#nomems").show()
+
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
        }
       else if(para[1] != 0)
       {
         $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
         $("#nomems").show()
 
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
 
       $('#adddetail').text("")
       var arr = para[0]

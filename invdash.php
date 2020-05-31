@@ -509,7 +509,7 @@ function confirmmodifyAllMails(id)
                     
                 // }
                 var status = temparr[3]=="yes" ||temparr[3]=="pending"?"disabled":" ";
-                var txt1 = '<tr><td><label class="waves-effect blue darken-1 btn">'+temparr[0]+'</label></td>'
+                var txt1 = '<tr><td><b>'+temparr[0]+'</b></td>'
                 var txt2 = '<td>'+temparr[1]+'</td><td>'+temparr[2]+'</td>' 
                 var txt6 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'*2" onclick="displayreadonlymail(this.id)">See Members<i class="material-icons right">send</i>'                       
                 var txt5 = '<td><button class="btn waves-effect green"  id="act'+temparr[0]+'" onclick="acceptintr(this.id)" '+status+'>Accept<i class="material-icons right">send</i></button></td>' 

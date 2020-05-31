@@ -225,7 +225,7 @@ $(document).ready(function(){
           var s7='<tr id="reason row">'
         
           var s2='<td>'
-          var s3='<p class="btn waves-effect blue darken-1" >'+appended+'</p></td><td>'
+          var s3='<b>'+appended+'</b></td><td>'
           var s8='<p >'+arr[i]['intvmail']+'</p></td><td>'
           var s9='<p >'+reason+'</p></td><td>'
           var s10='<p>'+arr[i]['invname']+'</p></td><td>'

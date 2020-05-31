@@ -8,6 +8,8 @@ $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);   
 // $mail->SMTPDebug = 4;                               // Enable verbose debug output
 
+$expdate = strtotime("+7 day");
+$expdate = date("Y-m-d", $expdate);
 
 $_SESSION['department'] = $_POST['dept'];
 $ctr = 0;
@@ -53,7 +55,7 @@ if($cursor)
                     Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
-                    To access the link, please click here '.$url.'
+                    To access the link, please click <a href='.$url.'>here</a>
                    
                     Thank you for your interest in working with us.
                    
@@ -68,7 +70,7 @@ if($cursor)
                     }
                     else
                     {
-                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid));
+                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","expiry"=>$expdate,"iid"=>$instanceid));
                         
 
                     }
@@ -89,6 +91,7 @@ if($cursor)
                         "position"=>$_POST['position'],
                         "rg"=>$cursor["rg"],
                         "rid"=>"00",
+                        "expiry"=>$expdate,
                         "iid"=>$instanceid,
                         "members"=>$_POST['emails'],
                         "selected"=>array(),
@@ -127,7 +130,7 @@ if($cursor)
                     Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
-                    To access the link, please click here '.$url.'
+                    To access the link, please click here <a href='.$url.'>here</a>
                    
                     Thank you for your interest in working with us.
                    
@@ -142,7 +145,7 @@ if($cursor)
                     }
                     else
                     {
-                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid));
+                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","expiry"=>$expdate,"iid"=>$instanceid));
                    
                     }
                     
@@ -161,6 +164,7 @@ if($cursor)
                         "position"=>$_POST['position'],
                         "rg"=>$cursor["rg"],
                         "rid"=>"00",
+                        "expiry"=>$expdate,
                         "iid"=>$instanceid,
                         "members"=>$_POST['emails'],
                         "selected"=>array(),
@@ -201,7 +205,7 @@ if($cursor)
                     Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept']. ' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
-                    To access the link, please click here '.$url.'
+                    To access the link, please click <a href='.$url.'>here</a>
                    
                     Thank you for your interest in working with us.
                    
@@ -217,7 +221,7 @@ if($cursor)
                     else
                     {
                       
-                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid));
+                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","expiry"=>$expdate,"iid"=>$instanceid));
                         
                         
                     }
@@ -238,6 +242,7 @@ if($cursor)
                             "position"=>$_POST['position'],
                             "rg"=>$cursor["rg"],
                             "rid"=>"00",
+                            "expiry"=>$expdate,
                             "iid"=>$instanceid,
                             "members"=>$_POST['emails'],
                             "selected"=>array(),

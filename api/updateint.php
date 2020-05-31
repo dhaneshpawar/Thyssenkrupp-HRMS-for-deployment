@@ -47,7 +47,7 @@ if($res != 0)
              "prf"=>$prf,
              "intvmail"=>$newemail,
               ),
-          array('$set'=>array("date"=>$newdate,"time"=>$newtime,"ilocation"=>$newiloc,"iperson"=>$newiperson)));
+          array('$set'=>array("date"=>$newdate,"time"=>$newtime,"ilocation"=>$newiloc,"iperson"=>$newiperson,"accepted"=>"no")));
     
           $result=$db->interviews->updateOne(
             array("rid"=>$rid,
@@ -55,7 +55,7 @@ if($res != 0)
                  "prf"=>$prf,
                  "intvmail"=>$newemail,
                   ),
-              array('$set'=>array("reject"=>"Assigned To Other Interviewer")));
+              array('$set'=>array("reject"=>"Assigned To Other Interviewer","accepted"=>"no")));
         
           foreach($members as $d)
           {
@@ -80,7 +80,7 @@ else
           "date"=>$olddate,
           "time"=>$oldtime,
           "invname"=>$oldname),
-      array('$set'=>array("intvmail"=>$newemail,"date"=>$newdate,"time"=>$newtime,"invname"=>$newname,"dsg"=>$newdsg,"dept"=>$newdept,"ilocation"=>$newiloc,"iperson"=>$newiperson)));
+      array('$set'=>array("intvmail"=>$newemail,"date"=>$newdate,"time"=>$newtime,"invname"=>$newname,"dsg"=>$newdsg,"dept"=>$newdept,"ilocation"=>$newiloc,"iperson"=>$newiperson,"accepted"=>"no")));
 
 
       $result=$db->interviews->updateOne(

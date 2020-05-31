@@ -6,7 +6,7 @@ include "db.php";
     print_r($digit13);
 
     $reason=$_POST['reason'];
-    $result= $db->interviews->updateOne(array("rid"=>$digit13[3],'iid'=>$digit13[2],"prf"=>$digit13[0],"pos"=>$digit13[1]),array('$set'=>array("invstatus"=>"1","reason"=>$reason)));
+    $result= $db->interviews->updateOne(array("rid"=>$digit13[3],'iid'=>$digit13[2],"prf"=>$digit13[0],"pos"=>$digit13[1]),array('$set'=>array("invstatus"=>"1","reason"=>$reason,"accepted"=>"Rejected")));
     if($result)
     {
         echo "success";

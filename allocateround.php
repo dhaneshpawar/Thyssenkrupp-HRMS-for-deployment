@@ -276,7 +276,7 @@ $.ajax(
               oldarr.push(digit13)
               var s1='<tr id="'+digit13+'row">'
               var s2='<td>'
-              var s3='<p class="btn waves-effect blue darken-1" >'+digit13+'</p></td><td>'
+              var s3='<b>'+digit13+'</b></td><td>'
               var s4='<button class="waves-effect green  btn"  id="'+appended2+'" onclick="createnextround(this.id)">See Members</button></td></tr>'
               var str=s1+s2+s3+s4
               $('#addtr').append(str)
@@ -513,6 +513,8 @@ function terminateround()
           selectedmail="nomail";
         }
         // alert(selectedmail);
+
+        
         $.ajax({
         url:'http://localhost/hrms/api/terminateround.php',
         type:'POST',
@@ -520,6 +522,7 @@ function terminateround()
           'prf':groupid,
           "emails":selectedmail,
           "allmembers":window.allmembers
+
           },
         success:function(para)
         {

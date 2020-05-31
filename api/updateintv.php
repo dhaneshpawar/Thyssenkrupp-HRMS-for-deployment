@@ -75,7 +75,11 @@ if($ctr == 0)
                         "prf"=>$digit13[0],
                         "intvmail"=>$invname,
                         ),
+<<<<<<< HEAD
                     array('$set'=>array("date"=>$_POST['date'],"time"=>$_POST['time'],"dates"=>$dates,"moddates"=>$dates,"times"=>$times,"modtimes"=>$times,"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"invstatus"=>"0")));
+=======
+                    array('$set'=>array("date"=>$_POST['date'],"time"=>$_POST['time'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"invstatus"=>"0","accepted"=>"no")));
+>>>>>>> e739b89106354e394cf2296b9ebcec2ff01e43c5
                 
                     $result=$db->interviews->updateOne(
                         array("rid"=>$digit13[3],
@@ -104,7 +108,11 @@ if($ctr == 0)
                 else
                 {
                      //Start - Create new document if the new interviewer doesnt exists.
+<<<<<<< HEAD
                     $result=$db->interviews->updateOne(array("rid"=>$digit13[3],"prf"=>$digit13[0],"pos"=>$digit13[1],"iid"=>$digit13[2],"intvmail"=>$_POST['oldintv']),array('$set'=>array("intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"date"=>$_POST['date'],"time"=>$_POST['time'],"dates"=>$dates,"moddates"=>$dates,"times"=>$times,"modtimes"=>$times,"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"invstatus"=>"0")));
+=======
+                    $result=$db->interviews->updateOne(array("rid"=>$digit13[3],"prf"=>$digit13[0],"pos"=>$digit13[1],"iid"=>$digit13[2],"intvmail"=>$_POST['oldintv']),array('$set'=>array("intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"date"=>$_POST['date'],"time"=>$_POST['time'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"invstatus"=>"0","accepted"=>"no")));
+>>>>>>> e739b89106354e394cf2296b9ebcec2ff01e43c5
                     //END - Create new document if the new interviewer doesnt exists.
                 }
     

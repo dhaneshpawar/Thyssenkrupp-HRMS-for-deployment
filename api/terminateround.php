@@ -38,7 +38,10 @@ if(isset($_POST))
                 $q1 = $db->prfs->findOne(array("prf"=>$digit13[0]));
                 $mail->addAddress($d);
                 $token=sha1($d);
-                $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/post-candidate-selection.php?token='.$d;
+                $date = strtotime("+7 day");
+                $expdate = date("Y.m.d", $date);                
+
+                $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/post-candidate-selection.php?token='.$d.'&explink='.$expdate;
 
                 $mail->Subject = 'Your interview at tkEI - Next Steps';
                 $mail->Body    = nl2br('Dear '.$q['full_name'].',
@@ -49,7 +52,7 @@ if(isset($_POST))
                 As a next step, we want you to submit the requisite documents to process your application
                 further.
                 
-                Please click here '.$url.' to upload the documents.
+                Please click <a href='.$url.'>here</a> to upload the documents.
                 
                 Feel free to reach out in case of any query.
                 
