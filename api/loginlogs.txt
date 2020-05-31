@@ -270,6 +270,44 @@ Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		27/05/2020	11:42:33 AM	Logout
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		27/05/2020	11:42:37 AM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		27/05/2020	11:59:30 AM	Logout
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		27/05/2020	11:59:33 AM	Login
+<<<<<<< HEAD
+Pragati	psgaikwad@mitaoe.ac.in	sales		28/05/2020	01:02:47 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		28/05/2020	01:50:15 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		28/05/2020	01:50:19 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		28/05/2020	06:30:52 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		28/05/2020	06:30:59 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		28/05/2020	06:31:04 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		28/05/2020	06:31:08 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		28/05/2020	06:38:45 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		28/05/2020	06:38:52 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		28/05/2020	08:20:53 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		28/05/2020	08:20:58 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		28/05/2020	09:43:39 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		28/05/2020	09:43:44 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		30/05/2020	11:09:57 AM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		30/05/2020	11:38:20 AM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		30/05/2020	07:04:56 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	11:39:30 AM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	01:59:15 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	01:59:23 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	02:08:31 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	02:08:37 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	02:24:23 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	02:24:28 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	02:26:35 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	02:26:39 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	02:28:10 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	02:28:14 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	02:28:40 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	02:28:47 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	03:32:43 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	03:32:49 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	05:49:12 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	05:49:18 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	05:51:01 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		31/05/2020	05:51:12 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		31/05/2020	05:51:16 PM	Login
+=======
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		28/05/2020	12:12:37 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		28/05/2020	12:12:42 PM	Logout
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		28/05/2020	12:13:05 PM	Login
@@ -311,3 +349,4 @@ Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		30/05/2020	08:41:35 PM	Logout
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		30/05/2020	08:41:39 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		30/05/2020	08:43:17 PM	Login
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		31/05/2020	11:17:33 AM	Login
+>>>>>>> e739b89106354e394cf2296b9ebcec2ff01e43c5

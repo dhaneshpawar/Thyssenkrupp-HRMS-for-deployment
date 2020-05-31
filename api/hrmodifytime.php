@@ -4,8 +4,7 @@ include "db.php";
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 $index = $_POST['index'];
 $time = $_POST['time'];
-$invmail = $cursor['mail'];
-$name  = $cursor['name'];
+$intvmail = $_POST['mail'];
 $digit13 = $_POST['digit13'];
 $digit13 = explode("-",$_POST['digit13']);
 $updatedtime = $_POST['updatedTime'];
@@ -17,19 +16,19 @@ $updateddate = $_POST['updatedDate'];
 // echo "PRF".$digit13[3];
 // // echo $digit13[3];
 // echo $cursor['mail'];
-$intvmail = $cursor['mail'];
+
 
 $cursor = $db->interviews->findOne(array(
                     "prf" =>$digit13[0],
                     "pos"=>$digit13[1],
                     "iid"=>$digit13[2],
                     "rid"=>$digit13[3],
-                    "intvmail"=>$cursor['mail']
+                    "intvmail"=>$intvmail
 ));
 
-$dates = $cursor['moddates'];
+$dates = $cursor['dates'];
 $dates = iterator_to_array($dates);
-$times = $cursor['modtimes'];
+$times = $cursor['times'];
 $times = iterator_to_array($times);
 
 
@@ -63,7 +62,7 @@ $cursor = $db->interviews->updateOne(
         "rid"=>$digit13[3],
         "intvmail"=>$intvmail
         ),
-        array('$set'=>array("moddates"=>$dates,"modtimes"=>$times)));
+        array('$set'=>array("dates"=>$dates,"moddates"=>$dates,"times"=>$times,"modtimes"=>$times)));
 
     if($cursor)
     {

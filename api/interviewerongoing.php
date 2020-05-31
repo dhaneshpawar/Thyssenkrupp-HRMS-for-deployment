@@ -12,6 +12,8 @@ $date=$_POST['date'];
 $time=$_POST['time'];
 
 
+// echo json_encode($_POST['candates']);
+// echo json_encode($_POST['cantimes']);
 $ctr = 0;
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 foreach($_POST['emails'] as $d)
@@ -61,13 +63,13 @@ if($result['status']=="ristart")
 }
 else
 {
-    echo "Generating new round";
+    // echo "Generating new round";
     $previousrid=(string)sprintf("%02s",$result['rid']);//previous round id
     $rid =(string) sprintf("%02s",$result["rid"]+1); //next round id
 }
 
 
-$db->interviews->insertOne(array("rid"=>$rid,"prf"=>$digit13[0],'pos'=>$digit13[1],"iid"=>$digit13[2],"members"=>$_POST['emails'],"evaluated"=>array(),"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"intvmail"=>$_POST['intvmail'],"date"=>$_POST['date'],"time"=>$_POST['time'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"dept"=>$_POST['dept'],"status"=>"0","invstatus"=>"0","accepted"=>"no"));
+$db->interviews->insertOne(array("rid"=>$rid,"prf"=>$digit13[0],'pos'=>$digit13[1],"iid"=>$digit13[2],"members"=>$_POST['emails'],"evaluated"=>array(),"times"=>$_POST['cantimes'],"modtimes"=>$_POST['cantimes'],"dates"=>$_POST['candates'],"moddates"=>$_POST['candates'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"intvmail"=>$_POST['intvmail'],"date"=>$_POST['date'],"time"=>$_POST['time'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"dept"=>$_POST['dept'],"status"=>"0","invstatus"=>"0","accepted"=>"no"));
 
 //updating status of base round
 //deleting tokens

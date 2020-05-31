@@ -5,6 +5,9 @@ if($_GET)
     $mail = $_GET["mail"];
     
     $result = $db->interviews->find(array("intvmail"=>$mail,"status"=>"0","invstatus"=>"0"));
+    
+   
+
     $arr = [];
     if($result)
     {
@@ -15,12 +18,14 @@ if($_GET)
             $date = $document['date'];
             $time = $document['time'];
             $acc = $document['accepted'];
-            $arr[$i] = array($prf , $date , $time ,$acc); 
+            $invstat = $document['invstatus'];
+            $arr[$i] = array($prf , $date , $time ,$acc, $invstat); 
             $i+=1;  
         }
         print_r( json_encode($arr));
         
     }
+ 
 }
 
 

@@ -35,6 +35,27 @@ if(isset($_COOKIE['sid']))
 
     <script src="public/js/materialize.js"></script>
     <script src="public/js/materialize.min.js"></script>
+  
+  <style>
+   
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#loader > #txt{
+  font-size:23px;
+  color:lightskyblue;
+  margin-left:31% !important;
+  margin-top:18% !important; 
+}
+</style>
+
 
 </head>
 <body>
@@ -185,6 +206,7 @@ if(isset($_COOKIE['sid']))
                                 <th>Mail ID</th>
                                 <th>Select</th>
                                 <th>Time</th>
+                                <th>Date</th>
                                 <th class="btn blue darken-1" name="submit" id="submit" disabled>Assign Interviewer</th>
                                 <th class="btn red" style="margin-left: 25px;" id="abort" onclick="abort_round()"> Abort</th>
                                 
@@ -203,7 +225,13 @@ if(isset($_COOKIE['sid']))
                       </div>
                     </div>
                   </div>
-                  </div>         
+                  </div> 
+                  <div id="loader">
+                    <div id="txt">
+                      <b>Please wait.. while we schedule this interview</b>
+                    </div>
+                  </div>
+    </div>        
                           
     <style>
     html{
@@ -221,6 +249,7 @@ var id_round = "0";
 var selectedmail = []
 var selectedmailID = []
 var selecteddate = []
+var selecteddate2 = []
 var timearray=[]
 var allmail = []
 $(document).ready(function(){
@@ -228,7 +257,7 @@ $(document).ready(function(){
   $("#nomems").hide()
   $("#expiry").hide()
   $("#showmembersdiv").hide()
-
+  $("#loader").hide()
   
   $('.datepicker').datepicker
   ({
@@ -304,8 +333,7 @@ $(document).ready(function(){
 
   $('#allocatesubmit').click(function(){
 
-      
-
+      $("#loader").show()
       var imail = $('#imail').val();
       var iname = $('#iname').val();
       var idate = $('#idate').val();
@@ -326,10 +354,14 @@ $(document).ready(function(){
         {
           var b = selectedmailID[i]
           b = b+'date'
+          b2 = b+'2'
           console.log(b)
+          console.log(b2)
           selecteddate.push($(b).val()) 
+          selecteddate2.push($(b2).val()) 
           console.log("Email:",selectedmail[i]) 
           console.log("Time:",selecteddate[i])
+          console.log("Date:",selecteddate2[i])
         }
       $.ajax({
         url:'http://localhost/hrms/api/interviewer.php',
@@ -337,7 +369,8 @@ $(document).ready(function(){
         data:{
           //dept needed to be submitted
           'emails':selectedmail,
-          'dates':selecteddate,
+          'times':selecteddate,
+          'dates':selecteddate2,
           'intv':imail,
           'date':idate,
           'time':itime,
@@ -364,11 +397,13 @@ $(document).ready(function(){
               $(str).remove();
               //document.location.reload();
               $("#pleasewait").hide();
-              // window.setTimeout(function(){location.reload()},1000)
+              $("#loader").hide();
+               window.setTimeout(function(){location.reload()},1000)
 
             }
             selectedmail = []
             selecteddate = []
+            selecteddate2 = []
             selectedmailID=[]
         }
       })
@@ -424,6 +459,8 @@ var id_round
 
 function createnextround(id)
 {
+  $("#nomems").empty()
+  
   // $('.timepicker').timepicker();
   window.iid=id;
   console.log(iid)
@@ -435,9 +472,9 @@ function createnextround(id)
   window.zone = id[5]
   // console.log(zone)
   console.log(id_round)
-  $('#allocatingcandidate').fadeIn(600);
-
+  
   var p1='<b>ID:'+id_round+'<b>'
+  $('#showmembersdiv').hide(); 
   $('#rid').replaceWith(p1);
   $.ajax({
     url:'http://localhost/hrms/api/baseroundmembers.php',
@@ -447,9 +484,11 @@ function createnextround(id)
          },
     success:function(para)
     {
+      $('#allocatingcandidate').fadeIn(600);
       para = JSON.parse(para)
       var arr1=[]
-      var toggle = 0      
+      var toggle = 0   
+      //  
       $("#nomems").click(function()
       {
         $("#memberstable").empty()
@@ -519,10 +558,14 @@ function createnextround(id)
         var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td><td><p id="check'+i+'mail">'+arr[i][1]+'</p></td><td><label>'
         var s2='<input type="checkbox" class="filled-in" id="check'+i+'"onclick="selection(this.id)"/>'
         var s3='<span class="blue-text darken-1" ></span></label></td>'
-        var s4='<td><input type="text" id="check'+i+'date" class="timepicker"></td></tr>'
-        var str=s1+s2+s3+s4
+        var s4='<td><input type="text" id="check'+i+'date" class="timepicker"></td>'
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td></tr>'
+        var str=s1+s2+s3+s4+s5
+       
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
+        $('.datepicker').datepicker();
+        
       }
       
     }
@@ -542,11 +585,13 @@ function createnextround(id)
         var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td><td><p id="check'+i+'mail">'+arr[i][1]+'</p></td><td><label>'
         var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
         var s3='<span class="blue-text darken-1" ></span></label></td>'
-        var s4='<td><input id="check'+i+'date" class="timepicker" ></td></tr>'
-        var str=s1+s2+s3+s4
+        var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td></tr>'
+        var str=s1+s2+s3+s4+s5
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
+        $('.datepicker').datepicker();
       }
     }
     }

@@ -29,6 +29,7 @@ if(isset($_COOKIE['sid']))
 
         <script src="public/js/materialize.js"></script>
         <script src="public/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="public/css/common.css">
 
     </head>
 
@@ -42,10 +43,27 @@ if(isset($_COOKIE['sid']))
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-}</style>
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#loader > #txt{
+  font-size:25px;
+  color:lightskyblue;
+  margin-left:33% !important;
+  margin-top:18% !important; 
+}
+</style>
 
     <body>
-
     <nav>
         <div class="nav-wrapper blue darken-1">
         <a href="http://localhost/hrms/invhistory.php">
@@ -60,9 +78,7 @@ if(isset($_COOKIE['sid']))
   </div>
    
   <br>
-    <center>
-<button class="button">You Are Logged In As Interviewer Of <?php echo $cursor['rg']; ?> Region and <?php echo $cursor['dept']; ?> Department</button>
-</center>
+  
 
     <br>
 
@@ -141,6 +157,7 @@ if(isset($_COOKIE['sid']))
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Date</th>
                                 <th>Time</th>
                             </tr>
                         </thead>
@@ -151,19 +168,28 @@ if(isset($_COOKIE['sid']))
                         </tbody>
                         <!-- End of Email Body -->
                     </table>
+                    <div id="cnfrmMod">
+                        After you finish modification so we can send your request to HR.
+                    </div>
+                   
                    
                 </div>
             </div>
         </div>
     </div>
 
+    <div id="loader">
+        <div id="txt">
+          <b>Please wait while we send your request to HR...</b>
+        </div>
+    </div>
     <div id="status"style="background-color:green;border-radius:10px;font-size:25px;width:40%;margin-left:32%;">
         <center>    
             Please wait till HR confirms this acceptance...
         </center>    
     </div>
 
-
+    
 
 
 
@@ -252,43 +278,71 @@ if(isset($_COOKIE['sid']))
 //Sarang - 16/03/2020
 function modifyMail(id,name)
 {
-    // console.log("Data  : "+id );
+    console.log("id=",id)
+    console.log("name=",name)
+   
+    console.log("Data  : "+id );
+    id_ = id;
     id=id.split("*");
     console.log("Name  : "+name );
+    date = '#check'+name+"date2";
     name = '#'+name+'tp';
+    console.log("Date id - ",date)
     updatedTime = $(name).val()
-    console.log('This is time : ',$(name).val())
-    // console.log("This is : ")
-    // console.log("Split data : "+id[0]+" & "+id[1]+"&"+id[2])
+    updatedDate = $(date).val()
+    console.log("Updated Date - ",$(date).val())
+    console.log("Updated Time - ",updatedTime)
+    console.log('Exsiting is time : ',id[2])
 
-    $.ajax({
+    if(id[2].localeCompare(updatedTime)==0 && id[1].localeCompare(updatedDate) == 0 )
+    {
+       alert("Same date time")
+    }
+    else
+    {
+        console.log("Not Equal")
+        $.ajax({
         url:"http://localhost/hrms/api/invmodifytime.php",
         type:"POST",
         data:{
             "index":id[0],
-            "time":id[1],
-            "digit13":id[2],
-            "updatedTime":updatedTime
+            "date":id[1],
+            'time':id[2],
+            "digit13":id[3],
+            "updatedTime":updatedTime,
+            "updatedDate":updatedDate
         },
         success:function(para)
         {
+            if(para=="modify")
+            {
+                alert("Modification Done");
+            }
             console.log("This is my data:  "  +para)
         }
 
-    })
+       })
+    }
+    console.log("This is : ")
+    console.log("Split data : "+id[0]+" & "+id[1]+"&"+id[2])
+
+    
 }
 
 
 
 
 
+//global variable for counting number of records
 
+var totalButtons = 0;
 
 //Changed by Sarang - 15/03/2020
 function displayreadonlymail(id)
 {
     id = id.split("*");
     console.log("This is : "+id[0])
+    $("#cnfrmMod").empty()
     $.ajax({
                 url:"http://localhost/hrms/api/showmembersfirst.php",
                 type:"POST",
@@ -298,7 +352,7 @@ function displayreadonlymail(id)
                 success:function(para)
                 {
                     console.log("This is my - "+para)
-                     para=JSON.parse(para);
+                    para=JSON.parse(para);
                     
                     // $(y).css("background","red")    
                     // $("#emailrow").fadeOut(600)
@@ -306,16 +360,25 @@ function displayreadonlymail(id)
                     $("#emailbody10").text("")
                     // Dummy Data
                     //para = ['Tanny@gmail.com',"rb@gmail.com","ad@gmail.com"]
+                    totalButtons = para.length;
                     
                     for(let i =0 ;i< para.length;i++)
                     {
                         console.log("Loop"+id[0])
                         //along with modify button
-                        var txt1 = '<tr id="'+para[i]+'"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td><td><input type="text" style="width:50%;" id="'+i+'tp" value="'+para[i][2]+'" class="timepicker"></td><td><button class="btn waves-effect green"  id="'+i+'*'+para[i][2]+'*'+id[0]+'" name="'+i+'" onclick="modifyMail(this.id,this.name)">Modify Time<i class="material-icons right">send</i></button></td></tr>'
+                        var txt1 = '<tr id="'+para[i]+'"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td>'
+                        var txt2 = '<td><p >'+para[i][1]+'</p></td><td><input id="check'+i+'date2" value="'+para[i][2]+'" class="datepicker" ></td>'
+                        var txt3 = '<td><input type="text" style="width:50%;" id="'+i+'tp" value="'+para[i][3]+'" class="timepicker"></td>'
+                        var txt4 = '<td><button  class="btn waves-effect green"  id="'+i+'*'+para[i][2]+'*'+para[i][3]+'*'+id[0]+'" name="'+i+'" onclick="modifyMail(this.id,this.name)">Modify Time<i class="material-icons right">send</i></button></td></tr>'
                         // var txt1 = '<tr id="'+para[i]+'"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td><td><p >'+para[i][1]+'</p></td><td><p>'+para[i][2]+'</p></td></tr>'                   
-                        $("#emailbody10").append(txt1)
+                        txt = txt1+txt2+txt3+txt4;
+                        $("#emailbody10").append(txt)
                         $('.timepicker').timepicker();
+                        $('.datepicker').datepicker();
                     }
+
+                    var modifyAllButton = '<button  class="btn waves-effect green" id="'+id[0]+'" onclick="confirmmodifyAllMails(this.id)">Confirm Modification<i class="material-icons right">send</i></button></td></tr>'
+                    $("#cnfrmMod").append(modifyAllButton)
                     }   
               
             
@@ -323,12 +386,60 @@ function displayreadonlymail(id)
 }
 
 
+// function for modifying all mails time and date
+
+function confirmmodifyAllMails(id)
+{
+    $('#modifyAll').prop('disabled',true)
+    console.log("Number of buttons : ",id)
+    $("#loader").show()
+    $.ajax({
+        url:"http://localhost/hrms/api/invrequest.php",
+        type:"POST",
+        data:{
+            "digit13":id
+        },
+        success:function(para)
+        {
+           
+            if(para=="success")
+            {
+                $("#loader").hide()
+                alert("Request Sent")
+                window.setTimeout(function(){location.reload()},1000)
+
+            }
+            else
+            {
+                $("#loader").hide()
+                alert("Request Sending Failed")
+            }
+            console.log("This is my data:  "  +para)
+        }
+
+       })
+    // for(let i=0;i<totalButtons;i++)
+    // {
+    //     $("button[name='"+i+"']").click();
+    // }
+
+    // after all buttons are clicked
+    // $('#modifyAll').prop('disabled',false)
+    
+}
+
+// function for modifying all ends
+
+
     $(document).ready(function(){
         $("#status").hide()
+        $("#loader").hide()
+
          window.mail = "<?php echo $cursor["mail"]; ?>"
          $('.timepicker').timepicker();
        // mail = JSON.stringify(mail)
        $("#emailrow10").hide()
+       
     window.focus(function(){
         location. reload(true);
     })
@@ -388,7 +499,15 @@ function displayreadonlymail(id)
                 {
                     temparr[j] = para[i][j];
                 }
-                 console.log("Status - ",temparr[3])
+                console.log("Status - ",temparr[3])
+                // if(temparr[4] == "pending")
+                // {
+                //     alert("Pending")
+                // }
+                // else
+                // {
+                    
+                // }
                 var status = temparr[3]=="yes" ||temparr[3]=="pending"?"disabled":" ";
                 var txt1 = '<tr><td><b>'+temparr[0]+'</b></td>'
                 var txt2 = '<td>'+temparr[1]+'</td><td>'+temparr[2]+'</td>' 
@@ -453,10 +572,11 @@ function displayreadonlymail(id)
                     // alert("Hud am "+tempintertime)
                     intertime=parseInt(tempintertime);
                 }
-                
+                console.log("Curr date - ",currdate)
+                console.log("Exisitng date - ",mydate)
                 if(currdate < mydate)
                 {
-                    console.log("entered");
+                    console.log("entered ths");
                     var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Start<i class="material-icons right">send</i>'                       
                 }
                 else{
@@ -468,7 +588,7 @@ function displayreadonlymail(id)
                     if(temparr[3]=="yes")
                     {
                         $("#status").hide()
-                        if(intertime <=curintertime)
+                        if(currdate > mydate && intertime >=curintertime)
                         {
                             var txt3 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
                             console.log("valid");

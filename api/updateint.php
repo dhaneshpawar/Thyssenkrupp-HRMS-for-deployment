@@ -91,14 +91,7 @@ else
               ),
           array('$set'=>array("reject"=>"Assigned To Other Interviewer")));
           
-if($result)
-{
-    echo "success";
-}
-else
-{
-    echo "fail";
-}
+
 }
 
 
