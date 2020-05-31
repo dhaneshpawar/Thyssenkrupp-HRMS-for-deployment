@@ -97,7 +97,9 @@ if(isset($_COOKIE['sid']))
                   <b><p id="pleasewait" style="color:red">Updating Information Please Wait...</p></b>
 
                   </center>
-                  <u><b id="nomems"  style="color:red;margin-left:25%;font-size:20px;cursor:pointer;"> Application Blank Not Submitted By The Members </b></u>
+                  <u><b id="nomems"  style="color:red;margin-left:30%;font-size:20px;cursor:pointer;"> Application Blank Not Submitted By The Members </b></u>
+                  <br>
+                  <b id="expiry"  style="color:green;margin-left:35%;font-size:20px;cursor:pointer;"> Form Validity </b>
 
                   <div class="row">
                     <div class="col s5 offset-m3" id=showmembersdiv>
@@ -213,6 +215,8 @@ if(isset($_COOKIE['sid']))
 
 <script>
 $("#nomems").hide()
+$("#expiry").hide()
+
 var id_round = "0";
 var selectedmail = []
 var selectedmailID = []
@@ -222,6 +226,7 @@ var allmail = []
 $(document).ready(function(){
 
   $("#nomems").hide()
+  $("#expiry").hide()
   $("#showmembersdiv").hide()
 
   
@@ -467,20 +472,41 @@ function createnextround(id)
 
         }    
       })
-       console.log("this are base round mems  = ",para[1])
+       console.log("this are base round mems  = ",para)
+
        if(para[0] == null)
        {
          $("#submit").hide()
          $("#abort").hide()
          $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
-
          $("#nomems").show()
+
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
        }
       else if(para[1] != 0)
       {
         $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
         $("#nomems").show()
 
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
 
       $('#adddetail').text("")
       var arr = para[0]

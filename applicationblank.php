@@ -71,6 +71,8 @@ $_SESSION['positionapplied'] = $position;
                   <br><br>
 
                 <center><h1><p id="warn" style="color:green">Details Submitted Successfully</p></h5></center>
+                <center><h1><p id="warn2" style="color:red">Form Expired <br> 7 Days Passed</p></h5></center>
+
                   <div class="row">
                         
                         <div class="col s12 m6 offset-m3">
@@ -745,6 +747,8 @@ $("#otherdetails").hide();
 
 $(document).ready(function(){
         $('#warn').hide()
+        $('#warn2').hide()
+
         $('#loader').hide()
         function getUrlVars() {
             var vars = {};
@@ -761,10 +765,17 @@ $(document).ready(function(){
                                             type : 'POST',
                                             data :(data),          
                                              success : function(para){
-                                           
-                                             if(para == "expired")
+                                             console.log(para)
+                                             if(para == "expired2")
                                              {
-                                               console.log("Expired Page");
+                                                console.log("Expired Page");
+                                                $('#loader').hide()
+                                                $('#form').hide()
+                                                $('#warn2').show()
+                                             }
+                                             else if(para == "expired")
+                                             {
+                                               console.log("Submitted");
                                                 $('#loader').hide()
                                                 $('#form').hide()
                                                 $('#warn').show()
