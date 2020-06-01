@@ -207,7 +207,10 @@ if(isset($_COOKIE['sid']))
 
 function withdraw(id)
   {
-    $.ajax({
+    var confr = confirm("This Position Will Be Withdrawn \n Are You Sure ?");
+    if(confr)
+    {
+      $.ajax({
       url:'http://localhost/hrms/api/withdrawposition.php',
       type:'POST',
       data:{'id':id},
@@ -228,7 +231,9 @@ function withdraw(id)
         }
       }
     
-    })
+    })  
+    }
+    
   }
 
 
