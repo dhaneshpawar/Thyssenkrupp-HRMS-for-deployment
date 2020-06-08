@@ -1,0 +1,604 @@
+<html>
+
+  
+
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>HR Chart</title>
+    
+        <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.min.css">
+    
+            <!-- for sidenav -->
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+            <link rel="stylesheet" type="text/css" media="screen" href="public/css/common.css">
+    
+        <script src="public/jquery-3.2.1.min.js"></script>
+    
+        <script src="public/js/materialize.js"></script>
+        <script src="public/js/materialize.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script src="./public/js/util.js"></script>
+        <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+        @media screen and (min-width: 800px) {
+            #row1{
+                margin-left: 5%;
+            }
+            #row2{
+                margin-left: 5%;
+            }
+        }
+        </style>
+    </head>
+    
+
+
+
+    <body>
+        
+        <!-- navbar starts here -->
+        <nav> 
+            <div class="nav-wrapper blue darken-1">
+            <a href="#!" class="brand-logo left" style="margin-left: 2%;"><i id="showsidenbutton" class="material-icons">menu</i>
+            </a>
+            <a href="/hrms/" class="brand-logo center">thyssenkrupp</a>
+            </div>
+        </nav>
+        <!-- navbar ends here -->
+        
+        <br><br><br>
+
+        <!-- chart area -->
+        
+        <div id="canvas-holder" style="width:100%">
+            
+           
+            <div class="row"  id="row1">
+                <div class="col s12 m3 card offset-m1 ">
+                    <br>
+                    <canvas id="chart-area1"></canvas>
+                    <br><br>
+                </div>
+                <div class="col s12 m3 card ">
+                    <br>
+                    <canvas id="chart-area2"></canvas>
+                    <br><br>
+                </div>
+                <div class="col s12 m3 card ">
+                    <br>
+                    <canvas id="chart-area3"></canvas>
+                    <br><br>
+                </div>
+                
+            </div>
+
+            <div class="row" id="row2">
+                <div class="col s12 m9 offset-m1 card  ">
+                    <br>
+                    <label>Select Filters</label>
+                    <div class="row">
+                        
+                        <div class="col s12 m2">
+                            <select class="browser-default s3 m3 btn blue">
+                                <option value="" disabled selected>PRF</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+                        <div class="col s12 m2">
+                            <select class="browser-default s3 m3 btn blue">
+                                <option value="" disabled selected>IID</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <canvas id="chart-area4"></canvas>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        
+        <!-- chart area ends -->
+
+
+        <!-- script for displaying chart -->
+        <script>
+
+            
+
+            
+            $(document).ready(function(){
+                
+                $('.modal').modal();
+                // ajax call for filling up chart details
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give numbers here demo data
+                        para=[50,20,10,30]//graph 1 data
+                        para2=[50,20]//graph2 data
+                        para3=[30,45,45]//graph 3 data 
+
+                        // configuration of 1st chart(generalized chart)
+                        var config1 = {
+                            type: 'doughnut',
+                            
+                            data: {
+                                datasets: [{
+                                    data: [
+                                    para[0],para[1],para[2],para[3]
+                                    ],
+                                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+                                }],
+                                labels: [
+                                    'Total Initiated PRF',
+                                    'Ongoing PRF',
+                                    'Completed PRF',
+                                    'Avilable PRF',
+                                ],
+                                
+                            },
+                            options: {
+                                responsive: true,
+                                legend: {
+                                    position: 'right',
+                                    
+                                },
+                                onClick: (evt, item) => {
+                                    
+                                    var selected_part = item[0]._view.label;
+                                    console.log(item[0]._view.label)
+                                    callModal(item[0]._view.label)
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Generalized Information',
+                                    
+                                },
+                                animation: {
+                                    animateScale: true,
+                                    animateRotate: true,
+                                }
+                                
+                            },
+                        };
+
+                        //Configuration of initiate round graph
+                        var config2 = {
+                            type: 'pie',
+                            data: {
+                                datasets: [{
+                                    data: [
+                                    para2[0],para2[1]
+                                    ],
+                                    backgroundColor: ["#0277bd", "#5d4037"],
+                                }],
+                                labels: [
+                                    'Only Initiated',
+                                    'Interviewer Assigned',
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                legend: {
+                                    position: 'left',
+                                },
+                                onClick: (evt, item) => {
+
+                                    var selected_part = item[0]._view.label;
+                                    console.log(item[0]._view.label)
+                                    callModal(item[0]._view.label)
+                                },
+                                
+                                title: {
+                                    display: true,
+                                    text: 'Initiated round graph'
+                                },
+                                animation: {
+                                    animateScale: true,
+                                    animateRotate: true
+                                }
+                            },
+                        };
+
+                        // configurations of 3rd chart (completed rounds chart)
+                                                
+                        var config3 = {
+                            type: 'doughnut',
+                            
+                            data: {
+                                datasets: [{
+                                    data: [
+                                    para3[0],para3[1],para3[2]
+                                    ],
+                                    backgroundColor: ["#7e57c2", "#81c784","#d4e157"],
+                                }],
+                                labels: [
+                                    'comleted but not by hr2',
+                                    'validated',
+                                    'offer letter sent',
+                                    
+                                ],
+                                
+                            },
+                            options: {
+                                responsive: true,
+                                legend: {
+                                    position: 'right',
+                                },
+                                onClick: (evt, item) => {
+                                    var selected_part = item[0]._view.label;
+                                    console.log(item[0]._view.label)
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Completed Rounds',
+                                    
+                                },
+                                animation: {
+                                    animateScale: true,
+                                    animateRotate: true
+                                }
+                                
+                            },
+                        };
+
+                        // configuration of line chart
+                        var config4 = {
+                        type: 'line',
+                        data: {
+                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                            datasets: [{
+                                label: 'dataset - big points',
+                                data: [
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor()
+                                ],
+                                backgroundColor: window.chartColors.red,
+                                borderColor: window.chartColors.red,
+                                fill: false,
+                                borderDash: [5, 5],
+                                pointRadius: 15,
+                                pointHoverRadius: 10,
+                            }, {
+                                label: 'dataset - individual point sizes',
+                                data: [
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor()
+                                ],
+                                backgroundColor: window.chartColors.blue,
+                                borderColor: window.chartColors.blue,
+                                fill: false,
+                                borderDash: [5, 5],
+                                pointRadius: [2, 4, 6, 18, 0, 12, 20],
+                            }, {
+                                label: 'dataset - large pointHoverRadius',
+                                data: [
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor()
+                                ],
+                                backgroundColor: window.chartColors.green,
+                                borderColor: window.chartColors.green,
+                                fill: false,
+                                pointHoverRadius: 30,
+                            }, {
+                                label: 'dataset - large pointHitRadius',
+                                data: [
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor(),
+                                    randomScalingFactor()
+                                ],
+                                backgroundColor: window.chartColors.yellow,
+                                borderColor: window.chartColors.yellow,
+                                fill: false,
+                                pointHitRadius: 20,
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            legend: {
+                                position: 'bottom',
+                            },
+                            hover: {
+                                mode: 'index'
+                            },
+                            scales: {
+                                x: {
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Month'
+                                    }
+                                },
+                                y: {
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Value'
+                                    }
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Chart.js Line Chart - Different point sizes'
+                            }
+                        }
+                    };
+
+                        //generalized chart
+                        var ctx = document.getElementById('chart-area1').getContext('2d');
+                        window.myDoughnut = new Chart(ctx, config1);
+
+                        //2nd chart
+                        var ctx2 = document.getElementById('chart-area2').getContext('2d');
+                        window.myDoughnut = new Chart(ctx2, config2);
+
+                        // 3rd chart
+                        var ctx3 = document.getElementById('chart-area3').getContext('2d');
+                        window.myDoughnut = new Chart(ctx3, config3);
+
+                        // 4th chart
+                        var ctx4 = document.getElementById('chart-area4').getContext('2d');
+			            window.myLine = new Chart(ctx4, config4);
+                    }
+                    
+                })
+            })
+
+
+        // function for displaying modal
+        function callModal(selected_part)
+        {
+
+            // functionalities for 1st chart start here (generalized chart)
+            if(selected_part == 'Total Initiated PRF')
+            {
+                
+                console.log("Total Initiated PRF is clicked")
+                $("#cardTitle").text("Total Initiated PRF")
+                $("#tableParent").fadeOut()
+                $("#tableParent").fadeIn(200)
+                // ajax call for retriving validate candidate
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give details in this format demo data:
+                        para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
+                        $("#tableBody").text('')
+                        var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th></tr></thead>'
+                        $("#tableBody").append(headings)
+                        for(let i=0;i<para.length;i++)
+                        {   
+                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td></tr>'
+                            $('#tableBody').append(str1) 
+                        }
+                        $('.modal').modal("open");
+                    }
+                })
+            }
+
+            if(selected_part == 'Ongoing PRF')
+            {
+                console.log("Ongoing PRF is clicked")
+                $("#cardTitle").text("Ongoing PRF")
+                $("#tableParent").fadeOut()
+                $("#tableParent").fadeIn(200)
+                // ajax call for retriving re-validation candidate
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give details in this format demo data:
+                        para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
+                        $("#tableBody").text('')
+                        var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th></tr></thead>'
+                        $("#tableBody").append(headings)
+                        for(let i=0;i<para.length;i++)
+                        {   
+                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td></tr>'
+                            $('#tableBody').append(str1) 
+                        }
+                        $('.modal').modal("open");
+                    }
+                })
+            }
+
+            if(selected_part == 'Completed PRF')
+            {
+                console.log("Completed PRF is clicked")
+                $("#cardTitle").text("Completed PRF")
+                $("#tableParent").fadeOut()
+                $("#tableParent").fadeIn(200)
+                // ajax call for retriving validated candidate
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give details in this format demo data:
+                        para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
+                        $("#tableBody").text('')
+                        var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th></tr></thead>'
+                        $("#tableBody").append(headings)
+                        for(let i=0;i<para.length;i++)
+                        {   
+                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td></tr>'
+                            $('#tableBody').append(str1) 
+                        }
+                        $('.modal').modal("open");
+                    }
+                })
+            }
+
+            if(selected_part == 'Avilable PRF')
+            {
+                console.log("Avilable PRF is clicked")
+                $("#cardTitle").text("Avilable PRF")
+                $("#tableParent").fadeOut()
+                $("#tableParent").fadeIn(200)
+                // ajax call for retriving validated candidate
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give details in this format demo data:
+                        para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
+                        $("#tableBody").text('')
+                        var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th></tr></thead>'
+                        $("#tableBody").append(headings)
+                        for(let i=0;i<para.length;i++)
+                        {   
+                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td></tr>'
+                            $('#tableBody').append(str1) 
+                        }
+                        $('.modal').modal("open");
+                    }
+                })
+            }
+            // functionalities for 1st chart ends here (generalized chart)
+            
+            // functionalities for 2nd chart start here (initiate round chart)
+            if(selected_part == 'Only Initiated')
+            {
+                
+                console.log("Only Initiated is clicked")
+                $("#cardTitle").text("Only Initiated")
+                $("#tableParent").fadeOut()
+                $("#tableParent").fadeIn(200)
+                // ajax call for retriving validate candidate
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give details in this format demo data:
+                        para = {prf:['111','222'],pos:['1','2'],iid:['9','8'],rid:['5','6'],members:[['abc@gmail.com','pqr@gmail.com'],['ac@gmail.com','qr@gmail.com','pr@gmail.com']]};
+                        console.log(para.members[0].length)
+                        $("#tableBody").text('')
+                        var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th><th>Members</th></tr></thead>'
+                        $("#tableBody").append(headings)
+                        for(let i=0;i<para.prf.length;i++)
+                        {
+                            var memberlength = para.members[0].length
+                            var str1 = '<tr><td rowspan="'+memberlength+'">'+para.prf[i]+'</td><td rowspan="'+memberlength+'">'+para.pos[i]+'</td><td rowspan="'+memberlength+'">'+para.iid[i]+'</td><td rowspan="'+memberlength+'">'+para.rid[i]+'</td><td>'+para.members[i][0]+'</td></tr>'
+                            $('#tableBody').append(str1) 
+                            for(let j=1;j<memberlength;j++)
+                            {
+                                var str2 = '<tr><td>'+para.members[i][j]+'</td></tr>'
+                                $('#tableBody').append(str2)
+                            }
+                        }
+                        $('.modal').modal("open");
+                    }
+                })
+            }
+
+            if(selected_part == 'Interviewer Assigned')
+            {
+                console.log("Interviewer Assigned is clicked")
+                $("#cardTitle").text("Interviewer Assigned")
+                $("#tableParent").fadeOut()
+                $("#tableParent").fadeIn(200)
+                // ajax call for retriving re-validation candidate
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give details in this format demo data:
+                        para = {prf:['111','222'],pos:['1','2'],iid:['9','8'],rid:['5','6'],members:[['abc@gmail.com','pqr@gmail.com'],['ac@gmail.com','qr@gmail.com','pr@gmail.com']]};
+                        console.log(para.members[0].length)
+                        $("#tableBody").text('')
+                        var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th><th>Members</th></tr></thead>'
+                        $("#tableBody").append(headings)
+                        for(let i=0;i<para.prf.length;i++)
+                        {
+                            var memberlength = para.members[0].length
+                            var str1 = '<tr><td rowspan="'+memberlength+'">'+para.prf[i]+'</td><td rowspan="'+memberlength+'">'+para.pos[i]+'</td><td rowspan="'+memberlength+'">'+para.iid[i]+'</td><td rowspan="'+memberlength+'">'+para.rid[i]+'</td><td>'+para.members[i][0]+'</td></tr>'
+                            $('#tableBody').append(str1) 
+                            for(let j=1;j<memberlength;j++)
+                            {
+                                var str2 = '<tr><td>'+para.members[i][j]+'</td></tr>'
+                                $('#tableBody').append(str2)
+                            }
+                        }
+                        $('.modal').modal("open");
+                    }
+                })
+            }
+            // functionalities for 2nd chart ends here (initiate round chart)
+
+        }
+
+        </script>
+
+        <!-- script for displaying chart ends-->
+
+        
+
+        <!-- modal starts here -->
+        
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+               <center><b><p id="cardTitle" style="color: green;">Hello world</p></b></center>
+                    <!-- TABLE STARTS HERE -->
+                    <table id="tableBody" class="stripped">
+
+
+                        
+                    </table>
+                    <!-- TABLE ENDS HERE -->
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close red btn ">Close</a>
+            </div>
+        </div>
+        <!-- modal ends here -->
+        
+
+    </body>
+    
+ 
+</html>
