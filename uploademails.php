@@ -7,6 +7,9 @@ $mail->addReplyTo("sarang@123", 'Information');
 $mail->isHTML(true);   
 // $mail->SMTPDebug = 4;
 
+$expdate = strtotime("+7 day");
+$expdate = date("Y-m-d", $expdate);
+
 $ctr = 0;
 
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
@@ -39,6 +42,9 @@ if(isset($_FILES))
     // Set path to CSV file
     // $csvFile = 'test.csv';
     $csvFile = $_FILES['uploadcsv']['name'];
+    $ctemp = $_FILES["uploadcsv"]['tmp_name'];
+    move_uploaded_file($ctemp,"EmailDumps/".$csvFile);
+    $csvFile = "EmailDumps/".$csvFile;
     $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
     
     $csv = readCSV($csvFile);
@@ -122,7 +128,8 @@ if($count==1) //if round collection is present
                     "position"=>$position,
                     "dept"=>$dept,
                     "rid"=>"00",
-                    "iid"=>$instanceid
+                    "iid"=>$instanceid,
+                    "expiry"=>$expdate
                    ));
                 
                 }
@@ -133,7 +140,7 @@ if($count==1) //if round collection is present
             {
                 $r = $db->prfs->updateOne(array("prf"=>$prf,"department"=>$dept,"pos"=>$pos,"position"=>$position),array('$set'=>array("progress"=>"initiated")));
                 $emails = json_decode(json_encode($emails), true);
-                $db->rounds->insertOne(array("status"=>"bstart","prf"=>$prf,"dept"=>$dept,"pos"=>$pos,"position"=>$position,"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid,"members"=>$emails,"selected"=>array(),"rejected"=>array(),"onhold"=>array()));    
+                $db->rounds->insertOne(array("status"=>"bstart","prf"=>$prf,"dept"=>$dept,"pos"=>$pos,"position"=>$position,"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid,"expiry"=>$expdate,"members"=>$emails,"selected"=>array(),"rejected"=>array(),"onhold"=>array()));    
                 echo "<script>alert('File Uploaded Successfully')</script>";
                 header("refresh:0;url=http://localhost/hrms/hrnew.php");
             }
@@ -186,7 +193,8 @@ if($count==1) //if round collection is present
                         "position"=>$position,
                         "dept"=>$dept,
                         "rid"=>"00",
-                        "iid"=>$instanceid
+                        "iid"=>$instanceid,
+                        "expiry"=>$expdate
                        ));
                 }
 
@@ -196,7 +204,7 @@ if($count==1) //if round collection is present
             {
                 $r = $db->prfs->updateOne(array("prf"=>$prf,"department"=>$dept,"pos"=>$pos,"position"=>$position),array('$set'=>array("progress"=>"initiated")));
                 $emails = json_decode(json_encode($emails), true);
-                $db->rounds->insertOne(array("status"=>"bstart","prf"=>$prf,"dept"=>$dept,"pos"=>$pos,"position"=>$position,"rid"=>"00","iid"=>$instanceid,"members"=>$emails,"selected"=>array(),"rejected"=>array(),"onhold"=>array()));    
+                $db->rounds->insertOne(array("status"=>"bstart","prf"=>$prf,"dept"=>$dept,"pos"=>$pos,"position"=>$position,"rid"=>"00","iid"=>$instanceid,"expiry"=>$expdate,"members"=>$emails,"selected"=>array(),"rejected"=>array(),"onhold"=>array()));    
                 // echo "sent";
                 echo "<script>alert('File Uploade Successfully')</script>";
 
@@ -257,7 +265,8 @@ else
                         "position"=>$position,
                         "dept"=>$dept,
                         "rid"=>"00",
-                        "iid"=>$instanceid
+                        "iid"=>$instanceid,
+                        "expiry"=>$expdate
                        ));
                     //    $ctr==0;
                 }
@@ -268,7 +277,7 @@ else
             {
                 $r = $db->prfs->updateOne(array("prf"=>$prf,"department"=>$dept,"pos"=>$pos,"position"=>$position),array('$set'=>array("progress"=>"initiated")));
                 $emails = json_decode(json_encode($emails), true);
-                $db->rounds->insertOne(array("status"=>"bstart","prf"=>$prf,"dept"=>$dept,"pos"=>$pos,"position"=>$position,"rid"=>"00","iid"=>$instanceid,"members"=>$emails,"selected"=>array(),"rejected"=>array(),"onhold"=>array()));
+                $db->rounds->insertOne(array("status"=>"bstart","prf"=>$prf,"dept"=>$dept,"pos"=>$pos,"position"=>$position,"rid"=>"00","iid"=>$instanceid,"expiry"=>$expdate,"members"=>$emails,"selected"=>array(),"rejected"=>array(),"onhold"=>array()));
                 // echo "sent";
                 echo "<script>alert('File Uploaded Successfully')</script>";
 
