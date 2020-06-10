@@ -1,5 +1,8 @@
 <?php
-include "db.php";
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
+{
+    include "db.php";
     $digit13=explode("-",$_POST['id']);
     $digit13[0] = substr($digit13[0],3);
     $digit13[3] = substr_replace($digit13[3],"",2);
@@ -15,4 +18,9 @@ include "db.php";
     {
         echo "fail";
     }
+}
+else
+{
+    header("refresh:0;url=notfound.html");    
+}
 ?>

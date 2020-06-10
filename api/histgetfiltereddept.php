@@ -4,8 +4,11 @@
 
 //when first round entry is being done  enter dept also to run this file 
 include "db.php";
-
-$arr2=array();
+// Check for Login
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
+{
+        $arr2=array();
 
         if($_POST['dept'] == "All" )
         {
@@ -92,6 +95,10 @@ $arr2=array();
        
       
 
-
+    }
+    else
+    {
+        header("refresh:0;url=notfound.html");
+    }
 
 ?>
