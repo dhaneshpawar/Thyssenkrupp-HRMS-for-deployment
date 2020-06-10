@@ -7,11 +7,8 @@ if($cursor)
 {
     $digit13 = $_GET['id'];
     $digit13 = explode("-",$digit13);
-    //echo $digit13[0].'-'.$digit13[1].'-'.$digit13[2].'-'.$digit13[3];
-
-    //$result = $db->interviews->find(array("prf"=>$digit13[0] , "pos"=>$digit13[1] , "iid"=>$digit13[2] , "rid"=>$digit13[3] , "intvmail"=>$_POST['mail']));
-   
-     $selection=$_GET['result'];
+    
+    $selection=$_GET['result'];
     //  echo $selection;
     $values=array(
         "candidateknowledge"=>$_GET["candidateknowledge"],

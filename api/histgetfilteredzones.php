@@ -13,9 +13,12 @@ $arr2=array();
         {
             
             $iids=array();
+            //find prf with specified zone and and status
             $cursor = $db->prfs->find(array("zone"=>$_POST['zone'],"status"=>"completed"));
             $i=0;
             $j=0;
+
+            //find iid of those prf with specified zone and and status
             $cursor1 = $db->rounds->find(array("status"=>"completed"));
           
             foreach($cursor1 as $d)
@@ -41,6 +44,7 @@ $arr2=array();
 
             if(count($arr2) == 0)
             {
+                //If there is no data 
                 echo "No data";
             }
             else
@@ -50,31 +54,7 @@ $arr2=array();
         }
         else
         {
-            // foreach($cursor1 as $d)
-            // {
-            //     $iids[$j][0] = $d['prf'];
-            //     $iids[$j][1] = $d['iid'];
-            //     $j++;
-            // }
-            // $j=0;
-            // foreach ($iids as $i)
-            // {
-            //     $cursor = $db->prfs->findOne(array("prf"=>$i[0],"department"=>$_POST['dept'],"status"=>"completed"));
-            //     $arr[0]=$cursor['prf'];
-            //     $arr[1]=$cursor['position'];
-            //     $arr[2]=$cursor['zone'];
-            //     $arr[3]=$cursor['department'];
-            //     $arr[4]=$cursor['pos'];
-            //     $arr[5]=$cursor['status'];
-            //     $arr[6] = $i[1];
-            //     $arr2[$j] = $arr;
-            //     $j++;
-            // }
-
-
-
-
-
+            //filter using dept,zone and status
             $iids=array();
             $cursor = $db->prfs->find(array("department"=>$_POST['dept'],"zone"=>$_POST['zone'],"status"=>"completed"));
             $i=0;
@@ -105,6 +85,7 @@ $arr2=array();
 
             if(count($arr2) == 0)
             {
+                //If there is no data 
                 echo "No data";
             }
             else

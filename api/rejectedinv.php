@@ -1,6 +1,10 @@
 <?php
-include "db.php";
-//"reject"=>array('$exists'=>false)
+
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+ 
+if($cursor)
+{
+    include "db.php";
     $result=$db->interviews->find(array("invstatus"=>"1"));
     if($result)
     {
@@ -27,6 +31,10 @@ include "db.php";
     {
         echo "nodata";
     }
-   
+}
+else
+{
+    header("refresh:0;url=notfound.html");    
+}
    
 ?>

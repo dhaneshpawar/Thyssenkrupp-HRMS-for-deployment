@@ -17,9 +17,11 @@ $mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
 $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);
 $ctr=0;
-if(isset($_POST))
+
+
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if(isset($_POST) || $cursor)
 {
-    $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
     $digit13 = preg_split('/[-]/', $_POST['prf']);
     $selected=$_POST['emails'];
     $arr = array();
@@ -94,8 +96,9 @@ if(isset($_POST))
     }
    
      
-    }
-else{
+}
+else
+{
     header("refresh:0;url=notfound.html");
 }
 ?>

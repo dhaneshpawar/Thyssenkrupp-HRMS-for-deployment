@@ -4,8 +4,10 @@
 //Added by Sarang - 03/14/2020
 //when first round entry is being done  enter dept also to run this file 
 include "db.php";
-
-$arr2=array();
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
+{
+        $arr2=array();
         if($_POST['dept'] == "All" && $_POST['zone'] == "All")
         {
             // echo "Success";
@@ -66,6 +68,7 @@ $arr2=array();
         }
         else
         {
+            //Filter using dept as weel as zone
             $iids=array();
             $cursor = $db->prfs->find(array("department"=>$_POST['dept'],"zone"=>$_POST['zone'],"status"=>"open"));
             $i=0;
@@ -97,4 +100,9 @@ $arr2=array();
             }
             
         }
+    }
+    else
+    {
+        header("refresh:0;url=notfound.html");
+    }
 ?>

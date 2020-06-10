@@ -267,5 +267,9 @@ if($cursor)
     }
 
 }
+else
+{
+    header("refresh:0;url=notfound.html");    
+}
 
 ?>

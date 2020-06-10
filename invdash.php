@@ -500,7 +500,7 @@ function confirmmodifyAllMails(id)
 
     $.ajax({
         url:"http://localhost/hrms/api/interviewertodo.php",
-        type:"GET",
+        type:"POST",
         data:{
             "mail": window.mail 
         },
