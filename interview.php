@@ -278,6 +278,11 @@ function modifyMail(id,name)
                 window.setTimeout(function(){location.reload()},1000)
       
             }
+            else if(para == "fail")
+            {
+                alert("Operation Failed . Please try again..")
+            }
+           
             console.log("This is my data:  "  +para)
         }
 

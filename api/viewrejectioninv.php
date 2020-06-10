@@ -22,5 +22,9 @@ if(isset($_COOKIE['sid']))
 
   }
 }
+else
+{
+    header("refresh:0;url=notfound.html");    
+}
 
 ?>

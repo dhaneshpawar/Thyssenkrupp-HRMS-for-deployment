@@ -21,7 +21,7 @@ if(isset($_COOKIE['sid']))
   }
   else
   {
-      echo "i ama here";
+    header("refresh:0;url=notfound.html");    
   }
 }
 ?>
