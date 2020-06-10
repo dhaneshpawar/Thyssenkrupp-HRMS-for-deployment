@@ -268,9 +268,24 @@ if(isset($_COOKIE['sid']))
                 },
                 success:function(para)
                 {
-                    $("#status").fadeIn(300)
-                    console.log(para)
-                     window.setTimeout(function(){location.reload()},3000)  
+                    if(para == "success")
+                    {
+                        $("#status").fadeIn(300)
+                        console.log(para)
+                        window.setTimeout(function(){location.reload()},3000)  
+                    }
+                    else if(para == "fail")
+                    {
+                        alert("Transaction Failed \n Click Accept Button Again")
+                    }
+                    else if(para == "noaccess")
+                    {
+                        alert("Please Send POST Data")
+                    }
+                    else
+                    {
+                        alert("something went wrong")
+                    }
                 }
         })
         }

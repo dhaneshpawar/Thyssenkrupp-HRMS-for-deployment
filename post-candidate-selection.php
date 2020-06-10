@@ -37,7 +37,7 @@ input[id="uan"]
         </div>
     </nav>
     <center>
-    <h1><p  id="details"style="color:Green">Deteails Submitted Successfully</p></h1>
+    <h1><p  id="details"style="color:Green">Details Submitted Successfully</p></h1>
     </center>
     <form method="POST" action="http://localhost/hrms/api/submitevalform.php" enctype="multipart/form-data" id="postForm">
     
@@ -169,12 +169,17 @@ $(document).ready(function(){
                 if(para == "expired")
                 {
                 console.log("Expired Page");
-                $('#main').hide()                
+                $('#main').hide()   
+                $("#details").show();             
                 }
                 else if(para=='success')
                 {
                 console.log("You are welcome");
-                
+                }
+                else if(para == "submitted")
+                {
+                $("#details").show();
+                $('#main').hide()
                 }
                 },
                 error : function(err){        
