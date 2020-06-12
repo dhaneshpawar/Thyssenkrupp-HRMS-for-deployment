@@ -1,11 +1,11 @@
 <?php
-
+include 'db.php';
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 if($cursor)
 {
 
     include 'maildetails.php';
-    include 'db.php';
+    
 
     $mail->setFrom("tkep", 'Update in the interview procedure');
     $mail->addReplyTo(Email, 'Information');

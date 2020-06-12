@@ -1,12 +1,13 @@
 <?php
 session_start();
+include 'db.php';
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 if($cursor)
 {
     if($_POST)
     {
             include 'maildetails.php';
-            include 'db.php';
+            
             $fullname = $_POST["full_name"];
             $token = $_SESSION['token'];
             $collection = $db->tokens;

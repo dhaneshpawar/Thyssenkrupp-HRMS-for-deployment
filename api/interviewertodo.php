@@ -1,10 +1,11 @@
 <?php 
 
 //Check if session exists
+include 'db.php';
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 if($cursor)
 {
-    include 'db.php';
+   
     //Check if Request exists
     if($_POST)
     {
