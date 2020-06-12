@@ -75,7 +75,7 @@ if(isset($_COOKIE['sid']))
         </select>
         <select id='zonechoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
           <option value="" disabled selected style="color: white">Select Zone</option>
-        </select>
+ </select>
 <!-- Filter Added End-->
 
  <div class="row" >
@@ -546,6 +546,29 @@ function removeusingSet(arr) {
         } 
 
 //Added by Sarang - 03/14/2020
+var dept=[]
+$.ajax({
+
+  url:"http://localhost/hrms/api/getdepartments.php",
+  type:"POST",
+  success:function(arr)
+  {
+    arr = JSON.parse(arr)
+       dept[0]="All"
+      for(let i =1 ;i<arr.length;i++)
+      {
+        dept[i] = arr[i-1]
+      }
+      uniquedept = removeusingSet(dept);
+      console.log(uniquedept)
+      for(i=0;i<uniquedept.length;i++)
+      {
+        var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
+         $('#deptchoice').append(str);
+      }
+  }
+
+})
 
 
 //get filtered department
@@ -559,6 +582,7 @@ type:"POST",
 data: {"dept": $('#deptchoice').val()},
 success:function(arr)
 { 
+  console.log(arr)
   if(arr == 'No data')
   {
     $('#nodata').fadeIn(300);
@@ -591,12 +615,14 @@ success:function(arr)
              zone=[]
             para = JSON.parse(para)
 
-            
+            zone[0] = "All"
             for(let i =0 ;i<para.length;i++)
             {
               zone[i] = para[i]
             }
             $("#zonechoice").empty();
+            $("#zonechoice").empty();
+            $("#zonechoice").append('<option value="" disabled selected style="color: white">Select Zone</option>')
             uniquezone = removeusingSet(zone);
 
             for(i=0;i<uniquezone.length;i++)

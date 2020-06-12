@@ -8,6 +8,8 @@ $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);   
 // $mail->SMTPDebug = 4;                               // Enable verbose debug output
 
+$expdate = strtotime("+7 day");
+$expdate = date("Y-m-d", $expdate);
 
 $_SESSION['department'] = $_POST['dept'];
 $ctr = 0;
@@ -50,10 +52,10 @@ if($cursor)
                     $mail->Subject = 'Your Application at tkEI';
                     $mail->Body    =   nl2br('Dear Candidate,
 
-                    Further to our discussion for the profile of '. $positionorg. ' You are required to provide your basic
+                    Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
-                    To access the link, please click here '.$url.'
+                    To access the link, please click <a href='.$url.'>here</a>
                    
                     Thank you for your interest in working with us.
                    
@@ -68,7 +70,7 @@ if($cursor)
                     }
                     else
                     {
-                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid));
+                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","expiry"=>$expdate,"iid"=>$instanceid));
                         
 
                     }
@@ -77,9 +79,25 @@ if($cursor)
                 }
                 if($ctr==0)
                 {
+                    //"poszone"=>$_POST['poszone']
                     $r = $db->prfs->updateOne(array("prf"=>$_POST['prf'],"department"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position']),array('$set'=>array("progress"=>"initiated")));
                     
-                    $db->rounds->insertOne(array("status"=>"bstart","prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid,"members"=>$_POST['emails'],"selected"=>array(),"rejected"=>array(),"onhold"=>array()));
+                    $db->rounds->insertOne(array(
+                        "status"=>"bstart",
+                        "prf"=>$_POST['prf'],
+                        "dept"=>$_POST['dept'],
+                        "pos"=>$_POST['pos'],
+                        "poszone"=>$_POST['poszone'],
+                        "position"=>$_POST['position'],
+                        "rg"=>$cursor["rg"],
+                        "rid"=>"00",
+                        "expiry"=>$expdate,
+                        "iid"=>$instanceid,
+                        "members"=>$_POST['emails'],
+                        "selected"=>array(),
+                        "rejected"=>array(),
+                        "onhold"=>array())
+                    );
                     $fp = fopen('prflogs.txt', 'a');
                     $d = date("Y/m/d");
                     $m = $cursor['mail'];
@@ -109,10 +127,10 @@ if($cursor)
                     $mail->Subject = 'Your Application at tkEI';
                     $mail->Body    = nl2br('Dear Candidate,
 
-                    Further to our discussion for the profile of '. $positionorg. ' You are required to provide your basic
+                    Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
-                    To access the link, please click here '.$url.'
+                    To access the link, please click here <a href='.$url.'>here</a>
                    
                     Thank you for your interest in working with us.
                    
@@ -127,7 +145,7 @@ if($cursor)
                     }
                     else
                     {
-                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid));
+                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","expiry"=>$expdate,"iid"=>$instanceid));
                    
                     }
                     
@@ -137,7 +155,22 @@ if($cursor)
                 {
                     $r = $db->prfs->updateOne(array("prf"=>$_POST['prf'],"department"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position']),array('$set'=>array("progress"=>"initiated")));
 
-                    $db->rounds->insertOne(array("status"=>"bstart","prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid,"members"=>$_POST['emails'],"selected"=>array(),"rejected"=>array(),"onhold"=>array()));    
+                    $db->rounds->insertOne(array(
+                        "status"=>"bstart",
+                        "prf"=>$_POST['prf'],
+                        "dept"=>$_POST['dept'],
+                        "pos"=>$_POST['pos'],
+                        "poszone"=>$_POST['poszone'],
+                        "position"=>$_POST['position'],
+                        "rg"=>$cursor["rg"],
+                        "rid"=>"00",
+                        "expiry"=>$expdate,
+                        "iid"=>$instanceid,
+                        "members"=>$_POST['emails'],
+                        "selected"=>array(),
+                        "rejected"=>array(),
+                        "onhold"=>array())
+                    );    
                     $fp = fopen('prflogs.txt', 'a');
                     $d = date("Y/m/d");
                     $m = $cursor['mail'];
@@ -169,10 +202,10 @@ if($cursor)
                     $mail->Subject = 'Your Application at tkEI';
                     $mail->Body    = nl2br('Dear Candidate,
 
-                    Further to our discussion for the profile of '. $positionorg. ' You are required to provide your basic
+                    Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept']. ' You are required to provide your basic
                     details by accessing the below link so that your application could be processed further.
                    
-                    To access the link, please click here '.$url.'
+                    To access the link, please click <a href='.$url.'>here</a>
                    
                     Thank you for your interest in working with us.
                    
@@ -188,7 +221,7 @@ if($cursor)
                     else
                     {
                       
-                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid));
+                        $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","expiry"=>$expdate,"iid"=>$instanceid));
                         
                         
                     }
@@ -199,7 +232,22 @@ if($cursor)
                 {
                     $r = $db->prfs->updateOne(array("prf"=>$_POST['prf'],"department"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position']),array('$set'=>array("progress"=>"initiated")));
                    
-                    $db->rounds->insertOne(array("status"=>"bstart","prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","iid"=>$instanceid,"members"=>$_POST['emails'],"selected"=>array(),"rejected"=>array(),"onhold"=>array()));
+                    $db->rounds->insertOne(
+                        array(
+                            "status"=>"bstart",
+                            "prf"=>$_POST['prf'],
+                            "dept"=>$_POST['dept'],
+                            "pos"=>$_POST['pos'],
+                            "poszone"=>$_POST['poszone'],
+                            "position"=>$_POST['position'],
+                            "rg"=>$cursor["rg"],
+                            "rid"=>"00",
+                            "expiry"=>$expdate,
+                            "iid"=>$instanceid,
+                            "members"=>$_POST['emails'],
+                            "selected"=>array(),
+                            "rejected"=>array(),
+                            "onhold"=>array()));
                     
                     $fp = fopen('prflogs.txt', 'a');
                     $d = date("Y/m/d");
@@ -218,6 +266,10 @@ if($cursor)
 
     }
 
+}
+else
+{
+    header("refresh:0;url=notfound.html");    
 }
 
 ?>

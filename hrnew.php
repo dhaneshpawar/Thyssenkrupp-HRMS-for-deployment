@@ -219,7 +219,10 @@ if(isset($_COOKIE['sid']))
 
 function withdraw(id)
   {
-    $.ajax({
+    var confr = confirm("This Position Will Be Withdrawn \n Are You Sure ?");
+    if(confr)
+    {
+      $.ajax({
       url:'http://localhost/hrms/api/withdrawposition.php',
       type:'POST',
       data:{'id':id},
@@ -240,7 +243,9 @@ function withdraw(id)
         }
       }
     
-    })
+    })  
+    }
+    
   }
 
 
@@ -401,6 +406,10 @@ function xyz(x)
   </div>
 
   </div>
+
+  <div id="nodata" style="margin-left:40%;color:white;background-color:red;width:15%;height:5%;border-radius:5px;text-align:center;">
+    <b>NO PRF's AVAILABLE</b>
+  </div>
   
 </body>
 <style>
@@ -503,6 +512,7 @@ $(document).ready(function(){
   $('.modal').modal();
   $('#zonechoice').hide();
  $("#uploaddump").hide()
+ $("#nodata").hide()
  $.ajax({
     url:'http://localhost/hrms/api/getprfdump.php',
     type:'POST',
@@ -550,6 +560,7 @@ $(document).ready(function(){
 })
 $('#submitmail').click(function()
 {
+  $('#submitmail').prop('disabled', true);
   $('#emailcollection').fadeOut(600)
   $('#creatinggrp').fadeIn(600)
 
@@ -573,7 +584,8 @@ $('#submitmail').click(function()
       'dept':window.dept,
       'pos':window.pos,
       'status':window.status,
-      'position':window.position
+      'position':window.position,
+      'poszone':window.zone
     },
     success : function(para)
     {
@@ -583,12 +595,13 @@ $('#submitmail').click(function()
       if(para == "sent")
       {
         $('#groupcreated').show();
-      // alert("This is 2 : "+id)
-      $(id).attr('disabled','disabled')
-      $(id).text('Initiated')
-      console.log("sent")
-      $('#creatinggrp').fadeOut(600)
-      window.setTimeout(function(){location.reload()},1000)
+        $('#submitmail').prop('disabled', false);
+        // alert("This is 2 : "+id)
+        $(id).attr('disabled','disabled')
+        $(id).text('Initiated')
+        console.log("sent")
+        $('#creatinggrp').fadeOut(600)
+        window.setTimeout(function(){location.reload()},1000)
 
 
       }
@@ -669,8 +682,7 @@ success:function(arr)
              zone=[]
             para = JSON.parse(para)
 
-            zone[0]="All"
-            for(let i =1 ;i<para.length;i++)
+            for(let i =0 ;i<para.length;i++)
             {
               zone[i] = para[i]
             }
@@ -710,9 +722,10 @@ $('#zonechoice').change(function(){
     },
   success:function(arr)
   { 
-    console.log("OUTPUT FROM BACK "+arr)
-    if(arr == 'No data')
+    console.log(arr)
+    if(arr == "No data")
     {
+      console.log("Entered");
       $('#nodata').fadeIn(300);
     
     }

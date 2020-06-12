@@ -1,30 +1,42 @@
 <?php 
-include "db.php";
-if(isset($_POST))
-{
-    $digit13 = $_POST['id'];
-    $digit13 = explode("-",$digit13);
 
-    $result = $db->interviews->findOne(array("prf"=>$digit13[0] , "pos"=>$digit13[1] , "iid"=>$digit13[2] , "rid"=>$digit13[3] , "intvmail"=>$_POST['mail']));
-    $members=$result['members'];
-    // echo json_encode($members);
-    $i=0;
-    $arr = array();
-    if($result)
+// Connection to Database
+include 'db.php';
+
+// Check for Login
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
+{
+    if(isset($_POST))
     {
-        foreach($members as $d)
+        $digit13 = explode("-",$_POST['id']);
+    
+        // get members of particular interviewer
+        $result = $db->interviews->findOne(array("prf"=>$digit13[0] , "pos"=>$digit13[1] , "iid"=>$digit13[2] , "rid"=>$digit13[3] , "intvmail"=>$_POST['mail']));
+        $members=$result['members'];
+        $i=0;
+        $arr = array();
+    
+        if($result)
         {
-            // echo "Mail".$d;
-            $getselectednames =  $db->tokens->findOne(array("prf"=>$digit13[0],"pos"=>$digit13[1],"email"=>$d));
-            $arr[$i]=array($getselectednames['full_name'],$d);
-            $i++;
+            foreach($members as $d)
+            {
+                // find names of candidates
+                $getselectednames =  $db->tokens->findOne(array("prf"=>$digit13[0],"pos"=>$digit13[1],"email"=>$d));
+                $arr[$i]=array($getselectednames['full_name'],$d,$result['dates'][$i],$result['times'][$i]);
+                $i++;
+            }
+             echo json_encode($arr);
         }
-         echo json_encode($arr);
-    }
-    else
-    {
-        echo "nooooooo";
-    }
-} 
+        else
+        {
+            echo "nooooooo";
+        }
+    } 
+}
+else
+{
+    header("refresh:0;url=notfound.html");
+}
 
 ?>

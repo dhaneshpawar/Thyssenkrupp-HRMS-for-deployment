@@ -1,0 +1,266 @@
+<html>
+
+  
+
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>HR Chart</title>
+    
+        <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.min.css">
+    
+            <!-- for sidenav -->
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+            <link rel="stylesheet" type="text/css" media="screen" href="public/css/common.css">
+    
+        <script src="public/jquery-3.2.1.min.js"></script>
+    
+        <script src="public/js/materialize.js"></script>
+        <script src="public/js/materialize.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script src="./public/js/util.js"></script>
+        <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+        </style>
+    </head>
+    
+
+
+
+    <body>
+        
+        <!-- navbar starts here -->
+        <nav> 
+            <div class="nav-wrapper blue darken-1">
+            <a href="#!" class="brand-logo left" style="margin-left: 2%;"><i id="showsidenbutton" class="material-icons">menu</i>
+            </a>
+            <a href="/hrms/" class="brand-logo center">thyssenkrupp</a>
+            </div>
+        </nav>
+        <!-- navbar ends here -->
+        
+        <br><br>
+
+        <!-- chart area -->
+        <center>
+        <div id="canvas-holder" style="width:50%">
+            <canvas id="chart-area"></canvas>
+        </div>
+        </center>
+        <!-- chart area ends -->
+
+
+        <!-- script for displaying chart -->
+        <script>
+
+            
+
+            
+            $(document).ready(function(){
+
+                $('#tableParent').hide()
+              
+                // ajax call for filling up chart details
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give numbers here demo data
+                        para=[80,20,20]
+                       
+                        var config = {
+                            type: 'doughnut',
+                        
+                            data: {
+                                
+                            
+                                datasets: [{
+                                
+                                    data: [
+                                    para[0],para[1],para[2]
+                                    
+                                    ],
+                                
+                                    backgroundColor: [
+                                        window.chartColors.red,
+                                        window.chartColors.orange,
+                                        window.chartColors.green,
+                                        
+                                    ],
+
+                                
+                                }],
+
+
+                                labels: [
+                                    'Validate',
+                                    'Re-Validation',
+                                    'Validated',
+                                
+                                ]
+
+
+                            },
+
+
+                            options: {
+                                responsive: true,
+                                legend: {
+                                    position: 'top',
+                                
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'HR2 Donut Chart'
+                                },
+                                animation: {
+                                    animateScale: true,
+                                    animateRotate: true
+                                }
+                            }
+                        };
+
+                        var ctx = document.getElementById('chart-area').getContext('2d');
+                        window.myDoughnut = new Chart(ctx, config);
+                        document.getElementById('chart-area').onclick = function(evt){
+                        
+                        var activePoints = window.myDoughnut.getElementsAtEvent(evt);
+                        var selected_part = activePoints[0]._view.label
+                        console.log(activePoints[0]._view.label)
+
+
+                        if(selected_part == 'Validate')
+                        {
+                            console.log("validate is clicked")
+                            $("#cardTitle").text("Validate Candidates")
+                            $("#tableParent").hide()
+                            $("#tableParent").show(600)
+                            // ajax call for retriving validate candidate
+                            $.ajax({
+                                url:'demo.txt',
+                                type:'GET',
+                                success:function(para)
+                                {
+                                    // give details in this format demo data:
+                                    para = [['name1','mail1'],['name2','mail2']];
+                                    $("#tableBody").text('')
+                                    for(let i=0;i<para.length;i++)
+                                    {
+                                        var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td></tr>'
+                                        $('#tableBody').append(str1) 
+                                    }
+                                }
+                            })
+                        }
+
+                        if(selected_part == 'Re-Validation')
+                        {
+                            console.log("Re-Validation is clicked")
+                            $("#cardTitle").text("Re-Validate Candidates")
+                            $("#tableParent").hide()
+                            $("#tableParent").show(600)
+                            // ajax call for retriving re-validation candidate
+                            $.ajax({
+                                url:'demo.txt',
+                                type:'GET',
+                                success:function(para)
+                                {
+                                    // give details in this format demo data:
+                                    para = [['name1','mail1'],['name2','mail2']];
+                                    $("#tableBody").text('')
+                                    for(let i=0;i<para.length;i++)
+                                    {
+                                        var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td></tr>'
+                                        $('#tableBody').append(str1) 
+                                    }
+                                }
+                            })
+                        }
+
+                        if(selected_part == 'Validated')
+                        {
+                            console.log("Validated is clicked")
+                            $("#cardTitle").text("Validated Candidates")
+                            $("#tableParent").hide()
+                            $("#tableParent").show(600)
+                            // ajax call for retriving validated candidate
+                            $.ajax({
+                                url:'demo.txt',
+                                type:'GET',
+                                success:function(para)
+                                {
+                                    // give details in this format demo data:
+                                    para = [['name1','mail1'],['name2','mail2']];
+                                    $("#tableBody").text('')
+                                    for(let i=0;i<para.length;i++)
+                                    {
+                                        var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td></tr>'
+                                        $('#tableBody').append(str1) 
+                                    }
+                                }
+                            })
+                        }
+
+
+                        };
+                                
+                    }
+                })
+            })
+
+
+
+
+
+        </script>
+
+        <!-- script for displaying chart ends-->
+
+        <br><br>
+
+        <!-- display section starts here -->
+        
+        <div class="row">
+            <div class="col s12 m12">
+            <div class="card white ">
+                <div class="card-content blue-text">
+                <span class="card-title"><b id="cardTitle">Information Will Be Displayed Here</b></span>
+              
+                <!-- TABLE STARTS HERE -->
+                    <table id="tableParent" class="striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mail ID</th>
+                            
+                        </tr>
+                        </thead>
+
+                        <tbody id="tableBody">
+                        
+                        </tbody>
+                    </table>
+                    <!-- TABLE ENDS HERE -->
+
+                </div>
+
+            </div>
+            </div>
+        </div>
+                    
+        <!-- display section ends here -->
+
+    </body>
+    
+ 
+</html>

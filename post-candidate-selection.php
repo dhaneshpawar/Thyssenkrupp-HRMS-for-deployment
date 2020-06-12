@@ -37,7 +37,7 @@ input[id="uan"]
         </div>
     </nav>
     <center>
-    <h1><p  id="details"style="color:Green">Deteails Submitted Successfully</p></h1>
+    <h1><p  id="details"style="color:Green">Details Submitted Successfully</p></h1>
     </center>
     <form method="POST" action="http://localhost/hrms/api/submitevalform.php" enctype="multipart/form-data" id="postForm">
     
@@ -50,7 +50,7 @@ input[id="uan"]
                     <div class="row">
                             <div class="input-field col s12" id="appoint">
                                     <label class="custom-file-upload">
-                                            <a class="btn blue darken-1"> <input id="appletter" name="appletter" type="file" accept=".pdf, .docx" class="validate" required="" aria-required="true"/> <p id='letter1'>Appointment Letter</p></a>
+                                            <a class="btn blue darken-1"> <input id="appletter" name="appletter" type="file" accept=".pdf" class="validate" required="" aria-required="true"/> <p id='letter1'>Appointment Letter</p></a>
                                     </label>
                             </div>                        
                     </div><br><br>
@@ -59,7 +59,7 @@ input[id="uan"]
                     <div class="row">
                             <div class="input-field col s12" id="relieving">
                                     <label class="custom-file-upload">
-                                            <a class="btn blue darken-1"> <input id="relletter" name="relletter" type="file" accept=".pdf, .docx" required="" aria-required="true"> <p id='letter2'>Relieving Letter</p></a>
+                                            <a class="btn blue darken-1"> <input id="relletter" name="relletter" type="file" accept=".pdf" required="" aria-required="true"> <p id='letter2'>Relieving Letter</p></a>
                                     </label>
                             </div>                        
                     </div><br><br>  
@@ -68,7 +68,7 @@ input[id="uan"]
                     <div class="row">
                             <div class="input-field col s12">
                                     <label class="custom-file-upload" id="salrybreak">
-                                            <a class="btn blue darken-1"> <input id="salarybreak" name="salarybreak" type="file" accept=".pdf, .docx" > <p id='letter3'>Salary Breakup Letter</p></a>
+                                            <a class="btn blue darken-1"> <input id="salarybreak" name="salarybreak" type="file" accept=".pdf" > <p id='letter3'>Salary Breakup Letter</p></a>
                                     </label>
                             </div>                        
                     </div><br><br>
@@ -78,7 +78,7 @@ input[id="uan"]
                     <div class="row">
                             <div class="input-field col s12">
                                     <label class="custom-file-upload" id="pastslip">
-                                            <a class="btn blue darken-1"> <input id="pastpayslip" name="pastpayslip" type="file" accept=".pdf, .docx" > <p id='letter4'>Pay Slip</p></a>
+                                            <a class="btn blue darken-1"> <input id="pastpayslip" name="pastpayslip" type="file" accept=".pdf" > <p id='letter4'>Pay Slip</p></a>
                                     </label>
                             </div>                        
                     </div><br><br>
@@ -95,7 +95,7 @@ input[id="uan"]
                     <div class="row">
                             <div class="input-field col s12">
                                     <label class="custom-file-upload">
-                                            <a class="btn blue darken-1"> <input id="cancelcheck" name="cancelcheck" type="file" accept=".pdf, .docx" > <p id='letter5'>Cancelled Cheque</p></a>
+                                            <a class="btn blue darken-1"> <input id="cancelcheck" name="cancelcheck" type="file" accept=".pdf" > <p id='letter5'>Cancelled Cheque</p></a>
                                     </label>
                             </div>                        
                     </div><br><br>
@@ -158,28 +158,32 @@ $(document).ready(function(){
             return vars;
         }
         var token = getUrlVars()["token"];
-        var data={"token":token};
+        var expiry = getUrlVars()["explink"];
+        var data={"token":token, "expdate":expiry};
        // console.log(token);
         $.ajax({
-                                            url : 'http://localhost/hrms/api/checkExpiry2.php',
-                                            type : 'POST',
-                                            data :(data),          
-                                             success : function(para){
-                                           
-                                             if(para == "expired")
-                                             {
-                                               console.log("Expired Page");
-                                                $('#main').hide()
-                                           
-                                             }
-                                             else if(para=='success')
-                                             {
-                                                console.log("You are welcome");
-                                             
-                                             }
-                                             },
-                                            error : function(err){        
-                                            }
+                url : 'http://localhost/hrms/api/checkExpiry2.php',
+                type : 'POST',
+                data :(data),          
+                success : function(para){
+                if(para == "expired")
+                {
+                console.log("Expired Page");
+                $('#main').hide()   
+                $("#details").show();             
+                }
+                else if(para=='success')
+                {
+                console.log("You are welcome");
+                }
+                else if(para == "submitted")
+                {
+                $("#details").show();
+                $('#main').hide()
+                }
+                },
+                error : function(err){        
+                }
                  });
                 });
 

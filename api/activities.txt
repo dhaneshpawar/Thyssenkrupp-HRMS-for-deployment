@@ -1,1 +1,14 @@
 Activity		Name		Mail			Department		Date		Time		Status
+// Connection to Database
+include 'db.php';
+
+// Check for Login
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
+{
+
+}
+else
+{
+    header("refresh:0;url=notfound.html");
+}

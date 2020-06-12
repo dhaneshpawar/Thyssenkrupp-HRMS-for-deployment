@@ -4,7 +4,7 @@
 if(isset($_COOKIE['sid']))
 {
   include 'api/db.php';
-  
+  //hii by AD
   $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
   
   if($cursor)
@@ -41,7 +41,7 @@ if(isset($_COOKIE['sid']))
 <script>
 function abort_round()
 {
-  var confr = confirm("Are You Sure ?");
+  var confr = confirm("This Rouncd Will Be Removed From The Process \n Are You Sure ?");
   if(confr)
   {
  
@@ -56,7 +56,15 @@ console.log(para)
 if(para=="success")
 {
   document.location.reload();
-  }
+}
+else if(para == "fail")
+{
+  alert("operation failed")
+}
+else if(para == "notfound")
+{
+  alert("PRF Does Not Exist")
+}
 else
 {
   console.log("something went wrong")
@@ -190,6 +198,8 @@ else
                                 <th>Name</th>
                                 <th>Mail ID</th>
                                 <th>Select</th>
+                                <th>Time</th>
+                                <th>Date</th>
                                 <th class="btn blue darken-1" id="submit" disabled>Assign Interviewer</th>
                                 <th class="btn red" style="margin-left: 25px;" id="abort" onclick="abort_round()"> Abort</th>
 
@@ -229,8 +239,12 @@ $('#sentsuccess').hide()
 $('#fail').hide()
 $('#noselected').hide()
 $('#sendingmail').hide()
-var selectedmail = []
+
 var allmail = []
+var selectedmail = []
+var selectedmailID = []
+var selecteddate = []
+var selecteddate2 = []
 $(document).ready(function(){
   $('#nodata').hide()
   $('.datepicker').datepicker
@@ -251,25 +265,33 @@ $.ajax(
       {
         $('#nodata').fadeIn(600)
       }
+      else if(para == "404")
+      {
+        alert("Please Use GET Method")
+      }
       else
       {
+        
         var arr = JSON.parse(para)
-        console.log(para)
+        console.log(arr[0])
         var oldarr = []
-
+        arr
 
 
         for(let i =0;i<arr.length;i++)
         {
+           
             if(oldarr.indexOf(arr[i]) == -1)
             {
-              oldarr.push(arr[i])
-              var s1='<tr id="'+arr[i]+'row">'
-            var s2='<td>'
-            var s3='<p class="btn waves-effect blue darken-1" >'+arr[i]+'</p></td><td>'
-            var s4='<button class="waves-effect green  btn"  id='+arr[i]+' onclick="createnextround(this.id)">See Members</button></td></tr>'
-            var str=s1+s2+s3+s4
-            $('#addtr').append(str)
+              digit13 = arr[i][0]+"-"+arr[i][1]+"-"+arr[i][2]+"-"+arr[i][3]
+              appended2=  arr[i][0]+"/"+arr[i][1]+"/"+arr[i][2]+"/"+arr[i][3]+"/"+arr[i][4]+"/"+arr[i][5]
+              oldarr.push(digit13)
+              var s1='<tr id="'+digit13+'row">'
+              var s2='<td>'
+              var s3='<b>'+digit13+'</b></td><td>'
+              var s4='<button class="waves-effect green  btn"  id="'+appended2+'" onclick="createnextround(this.id)">See Members</button></td></tr>'
+              var str=s1+s2+s3+s4
+              $('#addtr').append(str)
             }
         }
       }
@@ -304,6 +326,8 @@ $('#allocation').show(600);
 $('#allocatesubmit').click(function()
 {
   $("#waiting").fadeIn(600);
+  console.log("dept - ",window.dept)
+  console.log("zone - ",window.zone)
   var groupid=window.groupid
   var iname = $('#iname').val();
   var idate = $('#idate').val();
@@ -315,37 +339,59 @@ $('#allocatesubmit').click(function()
   var iperson = $('#iperson').val();
 
   $('#allocation').hide(600);
-  $.ajax({
-  url:'http://localhost/hrms/api/interviewerongoing.php',
-  type:'POST',
-  data:{
-        "emails":selectedmail,
-        "iname":iname,
-        "intvmail":imail,
-        "date":idate,
-        "time":itime,
-        "prf":groupid,
-        "iloc":iloc,
-        "iperson":iperson,
-        "idesg":idesg,
-        "dept":idept
-      },
-  success:function(para){
-    console.log(para);
-   
-    $('#sentsuccess').fadeIn(600)
-    for(let i=0;i<selectedmail.length;i++)
+  if(imail != "" && iname != "" && idate != "" && itime != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
+  {
+    $('#allocation').hide(600);
+    $("#pleasewait").fadeIn(600);
+    for(let i=0;i<selectedmailID.length;i++)
     {
-      var ml = selectedmail[i];
-      var id = allmail.indexOf(ml) 
-      var str='#check'+id+'row';
-      $(str).remove();
-      $("#waiting").hide();
+      var b = selectedmailID[i]
+      b = b+'date'
+      b2 = b+'2'
+      console.log(b)
+      console.log(b2)
+      selecteddate.push($(b).val()) 
+      selecteddate2.push($(b2).val()) 
+      console.log("Email:",selectedmail[i]) 
+      console.log("Time:",selecteddate[i])
+      console.log("Date:",selecteddate2[i])
     }
-    selectedmail = []
+    $.ajax({
+    url:'http://localhost/hrms/api/interviewerongoing.php',
+    type:'POST',
+    data:{
+          "emails":selectedmail,
+          "cantimes" : selecteddate,
+          "candates" : selecteddate2,
+          "iname":iname,
+          "intvmail":imail,
+          "date":idate,
+          "time":itime,
+          "prf":groupid,
+          "iloc":iloc,
+          "iperson":iperson,
+          "idesg":idesg,
+          "dept":idept,
+          "posdept":window.dept,
+          "poszone":window.zone
+        },
+    success:function(para){
+      console.log(para);
+    
+      $('#sentsuccess').fadeIn(600)
+      for(let i=0;i<selectedmail.length;i++)
+      {
+        var ml = selectedmail[i];
+        var id = allmail.indexOf(ml) 
+        var str='#check'+id+'row';
+        $(str).remove();
+        $("#waiting").hide();
+      }
+      selectedmail = []
 
+    }
+    })
   }
-  })
 
  })
 })   
@@ -362,6 +408,9 @@ function selection(x)
   if($(b).prop("checked") == true)
   {
     selectedmail.push($(y).text())
+    selectedmailID.push(b)
+    console.log('mail:'+selectedmail)
+    console.log('ID:'+selectedmailID)
   }
   else
   {                                               
@@ -370,16 +419,27 @@ function selection(x)
       if ( selectedmail[i] === $(y).text()) 
       {
         selectedmail.splice(i, 1); 
+        selectedmailID.splice(i, 1)
         i--;
       }
     }
-
+    console.log(selectedmail)
+    console.log(selectedmailID)
   }
 }
 
 var id_round
 function createnextround(id)
 {
+  
+  id = id.split("/")
+  console.log("This is my - "+id[0])
+  window.dept = id[4]
+  window.zone = id[5]
+  console.log("Department : "+id[4])
+  console.log("Zone : "+id[5])
+  id = id[0]+"-"+id[1]+"-"+id[2]+"-"+id[3]
+
   $('#adddetail').text('')
   // alert(id)
   id_round = id
@@ -387,7 +447,7 @@ function createnextround(id)
   $('#allocatingcandidate').fadeIn(600);
   var p1='<b>ID:'+id_round+'<b>'
   $('#rid').replaceWith(p1)
-  console.log("prffalkjsdf;lakjsfd = ",id_round)
+  console.log(" ID  = ",id_round)
   $.ajax({
     url:'http://localhost/hrms/api/nextround.php',
     type:'POST',
@@ -397,7 +457,7 @@ function createnextround(id)
          
     success:function(para)
     {
-      alert(para)  
+      // alert(para)  
       para = JSON.parse(para)
       
       window.allmembers = para
@@ -421,9 +481,13 @@ function createnextround(id)
           allmail[i] = arr[i]
           var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p >'+arr[i][0]+'</p></a></td><td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p id="check'+i+'mail">'+arr[i][1]+'</p></a></td><td><label>'
           var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
-          var s3='<span class="blue-text darken-1" ></span></label></td><td></td></tr>'
-          var str=s1+s2+s3
+          var s3='<span class="blue-text darken-1" ></span></label></td>'
+          var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
+          var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td></tr>'
+          var str=s1+s2+s3+s4+s5
           $('#adddetail').append(str)
+          $('.timepicker').timepicker();
+          $('.datepicker').datepicker();
         }
       }
       // alert(para.length)
@@ -445,7 +509,7 @@ function terminateround()
     else
     {
       counter=1;
-      var confrm = confirm("Are You sure ? ");
+      var confrm = confirm("Interview Process Will Be Completed \n You Can See These Memebers in Your History \n Are You sure ? ");
       console.log(selectedmail)
       var groupid=window.groupid
       console.log(groupid)
@@ -461,6 +525,8 @@ function terminateround()
           selectedmail="nomail";
         }
         // alert(selectedmail);
+
+        
         $.ajax({
         url:'http://localhost/hrms/api/terminateround.php',
         type:'POST',
@@ -468,6 +534,7 @@ function terminateround()
           'prf':groupid,
           "emails":selectedmail,
           "allmembers":window.allmembers
+
           },
         success:function(para)
         {

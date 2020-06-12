@@ -35,6 +35,27 @@ if(isset($_COOKIE['sid']))
 
     <script src="public/js/materialize.js"></script>
     <script src="public/js/materialize.min.js"></script>
+  
+  <style>
+   
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#loader > #txt{
+  font-size:23px;
+  color:lightskyblue;
+  margin-left:31% !important;
+  margin-top:18% !important; 
+}
+</style>
+
 
 </head>
 <body>
@@ -97,7 +118,27 @@ if(isset($_COOKIE['sid']))
                   <b><p id="pleasewait" style="color:red">Updating Information Please Wait...</p></b>
 
                   </center>
-                  <center><b id="nomems"  style="color:red;margin-left:10%;font-size:20px;"> Application Blank Not Submitted By The Members </b></center>
+                  <u><b id="nomems"  style="color:red;margin-left:30%;font-size:20px;cursor:pointer;"> Application Blank Not Submitted By The Members </b></u>
+                  <br>
+                  <b id="expiry"  style="color:green;margin-left:35%;font-size:20px;cursor:pointer;"> Form Validity </b>
+
+                  <div class="row">
+                    <div class="col s5 offset-m3" id=showmembersdiv>
+                      <table class="stripped">
+                      <thead>
+                        <tr class="blue darken-1 white-text">
+                          <br>
+                          <th>Sr No.</th>
+                          <th>Email ID</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody id="memberstable">
+                      </tbody>
+                      </table>
+                    </div>
+                  </div>
+
 
                   <div class="row" id="allocatingcandidate" >
                     <div class="col s12 m12">
@@ -165,6 +206,7 @@ if(isset($_COOKIE['sid']))
                                 <th>Mail ID</th>
                                 <th>Select</th>
                                 <th>Time</th>
+                                <th>Date</th>
                                 <th class="btn blue darken-1" name="submit" id="submit" disabled>Assign Interviewer</th>
                                 <th class="btn red" style="margin-left: 25px;" id="abort" onclick="abort_round()"> Abort</th>
                                 
@@ -183,7 +225,13 @@ if(isset($_COOKIE['sid']))
                       </div>
                     </div>
                   </div>
-                  </div>         
+                  </div> 
+                  <div id="loader">
+                    <div id="txt">
+                      <b>Please wait.. while we schedule this interview</b>
+                    </div>
+                  </div>
+    </div>        
                           
     <style>
     html{
@@ -195,13 +243,21 @@ if(isset($_COOKIE['sid']))
 
 <script>
 $("#nomems").hide()
+$("#expiry").hide()
+
 var id_round = "0";
 var selectedmail = []
 var selectedmailID = []
 var selecteddate = []
+var selecteddate2 = []
 var timearray=[]
 var allmail = []
 $(document).ready(function(){
+
+  $("#nomems").hide()
+  $("#expiry").hide()
+  $("#showmembersdiv").hide()
+  $("#loader").hide()
   
   $('.datepicker').datepicker
   ({
@@ -227,10 +283,12 @@ $(document).ready(function(){
         for(let i =0;i<arr.length;i++)
         {
           var appended=arr[i].prf+"-"+arr[i].pos+"-"+arr[i].iid+"-"+arr[i].rid
+          var appended2=arr[i].prf+"/"+arr[i].pos+"/"+arr[i].iid+"/"+arr[i].rid+"/"+arr[i].dept+"/"+arr[i].poszone;
+          console.log(appended2)
           var s1='<tr id="'+appended+'row">'
           var s2='<td>'
-          var s3='<p class="btn waves-effect blue darken-1" >'+appended+'</p></td><td>'
-          var s4='<button class="waves-effect green  btn"  id='+appended+' onclick="createnextround(this.id)">Initiate Round</button></td></tr>'
+          var s3='<b >'+appended+'</b></td><td>'
+          var s4='<button class="waves-effect green  btn"  id="'+appended2+'" onclick="createnextround(this.id)">Initiate Round</button></td></tr>'
           var str=s1+s2+s3+s4
            $('#addtr').append(str)
         }
@@ -274,7 +332,8 @@ $(document).ready(function(){
   })
 
   $('#allocatesubmit').click(function(){
-      console.log(iid);
+
+      $("#loader").show()
       var imail = $('#imail').val();
       var iname = $('#iname').val();
       var idate = $('#idate').val();
@@ -283,8 +342,10 @@ $(document).ready(function(){
       var idesg = $('#idesg').val();
       var iloc = $('#location').val();
       var iperson = $('#contactperson').val();
+      var posdept = window.dept
+      var poszone = window.zone
       var candidatetime
-
+    
       if(imail != "" && iname != "" && idate != "" && itime != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
       {
         $('#allocation').hide(600);
@@ -293,10 +354,14 @@ $(document).ready(function(){
         {
           var b = selectedmailID[i]
           b = b+'date'
+          b2 = b+'2'
           console.log(b)
+          console.log(b2)
           selecteddate.push($(b).val()) 
+          selecteddate2.push($(b2).val()) 
           console.log("Email:",selectedmail[i]) 
           console.log("Time:",selecteddate[i])
+          console.log("Date:",selecteddate2[i])
         }
       $.ajax({
         url:'http://localhost/hrms/api/interviewer.php',
@@ -304,7 +369,8 @@ $(document).ready(function(){
         data:{
           //dept needed to be submitted
           'emails':selectedmail,
-          'dates':selecteddate,
+          'times':selecteddate,
+          'dates':selecteddate2,
           'intv':imail,
           'date':idate,
           'time':itime,
@@ -313,9 +379,9 @@ $(document).ready(function(){
           "idesg":idesg,
           "idept":idept,
           "iloc":iloc,
-          "iperson":iperson
-
-
+          "iperson":iperson,
+          "dept":posdept,
+          "poszone":poszone
           //"dept":"sales"
 
         },
@@ -331,11 +397,13 @@ $(document).ready(function(){
               $(str).remove();
               //document.location.reload();
               $("#pleasewait").hide();
-              window.setTimeout(function(){location.reload()},1000)
+              $("#loader").hide();
+               window.setTimeout(function(){location.reload()},1000)
 
             }
             selectedmail = []
             selecteddate = []
+            selecteddate2 = []
             selectedmailID=[]
         }
       })
@@ -391,13 +459,22 @@ var id_round
 
 function createnextround(id)
 {
+  $("#nomems").empty()
+  
   // $('.timepicker').timepicker();
   window.iid=id;
-  id_round = id
-  console.log(id_round)
-  $('#allocatingcandidate').fadeIn(600);
+  console.log(iid)
+  id = id.split("/")
+  id_round = id[0]+"-"+id[1]+"-"+id[2]
 
+  //dept zone added to database
+  window.dept = id[4]
+  window.zone = id[5]
+  // console.log(zone)
+  console.log(id_round)
+  
   var p1='<b>ID:'+id_round+'<b>'
+  $('#showmembersdiv').hide(); 
   $('#rid').replaceWith(p1);
   $.ajax({
     url:'http://localhost/hrms/api/baseroundmembers.php',
@@ -407,23 +484,68 @@ function createnextround(id)
          },
     success:function(para)
     {
-      
-
+      $('#allocatingcandidate').fadeIn(600);
       para = JSON.parse(para)
-       console.log("this are base round mems  = ",para[1])
+      var arr1=[]
+      var toggle = 0   
+      //  
+      $("#nomems").click(function()
+      {
+        $("#memberstable").empty()
+        if(toggle == 0)
+        {
+          toggle = 1
+          $("#showmembersdiv").fadeIn(1200);
+            for(let i=0;i<para[1];i++)
+            {
+              j = parseInt(i)
+              j += 1
+              var membersdata='<tr><td>'+j+'</td><td>'+para[2][i]+'</td</tr>'
+              $("#memberstable").append(membersdata)
+            }
+        }
+        else
+        {
+          toggle = 0
+          $("#showmembersdiv").fadeOut(100);
+
+        }    
+      })
+       console.log("this are base round mems  = ",para)
+
        if(para[0] == null)
        {
          $("#submit").hide()
          $("#abort").hide()
          $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
-
          $("#nomems").show()
+
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
        }
       else if(para[1] != 0)
       {
         $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
         $("#nomems").show()
 
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
 
       $('#adddetail').text("")
       var arr = para[0]
@@ -434,19 +556,23 @@ function createnextround(id)
         console.log("Name - ",allmail[i][0]);
         console.log("Email - ",allmail[i][1]);
         var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td><td><p id="check'+i+'mail">'+arr[i][1]+'</p></td><td><label>'
-        var s2='<input type="checkbox" class="filled-in" id="check'+i+'" />'
+        var s2='<input type="checkbox" class="filled-in" id="check'+i+'"onclick="selection(this.id)"/>'
         var s3='<span class="blue-text darken-1" ></span></label></td>'
-        var s4='<td><input type="text" id="check'+i+'date" class="timepicker"></td></tr>'
-        var str=s1+s2+s3+s4
+        var s4='<td><input type="text" id="check'+i+'date" class="timepicker"></td>'
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td></tr>'
+        var str=s1+s2+s3+s4+s5
+       
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
+        $('.datepicker').datepicker();
+        
       }
       
     }
     else
     {
       $("#nomems").hide()
-
+ 
  
       $('#adddetail').text("")
       var arr = para[0]
@@ -459,11 +585,13 @@ function createnextround(id)
         var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td><td><p id="check'+i+'mail">'+arr[i][1]+'</p></td><td><label>'
         var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
         var s3='<span class="blue-text darken-1" ></span></label></td>'
-        var s4='<td><input id="check'+i+'date" class="timepicker" ></td></tr>'
-        var str=s1+s2+s3+s4
+        var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td></tr>'
+        var str=s1+s2+s3+s4+s5
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
+        $('.datepicker').datepicker();
       }
     }
     }

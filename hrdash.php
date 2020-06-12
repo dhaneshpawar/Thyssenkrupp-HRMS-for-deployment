@@ -97,9 +97,7 @@ if(isset($_COOKIE['sid']))
 <br><br>
 <!-- nav and side menu ended -->
 
-    <center>
-<!-- <button class="button">You Are Logged In As HR Of  <?php echo $cursor['rg']; ?> Region and Department Of <?php echo $cursor['dept']; ?> </button> -->
-</center>
+  
 
 
 

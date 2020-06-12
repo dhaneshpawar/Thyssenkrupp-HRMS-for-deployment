@@ -351,6 +351,10 @@ $(document).ready(function(){
         {
 
             console.log(para)
+            if(para == '["cv","pan","Adhaar","Photo","graduation","ap","al","rl","payslip","cc"]')
+            {
+                $("#formdiv").hide()
+            }
             para=JSON.parse(para)
             
             for(let i=0;i<para.length;i++)

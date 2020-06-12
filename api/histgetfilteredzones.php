@@ -13,9 +13,12 @@ $arr2=array();
         {
             
             $iids=array();
+            //find prf with specified zone and and status
             $cursor = $db->prfs->find(array("zone"=>$_POST['zone'],"status"=>"completed"));
             $i=0;
             $j=0;
+
+            //find iid of those prf with specified zone and and status
             $cursor1 = $db->rounds->find(array("status"=>"completed"));
           
             foreach($cursor1 as $d)
@@ -41,6 +44,7 @@ $arr2=array();
 
             if(count($arr2) == 0)
             {
+                //If there is no data 
                 echo "No data";
             }
             else
@@ -50,6 +54,7 @@ $arr2=array();
         }
         else
         {
+            //filter using dept,zone and status
             $iids=array();
             $cursor = $db->prfs->find(array("department"=>$_POST['dept'],"zone"=>$_POST['zone'],"status"=>"completed"));
             $i=0;
@@ -80,6 +85,7 @@ $arr2=array();
 
             if(count($arr2) == 0)
             {
+                //If there is no data 
                 echo "No data";
             }
             else

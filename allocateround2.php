@@ -170,9 +170,12 @@ function abort_round()
                             <thead>
                               <tr>
                                 <th>Mail ID</th>
+                                <th>Old Date</th>
+                                <th>New Date</th>
+                                <th>Old Time</th>
+                                <th>New Time</th>
                                 <th>Select</th>
                                 <th class="btn blue darken-1" id="submit">Assign Interviewer</th>
-                                
                               </tr>
                             </thead>
                             <tbody id="adddetail">
@@ -222,7 +225,7 @@ $(document).ready(function(){
           var s7='<tr id="reason row">'
         
           var s2='<td>'
-          var s3='<p class="btn waves-effect blue darken-1" >'+appended+'</p></td><td>'
+          var s3='<b>'+appended+'</b></td><td>'
           var s8='<p >'+arr[i]['intvmail']+'</p></td><td>'
           var s9='<p >'+reason+'</p></td><td>'
           var s10='<p>'+arr[i]['invname']+'</p></td><td>'
@@ -296,6 +299,8 @@ $(document).ready(function(){
           'intv':imail,
           'date':idate,
           'time':itime,
+          'dates':dates,
+          'times':times,
           'prf':iid,
           'iname':iname,
           "idesg":idesg,
@@ -326,29 +331,44 @@ $(document).ready(function(){
 })
 //end of document.ready(function)   
 
+dates = []
+times = []
 var ctr=0
 function selection(x)
 {
  
   var b = '#'+x
   var y ='#'+x+'mail'  
- 
+ var dateid = '#'+x+'date21';
+ var timeid = '#'+x+'tp1';
+
+console.log("Date id" + $(dateid).val())
+console.log("Time id"+timeid)
   if($(b).prop("checked") == true)
   {
     selectedmail.push($(y).text())
+    dates.push($(dateid).val())
+    times.push($(timeid).val())
     console.log(selectedmail)
+    console.log(dates)
+    console.log(times)
+
   }
   else
   {                                               
     for( var i = 0; i < selectedmail.length; i++)
     { 
-      if ( selectedmail[i] === $(y).text()) 
+      if (selectedmail[i] === $(y).text()) 
       {
         selectedmail.splice(i, 1); 
+        dates.splice(i, 1); 
+        times.splice(i, 1); 
         i--;
       }
     }
     console.log(selectedmail)
+    console.log(dates)
+    console.log(times)
   }
 }
 
@@ -382,17 +402,26 @@ function createnextround(ids)
       //$('#rid').replaceWith(p1);  
      // console.log("this are rejected round mamnreafs = ",para)
       $('#adddetail').text("")
+      // console.log("mails : "+para.members)
       var arr = JSON.parse(para)
-      console.log("mails : "+arr)
-      for(let i =0;i<arr.length;i++)
+      console.log("mails : "+arr.members[0])
+      for(let i =0;i<(arr.members).length;i++)
       {
-        allmail[i] = arr[i];
-        var s1='<tr id="check'+i+'row"><td><p id="check'+i+'mail">'+arr[i]+'</p></td><td><label>'
-        var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
-        var s3='<span class="blue-text darken-1" ></span></label></td><td></td></tr>'
-        var str=s1+s2+s3
+
+        allmail[i] = arr.members[i];
+
+        var s1='<tr id="check'+i+'row"><td><p id="check'+i+'mail">'+arr.members[i]+'</p></td>'
+        var txt2 = '<td><input style="width:70%;" id="check'+i+'date2" disabled value="'+arr.dates[i]+'" class="datepicker" ></td>'
+        var txt3 = '<td><input style="width:70%;" id="check'+i+'date21" value="'+arr.moddates[i]+'" class="datepicker" ></td>'
+        var txt4 = '<td><input style="width:70%;" type="text" style="width:50%;" disabled id="check'+i+'tp" value="'+arr.times[i]+'" class="timepicker"></td>'
+        var txt5 = '<td><input style="width:70%;" type="text" style="width:50%;" id="check'+i+'tp1" value="'+arr.modtimes[i]+'" class="timepicker"></td>'
+        var s2='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
+        var s3='<span class="blue-text darken-1" ></span></label></td></tr>'
+        var str=s1+txt2+txt3+txt4+txt5+s2+s3
        
         $('#adddetail').append(str)
+        $('.timepicker').timepicker();
+        $('.datepicker').datepicker();
       }
     }
   })
