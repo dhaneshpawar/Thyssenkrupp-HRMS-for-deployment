@@ -224,6 +224,7 @@ Atharva	asdeshpande@mitaoe.ac.in	sales		12/06/2020	01:59:52 PM	Login
 <<<<<<< HEAD
 Pragati	psgaikwad@mitaoe.ac.in	sales		12/06/2020	03:32:32 PM	Login
 =======
+<<<<<<< HEAD
 Pragati	psgaikwad@mitaoe.ac.in	sales		12/06/2020	03:14:12 PM	Login
 Atharva	asdeshpande@mitaoe.ac.in	sales		12/06/2020	03:15:20 PM	Login
 Atharva	asdeshpande@mitaoe.ac.in	sales		12/06/2020	03:22:30 PM	Logout
@@ -235,3 +236,12 @@ Pragati	psgaikwad@mitaoe.ac.in	sales		12/06/2020	03:56:35 PM	Login
 Pragati	psgaikwad@mitaoe.ac.in	sales		12/06/2020	04:04:01 PM	Logout
 Pragati	psgaikwad@mitaoe.ac.in	sales		12/06/2020	04:04:09 PM	Login
 Atharva	asdeshpande@mitaoe.ac.in	sales		12/06/2020	06:30:09 PM	Login
+=======
+Atharva	asdeshpande@mitaoe.ac.in	sales		10/06/2020	03:11:28 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		10/06/2020	03:24:31 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		10/06/2020	03:24:36 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		10/06/2020	03:24:46 PM	Logout
+>>>>>>> 248309c8b0ecd65225b495832a2d43ba14b28238
+
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		12/06/2020	12:06:07 PM	Login
+>>>>>>> mail correction
