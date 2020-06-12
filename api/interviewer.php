@@ -1,8 +1,7 @@
 <?php
-include 'maildetails.php';
+
 include 'db.php';
-
-
+include 'maildetails.php';
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
 if($cursor)

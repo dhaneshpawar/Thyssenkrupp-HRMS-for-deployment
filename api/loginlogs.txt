@@ -221,3 +221,4 @@ Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		09/06/2020	07:36:12 PM	Login
 >>>>>>> 4fb23c55ad248d936c499adbde33936cdf9a9d68
 
 Atharva	asdeshpande@mitaoe.ac.in	sales		12/06/2020	01:59:52 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		12/06/2020	03:32:32 PM	Login

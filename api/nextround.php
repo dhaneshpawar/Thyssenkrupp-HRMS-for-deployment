@@ -1,10 +1,10 @@
 <?php 
 
-
+include 'db.php';
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 if($cursor)
 {
-    include 'db.php';
+    
     error_reporting(0);
     if(isset($_POST))
     { 
