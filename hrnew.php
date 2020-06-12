@@ -577,8 +577,8 @@ $('#submitmail').click(function()
     },
     success : function(para)
     {
-      //para=JSON.parse(para);
-      // console.log("this is ",para[0]);
+      // para=JSON.parse(para);
+      console.log("this is ",para[0]);
      
       if(para == "sent")
       {
