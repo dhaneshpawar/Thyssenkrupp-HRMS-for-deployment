@@ -361,3 +361,4 @@ Atharva	asdeshpande@mitaoe.ac.in	sales		10/06/2020	03:11:28 PM	Login
 Atharva	asdeshpande@mitaoe.ac.in	sales		10/06/2020	03:24:31 PM	Logout
 Pragati	psgaikwad@mitaoe.ac.in	sales		10/06/2020	03:24:36 PM	Login
 Pragati	psgaikwad@mitaoe.ac.in	sales		10/06/2020	03:24:46 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		12/06/2020	10:14:33 AM	Login
