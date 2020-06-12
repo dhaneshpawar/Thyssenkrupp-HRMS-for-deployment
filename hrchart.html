@@ -128,13 +128,17 @@
                 $('.modal').modal();
                 // ajax call for filling up chart details
                 $.ajax({
-                    url:'demo.txt',
+                    url:'http://localhost/hrms/api/getGeneralizedData.php',
                     type:'GET',
-                    success:function(para)
+                    success:function(paradata)
                     {
                         // give numbers here demo data
-                        para=[50,20,10,30]//graph 1 data
-                        para2=[50,20]//graph2 data
+                        console.log(paradata)
+                        para=paradata.generalized;
+                        para2=paradata.initiateddata;
+                        
+                        para=[para.initiated,para.ongoing,para.completed,para.avail]//graph 1 data
+                        para2=[para2.initiated,para2.assigned]//graph2 data
                         para3=[30,45,45]//graph 3 data 
 
                         // configuration of 1st chart(generalized chart)
