@@ -1,11 +1,11 @@
 <?php
-
+include 'db.php';
     $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
     if($cursor)
     {
         if(isset($_POST))
         {
-            include 'db.php';
+            
             $cursorlog = $db->session->findOne(array("sid" => $_COOKIE['sid']));
             $fp = fopen('loginlogs.txt', 'a');
             date_default_timezone_set("Asia/Kolkata");

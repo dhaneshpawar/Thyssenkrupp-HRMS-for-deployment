@@ -1,10 +1,10 @@
 <?php 
+    include 'db.php';
 
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
  
 if($cursor)
 {
-    include 'db.php';
     $mail=$_POST['mail'];
     $digit13=$_POST['id'];
     $digit13 = explode("-",$digit13);
