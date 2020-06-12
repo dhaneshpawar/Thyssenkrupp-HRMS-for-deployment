@@ -1,8 +1,9 @@
 <?php 
+  include "db.php";
   $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
   if($cursor)
   {
-      include "db.php";
+      
       $digit13 = explode("-",$_POST['digit13']);
       $prf = $digit13[0]; 
       $pos = $digit13[1];

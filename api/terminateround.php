@@ -1,5 +1,5 @@
-<?php include 'db.php';
-
+<?php 
+include 'db.php';
 include 'maildetails.php';
 
 $cnt = 0;

@@ -1,9 +1,9 @@
 <?php
-
+ include "db.php";
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 if($cursor)
 {
-    include "db.php";
+   
     include 'maildetails.php';
     $mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
     $mail->addReplyTo(Email, 'Information');

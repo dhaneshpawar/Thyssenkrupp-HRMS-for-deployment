@@ -6,7 +6,6 @@
 //Added by Sarang - 03/14/2020
 //when first round entry is being done  enter dept also to run this file 
 include "db.php";
-
 $arr2=array();
 
         if($_POST['dept'] == "All" )

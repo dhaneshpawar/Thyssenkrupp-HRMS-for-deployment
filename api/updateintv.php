@@ -5,8 +5,6 @@ if($cursor)
 {
 
     include 'maildetails.php';
-    
-
     $mail->setFrom("tkep", 'Update in the interview procedure');
     $mail->addReplyTo(Email, 'Information');
     $mail->isHTML(true);   

@@ -527,13 +527,15 @@ $(document).ready(function(){
       for(let i=0;i<=para.length;i++)
       {
         arr[i]=para[i];
+        
       }
       dept[0]="All"
       for(let i =1 ;i<para.length;i++)
       {
-        dept[i] = para[i][3]
+        dept[i] = para[i-1][3]
       }
       uniquedept = removeusingSet(dept);
+      
       for(i=0;i<uniquedept.length;i++)
       {
         var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
