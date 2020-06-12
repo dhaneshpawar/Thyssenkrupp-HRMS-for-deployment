@@ -1,30 +1,42 @@
-<?php include 'db.php';
+<?php
+
+// Connection to Database
+include 'db.php';
 error_reporting(0);
 
-if(isset($_GET))
- {
-    $cursor = $db->rounds->find(array("status"=>"invcomplete"));
- 
-    if($cursor)
+// Check for Login
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
+{
+    if(isset($_GET))
     {
-        $i = 0;
-        foreach($cursor as $document)
+        $cursor = $db->rounds->find(array("status"=>"invcomplete"));
+        if($cursor)
         {
-            $arr[$i] = array($document['prf'],$document['pos'],$document['iid'],$document['rid'],$document['dept'],$document['poszone']);
-            $i++;
-        }
-        if(count($arr)==0)
-        {
-            echo "no data";
+            $i = 0;
+            foreach($cursor as $document)
+            {
+                // Get base and next round completed PRFs
+                $arr[$i] = array($document['prf'],$document['pos'],$document['iid'],$document['rid'],$document['dept'],$document['poszone']);
+                $i++;
+            }
+            if(count($arr)==0)
+            {
+                echo "no data";
+            }
+            else
+            {
+                echo json_encode($arr);
+            }
         }
         else
         {
-          echo json_encode($arr);
+            echo "404";
         }
     }
     else
     {
-        echo "404";
+        header("refresh:0;url=notfound.html");
     }
 }
 else

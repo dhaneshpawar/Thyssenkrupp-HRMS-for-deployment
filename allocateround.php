@@ -56,7 +56,15 @@ console.log(para)
 if(para=="success")
 {
   document.location.reload();
-  }
+}
+else if(para == "fail")
+{
+  alert("operation failed")
+}
+else if(para == "notfound")
+{
+  alert("PRF Does Not Exist")
+}
 else
 {
   console.log("something went wrong")
@@ -256,6 +264,10 @@ $.ajax(
       if(para=='no data')
       {
         $('#nodata').fadeIn(600)
+      }
+      else if(para == "404")
+      {
+        alert("Please Use GET Method")
       }
       else
       {
