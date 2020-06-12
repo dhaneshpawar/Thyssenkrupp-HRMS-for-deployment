@@ -198,7 +198,7 @@ if(isset($_COOKIE['sid']))
  
 
 <div class="row" id="dumpdiv">
-    <div class="col s4 offset-m5">
+    <div class="col s4 offset-m4">
       <div class="card white darken-1">
         <div class="card-content blue-text">
           <span class="card-title"><b><center>Upload Email Dump</center></b></span>
@@ -378,15 +378,15 @@ function xyz(x)
           
   </div>
   
-
+<center><b>OR <br> <br> Enter Email IDs Manually Here <br></b> </center>
   <div class="row" id="emailcollection">
-    <div class="input-field col s4 offset-m5 blue-text">
+    <div class="input-field col s4 offset-m4 blue-text">
       <i class="material-icons prefix">email</i>
-      <input id="email" onfocus="addText(this)" type="text" class="validate" placeholder="Enter Email">
+      <input id="email" onfocus="addText(this)" type="text" class="validate" placeholder="Enter Email Address">
     </div>
   </div>
   <div class="row">
-  <div class="input-field col s4 offset-m5 center">
+  <div class="input-field col s4 offset-m4 center">
     <button  class="btn waves-effect waves-light blue darken-1" id="submitmail" >Submit Mail
       <i class="material-icons right">send</i>
     </button>
@@ -491,7 +491,7 @@ function addText(x)
 {
 ctr = ctr+1
 var str = 'email'+ctr
-var txt="<div class='row'><div class='input-field col s4 offset-m5  blue-text' ><i class='material-icons prefix'>email</i>  <input id='"+str+"' onfocus='addText(this)' type='text' class='validate' placeholder='Enter Email'></div></div>"
+var txt="<div class='row'><div class='input-field col s4 offset-m4  blue-text' ><i class='material-icons prefix'>email</i>  <input id='"+str+"' onfocus='addText(this)' type='text' class='validate' placeholder='Enter Email Address'></div></div>"
 $("#emailcollection").append(txt);
 }
 var arr=[]
