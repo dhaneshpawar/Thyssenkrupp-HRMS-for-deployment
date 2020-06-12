@@ -92,8 +92,8 @@
 <!-- nav and side menu ended -->
 
  <div class="row">
-<div class="col s12 blue lighten-4" style="max-width: 304%;overflow-y: scroll;">
-  <table class="striped" style="max-width: 304%;overflow-y: scroll;">
+<div class="col s12 blue lighten-4">
+  <table class="striped " >
     <thead>
       <tr>
           <th>PRF</th>
@@ -118,25 +118,43 @@
 <div id='updatediv' class="row">
     <br>
     <b style="color:red;margin-left:28%;font-size:18px;" >You Can Edit The Following - Interviewer, Date & Time</b><br><br>
-    <div class="col s12  m12  blue lighten-4" style="max-width: 304%;overflow-y: scroll;">
+    <div class="col s10  m12  blue lighten-4">
            
-            <div class="row" style="max-width: 304%;overflow-y: scroll;">
+            <div class="row" >
                 
-                <div class="input-field col s12">
-                <b>Name</b>
+                <div class="input-field col s3">
+                <b>Interviewer Name</b>
                 <input id="interviewer_name" type="text" class="validate">
-                <b>Email</b>
+                </div>
+                <div class="input-field col s3">
+                <b>Interviewer Email</b>
                 <input id="interviewer_email" type="text" class="validate">
-                <b>Department</b>
+                </div>
+                <div class="input-field col s3">
+                <b>Department Name</b>
                 <input id="interviewer_dept" type="text" class="validate">
-                <b>Location</b>
+                </div>
+
+                <div class="input-field col s3">
+                <b>Interview Location</b>
                 <input id="iloc" type="text" class="validate">
-                <b>Contact</b>
+                </div>
+                <div class="input-field col s3">
+                <b>Contact Person</b>
                 <input id="iperson" type="text" class="validate">
+                </div>
+
+                <div class="input-field col s3">
                 <b>Designation</b>
                 <input id="interviewer_dsg" type="text" class="validate">
+                </div>
+
+                <div class="input-field col s3">
                 <b>Interview Date</b>
                 <input id="interview_date" type="text" class="datepicker" type="text">
+                </div>
+
+                <div class="input-field col s3">
                 <b>Interview Time</b>
                 <input id="interview_time" type="text" class="timepicker" type="text">
                 </div>
@@ -146,7 +164,7 @@
                 </center>
             </div>
             <hr style="border: 2px solid black";>
-            <table class="striped" style="max-width: 304%;overflow-y: scroll;">
+            <table class="striped">
                     <thead>
                       <tr>
                       

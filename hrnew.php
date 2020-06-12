@@ -49,26 +49,14 @@ if(isset($_COOKIE['sid']))
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-}
-
-  
-  @media screen and (max-width: 800px) {
-    .dropdown-trigger{
-    min-width: 62%;
-    margin: 5%;
-  }  
-  .row .col.s4{
-    width: 100%;
-  }
-}
-</style>
+}</style>
 
 <body>
 
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal" style="width:90%">
-    <div class="modal-content" style="max-width: 304%;overflow-y: scroll;">
+    <div class="modal-content">
         
       <table style="border-radius:5px solid black;">
         <tr id="modalheader" >
@@ -153,8 +141,8 @@ if(isset($_COOKIE['sid']))
 
  <div class="row">
 
-<div class="col s12  blue lighten-4" style="max-width: 304%;overflow-y: scroll;">
-  <table class="striped" >
+<div class="col s12  blue lighten-4">
+  <table class="striped">
     <thead>
       <tr>
           <th>Instance ID</th>
@@ -180,8 +168,8 @@ if(isset($_COOKIE['sid']))
 <button class="button" id="kindlybtn">Kindly Enter the email IDs for below PRF</button>
 </center>
 <br>
-<div class="col s7 offset-m3 blue lighten-4" id="selectedrow" style="max-width: 304%;overflow-y: scroll;">
-  <table class="striped" >
+<div class="col s7 offset-m3 blue lighten-4" id="selectedrow">
+  <table class="striped">
     <thead>
       <tr>
           <th>Instance ID</th>
@@ -591,8 +579,8 @@ $('#submitmail').click(function()
     },
     success : function(para)
     {
-      //para=JSON.parse(para);
-      // console.log("this is ",para[0]);
+      // para=JSON.parse(para);
+      console.log("this is ",para[0]);
      
       if(para == "sent")
       {

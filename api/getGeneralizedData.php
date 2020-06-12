@@ -16,7 +16,7 @@ if($cursor){
         }
     
     //echo "Current user ".$uid."<br>";
-    //about generalized data
+
     $collection=$db->generalized;
 
     $completed=$collection->count(array('uid'=>$uid,'status'=>'completed'));
@@ -25,57 +25,9 @@ if($cursor){
     $avail=$collection->count(array('uid'=>$uid,'status'=>'avail'));
     $initiated=$collection->count(array('uid'=>$uid,'status'=>'initiated'));
     
-    $generalized=array("uid"=>$uid,"ongoing"=>$ongoing,"avail"=>$avail,"completed"=>$completed,"initiated"=>$initiated);
+    $currentrounds=array("uid"=>$uid,"ongoing"=>$ongoing,"avail"=>$avail,"completed"=>$completed,"initiated"=>$initiated);
 
-    //about initiated rounds
-
-    $collection=$db->interviews;
-
-    $initiated_not_assign=$collection->count(array('status'=>0,'accepted'=>'yes'));
-
-    $assigned=$collection->count(array('status'=>0,'accepted'=>'no'));
-
-    $initiateddata=array("initiated"=>$initiated_not_assign,"assigned"=>$assigned);
-
-    //about completed rounds
-
-    // $collection=$db->rounds;
-
-    // $rounds=$collection->find();
-
-    // $roundsdata=array();
-    // $collection=$db->tokens;
-    // foreach($rounds as $rid=>$val){
-    //     if(in_array($val->prf,$roundsdata)==false){
-           
-
-    //         $alltokens=$collection->find(array("prf"=>$val->prf));
-
-    //         $offer_letter_count=$collection->find(array("afterselection"=>6));
-
-
-
-
-
-            
-
-
-
-    //     }
-    // }
-
-    
-    
-
-
-
-
-    
-
-    $para=array('generalized'=>$generalized,"initiateddata"=>$initiateddata);
-
-
-    echo json_encode($para);
+    echo json_encode($currentrounds);
 
 }
 else{
