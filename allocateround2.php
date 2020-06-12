@@ -82,8 +82,8 @@ function abort_round()
                   <div class="row">
                     <div class="col s12 m12">
                       <div class="card  white">
-                        <div class="card-content blue-text" style="max-width: 304%;overflow-y: scroll;">
-                            <table class="striped" style="max-width: 304%;overflow-y: scroll;">
+                        <div class="card-content blue-text">
+                            <table class="striped">
                                 <thead>
                                   <tr>
                                       <th>PRF-POSITION-INSTANCE-ROUND</th>

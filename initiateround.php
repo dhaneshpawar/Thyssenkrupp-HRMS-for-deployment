@@ -119,7 +119,7 @@ if(isset($_COOKIE['sid']))
 
                   </center>
                   <u><b id="nomems"  style="color:red;margin-left:30%;font-size:20px;cursor:pointer;"> Application Blank Not Submitted By The Members </b></u>
-                  <br>
+                  <br> <br>
                   <b id="expiry"  style="color:green;margin-left:35%;font-size:20px;cursor:pointer;"> Form Validity </b>
 
                   <div class="row">
