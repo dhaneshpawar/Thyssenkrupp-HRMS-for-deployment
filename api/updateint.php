@@ -1,9 +1,10 @@
 <?php 
+
+include "db.php";
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 if($cursor)
 {
 
-    include "db.php";
     //echo "ello";
     $prf=$_POST['prf'];
     $iid=$_POST['iid'];

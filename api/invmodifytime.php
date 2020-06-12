@@ -1,10 +1,10 @@
 <?php 
 //Sarang - 16/03/2020
-
+    include "db.php";
     $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
     if($cursor)
     {
-        include "db.php";
+        
         $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
         $index = $_POST['index'];
         $time = $_POST['time'];

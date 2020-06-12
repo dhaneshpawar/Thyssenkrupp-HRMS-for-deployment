@@ -1,10 +1,10 @@
 <?php
+
+include "db.php";
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
-
-
 if($_POST || $cursor )
 {   
-    include "db.php";
+    
     $cursor = $db->prfs->updateOne(array("prf"=>$_POST["id"]),array('$set'=>array("status"=>"withdrawn")));
     $cursor = $db->rounds->updateOne(array("prf"=>$_POST["id"]),array('$set'=>array("status"=>"withdrawn")));
     $cursor = $db->interviews->updateOne(array("prf"=>$_POST["id"]),array('$set'=>array("status"=>"withdrawn")));

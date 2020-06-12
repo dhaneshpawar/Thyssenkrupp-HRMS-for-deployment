@@ -1,5 +1,5 @@
 <?php
-
+include 'db.php';
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 if($cursor)
 {

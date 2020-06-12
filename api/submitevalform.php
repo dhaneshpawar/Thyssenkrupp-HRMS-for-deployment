@@ -1,12 +1,8 @@
 <?php 
 session_start();
+include "db.php";
 
-$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
-if($cursor)
-{
-    include "db.php";
-    if($_POST)
-    {
+  
         
             $mail=$_SESSION['mailid'];
             $mailid=$_SESSION['mailid'];
@@ -65,12 +61,8 @@ if($cursor)
             {
                 echo "fail";
             }
-    }
+    
 
-}
-else
-{
-    header("refresh:0,url=notfound.html");
-}
+
 
 ?>

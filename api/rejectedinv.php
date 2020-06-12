@@ -1,10 +1,11 @@
 <?php
 
+include "db.php";
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
  
 if($cursor)
 {
-    include "db.php";
+   
     $result=$db->interviews->find(array("invstatus"=>"1"));
     if($result)
     {

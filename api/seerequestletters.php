@@ -1,11 +1,13 @@
 <?php
+
+include "db.php";
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
  
 if($cursor)
 {
     if(isset($_POST))
     {
-        include "db.php";
+       
         $result = $db->intereval->find(array("offerletter"=>"requested"));
         $i = 0;
         foreach($result as $doc)
