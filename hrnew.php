@@ -36,7 +36,23 @@ if(isset($_COOKIE['sid']))
   
   <script src="./public/js/materialize.js"></script>
   <script src="./public/js/materialize.min.js"></script>
-
+  <style>
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.96)  url(loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#loader > #txt{
+        font-size:23px;
+        margin-left:23% !important;
+        margin-top:18% !important; 
+} 
+</style>
 
 </head>
 <style>
@@ -195,6 +211,11 @@ if(isset($_COOKIE['sid']))
 </div>
 <br>
 
+<div id="loader">
+    <div id="txt">
+            <b>Please wait while we are creating a batch and notifying them</b>
+    </div>  
+</div>
  
 
 <div class="row" id="dumpdiv">
@@ -497,10 +518,11 @@ $("#emailcollection").append(txt);
 var arr=[]
 var dept=[]
 $(document).ready(function(){
+  $("#loader").hide();
   $('.modal').modal();
   $('#zonechoice').hide();
- $("#uploaddump").hide()
- $("#nodata").hide()
+  $("#uploaddump").hide()
+  $("#nodata").hide()
  $.ajax({
     url:'http://localhost/hrms/api/getprfdump.php',
     type:'POST',
@@ -550,9 +572,10 @@ $(document).ready(function(){
 })
 $('#submitmail').click(function()
 {
+  $("#loader").show();
   $('#submitmail').prop('disabled', true);
   $('#emailcollection').fadeOut(600)
-  $('#creatinggrp').fadeIn(600)
+  // $('#creatinggrp').fadeIn(600)
 
 
   var arr1=[]
@@ -581,9 +604,10 @@ $('#submitmail').click(function()
     {
       // para=JSON.parse(para);
       console.log("this is ",para[0]);
-     
+      
       if(para == "sent")
       {
+        $("#loader").hide();
         $('#groupcreated').show();
         $('#submitmail').prop('disabled', false);
         // alert("This is 2 : "+id)
@@ -596,6 +620,7 @@ $('#submitmail').click(function()
 
       }
       else{
+        $("#loader").hide();
         para=JSON.parse(para);
         console.log("This is : ",para)
         $('#creatinggrp').fadeOut(100)

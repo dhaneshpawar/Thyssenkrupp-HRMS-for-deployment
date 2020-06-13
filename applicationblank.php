@@ -25,8 +25,6 @@ session_start();
 </head>
 
 <style>
-
-
 #loader {
   position: fixed;
   top: 0;
@@ -34,7 +32,7 @@ session_start();
   right: 0;
   bottom: 0;
   width: 100%;
-  background: rgba(0,0,0,0.75)  url(loader2.gif)  no-repeat center center !important;
+  background: rgba(0,0,0,0.96)  url(loader2.gif)  no-repeat center center !important;
   z-index: 10000;
 }
 #loader > #txt{
@@ -652,10 +650,9 @@ $_SESSION['positionapplied'] = $position;
                                         </div>                                    
                                 </div>   
                                 <div id="loader">
-                                <div id="txt">
-                                        <b>Please wait while we submit your form</b>
-                                </div>
-                                      
+                                        <div id="txt">
+                                                <b>Please wait while we submit your form</b>
+                                        </div>  
                                 </div>
                                 
 

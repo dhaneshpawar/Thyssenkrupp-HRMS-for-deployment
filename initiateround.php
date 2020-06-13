@@ -312,23 +312,22 @@ $(document).ready(function(){
   //final assignment for interviwer,date and time  
   $('#submit').click(function(){
     
+    // console.log("Length of selecteddate "+selecteddate.length)
     var iid=window.iid;
-    if(selectedmail.length <= 0)
+    if(selectedmail.length <= 0 )
     {
       alert("Please Select Atleast 1 Member")
     }
     else
     {
-      for(let i=0;i<selectedmail.length;i++)
-    {
-     console.log(window.iid)
-     
+        for(let i=0;i<selectedmail.length;i++)
+        {
+        console.log(window.iid)
+        
+        }
+        $('#allocation').show(600);
     }
-
-    $('#allocation').show(600);
-    }
-    
-
+  
   })
 
   $('#allocatesubmit').click(function(){
@@ -431,10 +430,20 @@ function selection(x)
  
   if($(b).prop("checked") == true)
   {
-    selectedmail.push($(y).text())
-    selectedmailID.push(b)
-    console.log('mail:'+selectedmail)
-    console.log('ID:'+selectedmailID)
+    if($(b+"date").val() !="" && $(b+"date2").val() !="" )
+    {
+        // $(b).prop("checked")=false
+        // alert("Date not entered");
+        selectedmail.push($(y).text())
+        selectedmailID.push(b)
+        console.log('mail:'+selectedmail)
+        console.log('ID:'+selectedmailID)
+    }
+    else
+    {
+      $(b).prop("checked",false)
+      alert("Date not entered");
+    }
   }
   else
   {                                               
@@ -553,14 +562,17 @@ function createnextround(id)
       for(let i =0;i<arr.length;i++)
       {
         allmail[i] = arr[i];
-        console.log("Name - ",allmail[i][0]);
+        console.log("Name 1 - ",allmail[i][0]);
         console.log("Email - ",allmail[i][1]);
-        var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td><td><p id="check'+i+'mail">'+arr[i][1]+'</p></td><td><label>'
-        var s2='<input type="checkbox" class="filled-in" id="check'+i+'"onclick="selection(this.id)"/>'
-        var s3='<span class="blue-text darken-1" ></span></label></td>'
-        var s4='<td><input type="text" id="check'+i+'date" class="timepicker"></td>'
-        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td></tr>'
-        var str=s1+s2+s3+s4+s5
+        var s1='<tr id="check'+i+'row">'
+        var s2='<td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td>'
+        var s3 ='<td><p id="check'+i+'mail">'+arr[i][1]+'</p></td>'
+        var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td>'
+        var s6='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)">'
+        var s7='<span class="blue-text darken-1" ></span></label></td></tr>'
+          
+        var str=s1+s2+s3+s4+s5+s6+s7
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
@@ -582,12 +594,14 @@ function createnextround(id)
         allmail[i] = arr[i];
         console.log("Name - ",allmail[i][0]);
         console.log("Email - ",allmail[i][1]);
-        var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td><td><p id="check'+i+'mail">'+arr[i][1]+'</p></td><td><label>'
-        var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
-        var s3='<span class="blue-text darken-1" ></span></label></td>'
+        var s1='<tr id="check'+i+'row">'
+        var s2='<td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td>'
+        var s3 ='<td><p id="check'+i+'mail">'+arr[i][1]+'</p></td>'
         var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
-        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td></tr>'
-        var str=s1+s2+s3+s4+s5
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td>'
+        var s6='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)">'
+        var s7='<span class="blue-text darken-1" ></span></label></td></tr>'
+        var str=s1+s2+s3+s4+s5+s6+s7
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
