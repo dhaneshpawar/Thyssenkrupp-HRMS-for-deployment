@@ -12,7 +12,9 @@ if($cursor)
         $i = 0;
         foreach($result as $doc)
         {
-            $arr[$i] = array($doc['prf'],$doc['pos'],$doc['iid'],$doc['rid'],$doc['result'],$doc['email'],$doc['requester']);
+            $q = $db->tokens->findOne(array("email"=>$doc['email']));
+            $q2 = $db->users->findOne(array("mail"=>$doc['requester']));
+            $arr[$i] = array($doc['prf'],$doc['pos'],$doc['iid'],$doc['rid'],$q['full_name'],$doc['email'],$q2['name'],$doc['requester']);
             $i += 1;
         }
         echo json_encode($arr);

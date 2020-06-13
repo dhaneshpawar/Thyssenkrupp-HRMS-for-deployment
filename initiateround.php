@@ -319,7 +319,7 @@ $(document).ready(function(){
     }
     else
     {
-      for(let i=0;i<selectedmail.length;i++)
+    for(let i=0;i<selectedmail.length;i++)
     {
      console.log(window.iid)
      
