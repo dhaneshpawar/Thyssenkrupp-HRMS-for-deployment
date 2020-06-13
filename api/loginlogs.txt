@@ -310,3 +310,4 @@ Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		30/05/2020	08:41:22 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		30/05/2020	08:41:35 PM	Logout
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		30/05/2020	08:41:39 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		30/05/2020	08:43:17 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	07:37:51 PM	Login

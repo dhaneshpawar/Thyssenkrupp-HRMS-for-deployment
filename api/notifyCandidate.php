@@ -2,7 +2,7 @@
 
 include "db.php";
 include 'maildetails.php';
-$mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
+$mail->setFrom('thyssenkrupp@tkep.com', 'tkei');
 $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);
 
@@ -21,7 +21,7 @@ if($cursor)
         $name1 = $name['full_name'];
         $_SESSION['posi'] = $name['position'];
         $mail->addAddress($d);
-        $mail->Subject = 'Your Application at tkEI - Interview Schedule';
+        $mail->Subject = "Invitation to interview with thyssenkrupp for the ". $name['position']." position";
         $mail->Body    = nl2br('Dear '.$name1.',
 
         Thank you for the application for the role of '.$name['position'].'. Further to our discussion you are
@@ -45,7 +45,7 @@ if($cursor)
         $mail->ClearAddresses();
 
 
-
+        $dashurl="http://localhost/hrms/invdash.php";
         $r = $db->prfs->findOne(array("prf"=>$prf13[0]));
         $mail->addAddress($result['intvmail']);
         $mail->Subject = 'Interview schedule for '.$r['department'].' - '.$r['position'].'';
@@ -62,6 +62,8 @@ if($cursor)
         Contact Person : '.$prf13[9].'
 
         Please be available at the stipulated time.
+
+        To access your dashboard for more details, please click <a href='.$dashurl.'>here</a> '
 
         In-case of any query, feel free to reach out to recruitment@tkeap.com
 

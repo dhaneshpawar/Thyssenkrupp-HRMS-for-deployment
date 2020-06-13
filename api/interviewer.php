@@ -2,7 +2,7 @@
 include 'maildetails.php';
 include 'db.php';
 
-$mail->setFrom("tkep", 'Interview Call');
+$mail->setFrom("tkep", 'tkei');
 $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);   
 //$mail->SMTPDebug=4;
@@ -34,7 +34,7 @@ else
 {
     $rid =(string) sprintf("%02s",$result["rid"]+1);
 }
-
+$dashurl="http://localhost/hrms/invdash.php";
 $rid =(string) sprintf("%02s",$rid);
 $result3 = $db->prfs->findOne(array("prf"=>$digit13[0]));
 $db->interviews->insertOne(array("rid"=>$rid,"prf"=>$digit13[0],'pos'=>$digit13[1],"iid"=>$digit13[2],"members"=>$_POST['emails'],"dates"=>$_POST['dates'],"evaluated"=>array(),"intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"date"=>$_POST['date'],"time"=>$_POST['time'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"status"=>"0","invstatus"=>"0","accepted"=>"no"));
@@ -51,6 +51,8 @@ $mail->addAddress($_POST['intv']);
     Location - '.$_POST['iloc'].'
 
     Contact Person - '.$_POST['iperson'].'
+
+    To access your dashboard for more details, please click <a href='.$dashurl.'>here</a> '
         
     In-case of any query, feel free to reach out to recruitment@tkeap.com
     

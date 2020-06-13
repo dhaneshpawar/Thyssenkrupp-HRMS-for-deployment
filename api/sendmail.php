@@ -3,7 +3,7 @@ session_start();
 include 'maildetails.php';
 include 'db.php';
 
-$mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
+$mail->setFrom('thyssenkrupp@tkep.com', 'tkei');
 $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);   
 // $mail->SMTPDebug = 4;                               // Enable verbose debug output
@@ -47,7 +47,7 @@ if($cursor)
                     $token=sha1($d);
                     $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position;
 
-                    $mail->Subject = 'Your Application at tkEI';
+                    $mail->Subject = "Invitation to interview with thyssenkrupp for the ". $positionorg." position";
                     $mail->Body    =   nl2br('Dear Candidate,
 
                     Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
@@ -120,8 +120,8 @@ if($cursor)
                     $mail->addAddress($d);
                     $token=sha1($d);
                     $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position;
-
-                    $mail->Subject = 'Your Application at tkEI';
+                    //"Invitation to interview with thyssenkrupp for the ". $positionorg." position";
+                    $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
                     $mail->Body    = nl2br('Dear Candidate,
 
                     Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept'].' You are required to provide your basic
@@ -195,7 +195,7 @@ if($cursor)
                     $token=sha1($d);
                     $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position;
 
-                    $mail->Subject = 'Your Application at tkEI';
+                    $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
                     $mail->Body    = nl2br('Dear Candidate,
 
                     Further to our discussion for the profile of '. $positionorg.' in department - '.$_POST['dept']. ' You are required to provide your basic

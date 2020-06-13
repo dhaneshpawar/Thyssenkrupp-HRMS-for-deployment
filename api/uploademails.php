@@ -2,7 +2,7 @@
 include 'api/maildetails.php';
 include 'api/db.php';
 
-$mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
+$mail->setFrom('thyssenkrupp@tkep.com', 'tkei');
 $mail->addReplyTo("sarang@123", 'Information');
 $mail->isHTML(true);   
 // $mail->SMTPDebug = 4;
@@ -90,7 +90,8 @@ if($count==1) //if round collection is present
                 $token=sha1($d);
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token;
 
-                $mail->Subject = 'Mail Regarding Interview';
+                $mail->Subject = 'Invitation to interview at thyssenkrupp';
+                
                 $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this date.'.$url;
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
@@ -189,7 +190,7 @@ if($count==1) //if round collection is present
                 $token=sha1($d);
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token;
 
-                $mail->Subject = 'Mail Regarding Interview';
+                $mail->Subject = 'Invitation to interview at thyssenkrupp';
                 $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this date.'.$url;
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
@@ -284,7 +285,7 @@ else
                 $token=sha1($d);
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token;
 
-                $mail->Subject = 'Mail Regarding Interview';
+                $mail->Subject = 'Invitation to interview at thyssenkrupp';
                 $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this date.'.$url;
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

@@ -2,7 +2,7 @@
 include 'maildetails.php';
 include 'db.php';
 
-$mail->setFrom("thyssenkrupp", 'Interview Call');
+$mail->setFrom("thyssenkrupp", 'tkei');
 $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);   
 
@@ -18,7 +18,9 @@ foreach($_POST['emails'] as $d)
 {
    
     $mail->addAddress($d);
-    $mail->Subject = 'Mail Regarding Interview';
+   //
+   
+   $mail->Subject = 'Invitation to interview at thyssenkrupp';
     $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this '.$date.'Time : '.$time;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

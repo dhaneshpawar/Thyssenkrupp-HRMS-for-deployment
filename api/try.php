@@ -4,7 +4,7 @@
 include 'maildetails.php';
 include 'db.php';
 
-$mail->setFrom("thyssenkrupp", 'Interview Call');
+$mail->setFrom("thyssenkrupp", 'tkei');
 $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);   
 
@@ -18,7 +18,7 @@ foreach($_POST['emails'] as $d)
     $token=sha1($d);
     $db->tokens->insertOne(array("email"=>$d,"token"=>$token));
     $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.html?token='.$token;
-    $mail->Subject = 'Mail Regarding to take Interview for interviewer';
+    $mail->Subject = 'Invitation to interview at thyssenkrupp';
     $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this date.'.$url;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

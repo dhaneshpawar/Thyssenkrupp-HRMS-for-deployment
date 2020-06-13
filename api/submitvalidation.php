@@ -1,7 +1,7 @@
 <?php
 include 'maildetails.php';
 include "db.php";
-$mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
+$mail->setFrom('thyssenkrupp@tkep.com', 'tkei');
 $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true); 
 
@@ -108,7 +108,7 @@ foreach($valid as $v)
        
         $mail->addAddress($mails);
         $token=sha1($mails);
-        $mail->Subject = 'Document validation Result';
+        $mail->Subject = 'Document Verification Successfull';
         $mail->Body    = 'All your documents are valid you can visit us for further information';
         if(!$mail->send()) 
         {
