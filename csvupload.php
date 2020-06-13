@@ -23,6 +23,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        #loader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          background: rgba(0,0,0,0.97)  url(loader2.gif)  no-repeat center center !important;
+          z-index: 10000;
+        }
+        #loader > #txt{
+                font-size:25px;
+                margin-left:28% !important;
+                margin-top:18% !important; 
+        }
     input[type="file"] {
     display: none;
     }
@@ -67,7 +82,7 @@
                  cannot be changed.   
                 </p>
 
-                <form action="importExcel.php" method="POST" enctype="multipart/form-data">
+                <form method="POST" id="myform" action="importExcel.php"  enctype="multipart/form-data">
                             
                          
                     <div class="input-field col s12 offset-m4" id="uphoto">
@@ -80,8 +95,6 @@
                     <button type="submit" class="btn blue darken-1" name="submit" id="submit" value="Upload"><i class="material-icons right">send</i>Upload</button>
 
                     </div>
-                   
-                    
                 </form>
                 <br><br><br><br><br>
                 </div>
@@ -91,10 +104,29 @@
   </div>
     <!-- card ends -->
     </div>
+
+    <div id="loader">
+      <div id="txt">
+              <b>Please wait while we add entries to the system</b>
+      </div>
+    </div>
+
+
+
+
     <script src="public/js/common.js"></script>
 
   <script>
-  
+
+$(document).ready(function(){
+  console.log("Hello document");
+  $("#loader").hide();
+})
+
+  $("#myform").submit(function(){
+        console.log("Hello")
+        $('#loader').show()
+})
 function readURL(input) {
   var f = $('#uploadcsv').val().split('.')
       var x=f[1]
