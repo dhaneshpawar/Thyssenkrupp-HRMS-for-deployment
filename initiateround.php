@@ -336,7 +336,7 @@ $(document).ready(function(){
       var poszone = window.zone
       var candidatetime
     
-      if(imail != "" && iname != "" && idate != "" && itime != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
+      if(imail != "" && iname != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
       {
         $('#allocation').hide(600);
         $("#pleasewait").fadeIn(600);
