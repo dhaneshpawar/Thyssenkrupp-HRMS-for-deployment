@@ -76,7 +76,7 @@
                                 <a class="btn blue darken-1">
                                 <input id="uploadcsv" required type="file" accept=".csv" name="uploadcsv" onchange="readURL(this)"><p id='myfile0'> Select file<i class="material-icons right">open_in_browser</i> </p></a>
                             </label>
-                            <br><br><br>
+                            <br><br><br> &nbsp;&nbsp;&nbsp;
                     <button type="submit" class="btn blue darken-1" name="submit" id="submit" value="Upload"><i class="material-icons right">send</i>Upload</button>
 
                     </div>

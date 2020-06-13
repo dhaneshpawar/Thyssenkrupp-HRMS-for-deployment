@@ -25,6 +25,12 @@ if(isset($_COOKIE['sid']))
         <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+        <!-- for sidenav -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" type="text/css" media="screen" href="public/css/common.css">
+
+
         <script src="public/jquery-3.2.1.min.js"></script>
 
         <script src="public/js/materialize.js"></script>
@@ -64,24 +70,35 @@ if(isset($_COOKIE['sid']))
 </style>
 
     <body>
-    <nav>
-        <div class="nav-wrapper blue darken-1">
-        <a href="http://localhost/hrms/invhistory.php">
-        <button class="btn waves-effect blue darken-1" type="submit" name="action" style="float:left;margin-top: 18px;margin-right: 18px ">SEE HISTORY</button>
-        </a>
-            <a href="#!" class="brand-logo center">thyssenkrupp</a>
-      
-            <div id="logoutuser" class="row">
-    <button class="btn waves-effect blue darken-1" type="submit" name="action" style="float:right;margin-top: 18px;margin-right: 18px ">LOGOUT</button>
-        </div>
-    </nav>
-  </div>
-   
+
+
+ <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
+
+  <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
+  <i id="remin" class="material-icons" style="float: right;cursor: pointer;">close</i></center>   
+  </a></h3> <br><br>
+
+  <a href="/hrms/invhistory.php" class="w3-bar-item w3-button">See History  </a> <br>  
+  <a href="/hrms/rejecedinvhistory.php" class="w3-bar-item w3-button">Rejected Interviews</a> <br>
+  <a href="#" id="logoutuser" class="w3-bar-item w3-button">Logout</a> <br>
+
+</div>
+
+<div id="remin">
+<nav> 
+    <div class="nav-wrapper blue darken-1">
+      <a href="#!" class="brand-logo left" style="margin-left: 2%;"><i id="showsidenbutton" class="material-icons">menu</i>
+    </a>
+    <a href="/hrms/" class="brand-logo center">thyssenkrupp</a>
+    </div>
+</nav>
+<br><br>
+<!-- nav and side menu ended -->
+  
   <br>
   
 
     <br>
-
 
     <div class="row">
         <div class="col s12 m12">
@@ -217,6 +234,8 @@ if(isset($_COOKIE['sid']))
 
 
     <!-- Script Starts Here -->
+    <script src="public/js/common.js"></script>
+
     <script>
     var id13digit;
     var rjctid;
