@@ -405,3 +405,22 @@ Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		12/06/2020	07:47:11 PM	Login
 =======
 >>>>>>> 1e80c18c808dc655273a7f03c8445a82eada93b1
 >>>>>>> c4f87755a3a565343b81af6ba6761598f4736740
+
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:43:06 PM	Login
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:43:23 PM	Logout
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:43:23 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	01:43:28 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	01:56:22 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	01:56:27 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	02:12:18 PM	Logout
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	02:21:31 PM	Login
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	02:21:35 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	02:21:39 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	02:33:06 PM	Logout
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	02:33:16 PM	Login
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	02:33:58 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	02:34:03 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	03:37:36 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	03:37:41 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	03:53:52 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	03:54:02 PM	Login

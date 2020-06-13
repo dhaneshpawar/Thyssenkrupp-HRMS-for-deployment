@@ -506,4 +506,3 @@ $('#updatebtn').click(function()
 
 </script>
 </html>
-        
