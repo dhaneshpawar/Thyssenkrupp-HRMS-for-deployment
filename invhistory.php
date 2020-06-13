@@ -61,12 +61,11 @@ if(isset($_COOKIE['sid']))
     <thead>
       <tr>
           <th>Instance ID</th>
-          <th>RID</th>
+          <th>ROUND</th>
           <th>IID</th>
           <th>DATE</th>
           <th>Name</th>
           <th>Email</th>
-          <th>ROUND</th>
           <th>STATUS</th>
 
       </tr>
@@ -304,7 +303,7 @@ $(document).ready(function(){
       console.log("this is length : "+para.length)
       for(let i=0;i<para.length;i++)
       { 
-        var x='<tr id="rows"><td id="prf" value="'+para[i].prf+'">'+para[i].prf+'</td><td id="pos">'+para[i].rid+'</td><td id="posno">'+para[i].iid+'</td><td id="status">'+para[i].date+'</td><td id="status">'+para[i].members+'</td><td id="email">'+para[i].email+'</td><td id="status">'+para[i].progress+'</td><td id="statusevaluated">'+para[i].status+'</td></tr>'
+        var x='<tr id="rows"><td id="prf" value="'+para[i].prf+'">'+para[i].prf+'</td><td id="pos">'+para[i].rid+'</td><td id="posno">'+para[i].iid+'</td><td id="status">'+para[i].date+'</td><td id="status">'+para[i].members+'</td><td id="email">'+para[i].email+'</td><td id="statusevaluated">'+para[i].status+'</td></tr>'
         $('#rawdata').append(x);
       }
      
