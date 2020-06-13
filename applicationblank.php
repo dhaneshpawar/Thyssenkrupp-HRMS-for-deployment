@@ -42,9 +42,7 @@ session_start();
         margin-left:35% !important;
         margin-top:18% !important; 
 }
- /* input[type="file"] {
-    display: none;
-} */
+ 
 input[type="text"] {
   text-transform: uppercase;
 } 
@@ -70,7 +68,7 @@ $_SESSION['positionapplied'] = $position;
                   </nav>
                   <br><br>
 
-                <center><h1><p id="warn" style="color:green">Details Submitted Successfully</p></h5></center>
+                <center><h1><p id="warn" style="color:green">Details Submitted Successfully...!</p></h5></center>
                 <center><h1><p id="warn2" style="color:red">Form Expired <br> 7 Days Passed</p></h5></center>
 
                   <div class="row">
