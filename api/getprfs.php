@@ -1,12 +1,12 @@
-<?php include 'db.php';
+<?php 
+
+include 'db.php';
 error_reporting(0);
 
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
 if($cursor)
 {
-    
-    
     $cursor = $db->rounds->find(array("status"=>"completed"));
     if($cursor)
     {

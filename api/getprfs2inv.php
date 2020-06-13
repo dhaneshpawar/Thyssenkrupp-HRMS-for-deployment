@@ -1,12 +1,12 @@
-<?php include 'db.php';
+<?php 
+
+include 'db.php';
 error_reporting(0);
 
 $cursor1 = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
 if($cursor1)
 {
-    
-    
     $cursor = $db->interviews->find(array("intvmail"=>$cursor1['mail']));
     if($cursor)
     {
@@ -42,10 +42,9 @@ if($cursor1)
                 $i++;  
             }
         }
-        
-          echo json_encode($arr);
+        echo json_encode($arr);
     }
-    }
+}
 else
 {
     header("refresh:0;url=notfound.html");
