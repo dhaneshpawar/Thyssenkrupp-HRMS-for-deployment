@@ -320,12 +320,13 @@ $(document).ready(function(){
     }
     else
     {
-        for(let i=0;i<selectedmail.length;i++)
-        {
-        console.log(window.iid)
-        
-        }
-        $('#allocation').show(600);
+    for(let i=0;i<selectedmail.length;i++)
+    {
+     console.log(window.iid)
+     
+    }
+
+    $('#allocation').show(600);
     }
   
   })
