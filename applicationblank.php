@@ -42,9 +42,7 @@ session_start();
         margin-left:35% !important;
         margin-top:18% !important; 
 }
- /* input[type="file"] {
-    display: none;
-} */
+ 
 input[type="text"] {
   text-transform: uppercase;
 } 
