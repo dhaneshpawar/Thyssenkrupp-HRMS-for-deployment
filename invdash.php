@@ -102,7 +102,7 @@ if(isset($_COOKIE['sid']))
 
     <div class="row">
         <div class="col s12 m12">
-            <div class="card white-text">
+            <div class="white-text">
                 <div class="card-content blue-text" id="wait">
                     <span class="card-title">TO DO LIST</span>
                     <table class="striped">

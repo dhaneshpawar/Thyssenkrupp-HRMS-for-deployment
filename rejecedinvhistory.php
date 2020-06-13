@@ -37,6 +37,38 @@ if(isset($_COOKIE['sid']))
   <script src="./public/js/materialize.js"></script>
   <script src="./public/js/materialize.min.js"></script>
 
+<style>
+@media screen and (min-width: 800px)
+{
+  #firsttb{
+width: 100%;
+}
+#deptchoice{
+  width: 19%;
+} 
+
+#zonechoice{
+  width: 19%;
+}
+
+}
+
+@media screen and (max-width: 800px)
+{
+#firsttb{
+width: 350%;
+}
+#deptchoice{
+  width: 70%;
+} 
+
+#zonechoice{
+  width: 70%;
+}
+
+}
+</style>
+
 </head>
 
 <body>
@@ -64,8 +96,8 @@ if(isset($_COOKIE['sid']))
 <!-- nav and side menu ended -->
 
       <br><br>
- <div class="row">
-<div class="col s12 blue lighten-4">
+ <div class="row" id="firsttb">
+<div class="col s12 blue lighten-4"> 
   <table class="striped">
     <thead>
       <tr>

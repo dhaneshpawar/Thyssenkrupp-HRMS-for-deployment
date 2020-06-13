@@ -81,7 +81,7 @@ function abort_round()
 
                   <div class="row">
                     <div class="col s12 m12">
-                      <div class="card  white">
+                      <div class="white">
                         <div class="card-content blue-text">
                             <table class="striped">
                                 <thead>

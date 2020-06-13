@@ -37,6 +37,39 @@ if(isset($_COOKIE['sid']))
   <script src="./public/js/materialize.js"></script>
   <script src="./public/js/materialize.min.js"></script>
 
+<style>
+@media screen and (min-width: 800px)
+{
+  #firsttb{
+width: 100%;
+}
+#deptchoice{
+  width: 19%;
+} 
+
+#zonechoice{
+  width: 19%;
+}
+
+}
+
+@media screen and (max-width: 800px)
+{
+#firsttb{
+width: 350%;
+}
+#deptchoice{
+  width: 70%;
+} 
+
+#zonechoice{
+  width: 70%;
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
@@ -70,15 +103,15 @@ if(isset($_COOKIE['sid']))
 <!-- nav and side menu ended -->
 
  <!-- Filter Added  End-->
- <select id='deptchoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+ <select id='deptchoice' class="dropdown-trigger btn blue darken-1 " >
           <option value="" disabled selected style="color: white">Select Department</option>
         </select>
-        <select id='zonechoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+        <select id='zonechoice' class="dropdown-trigger btn blue darken-1 ">
           <option value="" disabled selected style="color: white">Select Zone</option>
  </select>
 <!-- Filter Added End-->
 
- <div class="row">
+ <div class="row" id="firsttb">
 <div class="col s12  blue lighten-4">
   <table class="striped">
     <thead>

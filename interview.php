@@ -59,6 +59,13 @@
    }
    </style>
 
+<script>
+if(window.screen.width <= 720)
+{
+  window.location="/hrms/interviewmob.php";
+}
+</script>
+
 </head>
 
 <body>

@@ -52,6 +52,36 @@ if(isset($_COOKIE['sid']))
         margin-left:23% !important;
         margin-top:18% !important; 
 } 
+
+@media screen and (min-width: 800px)
+{
+  #megblock, #selectedrow{
+width: 100%;
+}
+#deptchoice{
+  width: 19%;
+} 
+
+#zonechoice{
+  width: 19%;
+}
+
+}
+
+@media screen and (max-width: 800px)
+{
+#megblock, #selectedrow{
+width: 350%;
+}
+
+#deptchoice{
+  width: 70%;
+} 
+
+#zonechoice{
+  width: 70%;
+}
+}
 </style>
 
 </head>
@@ -146,18 +176,18 @@ if(isset($_COOKIE['sid']))
 <br><br>
 <!-- nav and side menu ended -->
 
-          <select id='deptchoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+          <select id='deptchoice' class="dropdown-trigger btn blue darken-1 ">
           <option value="" disabled selected style="color: white">Select Department</option>
           </select>
-          <select id='zonechoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+          <select id='zonechoice' class="dropdown-trigger btn blue darken-1 ">
           <option value="" disabled selected style="color: white">Select Zone</option>
         </select>
           <br>
         <br>
 
- <div class="row">
+ <div class="row" id="megblock">
 
-<div class="col s12  blue lighten-4">
+<div class="col s12  blue lighten-4" >
   <table class="striped">
     <thead>
       <tr>
@@ -219,7 +249,7 @@ if(isset($_COOKIE['sid']))
  
 
 <div class="row" id="dumpdiv">
-    <div class="col s4 offset-m4">
+    <div class="col s12 m4 offset-m4">
       <div class="card white darken-1">
         <div class="card-content blue-text">
           <span class="card-title"><b><center>Upload Email Dump</center></b></span>
@@ -401,13 +431,13 @@ function xyz(x)
   
 <center><b>OR <br> <br> Enter Email IDs Manually Here <br></b> </center>
   <div class="row" id="emailcollection">
-    <div class="input-field col s4 offset-m4 blue-text">
+    <div class="input-field col s12 m4 offset-m4 blue-text">
       <i class="material-icons prefix">email</i>
       <input id="email" onfocus="addText(this)" type="text" class="validate" placeholder="Enter Email Address">
     </div>
   </div>
   <div class="row">
-  <div class="input-field col s4 offset-m4 center">
+  <div class="input-field col s12 m4 offset-m4 center">
     <button  class="btn waves-effect waves-light blue darken-1" id="submitmail" >Submit Mail
       <i class="material-icons right">send</i>
     </button>
@@ -512,7 +542,7 @@ function addText(x)
 {
 ctr = ctr+1
 var str = 'email'+ctr
-var txt="<div class='row'><div class='input-field col s4 offset-m4  blue-text' ><i class='material-icons prefix'>email</i>  <input id='"+str+"' onfocus='addText(this)' type='text' class='validate' placeholder='Enter Email Address'></div></div>"
+var txt="<div class='row'><div class='input-field col s12 m4 offset-m4  blue-text' ><i class='material-icons prefix'>email</i>  <input id='"+str+"' onfocus='addText(this)' type='text' class='validate' placeholder='Enter Email Address'></div></div>"
 $("#emailcollection").append(txt);
 }
 var arr=[]
