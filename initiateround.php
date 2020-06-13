@@ -169,14 +169,6 @@ if(isset($_COOKIE['sid']))
                                   </div>       
                                     <div class="row">
                                         <div class="input-field col s3 m3 " >
-                                          <input id="idate" type="text" required class="datepicker">
-                                          <label  for="idate">Date</label>
-                                        </div>
-                                        <div class="input-field col s3 m3 " >
-                                          <input id="itime" type="text" class="timepicker" required>
-                                          <label class="active" for="itime">Time</label>
-                                        </div>
-                                        <div class="input-field col s3 m3 " >
                                           <input id="idept" type="text" class="text" required>
                                           <label class="active" for="idept" id="idept">Interviewer Department</label>
                                         </div>                                    
@@ -336,8 +328,6 @@ $(document).ready(function(){
       $("#loader").show()
       var imail = $('#imail').val();
       var iname = $('#iname').val();
-      var idate = $('#idate').val();
-      var itime = $('#itime').val();
       var idept = $('#idept').val();
       var idesg = $('#idesg').val();
       var iloc = $('#location').val();
@@ -346,7 +336,7 @@ $(document).ready(function(){
       var poszone = window.zone
       var candidatetime
     
-      if(imail != "" && iname != "" && idate != "" && itime != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
+      if(imail != "" && iname != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
       {
         $('#allocation').hide(600);
         $("#pleasewait").fadeIn(600);
@@ -372,8 +362,6 @@ $(document).ready(function(){
           'times':selecteddate,
           'dates':selecteddate2,
           'intv':imail,
-          'date':idate,
-          'time':itime,
           'prf':iid,
           'iname':iname,
           "idesg":idesg,
@@ -475,7 +463,7 @@ function createnextround(id)
   window.iid=id;
   console.log(iid)
   id = id.split("/")
-  id_round = id[0]+"-"+id[1]+"-"+id[2]
+  id_round = id[0]+"-"+id[1]+"-"+id[2]+"-"+id[3]
 
   //dept zone added to database
   window.dept = id[4]
