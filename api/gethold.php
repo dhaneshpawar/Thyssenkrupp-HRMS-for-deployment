@@ -1,12 +1,13 @@
-<?php include 'db.php';
+<?php 
 
+// Connection to Database
+include 'db.php';
 error_reporting(0);
 
+// Check for Login
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
-
 if($cursor)
 {
-
     if(strlen($_POST["prf"]) > 0 and strlen($_POST["iid"]) <= 0 and strlen($_POST["rid"]) <= 0)
     {
         $cursor = $db->rounds->find(array("rg"=>$cursor["rg"],"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos']));
@@ -56,7 +57,8 @@ if($cursor)
                 $result[$ctr] = $hold[$i][$j];
                 $ctr+=1;
             }
-        } if(count($result) > 0)
+        } 
+        if(count($result) > 0)
         {
             echo json_encode($result);
         }
@@ -94,11 +96,10 @@ if($cursor)
             echo "no";
         }
     }
-    
-        }
+}
 else
 {
     header("refresh:0;url=notfound.html");
 }
 
-
+?>

@@ -1,16 +1,25 @@
 <?php 
-//Added by Sarang - 03/14/2020
+
+// Connection to Database
 include 'db.php';
-$arra=array();
-$i=0;
-$cursor = $db->prfs->find(array(),array("zones"=>1));
-foreach($cursor as $d)
+
+// Check for Login
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
 {
-   $arra[$i] = $d['zone'];
-   $i++;
-    // $i++;
+    $arra=array();
+    $i=0;
+    $cursor = $db->prfs->find(array(),array("zones"=>1));
+    foreach($cursor as $d)
+    {
+       $arra[$i] = $d['zone'];
+       $i++;
+    }
+    echo (json_encode($arra));
 }
-// $rc = iterator_to_array($cursor['department']);
-// print_r($arra);
-echo (json_encode($arra));
+else
+{
+    header("refresh:0;url=notfound.html");
+}
+
 ?>

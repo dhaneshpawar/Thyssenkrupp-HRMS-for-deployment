@@ -1,16 +1,27 @@
 <?php 
 
+// Connection to Database
 include 'db.php';
-$arra=array();
-$i=0;
-$cursor = $db->prfs->find(array(),array("department"=>1));
-foreach($cursor as $d)
+
+// Check for Login
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
 {
-   $arra[$i] = $d['department'];
-   $i++;
-    // $i++;
+    $arra=array();
+    $i=0;
+    $cursor = $db->prfs->find(array(),array("department"=>1));
+    
+    // get all the departments
+    foreach($cursor as $d)
+    {
+       $arra[$i] = $d['department'];
+       $i++;
+    }
+    echo (json_encode($arra));
 }
-// $rc = iterator_to_array($cursor['department']);
-// print_r($arra);
-echo (json_encode($arra));
+else
+{
+    header("refresh:0;url=notfound.html");
+}
+
 ?>
