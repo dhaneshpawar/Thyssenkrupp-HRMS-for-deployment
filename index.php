@@ -33,6 +33,8 @@ else
 
     <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.css">
     <link rel="stylesheet" type="text/css" media="screen" href="public/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="public/css/common.css">
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script src="public/jquery-3.2.1.min.js"></script>
@@ -40,6 +42,26 @@ else
     <script src="public/js/materialize.js"></script>
     <script src="public/js/materialize.min.js"></script>
 
+<style>
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+      z-index: 10000;
+    }
+    #loader > #txt{
+            font-size:23px;
+            font-family: "Times New Roman", Times, serif;
+            margin-left:43% !important;
+            margin-top:18% !important; 
+    }
+</style>
+
+    
 </head>
 <body>
   
@@ -93,11 +115,18 @@ else
       
     </div>
   </div>
+
+  <div id="loader">
+      <div id="txt">
+              <b>LOGGING YOU IN...</b>
+      </div>    
+  </div>
   
   <script>
-  
+   $('#loader').hide()
   $('#submit').click(function()
   {
+    $('#loader').show()
     var id = $('#userid').val();
     var pwd = $('#pwd').val();
     var data = {'uid':id,'pwd':pwd}
@@ -113,7 +142,7 @@ else
         
         success : function(para)
         {
-          
+          $('#loader').hide()
           var errtxt = '<p style="color: red">Invalid Login Details..!!</p>'
           console.log("This is the path to reditect = ",para)
           

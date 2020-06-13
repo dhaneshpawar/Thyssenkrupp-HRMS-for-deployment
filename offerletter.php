@@ -78,10 +78,11 @@ if(isset($_COOKIE['sid']))
           <th>Position</th>
           <th>Instance ID</th>
           <th>Round ID</th>
-          <th>Result</th>
-          <th>Candidate</th>
-
-          <th>Requester</th>
+          <th>Candidate Name</th>
+          <th>Candidate Mail</th>
+          <th>Requester Name</th>
+          <th>Requester Mail</th>
+          <th>Offer Letter</th>
 
       </tr>
     </thead>
@@ -148,9 +149,6 @@ function sendmailtoinv(x,name)
   btnid=x;
   // alert(btnid);
   prfid=x.split("-")
-  //  alert(x);
-  // console.log("Hey , ",x);
-  // console.log("Prf : "+prf)
   var str = '#'+btnid;
   alert(str);
   var candidate = "#"+prfid[0]+"5"
@@ -158,11 +156,6 @@ function sendmailtoinv(x,name)
   $(str).html("sending...");
   $(str).attr('disabled','disabled')
  
-  //Changed by sarang - 10/01/2020
-  // console.log("Prf : ",prfid[1]);
-  // console.log("Pos : ",prfid[2]);
-  // console.log("iid : ",prfid[3]);
-  // console.log("rid : ",prfid[4]);
   $.ajax({
     url:'http://localhost/hrms/api/sendofferletter.php',
     type:'POST',
@@ -179,8 +172,8 @@ function sendmailtoinv(x,name)
       console.log("This is : ",para);
       if(para=="success")
       {
-       
         $(str).html("letter sent");
+        window.setTimeout(function(){location.reload()},1000)
       }
       else
       {
@@ -219,7 +212,7 @@ $(document).ready(function(){
         console.log("rid : ",arr[j][3]);
         digit13=arr[j][0]+'-'+arr[j][1]+'-'+arr[j][2]+'-'+arr[j][3];
         console.log("Digit13",digit13)
-        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="pos">'+arr[j][1]+'</td><td id="iid">'+arr[j][2]+'</td><td id="rid">'+arr[j][3]+'</td><td id="result">'+arr[j][4]+'</td><td id="'+j+'5" >'+arr[j][5]+'</td><td id="interviewer">'+arr[j][6]+'</td><td><a name="'+arr[j][6]+'" id="'+j+'-'+digit13+'" class="btn green darken-1" onclick="sendmailtoinv(this.id,this.name)">Send Letter</a></td></tr>'
+        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="pos">'+arr[j][1]+'</td><td id="iid">'+arr[j][2]+'</td><td id="rid">'+arr[j][3]+'</td><td id="'+j+'4" >'+arr[j][4]+'</td><td id="'+j+'5" >'+arr[j][5]+'</td><td id="interviewername">'+arr[j][6]+'</td><td id="interviewermail">'+arr[j][7]+'</td><td><a name="'+arr[j][7]+'" id="'+j+'-'+digit13+'" class="btn green darken-1" onclick="sendmailtoinv(this.id,this.name)">Send Letter</a></td></tr>'
        $('#rawdata').append(x);
       }
     },
