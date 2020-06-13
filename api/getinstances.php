@@ -1,14 +1,13 @@
-<?php include 'db.php';
+<?php 
+
+include 'db.php';
 error_reporting(0);
 
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
 if($cursor)
 {
-    
-    
     $cursor = $db->rounds->find(array("rg"=>$cursor["rg"],"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos']));
-
     if($cursor)
     {
         $i = 0;
@@ -31,8 +30,6 @@ if($cursor)
             }
         }
         
-       
-        
         $arr = array("iid"=>$iid,"selected"=>$result);
         echo json_encode($arr);
     }
@@ -41,7 +38,5 @@ else
 {
     header("refresh:0;url=notfound.html");
 }
-
-
 
 ?>

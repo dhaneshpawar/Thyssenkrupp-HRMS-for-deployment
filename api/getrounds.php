@@ -1,6 +1,6 @@
-<?php include 'db.php';
+<?php 
 
-
+include 'db.php';
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
 if($cursor)
@@ -27,13 +27,10 @@ if($cursor)
                 $ctr+=1;
             }
         }
-        
-       
-        
         $arr = array("rid"=>$rid,"selected"=>$result);
         echo json_encode($arr);
     }
-    }
+}
 else
 {
     header("refresh:0;url=notfound.html");

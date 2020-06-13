@@ -1,11 +1,13 @@
-<?php include 'db.php';
+<?php 
 
+// Connection to Database
+include 'db.php';
 error_reporting(0);
 
+// Check for Login
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
-
 if($cursor)
-{ 
+{
     $cursor = $db->rounds->find(array("status"=>"completed","prf"=>$_POST['prf']));
     if($cursor)
     {

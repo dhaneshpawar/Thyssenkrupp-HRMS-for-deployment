@@ -1,7 +1,7 @@
-<?php include 'db.php';
+<?php 
 
+include 'db.php';
 error_reporting(0);
-
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
 if($cursor)
@@ -96,7 +96,7 @@ if($cursor)
             }
         }
     }
-        }
+}
 else
 {
     header("refresh:0;url=notfound.html");

@@ -1,10 +1,22 @@
 <?php
 
+// Connection to Database
 include 'db.php';
-$result = $db->prfs->find();
-foreach($result as $doc)
+
+// Check for Login
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
 {
-    echo $doc['rg'];
+    // return all regions
+    $result = $db->prfs->find();
+    foreach($result as $doc)
+    {
+        echo $doc['rg'];
+    }
+}
+else
+{
+    header("refresh:0;url=notfound.html");
 }
 
 ?>

@@ -1,6 +1,14 @@
 <?php
-include "db.php";
-$q = $db->prfs->findOne(array("prf"=>$_POST['prf']));
+
+// Connection to Database
+include 'db.php';
+
+// Check for Login
+$cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+if($cursor)
+{
+    // get full info from excel file
+    $q = $db->prfs->findOne(array("prf"=>$_POST['prf']));
     $arr = array(
     $q['prf'],
     $q['prfname'],
@@ -31,11 +39,12 @@ $q = $db->prfs->findOne(array("prf"=>$_POST['prf']));
     $q['internalposting'],
     $q['status'],
     $q['nexthandler']
-
-    
-    
-    
     );
-
     echo json_encode($arr);
+}
+else
+{
+    header("refresh:0;url=notfound.html");
+}
+
 ?>
