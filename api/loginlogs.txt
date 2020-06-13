@@ -445,3 +445,6 @@ Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:30:13 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	02:38:53 PM	Logout
 Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		13/06/2020	02:38:58 PM	Login
 >>>>>>> 23d811d53023ad8d7bdaabe99609350fb4d5957a
+
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	09:03:24 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	09:03:45 PM	Login

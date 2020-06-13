@@ -88,7 +88,7 @@ if(isset($_COOKIE['sid']))
 </nav>
 <br><br>
 <!-- nav and side menu ended -->
-                  <button class="btn waves-effect green" style="float:right;margin-top: 18px;margin-right: 18px " id="rfresh">Refresh</button>
+                  <button class="btn waves-effect green" style="float:right;margin-top: 18px;margin-right: 18px " id="rfresh" onclick="getit()">Refresh</button>
 
                   <br><br>
 
@@ -264,9 +264,11 @@ $(document).ready(function(){
       minDate:new Date(),
   })
   $('.timepicker').timepicker();
-  $("#rfresh").click(function(){
-    window.setTimeout(function(){location.reload()},1000)
-  })
+
+  // $("#rfresh").click(function(){
+  //   window.setTimeout(function(){location.reload()},1000)
+  // })
+
   $("#nodata").hide()
   $("#pleasewait").hide();
   $.ajax(
@@ -689,6 +691,143 @@ else
 })
  
   }
+}
+
+function getit(){
+
+  var cutme = $('#rid').val();
+  cutme = cutme.split(":");
+  cutme = cutme[1];
+
+  $("#nomems").empty()
+
+  console.log("cutme   = = ",cutme)
+
+  $.ajax({
+    url:'http://localhost/hrms/api/baseroundmembers.php',
+    type:'POST',
+    data:{
+          "id": cutme
+         },
+    success:function(para)
+    {
+      $('#allocatingcandidate').fadeIn(600);
+      para = JSON.parse(para)
+      var arr1=[]
+      var toggle = 0   
+      //  
+      $("#nomems").click(function()
+      {
+        $("#memberstable").empty()
+        if(toggle == 0)
+        {
+          toggle = 1
+          $("#showmembersdiv").fadeIn(1200);
+            for(let i=0;i<para[1];i++)
+            {
+              j = parseInt(i)
+              j += 1
+              var membersdata='<tr><td>'+j+'</td><td>'+para[2][i]+'</td</tr>'
+              $("#memberstable").append(membersdata)
+            }
+        }
+        else
+        {
+          toggle = 0
+          $("#showmembersdiv").fadeOut(100);
+
+        }    
+      })
+       console.log("this are base round mems  = ",para)
+
+       if(para[0] == null)
+       {
+         $("#submit").hide()
+         $("#abort").hide()
+         $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
+         $("#nomems").show()
+
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
+       }
+      else if(para[1] != 0)
+      {
+        $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
+        $("#nomems").show()
+
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
+
+      $('#adddetail').text("")
+      var arr = para[0]
+      // $('.timepicker').timepicker();
+      for(let i =0;i<arr.length;i++)
+      {
+        allmail[i] = arr[i];
+        console.log("Name 1 - ",allmail[i][0]);
+        console.log("Email - ",allmail[i][1]);
+        var s1='<tr id="check'+i+'row">'
+        var s2='<td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td>'
+        var s3 ='<td><p id="check'+i+'mail">'+arr[i][1]+'</p></td>'
+        var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td>'
+        var s6='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)">'
+        var s7='<span class="blue-text darken-1" ></span></label></td></tr>'
+          
+        var str=s1+s2+s3+s4+s5+s6+s7
+       
+        $('#adddetail').append(str)
+        $('.timepicker').timepicker();
+        $('.datepicker').datepicker();
+        
+      }
+      
+    }
+    else
+    {
+      $("#nomems").hide()
+ 
+ 
+      $('#adddetail').text("")
+      var arr = para[0]
+  
+      for(let i =0;i<arr.length;i++)
+      {
+        allmail[i] = arr[i];
+        console.log("Name - ",allmail[i][0]);
+        console.log("Email - ",allmail[i][1]);
+        var s1='<tr id="check'+i+'row">'
+        var s2='<td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td>'
+        var s3 ='<td><p id="check'+i+'mail">'+arr[i][1]+'</p></td>'
+        var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td>'
+        var s6='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)">'
+        var s7='<span class="blue-text darken-1" ></span></label></td></tr>'
+        var str=s1+s2+s3+s4+s5+s6+s7
+       
+        $('#adddetail').append(str)
+        $('.timepicker').timepicker();
+        $('.datepicker').datepicker();
+      }
+    }
+    }
+  })
 }
 
 </script>
