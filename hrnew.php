@@ -157,7 +157,7 @@ width: 350%;
       
       <center><h2>Are You Sure ?</h2></center>
       <center><p>This Position Will Be Withdrawn.</p></center>
-      
+      <div id="appending_id"></div>
     </div>
     <div class="modal-footer">
       <center>
@@ -279,7 +279,8 @@ width: 350%;
 // function for opening dialouge box
 function openmodal(cid)
 {
-  $("#modal2").append("<b id='bid' name='"+cid+"'></b>")
+  $("#appending_id").empty()
+  $("#appending_id").append("<b id='bid' name='"+cid+"'></b>")
   $("#modal2").modal("open")
 }
 
