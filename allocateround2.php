@@ -230,12 +230,13 @@ $(document).ready(function(){
         $("#nodata").fadeIn(600);
       }
       }
-    });
+  });
 
-    $('.datepicker').datepicker
+  $('.datepicker').datepicker
   ({
-      minDate:new Date(),
+    minDate:new Date(),
   })
+  
   $('.timepicker').timepicker();
   $('#allocation').hide();
   $('#allocatingcandidate').hide();
@@ -316,7 +317,7 @@ $(document).ready(function(){
         }
       })
     })
-  }
+  }  
   })
 })
 //end of document.ready(function)   

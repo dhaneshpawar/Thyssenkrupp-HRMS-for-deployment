@@ -60,6 +60,24 @@ if(isset($_COOKIE['sid']))
 </head>
 <body>
 
+<!-- modal 1 starts here -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>Are You Sure ?</h2></center>
+      
+      
+    </div>
+    <div class="modal-footer">
+      <center>
+      <a onclick="abort_round(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+      <a onclick="abort_round(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+      </center>
+    </div>
+  </div>
+<!-- modal 1 ends here -->
 <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
 
   <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
@@ -200,7 +218,7 @@ if(isset($_COOKIE['sid']))
                                 <th>Time</th>
                                 <th>Date</th>
                                 <th class="btn blue darken-1" name="submit" id="submit" disabled>Assign Interviewer</th>
-                                <th class="btn red" style="margin-left: 25px;" id="abort" onclick="abort_round()"> Abort</th>
+                                <th class="btn red" style="margin-left: 25px;" id="abort" onclick='$("#modal1").modal("open")'> Abort</th>
                                 
                               </tr>
                             </thead>
@@ -256,6 +274,7 @@ $(document).ready(function(){
       minDate:new Date(),
   })
   $('.timepicker').timepicker();
+  $('.modal').modal();
 
   // $("#rfresh").click(function(){
   //   window.setTimeout(function(){location.reload()},1000)
@@ -605,25 +624,7 @@ function createnextround(id)
 
 }
 
-function terminateround(id)
-{
-  var confrm = confirm("Are You sure ? ");
-  if(confrm)
-  {
-    id_round = id
-    var str = "#"+id_round+"row";
-    $.ajax({
-    // url:'http://localhost/thyssenhrms/demo.txt',
-    type:'POST',
-    data:{'roundid':id_round},
-    success:function(para)
-    {
-      $(str).remove();
-    }
-  })
-}
 
-}
 $('#logoutuser').click(function(){
 
 $.ajax({
@@ -651,34 +652,33 @@ document.location.replace("/hrms/")
 
 
 
-function abort_round()
+function abort_round(confr)
 {
-  var confr = confirm("Are You Sure ?");
+  
   if(confr)
   {
  
     $.ajax({
-  url:"http://localhost/hrms/api/abortround.php",
-type:"POST",
-data: {
-  "digit13" :  id_round
-
-},
-success:function(para){
-console.log(para)
-if(para=="success")
-{
-  document.location.reload();
+      url:"http://localhost/hrms/api/abortround.php",
+      type:"POST",
+      data: {
+        "digit13" :  id_round
+      },
+      success:function(para){
+        console.log(para)
+        if(para=="success")
+        {
+          document.location.reload();
+        }
+        else
+        {
+          console.log("something went wrong")
+        }
+      } 
+    })
+  
   }
-else
-{
-  console.log("something went wrong")
-}
-} 
 
-})
- 
-  }
 }
 
 function getit(){

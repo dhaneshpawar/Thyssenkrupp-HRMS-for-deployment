@@ -295,6 +295,7 @@ $(document).ready(function(){
       minDate:new Date(),
   })
   $('.timepicker').timepicker();
+  $('.modal').modal();
 
 
 
