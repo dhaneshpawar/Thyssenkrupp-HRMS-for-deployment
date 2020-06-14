@@ -67,6 +67,22 @@ if(isset($_COOKIE['sid']))
   margin-left:33% !important;
   margin-top:18% !important; 
 }
+#accept {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#accept > #txt{
+  font-size:20px;
+  color:lightskyblue;
+  margin-left:33% !important;
+  margin-top:18% !important; 
+}
 </style>
 
     <body>
@@ -200,7 +216,12 @@ if(isset($_COOKIE['sid']))
 
     <div id="loader">
         <div id="txt">
-          <b>Please wait while we send your request to HR...</b>
+          <b>Please wait while we send your request to HR !!</b>
+        </div>
+    </div>
+    <div id="accept">
+        <div id="txt">
+          <b>Registering your confirmation.Please wait!!</b>
         </div>
     </div>
     <div id="status"style="background-color:green;border-radius:10px;font-size:25px;width:40%;margin-left:32%;">
@@ -265,8 +286,13 @@ if(isset($_COOKIE['sid']))
         }
 
     }
+    function timeout()
+    {
+        
+    }
     function acceptintr(x)
     {
+       
         var acbtnid="#"+x;
         x1 = x.slice(3);
         // alert(x1)
@@ -277,6 +303,7 @@ if(isset($_COOKIE['sid']))
         var cnfrm=confirm("Are Your Sure ?");
         if(cnfrm)
         {
+            $("#accept").show()
             $(acbtnid).attr('disabled','disabled')
             $(rjbtnid).attr('disabled','disabled')     
             $.ajax({
@@ -289,20 +316,24 @@ if(isset($_COOKIE['sid']))
                 {
                     if(para == "success")
                     {
-                        $("#status").fadeIn(300)
+                        setTimeout(() => { $("#accept").hide()}, 2000);
+                        $("#status").fadeIn(500)
                         console.log(para)
-                        window.setTimeout(function(){location.reload()},3000)  
+                        window.setTimeout(function(){location.reload()},2000)  
                     }
                     else if(para == "fail")
                     {
+                        $("#accept").hide()
                         alert("Transaction Failed \n Click Accept Button Again")
                     }
                     else if(para == "noaccess")
                     {
+                        $("#accept").hide()
                         alert("Please Send POST Data")
                     }
                     else
                     {
+                        $("#accept").hide()
                         alert("something went wrong")
                     }
                 }
@@ -471,7 +502,7 @@ function confirmmodifyAllMails(id)
     $(document).ready(function(){
         $("#status").hide()
         $("#loader").hide()
-
+        $("#accept").hide()
          window.mail = "<?php echo $cursor["mail"]; ?>"
          $('.timepicker').timepicker();
        // mail = JSON.stringify(mail)

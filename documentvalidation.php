@@ -19,7 +19,24 @@ $cursor = $db->tokens->find();
 
     <script src="public/js/materialize.js"></script>
     <script src="public/js/materialize.min.js"></script>
-
+<style>
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#loader > #txt{
+  font-size:25px;
+  color:lightskyblue;
+  margin-left:35% !important;
+  margin-top:18% !important; 
+}
+</style>
 </head>
 <body>
 
@@ -400,7 +417,11 @@ $cursor = $db->tokens->find();
         </div>
     </div>
 </div>
-
+<div id="loader">
+        <div id="txt">
+          <b>Submitting you work.. Please wait!!</b>
+        </div>
+    </div>
  <div id="modal1" class="modal">
     <div class="modal-content" id="cnt">
 
@@ -411,9 +432,24 @@ $cursor = $db->tokens->find();
   <center id="bwaiting">
   <b style="color:red">Submitting Details Please Wait...</b>
   </center>
-  <center id="bcomplete">
-  <h4><b style="color:green">Candidate Validated Successfully You Can Close This Window Now</b></h4>
-  </center>
+  <div>
+
+    <div class="row" id="bcomplete" style="margin-top: 10%;margin-left: 20%;" >
+        <div class="col s10 m9">
+            <div class="card" style="background-color: green;">
+                <div class="card-content white-text">
+                        <center>
+                    <span class="card-title">Result</span>
+                
+                    <i class="material-icons large">sentiment_very_satisfied</i>
+                    <p style='font-size:25px;;font-family:Times New Roman'>Candidate Validated Successfully <br> You Can Close This Window Now </p>
+                </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 <!-- Script Starts Here -->
 <script>
 var counter=0;
@@ -608,6 +644,7 @@ function invalid(x)
 
 $(document).ready(function(){
 
+$("#loader").hide();
 //for valid
 $("#cvv").click(function(){
         var r = $("input[name='gcv']:checked").attr('id');
@@ -1241,7 +1278,7 @@ $("#submit").click(function(){
     console.log("this is vinalid reason:",invalidreason)
     console.log("this is ctr:",ctr)
 
-
+    $("#loader").show();
     if(ctr==(10-validcount))    
     {
     
@@ -1283,16 +1320,13 @@ $("#submit").click(function(){
         },
         success:function(para)
         {
+            $("#loader").hide();
             $('#parent').empty();
             console.log("submit"+para)
             $("#parent").fadeOut(600)
             $("#bcomplete").show()   
             setTimeout(function(){ window.close(); }, 3000); 
-           // para="success
-            // if(para=="success")
-            // alert(para)
-            // else
-            // alert("error")
+           
         }
     })
     }else{

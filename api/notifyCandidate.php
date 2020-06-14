@@ -8,7 +8,7 @@ if($cursor)
     $mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
     $mail->addReplyTo(Email, 'Information');
     $mail->isHTML(true);
-
+    $i=0;
     $prf13 = explode("*",$_POST['prf13']);
     echo json_encode($prf13);
     $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
@@ -31,9 +31,9 @@ if($cursor)
             required to meet us as per the below details to have face to face interview round.
 
 
-            Date : '.$result['date'].'
+            Date : '.$result['dates'][$i].'
 
-            Timings : '.$result['time'].'
+            Timings : '.$result['times'][$i].'
 
             Address : '.$prf13[8].'
 
@@ -46,35 +46,29 @@ if($cursor)
 
             $mail->send(); 
             $mail->ClearAddresses();
-
-
-
-            $r = $db->prfs->findOne(array("prf"=>$prf13[0]));
-            $mail->addAddress($result['intvmail']);
-            $mail->Subject = 'Interview schedule for '.$r['department'].' - '.$r['position'].'';
-            $mail->Body    = nl2br('Dear '.$result['invname'].',
-
-            Thank you for confirmation, please find below the details for the interview for the post of '.$r['position'].'.
-
-            Date - '.$result['date'].'
-
-            Timing - '.$result['time'].'
-
-            Address : '.$prf13[8].'
-
-            Contact Person : '.$prf13[9].'
-
-            Please be available at the stipulated time.
-
-            In-case of any query, feel free to reach out to recruitment@tkeap.com
-
-            tkEI Recruiting Team.');
-            $mail->AltBody = 'Thank You For Confirmation.';
-
-            $mail->send();
-            echo "done";
-
+            $i++;
         }
+
+        $r = $db->prfs->findOne(array("prf"=>$prf13[0]));
+        $mail->addAddress($result['intvmail']);
+        $mail->Subject = 'Interview schedule for '.$r['department'].' - '.$r['position'].'';
+        $mail->Body    = nl2br('Dear '.$result['invname'].',
+
+        Thank you for confirmation, please find below the details for the interview for the post of '.$r['position'].'.
+
+        Address : '.$prf13[8].'
+
+        You will find date & time of each candidate on your dashboard. Please be available at the stipulated time.
+
+        In-case of any query, feel free to reach out to recruitment@tkeap.com
+
+        tkEI Recruiting Team.');
+        $mail->AltBody = 'Thank You For Confirmation.';
+
+        $mail->send();
+        echo "done";
+
+
     }
 }
 else
