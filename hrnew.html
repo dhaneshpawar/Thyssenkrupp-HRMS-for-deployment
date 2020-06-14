@@ -247,10 +247,7 @@ $('#submitmail').click(function()
   })
 })
 
-function merafun()
-{
-  $('.modal').modal("open");
-}
+
 function merafun2(cnrf)
 {
   if(cnrf)
@@ -266,7 +263,7 @@ function merafun2(cnrf)
 </script>
 
   <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" onclick="merafun()">Modal</a>
+  <a class="waves-effect waves-light btn modal-trigger" onclick='$("#modal1").modal("open")'>Modal</a>
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
@@ -285,5 +282,26 @@ function merafun2(cnrf)
       </center>
     </div>
   </div>
+
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" onclick='$("#modal2").modal("open")'>Modal</a>
+
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+        <br>
+        
+        <center><h2>Are You Sure ?</h2></center>
+        <center><p>This Round Will Be Removed From The Processasdadd.</p></center>
+        
+      </div>
+      <div class="modal-footer">
+        <center>
+        <a onclick="merafun2(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+        <a onclick="merafun2(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+        </center>
+      </div>
+    </div>
 </html>
         

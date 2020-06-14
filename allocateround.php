@@ -40,12 +40,6 @@ if(isset($_COOKIE['sid']))
 </head>
 <script>
 
-function openModal()
-{
-  $('.modal').modal("open");
-}
-
-
 function abort_round(confr)
 {
   
@@ -208,7 +202,7 @@ function abort_round(confr)
                   <th>Date</th>
                   <th>Select</th>
                   <th class="btn blue darken-1" id="submit" disabled>Assign Interviewer</th>
-                  <th class="btn red" style="margin-left: 25px;" id="abort" onclick="openModal()"> Abort</th>
+                  <th class="btn red" style="margin-left: 25px;" id="abort" onclick='$("#modal1").modal("open")'> Abort</th>
 
                 </tr>
               </thead>
@@ -221,7 +215,7 @@ function abort_round(confr)
             <br>
             <div id="noselect">
             </div>
-            <a class="waves-effect red btn" disabled  id="completeprocess"  onclick="terminateround(this.id)" >Complete Interview Process</a>
+            <a class="waves-effect red btn" disabled  id="completeprocess"  onclick='$("#modal2").modal("open")'>Complete Interview Process</a>
           </div>          
         </div>
       </div>
@@ -237,22 +231,44 @@ function abort_round(confr)
 </div>
 
   <!-- modal starts here -->
+
+    <!-- modal1 starts here -->
     <div id="modal1" class="modal">
-    <div class="modal-content">
-      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
-      <br>
-      
-      <center><h2>Are You Sure ?</h2></center>
-      <center><p>This Round Will Be Removed From The Process.</p></center>
-      
+      <div class="modal-content">
+        <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+        <br>
+        
+        <center><h2>Are You Sure ?</h2></center>
+        <center><p>This Round Will Be Removed From The Process.</p></center>
+        
+      </div>
+      <div class="modal-footer">
+        <center>
+        <a onclick="abort_round(true)" class="modal-close waves-effect green btn">Confirm<i class="material-icons left">check_box</i></a>
+        <a onclick="abort_round(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+        </center>
+      </div>
     </div>
-    <div class="modal-footer">
-      <center>
-      <a onclick="abort_round(true)" class="modal-close waves-effect green btn">Confirm<i class="material-icons left">check_box</i></a>
-      <a onclick="abort_round(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
-      </center>
-    </div>
-  </div>
+    <!-- modal1 ends here -->
+
+    <!-- modal 2 starts here -->
+      <div id="modal2" class="modal">
+        <div class="modal-content">
+          <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+          <br>
+          
+          <center><h2>Are You Sure ?</h2></center>
+          <center><p>Interview Process Will Be Completed.You Can See These Memebers in Your History</p></center>
+          
+        </div>
+        <div class="modal-footer">
+          <center>
+          <a onclick="terminateround(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+          <a onclick="terminateround(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+          </center>
+        </div>
+      </div>
+    <!-- modal 2 ends here -->
   <!-- modal ends here -->
 
 
@@ -563,7 +579,7 @@ function createnextround(id)
 
 }
 counter=1;
-function terminateround()
+function terminateround(confrm)
 {
   if(selectedmail.length <= 0 && counter == 1)
     {
@@ -573,7 +589,6 @@ function terminateround()
     else
     {
       counter=1;
-      var confrm = confirm("Interview Process Will Be Completed \n You Can See These Memebers in Your History \n Are You sure ? ");
       console.log(selectedmail)
       var groupid=window.groupid
       console.log(groupid)
