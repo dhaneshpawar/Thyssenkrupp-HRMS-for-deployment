@@ -39,40 +39,41 @@ if(isset($_COOKIE['sid']))
 
 </head>
 <script>
-function abort_round()
+
+function abort_round(confr)
 {
-  var confr = confirm("This Rouncd Will Be Removed From The Process \n Are You Sure ?");
+  
   if(confr)
   {
  
     $.ajax({
-  url:"http://localhost/hrms/api/abortround.php",
-type:"POST",
-data: {
-  "digit13" :  id_round
-},
-success:function(para){
-console.log(para)
-if(para=="success")
-{
-  document.location.reload();
-}
-else if(para == "fail")
-{
-  alert("operation failed")
-}
-else if(para == "notfound")
-{
-  alert("PRF Does Not Exist")
-}
-else
-{
-  console.log("something went wrong")
-}
-} 
+        url:"http://localhost/hrms/api/abortround.php",
+      type:"POST",
+      data: {
+        "digit13" :  id_round
+      },
+      success:function(para){
+      console.log(para)
+      if(para=="success")
+      {
+        document.location.reload();
+      }
+      else if(para == "fail")
+      {
+        alert("operation failed")
+      }
+      else if(para == "notfound")
+      {
+        alert("PRF Does Not Exist")
+      }
+      else
+      {
+        console.log("something went wrong")
+      }
+      } 
 
-})
- 
+    })
+
   }
 }
 </script>
@@ -97,137 +98,179 @@ else
 </div>
 
 <div id="remin">
-<nav> 
-    <div class="nav-wrapper blue darken-1">
-      <a href="#!" class="brand-logo left" style="margin-left: 2%;"><i id="showsidenbutton" class="material-icons">menu</i>
-    </a>
-    <a href="/hrms/" class="brand-logo center">thyssenkrupp</a>
-    </div>
-</nav>
-<br><br>
+  <nav> 
+      <div class="nav-wrapper blue darken-1">
+        <a href="#!" class="brand-logo left" style="margin-left: 2%;"><i id="showsidenbutton" class="material-icons">menu</i>
+      </a>
+      <a href="/hrms/" class="brand-logo center">thyssenkrupp</a>
+      </div>
+  </nav>
+  <br><br>
 <!-- nav and side menu ended -->
     
-                  <div class="row">
-                    <div class="col s12 m12">
-                      <div class="card  white">
-                        <div class="card-content blue-text">
-                            <table class="striped">
-                                <thead>
-                                  <tr>
-                                      <th>Completed Rounds</th>
-                                      <th>Create Next Round</th>
-                                      
-                                  </tr>
-                                </thead>
-                                <tbody id="addtr">
-                                  
-                                </tbody>
-                            </table>
+    <div class="row">
+      <div class="col s12 m12">
+        <div class="card  white">
+          <div class="card-content blue-text">
+              <table class="striped">
+                  <thead>
+                    <tr>
+                        <th>Completed Rounds</th>
+                        <th>Create Next Round</th>
+                        
+                    </tr>
+                  </thead>
+                  <tbody id="addtr">
+                    
+                  </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <center>
+    <b><p id="waiting" style="color:red">Updating Details Please Wait...</p></b>
+    </center>
+    <div class="row" id="allocatingcandidate" >
+      <div class="col s12 m12">
+        <div class="card  white">
+          <div class="card-content blue-text">
+            <p id='rid'><b></b></p>
+            <div class="row" id="allocation" >
+              <div class="col s12 m12" style="border: solid 5p">
+                <div class="card white">
+                  <div class="card-content blue-text">
+                    <div class="row">
+                  
+                    <div class="input-field col s3 m3 " >
+                        <input id="iname" type="text" class="text">
+                        <label class="active" for="iname" id="iname" required>Interviewer Name</label>
+                      </div>  
+
+                      <div class="input-field col s3 m3 white-text" >
+                        <input id="imail" type="text" >
+                        <label class="active" for="iname" required>Interwiever Mail ID</label>
+                      </div>
+
+                      <div class="input-field col s3 m3 white-text" >
+                        <input id="iloc" type="text" >
+                        <label class="active" for="iloc" required>Interview Location</label>
+                      </div>
+
+                      <div class="input-field col s3 m3 white-text" >
+                        <input id="iperson" type="text" >
+                        <label class="active" for="iperson" required>Contact Person</label>
+                      </div>        
+                    </div>
+                      
+                    <div class="row">
+                        <div class="input-field col s3 m3">
+                          <input id="idate" type="text" class="datepicker" required>
+                          <label  for="idate">Date</label>
                         </div>
-                      </div>
+                        <div class="input-field col s3 m3 " >
+                          <input id="itime" type="text" class="timepicker" required>
+                          <label class="active" for="itime">Time</label>
+                        </div>
+                        <div class="input-field col s3 m3 " >
+                          <input id="idept" type="text" class="text">
+                          <label class="active" for="idept" id="idept" required>Interviewer Department</label>
+                        </div>                                    
+                        <div class="input-field col s3 m3 " >
+                          <input id="idesg" type="text" class="text">
+                          <label class="active" for="idesg" id="idesg" required>Interviewer Designation</label>
+                        </div>
+                    </div>          
+                    
+
+                    <div class="row">
+                      <button class="btn waves-effect blue darken-1 col m3 s3 offset-m4" type="submit" id='allocatesubmit'>Submit
+                      <i class="material-icons right">send</i>
+                      </button>
                     </div>
+                    
                   </div>
-                  <center>
-                  <b><p id="waiting" style="color:red">Updating Details Please Wait...</p></b>
-                  </center>
-                  <div class="row" id="allocatingcandidate" >
-                    <div class="col s12 m12">
-                      <div class="card  white">
-                        <div class="card-content blue-text">
-                          <p id='rid'><b></b></p>
-                          <div class="row" id="allocation" >
-                            <div class="col s12 m12" style="border: solid 5p">
-                              <div class="card white">
-                                <div class="card-content blue-text">
-                                  <div class="row">
-                                
-                                  <div class="input-field col s3 m3 " >
-                                      <input id="iname" type="text" class="text">
-                                      <label class="active" for="iname" id="iname" required>Interviewer Name</label>
-                                    </div>  
+                </div>
+              </div>
+            </div>
+            <table class="striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Mail ID</th>
+                  <th>Time</th>
+                  <th>Date</th>
+                  <th>Select</th>
+                  <th class="btn blue darken-1" id="submit" disabled>Assign Interviewer</th>
+                  <th class="btn red" style="margin-left: 25px;" id="abort" onclick='$("#modal1").modal("open")'> Abort</th>
 
-                                    <div class="input-field col s3 m3 white-text" >
-                                      <input id="imail" type="text" >
-                                      <label class="active" for="iname" required>Interwiever Mail ID</label>
-                                    </div>
-
-                                    <div class="input-field col s3 m3 white-text" >
-                                      <input id="iloc" type="text" >
-                                      <label class="active" for="iloc" required>Interview Location</label>
-                                    </div>
-
-                                    <div class="input-field col s3 m3 white-text" >
-                                      <input id="iperson" type="text" >
-                                      <label class="active" for="iperson" required>Contact Person</label>
-                                    </div>        
-                                  </div>
-                                    
-                                    <div class="row">
-                                        <div class="input-field col s3 m3">
-                                          <input id="idate" type="text" class="datepicker" required>
-                                          <label  for="idate">Date</label>
-                                        </div>
-                                        <div class="input-field col s3 m3 " >
-                                          <input id="itime" type="text" class="timepicker" required>
-                                          <label class="active" for="itime">Time</label>
-                                        </div>
-                                        <div class="input-field col s3 m3 " >
-                                          <input id="idept" type="text" class="text">
-                                          <label class="active" for="idept" id="idept" required>Interviewer Department</label>
-                                        </div>                                    
-                                        <div class="input-field col s3 m3 " >
-                                          <input id="idesg" type="text" class="text">
-                                          <label class="active" for="idesg" id="idesg" required>Interviewer Designation</label>
-                                        </div>
-                                    </div>          
-                                  
-
-                                  <div class="row">
-                                    <button class="btn waves-effect blue darken-1 col m3 s3 offset-m4" type="submit" id='allocatesubmit'>Submit
-                                    <i class="material-icons right">send</i>
-                                    </button>
-                                  </div>
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <table class="striped">
-                            <thead>
-                              <tr>
-                                <th>Name</th>
-                                <th>Mail ID</th>
-                                <th>Time</th>
-                                <th>Date</th>
-                                <th>Select</th>
-                                <th class="btn blue darken-1" id="submit" disabled>Assign Interviewer</th>
-                                <th class="btn red" style="margin-left: 25px;" id="abort" onclick="abort_round()"> Abort</th>
-
-                              </tr>
-                            </thead>
-                            <tbody id="adddetail">
-                              <tr>
-                              </tr>
-                            </tbody>
-                            
-                            </table>
-                            <br>
-                            <div id="noselect">
-                            </div>
-                            <a class="waves-effect red btn" disabled  id="completeprocess"  onclick="terminateround(this.id)" >Complete Interview Process</a>
-
-                        </div>          
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                  <div class="row" >
-      <center>
-      <p style="color: green" id="sendingmail">Sending Mail to the candidate...Please Wait !  </p>
-      <p style="color: green" id="sentsuccess">Mail sent successfully </p>
-      <p style="color: red" id="fail">Unable to send mail </p>
-      </center>
+                </tr>
+              </thead>
+              <tbody id="adddetail">
+                <tr>
+                </tr>
+              </tbody>
+              
+            </table>
+            <br>
+            <div id="noselect">
+            </div>
+            <a class="waves-effect red btn" disabled  id="completeprocess"  onclick='$("#modal2").modal("open")'>Complete Interview Process</a>
+          </div>          
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="row" >
+    <center>
+    <p style="color: green" id="sendingmail">Sending Mail to the candidate...Please Wait !  </p>
+    <p style="color: green" id="sentsuccess">Mail sent successfully </p>
+    <p style="color: red" id="fail">Unable to send mail </p>
+    </center>
+  </div> 
+</div>
+
+  <!-- modal starts here -->
+
+    <!-- modal1 starts here -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+        <br>
+        
+        <center><h2>Are You Sure ?</h2></center>
+        <center><p>This Round Will Be Removed From The Process.</p></center>
+        
+      </div>
+      <div class="modal-footer">
+        <center>
+        <a onclick="abort_round(true)" class="modal-close waves-effect green btn">Confirm<i class="material-icons left">check_box</i></a>
+        <a onclick="abort_round(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+        </center>
+      </div>
+    </div>
+    <!-- modal1 ends here -->
+
+    <!-- modal 2 starts here -->
+      <div id="modal2" class="modal">
+        <div class="modal-content">
+          <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+          <br>
+          
+          <center><h2>Are You Sure ?</h2></center>
+          <center><p>Interview Process Will Be Completed.You Can See These Memebers in Your History</p></center>
+          
+        </div>
+        <div class="modal-footer">
+          <center>
+          <a onclick="terminateround(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+          <a onclick="terminateround(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+          </center>
+        </div>
+      </div>
+    <!-- modal 2 ends here -->
+  <!-- modal ends here -->
+
 
 <center>
 <p id="nodata"><b style="color:red;margin-left:12%;">No Data Available..!</b></p>
@@ -252,6 +295,7 @@ $(document).ready(function(){
       minDate:new Date(),
   })
   $('.timepicker').timepicker();
+  $('.modal').modal();
 
 
 
@@ -536,7 +580,7 @@ function createnextround(id)
 
 }
 counter=1;
-function terminateround()
+function terminateround(confrm)
 {
   if(selectedmail.length <= 0 && counter == 1)
     {
@@ -546,7 +590,6 @@ function terminateround()
     else
     {
       counter=1;
-      var confrm = confirm("Interview Process Will Be Completed \n You Can See These Memebers in Your History \n Are You sure ? ");
       console.log(selectedmail)
       var groupid=window.groupid
       console.log(groupid)

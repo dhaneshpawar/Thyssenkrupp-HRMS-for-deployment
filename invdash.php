@@ -87,6 +87,114 @@ if(isset($_COOKIE['sid']))
 
     <body>
 
+        <!-- modal1 starts here -->
+        <div id="modal1" class="modal">
+        <div class="modal-content">
+            <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+            <br>
+            
+            <center><h2>Are You Sure ?</h2></center>
+            <center>
+            <div class="row">
+                <div class="input-field col s12 m6 offset-m3">
+                <input id="reject_reason" type="text" >
+                <label for="reject_reason">Specify Reason</label>
+                </div>
+            </div>
+            </center>
+            <center><p style="color:red" id="reason_line">Please specify reason.</p></center>
+            <div id="appending_id"></div>
+
+            
+        </div>
+        <div class="modal-footer">
+            <center>
+            <a onclick="rejectInterview(true)"  class="waves-effect green btn" id="confirm_id">Confirm<i class="material-icons left" >check_box</i></a>
+            <a onclick="rejectInterview(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+            </center>
+        </div>
+        </div>
+        <!-- modal1 ends here -->
+
+        <!-- modal2 starts here -->
+        <div id="modal2" class="modal">
+        <div class="modal-content">
+            <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+            <br>
+            
+            <center><h2>Are You Sure ?</h2></center>
+            
+            
+        </div>
+        <div class="modal-footer">
+            <center>
+            <a onclick="submit_interview(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+            <a onclick="submit_interview(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+            </center>
+        </div>
+        </div>
+        <!-- modal2 Ends here -->
+
+        <!-- modal3 starts here -->
+        <div id="modal3" class="modal">
+        <div class="modal-content">
+            <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+            <br>
+            
+            <center><h2>Are You Sure ?</h2></center>
+            <center><p>You Will Be Redirected To Evaluation Sheet of This Candidate</p></center>
+            <div id="appending_id2"></div>
+            
+            
+        </div>
+        <div class="modal-footer">
+            <center>
+            <a onclick="evaluateMail(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+            <a onclick="evaluateMail(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+            </center>
+        </div>
+        </div>
+        <!-- modal3 ends here -->
+
+        <!-- modal4 starts here -->
+        <div id="modal4" class="modal">
+        <div class="modal-content">
+            <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+            <br>
+            
+            <center><h2>Are You Sure ?</h2></center>
+            <div id="appending_id3"></div>
+            
+            
+        </div>
+        <div class="modal-footer">
+            <center>
+            <a onclick="acceptintr(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+            <a onclick="acceptintr(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+            </center>
+        </div>
+        </div>
+        <!-- modal4 ends here -->
+
+        <!-- modal5 starts here -->
+        <div id="modal5" class="modal">
+        <div class="modal-content">
+            <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+            <br>
+            
+            <center><h2>Are You Sure ?</h2></center>
+            <div id="appending_id4"></div>
+            
+            
+        </div>
+        <div class="modal-footer">
+            <center>
+            <a onclick="onholdMail(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+            <a onclick="onholdMail(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+            </center>
+        </div>
+        </div>
+        <!-- modal5 ends here -->
 
  <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
 
@@ -171,7 +279,7 @@ if(isset($_COOKIE['sid']))
                     </table>
                     <center>
                     <br><br>
-                    <button class="btn waves-effect blue darken-1" id="submitinterview">Complete Interview</button>
+                    <button class="btn waves-effect blue darken-1" id="submitinterview" onclick='$("#modal2").modal("open")'>Complete Interview</button>
                     <br><br>
                     <b style="color:green;">If No Candidates Found, You Can Click This Button</b>
                     </center>
@@ -261,28 +369,66 @@ if(isset($_COOKIE['sid']))
     var id13digit;
     var rjctid;
 
-    function rejectInterview(x)
+    // function for opening dialouge box1
+    function openmodal(cid)
     {
-    //    alert(x)
-        var cnfrm = confirm("This Request Will Be Rejected \n Are You Sure?")
+        $("#appending_id").empty()
+        $("#appending_id").append("<b id='bid' name='"+cid+"'></b>")
+        $("#modal1").modal("open")
+    }
+
+    // function for opening dialouge box3
+    function openmodal2(cid)
+    {
+        $("#appending_id2").empty()
+        $("#appending_id2").append("<b id='bid2' name='"+cid+"'></b>")
+        $("#modal3").modal("open")
+    }
+
+    // function for opening dialouge box4
+    function openmodal3(cid)
+    {
+        $("#appending_id3").empty()
+        $("#appending_id3").append("<b id='bid3' name='"+cid+"'></b>")
+        $("#modal4").modal("open")
+    }
+
+    // function for opening dialouge box5
+    function openmodal4(cid)
+    {
+        $("#appending_id4").empty()
+        $("#appending_id4").append("<b id='bid4' name='"+cid+"'></b>")
+        $("#modal5").modal("open")
+    }
+
+
+    function rejectInterview(cnfrm)
+    {
+        
         if(cnfrm)
         {
-            var reason = prompt("Specify Reason For Rejecting : ");
-            // alert(x)
-            $.ajax({
-                url:"http://localhost/hrms/api/updateinterviewstatus.php",
-                type:'POST',
-                data:{
-                    "id":x ,
-                    "reason":reason,
-                },
-                success:function(para){
-                    // alert(para)
-                    var p = "#"+x;
-                    $(p).remove();
-                    location.reload(true)
-                }
-            })
+            if($('#reject_reason').val()=="")
+            {
+                $('#reason_line').show()
+            }
+            else
+            {
+                $.ajax({
+                    url:"http://localhost/hrms/api/updateinterviewstatus.php",
+                    type:'POST',
+                    data:{
+                        "id":$('#bid').attr('name'),
+                        "reason":$('#reject_reason').val(),
+                    },
+                    success:function(){
+                        var x = $('#bid').attr('name')
+                        var p = "#"+x;
+                        $(p).remove();
+                        location.reload(true)
+                    }
+                })
+            }
+
         }
 
     }
@@ -290,9 +436,10 @@ if(isset($_COOKIE['sid']))
     {
         
     }
-    function acceptintr(x)
+  
+    function acceptintr(cnfrm)
     {
-       
+        var x = $('#bid3').attr('name')
         var acbtnid="#"+x;
         x1 = x.slice(3);
         // alert(x1)
@@ -300,7 +447,6 @@ if(isset($_COOKIE['sid']))
         var rjbtnid="#"+x+'1';
         // alert(rjbtnid)
         
-        var cnfrm=confirm("Are Your Sure ?");
         if(cnfrm)
         {
             $("#accept").show()
@@ -503,6 +649,8 @@ function confirmmodifyAllMails(id)
         $("#status").hide()
         $("#loader").hide()
         $("#accept").hide()
+        $('.modal').modal();
+        $('#reason_line').hide()
          window.mail = "<?php echo $cursor["mail"]; ?>"
          $('.timepicker').timepicker();
        // mail = JSON.stringify(mail)
@@ -514,8 +662,7 @@ function confirmmodifyAllMails(id)
 
     //submitting complete interview
     
-    $("#submitinterview").click(function(){
-        var cnfrm = confirm("The Interview Process Will Be Completed For This Round \n Are You Sure?")
+    function submit_interview(cnfrm){
         if(cnfrm)
         {
             $.ajax({
@@ -540,8 +687,9 @@ function confirmmodifyAllMails(id)
             })
             
         }
+    }
         
-    })
+    
 
     $("#emailrow").hide()
     console.log(window.mail)
@@ -573,8 +721,8 @@ function confirmmodifyAllMails(id)
                 var txt1 = '<tr><td><b>'+temparr[0]+'</b></td>'
                 var txt2 = '<td>'+temparr[1]+'</td><td>'+temparr[2]+'</td>' 
                 var txt6 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'*2" onclick="displayreadonlymail(this.id)">See Members<i class="material-icons right">send</i>'                       
-                var txt5 = '<td><button class="btn waves-effect green"  id="act'+temparr[0]+'" onclick="acceptintr(this.id)" '+status+'>Accept<i class="material-icons right">send</i></button></td>' 
-                var txt4 = '<td><button class="btn waves-effect red"  id="act'+temparr[0]+'1" '+status+' onclick="rejectInterview(this.id)">Reject<i class="material-icons right">send</i></button></td>' 
+                var txt5 = '<td><button class="btn waves-effect green"  id="act'+temparr[0]+'" onclick="openmodal3(this.id)" '+status+'>Accept<i class="material-icons right">send</i></button></td>' 
+                var txt4 = '<td><button class="btn waves-effect red"  id="act'+temparr[0]+'1" '+status+' onclick="openmodal(this.id)">Reject<i class="material-icons right">send</i></button></td>' 
                
                
 
@@ -744,23 +892,23 @@ function confirmmodifyAllMails(id)
                     var txt4 = '<td ><input disabled type="text"  id="'+i+'tp" value="'+para[i][3]+'" class="timepicker"></td>'
                     if(setDate >currdate)
                     {
-                        var txt5 = '<td><button disabled class="btn waves-effect green"  id="'+para[i][1]+'" onclick="evaluateMail(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
-                        var txt6 = '<td><button disabled class="btn waves-effect red"  id="'+para[i][1]+'" onclick="onholdMail(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+                        var txt5 = '<td><button disabled class="btn waves-effect green"  id="'+para[i][1]+'" onclick="openmodal2(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                        var txt6 = '<td><button disabled class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
                     }
                     else
                     {
                         if(time <= finaltime)
                         {
                             // alert("Set time is lesser than current")
-                            var txt5 = '<td><button  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="evaluateMail(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
-                            var txt6 = '<td><button  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="onholdMail(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+                            var txt5 = '<td><button  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="openmodal2(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                            var txt6 = '<td><button  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
 
                         }
                         else
                         {
                             // alert("Set time is greater than current")
-                            var txt5 = '<td><button disabled  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="evaluateMail(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
-                            var txt6 = '<td><button disabled  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="onholdMail(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+                            var txt5 = '<td><button disabled  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="openmodal2(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                            var txt6 = '<td><button disabled  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
 
                         }
                     }
@@ -777,24 +925,21 @@ function confirmmodifyAllMails(id)
     }
 
     // function for jumping to evaluation form
-    function evaluateMail(x)
+    function evaluateMail(p)
     {   
-        var p = confirm("You Will Be Redirected To Evaluation Sheet of This Candidate \n Are You Sure?")
-    
-        
-        
         if(p)
         {
-        localStorage.setItem('currentemail',x)
+        localStorage.setItem('currentemail',$('#bid2').attr('name'))
         localStorage.setItem('id',window.digit13)
-        $(document.getElementById(x)).remove()
+        $(document.getElementById($('#bid2').attr('name'))).remove()
         window.open("http://localhost/hrms/evaluation.php", '_blank');
         }
     }
-    function onholdMail(x)
+
+    function onholdMail(p)
     {   
         
-        var p = confirm("are you sure?")
+        var x = $('#bid4').attr('name')
     
         if(p)
         {
