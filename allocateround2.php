@@ -37,17 +37,7 @@ if(isset($_COOKIE['sid']))
     <script src="public/js/materialize.min.js"></script>
 
 </head>
-<script>
-function abort_round()
-{
-  var confr = confirm("Are You Sure ?");
-  if(confr)
-  {
-    document.location.reload();
-    
-  }
-}
-</script>
+
 <body>
 
 <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
@@ -427,24 +417,6 @@ function createnextround(ids)
   })
 }
 
-function terminateround(id)
-{
-  var confrm = confirm("Are You sure ? ");
-  if(confrm)
-  {
-    id_round = id
-    var str = "#"+id_round+"row";
-    $.ajax({
-    type:'POST',
-    data:{'roundid':id_round},
-    success:function(para)
-    {
-      $(str).remove();
-    }
-  })
-}
-
-}
 $('#logoutuser').click(function(){
 
 $.ajax({
