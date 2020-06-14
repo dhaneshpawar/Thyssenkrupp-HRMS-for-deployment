@@ -260,10 +260,20 @@ function merafun2(cnrf)
   }
  
 }
+
+function merafun(s)
+{
+  $("#modal1").append("<b id='myb' name='"+s+"'></b>")
+  
+  $("#modal1").modal("open")
+  var x =$('#myb').attr('name')
+  alert(x)
+  
+}
 </script>
 
   <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" onclick='$("#modal1").modal("open")'>Modal</a>
+  <a class="waves-effect waves-light btn modal-trigger"  id="asdasd" onclick='merafun(this.id)'>Modal</a>
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
