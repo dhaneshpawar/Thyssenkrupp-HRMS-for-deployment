@@ -181,8 +181,8 @@ $("#emailcollection").append(txt);
 }
 var arr=[]
 $(document).ready(function(){
-  
-            
+  $('#reason_line').hide()
+  $('.modal').modal();     
   
 
  $.ajax({
@@ -247,6 +247,115 @@ $('#submitmail').click(function()
   })
 })
 
+
+
+function merafun2(cnrf)
+{
+  if(cnrf)
+  {
+    
+    if($('#reject_reason').val()=="")
+    {
+      $('#reason_line').show()
+    }
+    else
+    {
+      $("#modal3").modal("close")
+      alert($('#myb').attr('name'))
+    }
+  }
+  else
+  {
+    alert("no")
+  }
+ 
+}
+
+function merafun(s)
+{
+  $("#appending_id").empty()
+  $("#appending_id").append("<b id='myb' name='"+s+"'></b>")
+  
+  $("#modal1").modal("open")
+  var x =$('#myb').attr('name')
+  alert($('#myb').attr('name'))
+  
+}
 </script>
+
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger"  id="asdasd" onclick='merafun(this.id)'>Modal</a>
+  <a class="waves-effect waves-light btn modal-trigger"  id="asdasd12" onclick='merafun(this.id)'>Modal12</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>Are You Sure ?</h2></center>
+      <center><p>This Round Will Be Removed From The Process.</p></center>
+      <div id="appending_id">
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <center>
+      <a onclick="merafun2(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+      <a onclick="merafun2(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+      </center>
+    </div>
+  </div>
+
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn " onclick='$("#modal2").modal("open")'>Modal</a>
+
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+        <br>
+        
+        <center><h2>Are You Sure ?</h2></center>
+        <center><p>This Round Will Be Removed From The Processasdadd.</p></center>
+        
+      </div>
+      <div class="modal-footer">
+        <center>
+        <a onclick="merafun2(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+        <a onclick="merafun2(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+        </center>
+      </div>
+    </div>
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn "  id="asdasd" onclick='$("#modal3").modal("open")'>Modal23</a>
+
+    <!-- Modal Structure -->
+    <div id="modal3" class="modal">
+      <div class="modal-content">
+        <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+        <br>
+        
+        <center><h2>Are You Sure ?</h2></center>
+        <center><p>This Round Will Be Removed From The 3 Process.</p></center>
+        <center>
+          <div class="row">
+            <div class="input-field col s12 m6 offset-m3">
+              <input id="reject_reason" type="text" >
+              <label for="reject_reason">Specify Reason</label>
+            </div>
+          </div>
+        </center>
+        <center><p style="color:red" id="reason_line">Please specify reason.</p></center>
+
+        
+      </div>
+      <div class="modal-footer">
+        <center>
+        <a onclick="merafun2(false)"  class="waves-effect green btn" id="confirm_id">Confirm<i class="material-icons left" >check_box</i></a>
+        <a onclick="merafun2(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+        </center>
+      </div>
+    </div>
 </html>
         
