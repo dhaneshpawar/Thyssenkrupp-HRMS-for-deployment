@@ -197,9 +197,9 @@ else
                               <tr>
                                 <th>Name</th>
                                 <th>Mail ID</th>
-                                <th>Select</th>
                                 <th>Time</th>
                                 <th>Date</th>
+                                <th>Select</th>
                                 <th class="btn blue darken-1" id="submit" disabled>Assign Interviewer</th>
                                 <th class="btn red" style="margin-left: 25px;" id="abort" onclick="abort_round()"> Abort</th>
 
@@ -307,18 +307,38 @@ $('#allocatingcandidate').hide();
 
 $('#submit').click(function()
 {
-  if(selectedmail.length <= 0)
+
+    for(let i = 0;i<selectedmailID.length;i++)
+    {
+      // console.log("id - "+$(selectedmailID[i]+"date").val())
+      if($(selectedmailID[i]+"date").val()!="" || $(selectedmailID[i]+"date2").val()!="" )
+      {
+        flag =0;
+        // alert("Data  present");
+      }
+      else
+      {
+        // alert("Data not present");
+        flag =1;
+        break;
+      }
+    }
+   if(selectedmail.length <= 0)
     {
       alert("Please Select Atleast 1 Member")
     }
+    else if(flag==1)
+    {
+      alert("Please Select date or time")
+    }
     else
     {
-  for(let i=0;i<selectedmail.length;i++)
-  {
-    console.log(selectedmail[i])
-  }
+        for(let i=0;i<selectedmail.length;i++)
+        {
+          console.log(selectedmail[i])
+        }
 
-$('#allocation').show(600);
+      $('#allocation').show(600);
 
     }                      
 })
@@ -407,13 +427,27 @@ function selection(x)
   var y ='#'+x+'mail'  
   if($(b).prop("checked") == true)
   {
-    selectedmail.push($(y).text())
-    selectedmailID.push(b)
-    console.log('mail:'+selectedmail)
-    console.log('ID:'+selectedmailID)
+    console.log("Value of first - "+$(b+"date2").val())
+    if($(b+"date").val() !="" && $(b+"date2").val() !="" )
+    {
+        // $(b).prop("checked")=false
+        // alert("Date not entered");
+        selectedmail.push($(y).text())
+        selectedmailID.push(b)
+        console.log('mail:'+selectedmail)
+        console.log('ID:'+selectedmailID)
+    }
+    else
+    {
+      $(b).prop("checked",false)
+      alert("Date not entered");
+    }
+
+    
   }
   else
-  {                                               
+  { 
+                                                 
     for( var i = 0; i < selectedmail.length; i++)
     { 
       if ( selectedmail[i] === $(y).text()) 
@@ -479,12 +513,15 @@ function createnextround(id)
         for(let i =0;i<para.length;i++)
         {
           allmail[i] = arr[i]
-          var s1='<tr id="check'+i+'row"><td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p >'+arr[i][0]+'</p></a></td><td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p id="check'+i+'mail">'+arr[i][1]+'</p></a></td><td><label>'
-          var s2='<input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)"/>'
-          var s3='<span class="blue-text darken-1" ></span></label></td>'
+          var s1='<tr id="check'+i+'row">'
+          var s2='<td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p >'+arr[i][0]+'</p></a></td>'
+          var s3='<td><a href="http://localhost/hrms/documentcheck.php?aid='+arr[i][1]+'" target="_blank" "><p id="check'+i+'mail">'+arr[i][1]+'</p></a></td>'
           var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
-          var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td></tr>'
-          var str=s1+s2+s3+s4+s5
+          var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td>'
+          var s6='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)">'
+          var s7='<span class="blue-text darken-1" ></span></label></td></tr>'
+          
+          var str=s1+s2+s3+s4+s5+s6+s7
           $('#adddetail').append(str)
           $('.timepicker').timepicker();
           $('.datepicker').datepicker();
