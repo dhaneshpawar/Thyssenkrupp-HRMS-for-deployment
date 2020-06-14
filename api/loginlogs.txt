@@ -484,3 +484,5 @@ Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	10:45:31 PM	Logout
 >>>>>>> 35a9628be0b2d56dafd633998e2db27b34ec74e4
 
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		14/06/2020	08:23:52 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		14/06/2020	09:55:06 PM	Logout
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		14/06/2020	09:55:14 PM	Login

@@ -279,9 +279,10 @@ if(isset($_COOKIE['sid']))
                     </table>
                     <center>
                     <br><br>
+                    <b style="color:green;">If No Candidates Found, You Can Click Below Button</b><br><br>
                     <button class="btn waves-effect blue darken-1" id="submitinterview" onclick='$("#modal2").modal("open")'>Complete Interview</button>
-                    <br><br>
-                    <b style="color:green;">If No Candidates Found, You Can Click This Button</b>
+                    
+                    
                     </center>
                 </div>
             </div>
