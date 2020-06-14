@@ -6,7 +6,7 @@ if($cursor)
     include 'maildetails.php';
     
 
-    $mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
+    $mail->setFrom('thyssenkrupp@tkep.com', 'tkei');
     $mail->addReplyTo(Email, 'Information');
     $mail->isHTML(true);   
 
@@ -15,7 +15,7 @@ if($cursor)
     $candidate = $_POST['candidate'];
     $mail->addAddress($email);
 
-    $mail->Subject = 'Mail Regarding Interview';
+    $mail->Subject = 'Update regarding offer letter';
     $mail->Body    = 'Offer Letter Sent to '.$candidate;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

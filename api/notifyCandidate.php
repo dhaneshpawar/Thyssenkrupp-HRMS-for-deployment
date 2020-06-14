@@ -5,7 +5,7 @@ if($cursor)
 {
    
     include 'maildetails.php';
-    $mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
+    $mail->setFrom('thyssenkrupp@tkep.com', 'tkei');
     $mail->addReplyTo(Email, 'Information');
     $mail->isHTML(true);
     $i=0;
@@ -24,7 +24,7 @@ if($cursor)
             $name1 = $name['full_name'];
             $_SESSION['posi'] = $name['position'];
             $mail->addAddress($d);
-            $mail->Subject = 'Your Application at tkEI - Interview Schedule';
+            $mail->Subject = "Invitation to interview with thyssenkrupp for the ". $name['position']." position";
             $mail->Body    = nl2br('Dear '.$name1.',
 
             Thank you for the application for the role of '.$name['position'].'. Further to our discussion you are
@@ -67,7 +67,6 @@ if($cursor)
 
         $mail->send();
         echo "done";
-
 
     }
 }
