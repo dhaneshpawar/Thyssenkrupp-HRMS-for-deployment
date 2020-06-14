@@ -6,7 +6,7 @@ $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
 
 if($cursor)
 {
-    $mail->setFrom("tkep", 'Interview Call');
+    $mail->setFrom("tkep", 'tkei');
     $mail->addReplyTo(Email, 'Information');
     $mail->isHTML(true);   
     //$mail->SMTPDebug=4;
@@ -65,6 +65,7 @@ if($cursor)
         //Query to add empty arrays to documents - selected, rejected, onhold
         $db->rounds->updateOne($criteria,array('$set'=>array("selected"=>array(),"rejected"=>array(),"onhold"=>array())));
         //send mail to  interviewer 
+        $dashurl="http://localhost/hrms/invdash.php";
         $mail->addAddress($_POST['intv']);
         $mail->Subject = 'Interview schedule for '.$result3['department'].' - '.$result3['position'].' .';
         $mail->Body    = nl2br('Dear '.$_POST['iname'].',
@@ -78,7 +79,8 @@ if($cursor)
         Location - '.$_POST['iloc'].'
 
         Contact Person - '.$_POST['iperson'].'
-            
+          
+        To access your dashboard for more details, please click <a href='.$dashurl.'>here</a> 
         In-case of any query, feel free to reach out to recruitment@tkeap.com
         
         tkEI Recruiting Team.');
