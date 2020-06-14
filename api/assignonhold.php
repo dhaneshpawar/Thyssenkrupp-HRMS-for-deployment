@@ -11,7 +11,7 @@ if($cursor)
     if(isset($_POST))
     {
         include 'maildetails.php';
-        $mail->setFrom("tkep", 'Interview Call');
+        $mail->setFrom("tkep", 'tkei');
         $mail->addReplyTo(Email, 'Information');
         $mail->isHTML(true);  
         $result = $db->rounds->find(array("prf"=>$_POST["prf"],"pos"=>$_POST['pos'],"iid"=>$_POST['iid']),array('sort' => array('_id' => -1)));
@@ -26,7 +26,7 @@ if($cursor)
 
         $result = $arr[0];
         $iid =(string) sprintf("%03s",$result["iid"]+1);
-
+        $dashurl="http://localhost/hrms/invdash.php";
         $result3 = $db->prfs->findOne(array("prf"=>$_POST["prf"]));
         $interviewUpdate = $db->interviews->insertOne(array("rid"=>"01","prf"=>$_POST["prf"],'pos'=>$_POST["pos"],"iid"=>$iid,"members"=>$_POST['emails'],"evaluated"=>array(),"intvmail"=>$_POST["intvmail"],"invname"=>$_POST["iname"],"designation"=>$_POST['idesg'],"dept"=>$_POST['dept'],"date"=>$_POST['date'],"time"=>$_POST['time'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"status"=>"0","invstatus"=>"0","accepted"=>"no"));
         if($interviewUpdate)
@@ -45,6 +45,7 @@ if($cursor)
 
             Contact Person - '.$_POST['iperson'].'
                 
+            To access your dashboard for more details, please click <a href='.$dashurl.'>here</a> 
             In-case of any query, feel free to reach out to recruitment@tkeap.com
 
             tkEI Recruiting Team.');
