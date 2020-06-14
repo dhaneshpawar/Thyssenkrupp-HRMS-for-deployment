@@ -50,7 +50,7 @@ include "db.php";
                 if($query)
                 {
                     echo "done";
-                header("location:../post-candidate-selection.php?token=123");
+                    header("location:../post-candidate-selection.php?token=123");
                 }
                 else
                 {

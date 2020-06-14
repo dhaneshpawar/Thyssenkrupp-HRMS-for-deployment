@@ -376,7 +376,7 @@ function xyz(x)
 
   $('#kindlybtn').show();
   $('#selectedrow').show();
-
+  $("#ordiv").show();
   $(document.getElementById(x)).attr("disabled","disabled")
   j=x
   // alert(j)
@@ -457,13 +457,15 @@ function xyz(x)
           
   </div>
   
-<center><b>OR <br> <br> Enter Email IDs Manually Here <br></b> </center>
-  <div class="row" id="emailcollection">
-    <div class="input-field col s12 m4 offset-m4 blue-text">
+  <div class="card white darken-1" id="ordiv" style="width:15%;margin-left:42%;" ><center><b>OR <br></center></div><br>
+  <div class="row card white darken-1" style="width:35%;margin-left:32%;" id="emailcollection">
+  <center> <br> Enter Email IDs Manually Here <br></b> </center>
+    <div class="input-field col s12 m4 offset-m4 blue-text" style="width:60%;margin-left:20%;">
       <i class="material-icons prefix">email</i>
       <input id="email" onfocus="addText(this)" type="text" class="validate" placeholder="Enter Email Address">
     </div>
   </div>
+
   <div class="row">
   <div class="input-field col s12 m4 offset-m4 center">
     <button  class="btn waves-effect waves-light blue darken-1" id="submitmail" >Submit Mail
@@ -570,8 +572,11 @@ function addText(x)
 {
 ctr = ctr+1
 var str = 'email'+ctr
-var txt="<div class='row'><div class='input-field col s12 m4 offset-m4  blue-text' ><i class='material-icons prefix'>email</i>  <input id='"+str+"' onfocus='addText(this)' type='text' class='validate' placeholder='Enter Email Address'></div></div>"
-$("#emailcollection").append(txt);
+var txt1 = "<div class='input-field col s12 m4 offset-m4  blue-text' style='width:60%;margin-left:20%;' >"
+var txt2 = "<i class='material-icons prefix'>email</i>"
+var txt3 = "<input id='"+str+"' onfocus='addText(this)' type='text' class='validate' placeholder='Enter Email Address'>"
+var txt4 = "</div>"
+$("#emailcollection").append(txt1+txt2+txt3+txt4);
 }
 var arr=[]
 var dept=[]
@@ -581,6 +586,7 @@ $(document).ready(function(){
   $('#zonechoice').hide();
   $("#uploaddump").hide()
   $("#nodata").hide()
+  $("#ordiv").hide()
  $.ajax({
     url:'http://localhost/hrms/api/getprfdump.php',
     type:'POST',
