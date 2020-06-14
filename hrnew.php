@@ -52,6 +52,36 @@ if(isset($_COOKIE['sid']))
         margin-left:23% !important;
         margin-top:18% !important; 
 } 
+
+@media screen and (min-width: 800px)
+{
+  #megblock, #selectedrow{
+width: 100%;
+}
+#deptchoice{
+  width: 19%;
+} 
+
+#zonechoice{
+  width: 19%;
+}
+
+}
+
+@media screen and (max-width: 800px)
+{
+#megblock, #selectedrow{
+width: 350%;
+}
+
+#deptchoice{
+  width: 70%;
+} 
+
+#zonechoice{
+  width: 70%;
+}
+}
 </style>
 
 </head>
@@ -71,6 +101,7 @@ if(isset($_COOKIE['sid']))
 
 
   <!-- Modal Structure -->
+  <!-- modal1 starts here -->
   <div id="modal1" class="modal" style="width:90%">
     <div class="modal-content">
         
@@ -116,6 +147,26 @@ if(isset($_COOKIE['sid']))
     </div>
 
   </div>
+  <!-- modal1 ends here -->
+
+  <!-- modal2 starts here -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>Are You Sure ?</h2></center>
+      <center><p>This Position Will Be Withdrawn.</p></center>
+      <div id="appending_id"></div>
+    </div>
+    <div class="modal-footer">
+      <center>
+      <a onclick="withdraw(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+      <a onclick="withdraw(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+      </center>
+    </div>
+  </div>
+  <!-- modal2 ends here -->
 
   <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
 
@@ -146,18 +197,18 @@ if(isset($_COOKIE['sid']))
 <br><br>
 <!-- nav and side menu ended -->
 
-          <select id='deptchoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+          <select id='deptchoice' class="dropdown-trigger btn blue darken-1 ">
           <option value="" disabled selected style="color: white">Select Department</option>
           </select>
-          <select id='zonechoice' class="dropdown-trigger btn blue darken-1 " style="width:19%">
+          <select id='zonechoice' class="dropdown-trigger btn blue darken-1 ">
           <option value="" disabled selected style="color: white">Select Zone</option>
         </select>
           <br>
         <br>
 
- <div class="row">
+ <div class="row" id="megblock">
 
-<div class="col s12  blue lighten-4">
+<div class="col s12  blue lighten-4" >
   <table class="striped">
     <thead>
       <tr>
@@ -219,22 +270,29 @@ if(isset($_COOKIE['sid']))
  
 
 <div class="row" id="dumpdiv">
-    <div class="col s4 offset-m4">
+    <div class="col s12 m4 offset-m4">
       <div class="card white darken-1">
         <div class="card-content blue-text">
           <span class="card-title"><b><center>Upload Email Dump</center></b></span>
 <script>
 
+// function for opening dialouge box
+function openmodal(cid)
+{
+  $("#appending_id").empty()
+  $("#appending_id").append("<b id='bid' name='"+cid+"'></b>")
+  $("#modal2").modal("open")
+}
 
-function withdraw(id)
+function withdraw(confr)
+{
+  var btn_id = $('#bid').attr('name')
+  if(confr)
   {
-    var confr = confirm("This Position Will Be Withdrawn \n Are You Sure ?");
-    if(confr)
-    {
-      $.ajax({
+    $.ajax({
       url:'http://localhost/hrms/api/withdrawposition.php',
       type:'POST',
-      data:{'id':id},
+      data:{'id':btn_id},
       success : function(para)
       {
         if(para == "success")
@@ -251,11 +309,11 @@ function withdraw(id)
           alert("Error Occured")
         }
       }
-    
+  
     })  
-    }
-    
   }
+    
+}
 
 
 function showmodal(x)
@@ -318,7 +376,7 @@ function xyz(x)
 
   $('#kindlybtn').show();
   $('#selectedrow').show();
-
+  $("#ordiv").show();
   $(document.getElementById(x)).attr("disabled","disabled")
   j=x
   // alert(j)
@@ -399,15 +457,17 @@ function xyz(x)
           
   </div>
   
-<center><b>OR <br> <br> Enter Email IDs Manually Here <br></b> </center>
-  <div class="row" id="emailcollection">
-    <div class="input-field col s4 offset-m4 blue-text">
+  <div class="card white darken-1" id="ordiv" style="width:15%;margin-left:42%;" ><center><b>OR <br></center></div><br>
+  <div class="row card white darken-1" style="width:35%;margin-left:32%;" id="emailcollection">
+  <center> <br> Enter Email IDs Manually Here <br></b> </center>
+    <div class="input-field col s12 m4 offset-m4 blue-text" style="width:60%;margin-left:20%;">
       <i class="material-icons prefix">email</i>
       <input id="email" onfocus="addText(this)" type="text" class="validate" placeholder="Enter Email Address">
     </div>
   </div>
+
   <div class="row">
-  <div class="input-field col s4 offset-m4 center">
+  <div class="input-field col s12 m4 offset-m4 center">
     <button  class="btn waves-effect waves-light blue darken-1" id="submitmail" >Submit Mail
       <i class="material-icons right">send</i>
     </button>
@@ -512,8 +572,11 @@ function addText(x)
 {
 ctr = ctr+1
 var str = 'email'+ctr
-var txt="<div class='row'><div class='input-field col s4 offset-m4  blue-text' ><i class='material-icons prefix'>email</i>  <input id='"+str+"' onfocus='addText(this)' type='text' class='validate' placeholder='Enter Email Address'></div></div>"
-$("#emailcollection").append(txt);
+var txt1 = "<div class='input-field col s12 m4 offset-m4  blue-text' style='width:60%;margin-left:20%;' >"
+var txt2 = "<i class='material-icons prefix'>email</i>"
+var txt3 = "<input id='"+str+"' onfocus='addText(this)' type='text' class='validate' placeholder='Enter Email Address'>"
+var txt4 = "</div>"
+$("#emailcollection").append(txt1+txt2+txt3+txt4);
 }
 var arr=[]
 var dept=[]
@@ -523,6 +586,7 @@ $(document).ready(function(){
   $('#zonechoice').hide();
   $("#uploaddump").hide()
   $("#nodata").hide()
+  $("#ordiv").hide()
  $.ajax({
     url:'http://localhost/hrms/api/getprfdump.php',
     type:'POST',
@@ -556,10 +620,10 @@ $(document).ready(function(){
         
         if(arr[j][6] == "initiated")
         {
-          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'
+          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
         }else
         {
-          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'          
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
         }
        $('#rawdata').append(x);
       }
@@ -677,10 +741,10 @@ success:function(arr)
     
     if(arr[j][6] == "initiated")
         {
-          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'
+          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
         }else
         {
-          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'          
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
         }
 
     $('#rawdata').append(x);
@@ -755,10 +819,10 @@ $('#zonechoice').change(function(){
       {
         if(arr[j][6] == "initiated")
         {
-          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'
+          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
         }else
         {
-          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="withdraw(this.id)">Withdraw</a></td></tr>'          
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
         }
         $('#rawdata').append(x);
       }

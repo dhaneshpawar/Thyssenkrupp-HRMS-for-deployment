@@ -37,17 +37,7 @@ if(isset($_COOKIE['sid']))
     <script src="public/js/materialize.min.js"></script>
 
 </head>
-<script>
-function abort_round()
-{
-  var confr = confirm("Are You Sure ?");
-  if(confr)
-  {
-    document.location.reload();
-    
-  }
-}
-</script>
+
 <body>
 
 <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
@@ -81,7 +71,7 @@ function abort_round()
 
                   <div class="row">
                     <div class="col s12 m12">
-                      <div class="card  white">
+                      <div class="white">
                         <div class="card-content blue-text">
                             <table class="striped">
                                 <thead>
@@ -240,12 +230,13 @@ $(document).ready(function(){
         $("#nodata").fadeIn(600);
       }
       }
-    });
+  });
 
-    $('.datepicker').datepicker
+  $('.datepicker').datepicker
   ({
-      minDate:new Date(),
+    minDate:new Date(),
   })
+  
   $('.timepicker').timepicker();
   $('#allocation').hide();
   $('#allocatingcandidate').hide();
@@ -326,7 +317,7 @@ $(document).ready(function(){
         }
       })
     })
-  }
+  }  
   })
 })
 //end of document.ready(function)   
@@ -427,24 +418,6 @@ function createnextround(ids)
   })
 }
 
-function terminateround(id)
-{
-  var confrm = confirm("Are You sure ? ");
-  if(confrm)
-  {
-    id_round = id
-    var str = "#"+id_round+"row";
-    $.ajax({
-    type:'POST',
-    data:{'roundid':id_round},
-    success:function(para)
-    {
-      $(str).remove();
-    }
-  })
-}
-
-}
 $('#logoutuser').click(function(){
 
 $.ajax({

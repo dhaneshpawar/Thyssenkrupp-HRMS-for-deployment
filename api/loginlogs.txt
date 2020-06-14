@@ -407,6 +407,7 @@ Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		12/06/2020	07:47:11 PM	Login
 >>>>>>> c4f87755a3a565343b81af6ba6761598f4736740
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:43:06 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:43:23 PM	Logout
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:43:23 PM	Logout
@@ -426,8 +427,58 @@ Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	03:37:41 PM	Login
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	03:53:52 PM	Logout
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	03:54:02 PM	Login
 =======
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	01:50:41 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	01:52:33 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:52:40 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:56:54 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:57:51 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	02:07:44 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	02:07:51 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	05:15:50 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	05:15:57 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	05:16:10 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:16:19 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:16:37 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	05:16:43 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	05:20:15 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:20:24 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:30:56 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:31:04 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:33:42 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:34:16 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:34:16 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:47:47 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:47:54 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:49:00 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	05:49:18 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	06:10:22 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	06:15:44 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	06:17:03 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	06:17:09 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	06:17:56 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	06:18:02 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	06:19:51 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	06:19:56 PM	Login
+>>>>>>> 35a9628be0b2d56dafd633998e2db27b34ec74e4
+=======
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		13/06/2020	01:22:58 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	01:30:13 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		13/06/2020	02:38:53 PM	Logout
 Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		13/06/2020	02:38:58 PM	Login
+<<<<<<< HEAD
 >>>>>>> c9774a02735ca1a39651530d9155aed48cd4956a
+=======
+>>>>>>> 23d811d53023ad8d7bdaabe99609350fb4d5957a
+
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	09:03:24 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	09:03:45 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	09:49:22 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	09:49:30 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	09:53:50 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	09:53:56 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		13/06/2020	10:33:08 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	10:33:19 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	10:39:07 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	10:39:22 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		13/06/2020	10:45:31 PM	Logout
+>>>>>>> 35a9628be0b2d56dafd633998e2db27b34ec74e4

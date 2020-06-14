@@ -60,6 +60,24 @@ if(isset($_COOKIE['sid']))
 </head>
 <body>
 
+<!-- modal 1 starts here -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>Are You Sure ?</h2></center>
+      
+      
+    </div>
+    <div class="modal-footer">
+      <center>
+      <a onclick="abort_round(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
+      <a onclick="abort_round(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+      </center>
+    </div>
+  </div>
+<!-- modal 1 ends here -->
 <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
 
   <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
@@ -88,7 +106,7 @@ if(isset($_COOKIE['sid']))
 </nav>
 <br><br>
 <!-- nav and side menu ended -->
-                  <button class="btn waves-effect green" style="float:right;margin-top: 18px;margin-right: 18px " id="rfresh">Refresh</button>
+                  <button class="btn waves-effect green" style="float:right;margin-top: 18px;margin-right: 18px " id="rfresh" onclick="getit()">Refresh</button>
 
                   <br><br>
 
@@ -169,14 +187,6 @@ if(isset($_COOKIE['sid']))
                                   </div>       
                                     <div class="row">
                                         <div class="input-field col s3 m3 " >
-                                          <input id="idate" type="text" required class="datepicker">
-                                          <label  for="idate">Date</label>
-                                        </div>
-                                        <div class="input-field col s3 m3 " >
-                                          <input id="itime" type="text" class="timepicker" required>
-                                          <label class="active" for="itime">Time</label>
-                                        </div>
-                                        <div class="input-field col s3 m3 " >
                                           <input id="idept" type="text" class="text" required>
                                           <label class="active" for="idept" id="idept">Interviewer Department</label>
                                         </div>                                    
@@ -208,7 +218,7 @@ if(isset($_COOKIE['sid']))
                                 <th>Time</th>
                                 <th>Date</th>
                                 <th class="btn blue darken-1" name="submit" id="submit" disabled>Assign Interviewer</th>
-                                <th class="btn red" style="margin-left: 25px;" id="abort" onclick="abort_round()"> Abort</th>
+                                <th class="btn red" style="margin-left: 25px;" id="abort" onclick='$("#modal1").modal("open")'> Abort</th>
                                 
                               </tr>
                             </thead>
@@ -264,9 +274,12 @@ $(document).ready(function(){
       minDate:new Date(),
   })
   $('.timepicker').timepicker();
-  $("#rfresh").click(function(){
-    window.setTimeout(function(){location.reload()},1000)
-  })
+  $('.modal').modal();
+
+  // $("#rfresh").click(function(){
+  //   window.setTimeout(function(){location.reload()},1000)
+  // })
+
   $("#nodata").hide()
   $("#pleasewait").hide();
   $.ajax(
@@ -336,8 +349,6 @@ $(document).ready(function(){
       $("#loader").show()
       var imail = $('#imail').val();
       var iname = $('#iname').val();
-      var idate = $('#idate').val();
-      var itime = $('#itime').val();
       var idept = $('#idept').val();
       var idesg = $('#idesg').val();
       var iloc = $('#location').val();
@@ -346,7 +357,7 @@ $(document).ready(function(){
       var poszone = window.zone
       var candidatetime
     
-      if(imail != "" && iname != "" && idate != "" && itime != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
+      if(imail != "" && iname != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
       {
         $('#allocation').hide(600);
         $("#pleasewait").fadeIn(600);
@@ -372,8 +383,6 @@ $(document).ready(function(){
           'times':selecteddate,
           'dates':selecteddate2,
           'intv':imail,
-          'date':idate,
-          'time':itime,
           'prf':iid,
           'iname':iname,
           "idesg":idesg,
@@ -475,7 +484,7 @@ function createnextround(id)
   window.iid=id;
   console.log(iid)
   id = id.split("/")
-  id_round = id[0]+"-"+id[1]+"-"+id[2]
+  id_round = id[0]+"-"+id[1]+"-"+id[2]+"-"+id[3]
 
   //dept zone added to database
   window.dept = id[4]
@@ -615,25 +624,7 @@ function createnextround(id)
 
 }
 
-function terminateround(id)
-{
-  var confrm = confirm("Are You sure ? ");
-  if(confrm)
-  {
-    id_round = id
-    var str = "#"+id_round+"row";
-    $.ajax({
-    // url:'http://localhost/thyssenhrms/demo.txt',
-    type:'POST',
-    data:{'roundid':id_round},
-    success:function(para)
-    {
-      $(str).remove();
-    }
-  })
-}
 
-}
 $('#logoutuser').click(function(){
 
 $.ajax({
@@ -661,34 +652,170 @@ document.location.replace("/hrms/")
 
 
 
-function abort_round()
+function abort_round(confr)
 {
-  var confr = confirm("Are You Sure ?");
+  
   if(confr)
   {
  
     $.ajax({
-  url:"http://localhost/hrms/api/abortround.php",
-type:"POST",
-data: {
-  "digit13" :  id_round
-
-},
-success:function(para){
-console.log(para)
-if(para=="success")
-{
-  document.location.reload();
+      url:"http://localhost/hrms/api/abortround.php",
+      type:"POST",
+      data: {
+        "digit13" :  id_round
+      },
+      success:function(para){
+        console.log(para)
+        if(para=="success")
+        {
+          document.location.reload();
+        }
+        else
+        {
+          console.log("something went wrong")
+        }
+      } 
+    })
+  
   }
-else
-{
-  console.log("something went wrong")
+
 }
-} 
 
-})
+function getit(){
+
+  var cutme = $('#rid').val();
+  cutme = cutme.split(":");
+  cutme = cutme[1];
+
+  $("#nomems").empty()
+
+  console.log("cutme   = = ",cutme)
+
+  $.ajax({
+    url:'http://localhost/hrms/api/baseroundmembers.php',
+    type:'POST',
+    data:{
+          "id": cutme
+         },
+    success:function(para)
+    {
+      $('#allocatingcandidate').fadeIn(600);
+      para = JSON.parse(para)
+      var arr1=[]
+      var toggle = 0   
+      //  
+      $("#nomems").click(function()
+      {
+        $("#memberstable").empty()
+        if(toggle == 0)
+        {
+          toggle = 1
+          $("#showmembersdiv").fadeIn(1200);
+            for(let i=0;i<para[1];i++)
+            {
+              j = parseInt(i)
+              j += 1
+              var membersdata='<tr><td>'+j+'</td><td>'+para[2][i]+'</td</tr>'
+              $("#memberstable").append(membersdata)
+            }
+        }
+        else
+        {
+          toggle = 0
+          $("#showmembersdiv").fadeOut(100);
+
+        }    
+      })
+       console.log("this are base round mems  = ",para)
+
+       if(para[0] == null)
+       {
+         $("#submit").hide()
+         $("#abort").hide()
+         $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
+         $("#nomems").show()
+
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
+       }
+      else if(para[1] != 0)
+      {
+        $("#nomems").text("Application Blank Not Submitted By "+para[1]+" Member(s)")
+        $("#nomems").show()
+
+        if(para[3] == "expired")
+        {
+          $("#expiry").text("Form Expired")
+          $("#expiry").show()
+        }
+        else
+        {
+          $("#expiry").text("After "+para[3]+" Day(s) Form Will Expire")
+          $("#expiry").show()
+        }
+
+      $('#adddetail').text("")
+      var arr = para[0]
+      // $('.timepicker').timepicker();
+      for(let i =0;i<arr.length;i++)
+      {
+        allmail[i] = arr[i];
+        console.log("Name 1 - ",allmail[i][0]);
+        console.log("Email - ",allmail[i][1]);
+        var s1='<tr id="check'+i+'row">'
+        var s2='<td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td>'
+        var s3 ='<td><p id="check'+i+'mail">'+arr[i][1]+'</p></td>'
+        var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td>'
+        var s6='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)">'
+        var s7='<span class="blue-text darken-1" ></span></label></td></tr>'
+          
+        var str=s1+s2+s3+s4+s5+s6+s7
+       
+        $('#adddetail').append(str)
+        $('.timepicker').timepicker();
+        $('.datepicker').datepicker();
+        
+      }
+      
+    }
+    else
+    {
+      $("#nomems").hide()
  
-  }
+ 
+      $('#adddetail').text("")
+      var arr = para[0]
+  
+      for(let i =0;i<arr.length;i++)
+      {
+        allmail[i] = arr[i];
+        console.log("Name - ",allmail[i][0]);
+        console.log("Email - ",allmail[i][1]);
+        var s1='<tr id="check'+i+'row">'
+        var s2='<td><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+arr[i][1]+'"  target="_blank" ><p >'+arr[i][0]+'</p></a></td>'
+        var s3 ='<td><p id="check'+i+'mail">'+arr[i][1]+'</p></td>'
+        var s4='<td><input id="check'+i+'date" class="timepicker" ></td>'
+        var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td>'
+        var s6='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)">'
+        var s7='<span class="blue-text darken-1" ></span></label></td></tr>'
+        var str=s1+s2+s3+s4+s5+s6+s7
+       
+        $('#adddetail').append(str)
+        $('.timepicker').timepicker();
+        $('.datepicker').datepicker();
+      }
+    }
+    }
+  })
 }
 
 </script>

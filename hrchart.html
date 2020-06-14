@@ -88,22 +88,17 @@
                     <label>Select Filters</label>
                     <div class="row">
                         
-                        <div class="col s12 m2">
-                            <select class="browser-default s3 m3 btn blue">
+                        <div class="col s6 m2">
+                            <select class="browser-default s3 m3 btn blue" id="dropprf" onchange="getIID()">
                                 <option value="" disabled selected>PRF</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
                             </select>
                         </div>
-                        <div class="col s12 m2">
-                            <select class="browser-default s3 m3 btn blue">
+                        <div class="col s6 m2">
+                            <select class="browser-default s3 m3 btn blue" id="dropiid" onchange="updateLinechart()">
                                 <option value="" disabled selected>IID</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
                             </select>
                         </div>
+
                     </div>
 
 
@@ -124,18 +119,34 @@
 
             
             $(document).ready(function(){
-                
+                $('#dropiid').prop('disabled',true)
                 $('.modal').modal();
                 // ajax call for filling up chart details
+                //provide data for 2 donut chart 1 pie chart and 1 linear graph(linear graph data is the latest ongoing rounf data)
                 $.ajax({
                     url:'demo.txt',
                     type:'GET',
-                    success:function(para)
+                    success:function(para,para2,para3,para4,para5)
                     {
                         // give numbers here demo data
                         para=[50,20,10,30]//graph 1 data
                         para2=[50,20]//graph2 data
                         para3=[30,45,45]//graph 3 data 
+
+                        //linear graph data , here provide latest prfs data that is ongoing 
+                        para4 = {mylabel:['Initiated', 'Round 1 Completed', 'Round 2 completed', 'Instance Ended','offer letter sent'],digit13:'123356-12-123-02'}
+                        myArray = [];
+                        for(let i=0;i<para4.mylabel.length;i++)
+                        {
+                            myArray[i] = 0
+                        }
+
+                        //Data for  prf dropdown box
+                        para5={PRF:['123456','654321']}
+                        for(let i = 0;i<para5.PRF.length;i++)
+                        {
+                            $('#dropprf').append("<option value='"+para5.PRF[i]+"'>"+para5.PRF[i]+"</option>")
+                        }
 
                         // configuration of 1st chart(generalized chart)
                         var config1 = {
@@ -143,9 +154,7 @@
                             
                             data: {
                                 datasets: [{
-                                    data: [
-                                    para[0],para[1],para[2],para[3]
-                                    ],
+                                    data: para,
                                     backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
                                 }],
                                 labels: [
@@ -186,9 +195,7 @@
                             type: 'pie',
                             data: {
                                 datasets: [{
-                                    data: [
-                                    para2[0],para2[1]
-                                    ],
+                                    data: para2,
                                     backgroundColor: ["#0277bd", "#5d4037"],
                                 }],
                                 labels: [
@@ -226,13 +233,11 @@
                             
                             data: {
                                 datasets: [{
-                                    data: [
-                                    para3[0],para3[1],para3[2]
-                                    ],
+                                    data: para3,
                                     backgroundColor: ["#7e57c2", "#81c784","#d4e157"],
                                 }],
                                 labels: [
-                                    'comleted but not by hr2',
+                                    'completed but not by hr2',
                                     'validated',
                                     'offer letter sent',
                                     
@@ -245,8 +250,10 @@
                                     position: 'right',
                                 },
                                 onClick: (evt, item) => {
+                                    
                                     var selected_part = item[0]._view.label;
                                     console.log(item[0]._view.label)
+                                    callModal(item[0]._view.label)
                                 },
                                 title: {
                                     display: true,
@@ -265,76 +272,30 @@
                         var config4 = {
                         type: 'line',
                         data: {
-                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                            labels: para4.mylabel,
                             datasets: [{
-                                label: 'dataset - big points',
-                                data: [
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor()
-                                ],
+                                label: 'PRF-POSITION-IID-RID : ',
+                                data: myArray,
                                 backgroundColor: window.chartColors.red,
                                 borderColor: window.chartColors.red,
                                 fill: false,
                                 borderDash: [5, 5],
                                 pointRadius: 15,
-                                pointHoverRadius: 10,
-                            }, {
-                                label: 'dataset - individual point sizes',
-                                data: [
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor()
-                                ],
-                                backgroundColor: window.chartColors.blue,
-                                borderColor: window.chartColors.blue,
-                                fill: false,
-                                borderDash: [5, 5],
-                                pointRadius: [2, 4, 6, 18, 0, 12, 20],
-                            }, {
-                                label: 'dataset - large pointHoverRadius',
-                                data: [
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor()
-                                ],
-                                backgroundColor: window.chartColors.green,
-                                borderColor: window.chartColors.green,
-                                fill: false,
-                                pointHoverRadius: 30,
-                            }, {
-                                label: 'dataset - large pointHitRadius',
-                                data: [
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor()
-                                ],
-                                backgroundColor: window.chartColors.yellow,
-                                borderColor: window.chartColors.yellow,
-                                fill: false,
-                                pointHitRadius: 20,
+                                pointHoverRadius: 25,
                             }]
                         },
                         options: {
+                            onClick: (evt, item) => {
+                                var selected_part = window.myLine.data.labels[item[0]._index];
+                                console.log(selected_part)
+                                callDescriptiveModal(selected_part)
+                            },
+                            tooltips: {
+                                enabled:false,
+                            },
                             responsive: true,
                             legend: {
-                                position: 'bottom',
+                                display:false,
                             },
                             hover: {
                                 mode: 'index'
@@ -344,20 +305,34 @@
                                     display: true,
                                     scaleLabel: {
                                         display: true,
-                                        labelString: 'Month'
+                                        labelString: 'Time'
                                     }
                                 },
                                 y: {
                                     display: true,
                                     scaleLabel: {
                                         display: true,
-                                        labelString: 'Value'
+                                        labelString: ''
                                     }
-                                }
+                                },
+                                yAxes: [{
+                                    ticks: {
+                                        display: false,
+                                    
+                                    }
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        display: true,
+                                        stepSize:10
+                                    }
+                                }]
+                                
+                                
                             },
                             title: {
                                 display: true,
-                                text: 'Chart.js Line Chart - Different point sizes'
+                                text: 'PRF-Position-IID-RID : 123456-12-123-12'
                             }
                         }
                     };
@@ -569,6 +544,223 @@
             }
             // functionalities for 2nd chart ends here (initiate round chart)
 
+            // functionalities for 3rd chart starts here (completed chart)
+            if(selected_part == 'completed but not by hr2')
+            {
+                console.log("completed but not by hr2 is clicked")
+                $("#cardTitle").text("Completed but not by HR2")
+                $("#tableParent").fadeOut()
+                $("#tableParent").fadeIn(200)
+                // ajax call for retriving validate candidate
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give details in this format demo data:
+                        para = [['111111','222','33','11'],['111111','222','33','12'],['111111','222','33','13']];
+                        
+                        $("#tableBody").text('')
+                        var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th><th>Details</th></tr></thead>'
+                        $("#tableBody").append(headings)
+                        for(let i=0;i<para.length;i++)
+                        {   
+                            var prfs_id = para[i][0]+para[i][1]+para[i][2]+para[i][3];
+                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td><td><a class="waves-effect green btn" onclick="getPrf('+prfs_id+')">View Details</a></td></tr>'
+                            $('#tableBody').append(str1) 
+                        }
+                        $('.modal').modal("open");
+                    }
+                })
+            }
+
+            if(selected_part == 'validated')
+            {
+                console.log("validated is clicked")
+                $("#cardTitle").text("Validated By HR2")
+                $("#tableParent").fadeOut()
+                $("#tableParent").fadeIn(200)
+                // ajax call for retriving re-validation candidate
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give details in this format demo data:
+                        para = [['111111','222','33','11'],['111111','222','33','12'],['111111','222','33','13']];
+                        
+                        $("#tableBody").text('')
+                        var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th><th>Details</th></tr></thead>'
+                        $("#tableBody").append(headings)
+                        for(let i=0;i<para.length;i++)
+                        {   
+                            var prfs_id = para[i][0]+para[i][1]+para[i][2]+para[i][3];
+                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td><td><a class="waves-effect green btn" onclick="getPrf('+prfs_id+')">View Details</a></td></tr>'
+                            $('#tableBody').append(str1) 
+                        }
+                        $('.modal').modal("open");
+                    }
+                })
+            }
+
+            if(selected_part == 'offer letter sent')
+            {
+                console.log("offer letter sent is clicked")
+                $("#cardTitle").text("Offer Letter Sent")
+                $("#tableParent").fadeOut()
+                $("#tableParent").fadeIn(200)
+                // ajax call for retriving validated candidate
+                $.ajax({
+                    url:'demo.txt',
+                    type:'GET',
+                    success:function(para)
+                    {
+                        // give details in this format demo data:
+                        para = [['111111','222','33','11'],['111111','222','33','12'],['111111','222','33','13']];
+                        
+                        $("#tableBody").text('')
+                        var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th><th>Details</th></tr></thead>'
+                        $("#tableBody").append(headings)
+                        for(let i=0;i<para.length;i++)
+                        {   
+                            var prfs_id = para[i][0]+para[i][1]+para[i][2]+para[i][3];
+                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td><td><a class="waves-effect green btn" onclick="getPrf('+prfs_id+')">View Details</a></td></tr>'
+                            $('#tableBody').append(str1) 
+                        }
+                        $('.modal').modal("open");
+                    }
+                    
+                })
+            }
+            //functionalities for 3rd chart ends here (completed chart)
+
+        }
+
+        // descriptive modal (after clicked on 3rd chart)
+        function callDescriptiveModal(label)
+        {
+            console.log("this is label:",label)
+            var prf = window.myLine.options.title.text
+            prf = prf.split(':')
+            prf = prf[1]
+            console.log("this is prf:",prf)
+            $.ajax({
+                url:'demo.txt',
+                type:'GET',
+                data:{
+                    'label':label,
+                    'digit13':prf
+                },
+                success:function(para)
+                {
+                    $("#cardTitle").text(label)
+                    $("#tableParent").fadeOut()
+                    $("#tableParent").fadeIn(200)
+                    // give details in this format demo data:
+                    para = {digit13:['123456-12-123-12'],start:['12 apr 2019-5.02am'],end:['13 apr 2019-5.02am'],invname:['ABC'],members:[['abc@gmail.com','pqr@gmail.com']]};
+                    console.log(para.members[0].length)
+                    $("#tableBody").text('')
+                    var headings = '<thead><tr><th>ID</th><th>Initiated On</th><th>Completed On</th><th>Interviewer</th><th>Members</th></tr></thead>'
+                    $("#tableBody").append(headings)
+                    for(let i=0;i<para.digit13.length;i++)
+                    {
+                        var memberlength = para.members[0].length
+                        var str1 = '<tr><td rowspan="'+memberlength+'">'+para.digit13[i]+'</td><td rowspan="'+memberlength+'">'+para.start[i]+'</td><td rowspan="'+memberlength+'">'+para.end[i]+'</td><td rowspan="'+memberlength+'">'+para.invname[i]+'</td><td>'+para.members[i][0]+'</td></tr>'
+                        $('#tableBody').append(str1) 
+                        for(let j=1;j<memberlength;j++)
+                        {
+                            var str2 = '<tr><td>'+para.members[i][j]+'</td></tr>'
+                            $('#tableBody').append(str2)
+                        }
+                    }
+                    $('.modal').modal("open");
+                  
+                }
+            })
+        }
+
+        // function for linear chart
+        function getPrf(x)
+        {
+            $('.modal').modal("close");
+            var myprf = x.toString()
+            console.log(x)
+            console.log(myprf.slice(6,8))
+            $.ajax({
+                url:'demo.txt',
+                type:'GET',
+                data:{
+                    'Prf13':x
+                },
+                success:function(para)
+                {
+                    // (this will be used for line chart) provide in following format
+                    para = ['Initiated', 'Round 1 Completed', 'Round 2 completed', 'Instance Ended']
+                    dataArray = [];
+                    for(let i=0;i<para.length;i++)
+                    {
+                        dataArray[i] = 0
+                    }
+                    window.myLine.data.labels = para;
+                    window.myLine.options.title.text = 'PRF-Position-IID-RID :'+myprf.slice(0,6)+'-'+myprf.slice(6,8)+'-'+myprf.slice(8,11)+'-'+myprf.slice(11,13)
+                    window.myLine.update();
+                    
+                    
+                }
+            })
+        }
+
+        // function for enabling iid dropbox
+        function getIID()
+        {
+            $('#dropiid').prop('disabled',false)
+            $('#dropiid').empty()
+            $('#dropiid').append("<option disabled selected>IID</option>")
+            // ajax call for getting iid of given prf
+            $.ajax({
+                url:'demo.txt',
+                type:'GET',
+                data:{
+                    'digit13':$('#dropprf').val()
+                },
+                success:function(para)
+                {
+                    // para will contain IID
+                    para=['123','321']
+                    for(let i=0;i<para.length;i++)
+                    {
+                        $('#dropiid').append("<option value='"+para[i]+"'>"+para[i]+"</option>")
+                    }
+                }
+
+            })
+        }
+
+        // Line chart as per drop down selection
+        function updateLinechart()
+        {
+            // ajax call for line chart
+            $.ajax({
+                url:'demo.txt',
+                type:'GET',
+                data:{
+                    'prf':$('#dropprf').val(),
+                    'iid':$('#dropiid').val()
+                },
+                success:function(para)
+                {
+                    para = ['Initiated', 'Round 1 Completed', 'Round 2 completed', 'Instance Ended','HR2 validation']
+                    dataArray = [];
+                    for(let i=0;i<para.length;i++)
+                    {
+                        dataArray[i] = 0
+                    }
+                    window.myLine.data.labels = para;
+                    window.myLine.options.title.text = 'PRF-IID :'+$('#dropprf').val()+'-'+$('#dropiid').val()
+                    window.myLine.update();
+
+                }
+            })
         }
 
         </script>
