@@ -274,6 +274,7 @@ width: 350%;
       <div class="card white darken-1">
         <div class="card-content blue-text">
           <span class="card-title"><b><center>Upload Email Dump</center></b></span>
+          
 <script>
 
 // function for opening dialouge box
@@ -429,13 +430,13 @@ function xyz(x)
                                         <input id="uploadcsv" type="file" accept=".csv"  required  name="uploadcsv" onchange="readURL(this)"><p id='myfile0'> Select file<i class="material-icons right">open_in_browser</i> </p></a>
                                     </label>
                                     <br><br><br>
-                            <button type="submit" onclick="showupdump()" class="btn blue darken-1" name="submit" id="submit" value="Upload"><i class="material-icons right">send</i>Upload</button>
-                           
-                            
+                            <button type="submit" onclick="showupdump()" class="btn blue darken-1" name="submit" id="submit" value="Upload"><i class="material-icons right">send</i>Upload</button
+                          
                         </form>
-
+                        <br>
+                      
           </center>
-                        
+          <b class="red-text">The Mail Dump File Should Contain Following Columns <br> 1. SrNo. <br> 2. Email </b>  
 
 
 
