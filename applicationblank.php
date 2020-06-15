@@ -72,7 +72,7 @@ $_SESSION['positionapplied'] = $position;
                                 <div class="card white">
                                         <div class="card-content ">
                                                 <center><i class="material-icons large" style="color: green;">check_circle</i></center>
-                                                <center><h1><p  style="color:green">Details Submitted Successfully.</p></h5></center>
+                                                <center><h1><p  style="color:green">Details Submitted Successfully...!</p></h5></center>
                                         </div>
                                 </div>
                         </div>

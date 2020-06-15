@@ -507,6 +507,9 @@ Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		14/06/2020	10:13:54 PM	Logout
 Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		14/06/2020	10:14:02 PM	Login
 Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		14/06/2020	10:14:10 PM	Logout
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		14/06/2020	10:22:14 PM	Login
+<<<<<<< HEAD
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		14/06/2020	10:52:34 PM	Logout
+=======
 >>>>>>> 7b1bb4719e0828f254ebf369255062b028e0d0a0
 
 Atharva	asdeshpande@mitaoe.ac.in	sales		15/06/2020	02:48:25 PM	Login
@@ -531,3 +534,4 @@ Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		15/06/2020	05:59:12 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		15/06/2020	06:04:09 PM	Login
 Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		15/06/2020	06:06:28 PM	Logout
 Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		15/06/2020	06:10:36 PM	Login
+>>>>>>> d4707a280778238ff43d874652901072a7ae96ea
