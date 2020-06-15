@@ -43,7 +43,7 @@ if($cursor)
     $result3 = $db->prfs->findOne(array("prf"=>$digit13[0]));
 
     //Inserting a new interview in interviews collection 
-    $insertinvrecord = $db->interviews->insertOne(array("rid"=>$rid,"prf"=>$digit13[0],'pos'=>$digit13[1],"iid"=>$digit13[2],"members"=>$_POST['emails'],"times"=>$_POST['times'],"modtimes"=>$_POST['times'],"dates"=>$_POST['dates'],"moddates"=>$_POST['dates'],"evaluated"=>array(),"intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"date"=>$_POST['date'],"time"=>$_POST['time'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"status"=>"0","invstatus"=>"0","accepted"=>"no"));
+    $insertinvrecord = $db->interviews->insertOne(array("rid"=>$rid,"prf"=>$digit13[0],'pos'=>$digit13[1],"iid"=>$digit13[2],"members"=>$_POST['emails'],"times"=>$_POST['times'],"modtimes"=>$_POST['times'],"dates"=>$_POST['dates'],"moddates"=>$_POST['dates'],"evaluated"=>array(),"intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"status"=>"0","invstatus"=>"0","accepted"=>"no"));
     if($insertinvrecord)
     {
         
@@ -72,10 +72,6 @@ if($cursor)
 
         Please find below the details for the interview for the post of '.$result3['position'].' and Confirm on the site portal.
             
-        Date - '.$date.'
-        
-        Timing - '.$time.'
-        
         Location - '.$_POST['iloc'].'
 
         Contact Person - '.$_POST['iperson'].'

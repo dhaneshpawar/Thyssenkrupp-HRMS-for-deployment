@@ -205,11 +205,12 @@ function sendmailtoinv(x,name)
       if(para=="success")
       {
         $(str).html("letter sent");
+        alert("Mail Sent To Candidate")
         window.setTimeout(function(){location.reload()},1000)
       }
       else
       {
-
+        console.log(para)
       }
     }
   })

@@ -214,9 +214,9 @@ if(isset($_COOKIE['sid']))
                               <tr>
                                 <th>Name</th>
                                 <th>Mail ID</th>
-                                <th>Select</th>
-                                <th>Time</th>
                                 <th>Date</th>
+                                <th>Time</th>
+                                <th>Select</th>
                                 <th class="btn blue darken-1" name="submit" id="submit" disabled>Assign Interviewer</th>
                                 <th class="btn red" style="margin-left: 25px;" id="abort" onclick='$("#modal1").modal("open")'> Abort</th>
                                 
@@ -346,7 +346,7 @@ $(document).ready(function(){
 
   $('#allocatesubmit').click(function(){
 
-      $("#loader").show()
+     
       var imail = $('#imail').val();
       var iname = $('#iname').val();
       var idept = $('#idept').val();
@@ -359,6 +359,7 @@ $(document).ready(function(){
     
       if(imail != "" && iname != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
       {
+        $("#loader").show()
         $('#allocation').hide(600);
         $("#pleasewait").fadeIn(600);
         for(let i=0;i<selectedmailID.length;i++)
@@ -582,7 +583,7 @@ function createnextround(id)
         var s6='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)">'
         var s7='<span class="blue-text darken-1" ></span></label></td></tr>'
           
-        var str=s1+s2+s3+s4+s5+s6+s7
+        var str=s1+s2+s3+s5+s4+s6+s7
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
@@ -611,7 +612,7 @@ function createnextround(id)
         var s5 ='<td><input id="check'+i+'date2" class="datepicker" ></td>'
         var s6='<td><label><input type="checkbox" class="filled-in" id="check'+i+'" onclick="selection(this.id)">'
         var s7='<span class="blue-text darken-1" ></span></label></td></tr>'
-        var str=s1+s2+s3+s4+s5+s6+s7
+        var str=s1+s2+s3+s5+s4+s6+s7
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
