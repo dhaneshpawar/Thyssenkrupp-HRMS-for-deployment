@@ -66,8 +66,30 @@ $_SESSION['positionapplied'] = $position;
                   </nav>
                   <br><br>
 
-                <center><h1><p id="warn" style="color:green">Details Submitted Successfully...!</p></h5></center>
-                <center><h1><p id="warn2" style="color:red">Form Expired <br> 7 Days Passed</p></h5></center>
+                <!-- warnings starts here -->
+                <div class="row" id="warn">
+                        <div class="col s12 m6 offset-m3">
+                                <div class="card white">
+                                        <div class="card-content ">
+                                                <center><i class="material-icons large" style="color: green;">check_circle</i></center>
+                                                <center><h1><p  style="color:green">Details Submitted Successfully.</p></h5></center>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="row" id="warn2">
+                        <div class="col s12 m6 offset-m3">
+                                <div class="card white">
+                                        <div class="card-content ">
+                                                <center><i class="material-icons large" style="color: red;">error</i></center>
+                                                <center><h1><p  style="color:red">Form Expired <br> 7 Days Passed</p></h5></center>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <!-- warning ends here -->
+
 
                   <div class="row">
                         
