@@ -8,7 +8,7 @@ $mail->isHTML(true);
 // $mail->SMTPDebug = 4;
 
 $expdate = strtotime("+7 day");
-$expdate = date("Y-m-d", $expdate);
+$expdate = date("Y-m-d", $expdate); 
 
 $ctr = 0;
 

@@ -2,7 +2,7 @@
 include 'maildetails.php';
 include 'db.php';
 
-$mail->setFrom("thyssenkrupp", 'Interview Call');
+$mail->setFrom("thyssenkrupp", 'tkei');
 $mail->addReplyTo(Email, 'Information');
 $mail->isHTML(true);   
 
@@ -16,8 +16,10 @@ foreach($_POST['emails'] as $d)
 {
    
     $mail->addAddress($d);
-    $mail->Subject = 'Mail Regarding Interview';
-    $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this '.$date.'Time : '.$time.' by '.$invname;
+    //"Invitation to interview with thyssenkrupp for the ". $position." position";
+    $mail->Subject = 'Invitation to interview at thyssenkrupp';
+    $mail->Body    = 'You have been shortlisted for the interview. 
+    You have an interview on this '.$date.'Time : '.$time.' by '.$invname;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     if(!$mail->send()) 
@@ -60,9 +62,10 @@ $db->tokens->updateMany(array("prf"=>$digit13[0],'iid'=>$digit13[2],"pos"=>$digi
 
 
     //send mail to interviewer to notify him about interview.
+    $dashurl="http://localhost/hrms/invdash.php";
     $mail->addAddress($invname);
-    $mail->Subject = 'Mail Regarding Interview Timings';
-    $mail->Body    = 'You are assigned a interview . You have an interview on this '.$date.'Time : '.$time;
+    $mail->Subject = ' Interview schedule on'.$date ;
+    $mail->Body    = "You are assigned a interview . You have an interview on this date : ".$date." and Time : ".$time. "To access your dashboard for more details, please click <a href='.$dashurl.'>here</a> ";
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     if(!$mail->send()) 
