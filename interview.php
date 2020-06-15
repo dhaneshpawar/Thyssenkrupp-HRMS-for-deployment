@@ -397,7 +397,7 @@ $(document).ready(function(){
           }
           else if(para[j][10] == "pending")
           {
-            var x='<tr id="rows" class="rows"><td>'+para[j][0]+'</td><td>'+para[j][1]+'</td><td>'+para[j][2]+'</td><td>'+para[j][7]+'</td><td>'+para[j][3]+'</td><td>'+para[j][5]+'</td><td>'+para[j][6]+'</td><td>'+para[j][10]+'</td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][4]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][8]+'*'+para[j][9]+'*'+para[j][10]+'*'+para[j][11]+'*'+para[j][12]+'" class="btn green darken-1" onclick="xyz(this.id)">Update</a></td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][10]+'*'+para[j][12]+'*'+para[j][11]+'" class="btn green darken-1" onclick="notifyCandidate(this.id)" name="notify"  style="width: 150px;">Send Mail</a></td></tr>'
+            var x='<tr id="rows" class="rows"><td>'+para[j][0]+'</td><td>'+para[j][1]+'</td><td>'+para[j][2]+'</td><td>'+para[j][7]+'</td><td>'+para[j][3]+'</td><td>'+para[j][5]+'</td><td>'+para[j][6]+'</td><td>'+para[j][10]+'</td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][4]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][8]+'*'+para[j][9]+'*'+para[j][10]+'*'+para[j][11]+'*'+para[j][12]+'" class="btn green darken-1" onclick="xyz(this.id)">Update</a></td><td><a id="'+para[j][0]+'*'+para[j][1]+'*'+para[j][2]+'*'+para[j][3]+'*'+para[j][5]+'*'+para[j][6]+'*'+para[j][7]+'*'+para[j][10]+'*'+para[j][12]+'*'+para[j][11]+'" class="btn red darken-3" onclick="notifyCandidate(this.id)" name="notify"  style="width: 150px;">Send Mail</a></td></tr>'
           }
           else
           {
@@ -413,6 +413,7 @@ $(document).ready(function(){
 
 function notifyCandidate(id)
 {
+  console.log("ID - "+id)
   $('#loader').show()
   // alert(id)
   $.ajax({
@@ -423,7 +424,7 @@ function notifyCandidate(id)
     },
     success:function(){
       $('#loader').hide()
-      window.setTimeout(function(){location.reload()},1000)
+      // window.setTimeout(function(){location.reload()},1000)
       
     }
   })
@@ -513,4 +514,3 @@ $('#updatebtn').click(function()
 
 </script>
 </html>
-        

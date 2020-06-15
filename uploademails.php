@@ -2,7 +2,7 @@
 include 'api/maildetails.php';
 include 'api/db.php';
 
-$mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
+$mail->setFrom('thyssenkrupp@tkep.com', 'tkei');
 $mail->addReplyTo("sarang@123", 'Information');
 $mail->isHTML(true);   
 // $mail->SMTPDebug = 4;
@@ -98,7 +98,7 @@ if($count==1) //if round collection is present
                 $token=sha1($d);
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position2;
 
-                $mail->Subject = 'Your Application at tkEI';
+                $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
                 $mail->Body    =   nl2br('Dear Candidate,
 
                 Further to our discussion for the profile of '. $position. ' You are required to provide your basic
@@ -163,7 +163,7 @@ if($count==1) //if round collection is present
                 $token=sha1($d);
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position2;
 
-                $mail->Subject = 'Your Application at tkEI';
+                $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
                 $mail->Body    = nl2br('Dear Candidate,
 
                 Further to our discussion for the profile of '. $position. ' You are required to provide your basic
@@ -234,7 +234,7 @@ else
                 $token=sha1($d);
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position2;
 
-                $mail->Subject = 'Your Application at tkEI';
+                $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
                 $mail->Body    = nl2br('Dear Candidate,
 
                 Further to our discussion for the profile of '. $position. ' You are required to provide your basic

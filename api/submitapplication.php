@@ -135,12 +135,12 @@ if($cursor)
                     $db->rounds->updateOne($prf,array('$pull'=>array('members'=>$result1["email"])),array('safe'=>true,'timeout'=>5000,'upsert'=>true));
                     $result = $collection->updateOne(array("token" => $token),array('$unset' => array('token' => $token,)),array('multi' => true));
                     
-                    $mail->setFrom('thyssenkrupp@tkep.com', 'Interview Call');
+                    $mail->setFrom('thyssenkrupp@tkep.com', 'tkei');
                     $mail->addReplyTo(Email, 'Information');
                     $mail->isHTML(true);   
                     $mail->addAddress($result1['email']);
 
-                    $mail->Subject = 'Your Application at tkEI';
+                    $mail->Subject = 'Update on your application at thyssenkrupp for '.$res['position'].'position';
                     $mail->Body    = nl2br('Dear '.$fullname.' ,
 
                     We are pleased to confirm that we have received your application. Thank you. We aim to get back to you

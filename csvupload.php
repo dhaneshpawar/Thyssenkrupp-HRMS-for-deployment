@@ -2,21 +2,18 @@
 <html lang="en">
 <head>
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="public/css/materialize.css">
-    <link rel="stylesheet" href="public/css/materialize.min.css">
 
+<link rel="stylesheet" type="text/css" media="screen" href="./public/css/materialize.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./public/css/materialize.min.css">
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="public/js/materialize.js"></script>
-    <script src="public/js/materialize.min.js"></script>
-    <script src="public/jquery-3.2.1.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        
         <!-- for sidenav -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" type="text/css" media="screen" href="public/css/common.css">
+        <script src="./public/jquery-3.2.1.min.js"></script>
+  
+  <script src="./public/js/materialize.js"></script>
+  <script src="./public/js/materialize.min.js"></script>
             
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,6 +73,7 @@
         <div class="col s12 m6 offset-m3">
             <div class="card white">
                 <div class="card-content blue-text">
+                <a class="btn red modal-trigger" href="#modal1" style="float:right;" id="mymodal">CSV FILE FORMAT</a>
                 <span class="card-title">Upload Dump</span>
                 <p>Upload csv dump here cosisting of all the previous data.<br>
                     Once the file is uploaded
@@ -112,13 +110,67 @@
     </div>
 
 
+    <div id="modal1" class="modal" style="width:90%;">
+    <div class="modal-content">
+        
+      <table style="border-radius:5px solid black;" class="white-text teal">
+        <tr id="modalheader" >
+                  
+          <th>Instance ID	</th>
+          <th>Instance Name	</th>
+          <th>Submissiong Date	</th>
+          <th>Requester	</th>
+          <th>Position Details</th>	
+          <th>Production Line	</th>
+          <th>Hiring Type	</th>
+          <th>Classification 100</th>	
+          <th>Classification 110	</th>
+          <th>Classification 111	</th>
+          <th>Zone	</th>
+          <th>Branch	</th>
+          <th>Cost Center Name</th>	
+          <th>Cost Center Code	</th>
+          <th>Department	</th>
+          <th>Location	</th>
+          <th>Number of Position Open </th>	
+          <th>Workforce Classification	</th>
+          <th>Request Type	</th>
+          <th>Employee Code & 8ID	</th>
+          <th>Employee Name	</th>
+          <th>New Joiner 8 ID	</th>
+          <th>New Joiner Name	</th>
+          <th>Required Date	</th>
+          <th>Reporting To	</th>
+          <th>Budget CTC in INR </th>	
+          <th>Internal Posting Recommended	</th>
+          <th>Status	</th>
+          <th>Next Handler</th>
+        </tr>
+       
+      </table>
+      
+    </div>
+    <div class="modal-footer">
+    <b class="red-text">Please ensure that the CSV file to be uploaded must have above columns only</b>   
+    </div>
+    
+   
+  </div>
+
+
+
+
+
+
 
 
     <script src="public/js/common.js"></script>
 
   <script>
-
+  
 $(document).ready(function(){
+  $(".modal").modal();
+
   console.log("Hello document");
   $("#loader").hide();
 })

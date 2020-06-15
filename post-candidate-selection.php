@@ -20,6 +20,22 @@ $_SESSION['mailid'] = $_GET['token'];
     
 </head>
 <style>
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#loader > #txt{
+  font-size:25px;
+  color:lightskyblue;
+  margin-left:33% !important;
+  margin-top:18% !important; 
+}
 input[type="file"]
 {
     display: none;
@@ -39,7 +55,7 @@ input[id="uan"]
     <center>
     <h1><p  id="details"style="color:Green">Details Submitted Successfully</p></h1>
     </center>
-    <form method="POST" action="http://localhost/hrms/api/submitevalform.php" enctype="multipart/form-data" id="postForm">
+    <form id="myForm"method="POST" action="http://localhost/hrms/api/submitevalform.php" enctype="multipart/form-data" id="postForm">
     
     <div class="row">
         <div class="col s12 m6 offset-m3">
@@ -143,13 +159,21 @@ input[id="uan"]
         </div>
 
 </form>
-
+<div id="loader">
+        <div id="txt">
+                <b>Please wait while we submit your form !!</b>
+        </div>
+</div>
 
 <script>
 
-
+$("#myform").submit(function(){
+        console.log("Hello")
+        $('#loader').show()
+})
 $(document).ready(function(){
         $("#details").hide();
+        $("#loader").hide()
         function getUrlVars() {
             var vars = {};
             var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {

@@ -16,10 +16,15 @@ foreach($_POST['emails'] as $d)
 {
    
     $mail->addAddress($d);
+<<<<<<< HEAD
     //"Invitation to interview with thyssenkrupp for the ". $position." position";
     $mail->Subject = 'Invitation to interview at thyssenkrupp';
     $mail->Body    = 'You have been shortlisted for the interview. 
     You have an interview on this '.$date.'Time : '.$time.' by '.$invname;
+=======
+    $mail->Subject = 'Invitation to interview at thyssenkrupp';
+    $mail->Body    = 'You have been shortlisted for the interview. You have an interview on this '.$date.'Time : '.$time.' by '.$invname;
+>>>>>>> 363af739b0c82e5b3b3401235be499becb4b4eba
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     if(!$mail->send()) 
@@ -65,7 +70,14 @@ $db->tokens->updateMany(array("prf"=>$digit13[0],'iid'=>$digit13[2],"pos"=>$digi
     $dashurl="http://localhost/hrms/invdash.php";
     $mail->addAddress($invname);
     $mail->Subject = ' Interview schedule on'.$date ;
+<<<<<<< HEAD
     $mail->Body    = "You are assigned a interview . You have an interview on this date : ".$date." and Time : ".$time. "To access your dashboard for more details, please click <a href='.$dashurl.'>here</a> ";
+=======
+    $mail->Body    = 'You are assigned a interview .
+     You have an interview on this '.$date.'Time : '.$time'
+     To access your dashboard for more details, please click <a href='.$dashurl.'>here</a>';
+    
+>>>>>>> 363af739b0c82e5b3b3401235be499becb4b4eba
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     if(!$mail->send()) 
