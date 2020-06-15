@@ -221,33 +221,33 @@ input[type="file"]{
                                                   <div class="col s12" id="myexpdiv">
                                                           
                                                         <div class="input-field col s6">
-                                                                <input id="orgname0" type="text" class="validate" value = "<?php echo $row["orgname"][$i]; ?>" readonly  required="" aria-required="true">
+                                                                <input id="orgname0" type="text" class="validate" value = "<?php echo $row["orgname"][$i]?$row["orgname"][$i]:"NA"; ?>" readonly  required="" aria-required="true">
                                                                 <label for="orgname0" >Current Organization Name</label>
                                                         </div>
                                   
                                                                               
                                                         <div class="input-field col s6">
-                                                                <input id="olddesignation0" type="text"class="validate" required="" aria-required="true"  value = "<?php echo $row["olddesignation0"][$i]; ?>" readonly>
+                                                                <input id="olddesignation0" type="text"class="validate" required="" aria-required="true"  value = "<?php echo $row["olddesignation0"][$i]?$row["olddesignation0"][$i]:"NA"; ?>" readonly>
                                                                 <label for="olddesignation0" >Designation</label>
                                                         </div>
                                                         
                                                         <div class="input-field col s6">
-                                                                <input id="fromdate0" type="text" class="datepicker" value = "<?php echo $row["fromdate"][$i]; ?>" readonly>
+                                                                <input id="fromdate0" type="text" class="datepicker" value = "<?php echo $row["fromdate"][$i]?$row["fromdate"][$i]:"NA"; ?>" readonly>
                                                                 <label for="fromdate0" >From</label>
                                                         </div>
 
                                                         <div class="input-field col s6">
-                                                                <input id="todate0" type="text" class="datepicker" value = "<?php echo $row["todate"][$i]; ?>" readonly>
+                                                                <input id="todate0" type="text" class="datepicker" value = "<?php echo $row["todate"][$i]?$row["todate"][$i]:"NA"; ?>" readonly>
                                                                 <label for="todate0" >To</label>
                                                         </div> 
 
                                                         <div class="input-field col s6">
-                                                                <input id="managername0" type="text" class="validate" required="" aria-required="true" value = "<?php echo $row["managername"][$i]; ?>" readonly>
+                                                                <input id="managername0" type="text" class="validate" required="" aria-required="true" value = "<?php echo $row["managername"][$i]?$row["managername"][$i]:"NA"; ?>" readonly>
                                                                 <label for="managername0" >Reporting Manager Name</label>
                                                         </div> 
                                                               
                                                         <div class="input-field col s6">
-                                                                <input id="managermail0" type="text" class="validate" required="" aria-required="true" value = "<?php echo $row["managermail"][$i]; ?>" readonly>
+                                                                <input id="managermail0" type="text" class="validate" required="" aria-required="true" value = "<?php echo $row["managermail"][$i]?$row["managermail"][$i]:"NA"; ?>" readonly>
                                                                 <label for="managermail0" >Enter Manager Email</label>
                                                         </div> 
 
@@ -405,13 +405,13 @@ input[type="file"]{
 
                                             
                                             <div class="input-field col s6">
-                                                    <input id="spouse" type="text" value = "<?php echo $row["spousename"]; ?>" readonly>
+                                                    <input id="spouse" type="text" value = "<?php echo $row["spousename"]?$row["spousename"]:"NA"; ?>" readonly>
                                                     <label for="spouse">Spouse Name</label>
                                             </div>
 
                                             
                                             <div class="input-field col s3">
-                                                    <input id="spdob" type="text" class="datepicker" value = "<?php echo $row["spdob"]; ?>" readonly>
+                                                    <input id="spdob" type="text" class="datepicker" value = "<?php echo $row["spdob"]?$row["spdob"]:"NA"; ?>" readonly>
                                                     <label for="spdob">DOB</label>
                                             </div>
                                             
@@ -426,13 +426,13 @@ input[type="file"]{
 
                                             
                                             <div class="input-field col s6">
-                                                    <input id="child1" type="text" value = "<?php echo $row["child1"]; ?>" readonly>
+                                                    <input id="child1" type="text" value = "<?php echo $row["child1"]?:"NA"; ?>" readonly>
                                                     <label for="child1">Child1 Name</label>
                                             </div>
 
                                             
                                             <div class="input-field col s3">
-                                                    <input id="c1dob" type="text" class="datepicker" value = "<?php echo $row["ch1dob"]; ?>" readonly>
+                                                    <input id="c1dob" type="text" class="datepicker" value = "<?php echo $row["ch1dob"]?$row["ch1dob"]:"NA"; ?>" readonly>
                                                     <label for="c1dob">DOB</label>
                                             </div>
                                             <div class="col s3 ">
@@ -448,13 +448,13 @@ input[type="file"]{
 
                                             
                                             <div class="input-field col s6">
-                                                    <input id="child2" type="text" value = "<?php echo $row["child2"]; ?>" readonly>
+                                                    <input id="child2" type="text" value = "<?php echo $row["child2"]?$row["child2"]:"NA"; ?>" readonly>
                                                     <label for="child2">Child2 Name</label>
                                             </div>
 
                                             
                                             <div class="input-field col s3">
-                                                    <input id="c2dob" type="text" class="datepicker" value = "<?php echo $row["ch2dob"]; ?>" readonly >
+                                                    <input id="c2dob" type="text" class="datepicker" value = "<?php echo $row["ch2dob"]?$row["ch2dob"]:"NA"; ?>" readonly >
                                                     <label for="c2dob">DOB</label>
                                             </div>
 
