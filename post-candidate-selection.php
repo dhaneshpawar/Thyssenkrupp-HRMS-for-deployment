@@ -52,9 +52,20 @@ input[id="uan"]
             <a href="#!" class="brand-logo center">thyssenkrupp</a>
         </div>
     </nav>
-    <center>
-    <h1><p  id="details"style="color:Green">Details Submitted Successfully</p></h1>
-    </center>
+
+    <!-- details submitted warning starts here -->
+        <div class="row" id="details">
+                <div class="col s12 m6 offset-m3">
+                        <div class="card white">
+                                <div class="card-content ">
+                                        <center><i class="material-icons large" style="color: green;">check_circle</i></center>
+                                        <center><h1><p  style="color:green">Details Submitted Successfully.</p></h5></center>
+                                </div>
+                        </div>
+                </div>
+        </div>
+    <!-- details submitted warning ends here -->
+
     <form id="myForm"method="POST" action="http://localhost/hrms/api/submitevalform.php" enctype="multipart/form-data" id="postForm">
     
     <div class="row">
