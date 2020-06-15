@@ -346,7 +346,7 @@ $(document).ready(function(){
 
   $('#allocatesubmit').click(function(){
 
-      $("#loader").show()
+     
       var imail = $('#imail').val();
       var iname = $('#iname').val();
       var idept = $('#idept').val();
@@ -359,6 +359,7 @@ $(document).ready(function(){
     
       if(imail != "" && iname != "" && idept != "" && idesg != "" && iperson != "" && iloc != "")
       {
+        $("#loader").show()
         $('#allocation').hide(600);
         $("#pleasewait").fadeIn(600);
         for(let i=0;i<selectedmailID.length;i++)

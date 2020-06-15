@@ -9,7 +9,7 @@ if($cursor)
 {
     $digit13 =$_POST['prfint'];
     $prfint = explode("*",$digit13);
-    $result=$db->interviews->findOne(array("prf"=>$prfint[0],"rid"=>$prfint[1],"iid"=>$prfint[2],"intvmail"=>$prfint[3],"date"=>$prfint[5],"time"=>$prfint[6]));
+    $result=$db->interviews->findOne(array("prf"=>$prfint[0],"rid"=>$prfint[1],"iid"=>$prfint[2],"intvmail"=>$prfint[3]));
     $i=0;
     $arr = iterator_to_array($result);
     echo json_encode($arr);
