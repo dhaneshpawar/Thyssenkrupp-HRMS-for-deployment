@@ -643,27 +643,8 @@ function confirmmodifyAllMails(id)
     
 }
 
-// function for modifying all ends
-
-
-    $(document).ready(function(){
-        $("#status").hide()
-        $("#loader").hide()
-        $("#accept").hide()
-        $('.modal').modal();
-        $('#reason_line').hide()
-         window.mail = "<?php echo $cursor["mail"]; ?>"
-         $('.timepicker').timepicker();
-       // mail = JSON.stringify(mail)
-       $("#emailrow10").hide()
-       
-    window.focus(function(){
-        location. reload(true);
-    })
-
-    //submitting complete interview
-    
-    function submit_interview(cnfrm){
+function submit_interview(cnfrm){
+        console.log("Status - "+cnfrm)
         if(cnfrm)
         {
             $.ajax({
@@ -689,6 +670,30 @@ function confirmmodifyAllMails(id)
             
         }
     }
+
+
+
+// function for modifying all ends
+
+
+    $(document).ready(function(){
+        $("#status").hide()
+        $("#loader").hide()
+        $("#accept").hide()
+        $('.modal').modal();
+        $('#reason_line').hide()
+         window.mail = "<?php echo $cursor["mail"]; ?>"
+         $('.timepicker').timepicker();
+       // mail = JSON.stringify(mail)
+       $("#emailrow10").hide()
+       
+    window.focus(function(){
+        location. reload(true);
+    })
+
+    //submitting complete interview
+    
+
         
     
 

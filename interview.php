@@ -413,6 +413,7 @@ $(document).ready(function(){
 
 function notifyCandidate(id)
 {
+  console.log("ID - "+id)
   $('#loader').show()
   // alert(id)
   $.ajax({
@@ -423,7 +424,7 @@ function notifyCandidate(id)
     },
     success:function(){
       $('#loader').hide()
-      window.setTimeout(function(){location.reload()},1000)
+      // window.setTimeout(function(){location.reload()},1000)
       
     }
   })
