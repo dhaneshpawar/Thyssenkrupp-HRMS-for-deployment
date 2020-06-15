@@ -24,11 +24,9 @@ if($cursor)
             foreach($result as $document)
             {
                 $prf = $document['prf'] ."-". $document['pos']."-". $document['iid'] ."-". $document['rid'];
-                $date = $document['date'];
-                $time = $document['time'];
                 $acc = $document['accepted'];
                 $invstat = $document['invstatus'];
-                $arr[$i] = array($prf , $date , $time ,$acc, $invstat); 
+                $arr[$i] = array($prf,$acc, $invstat); 
                 $i+=1;  
             }
             print_r( json_encode($arr));

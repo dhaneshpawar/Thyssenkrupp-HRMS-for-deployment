@@ -233,8 +233,6 @@ if(isset($_COOKIE['sid']))
                         <thead>
                             <tr>
                                 <th>INTERVIEWS</th>
-                                <th>DATE</th>
-                                <th>TIME</th>
                                 <th>SEE MEMBERS</th>
                                 <th>ACTION</th>
                                 <th>ACCEPT</th>
@@ -723,9 +721,8 @@ function submit_interview(cnfrm){
                 }
                 console.log("Status - ",temparr[3])
                 
-                var status = temparr[3]=="yes" ||temparr[3]=="pending"?"disabled":" ";
+                var status = temparr[1]=="yes" ||temparr[1]=="pending"?"disabled":" ";
                 var txt1 = '<tr><td><b>'+temparr[0]+'</b></td>'
-                var txt2 = '<td>'+temparr[1]+'</td><td>'+temparr[2]+'</td>' 
                 var txt6 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'*2" onclick="displayreadonlymail(this.id)">See Members<i class="material-icons right">send</i>'                       
                 var txt5 = '<td><button class="btn waves-effect green"  id="act'+temparr[0]+'" onclick="openmodal3(this.id)" '+status+'>Accept<i class="material-icons right">send</i></button></td>' 
                 var txt4 = '<td><button class="btn waves-effect red"  id="act'+temparr[0]+'1" '+status+' onclick="openmodal(this.id)">Reject<i class="material-icons right">send</i></button></td>' 
@@ -788,7 +785,7 @@ function submit_interview(cnfrm){
                 // console.log("Existing date : ",mydate);
                 // console.log("curr date : ",currdate);
                     //comparing time 
-                    if(temparr[3]=="yes")
+                    if(temparr[1]=="yes")
                     {
                         $("#status").hide()
                       
@@ -796,12 +793,12 @@ function submit_interview(cnfrm){
                             console.log("valid");
                       
                     }
-                    else if(temparr[3]=="pending")
+                    else if(temparr[1]=="pending")
                     {
                             var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
                             console.log("valid");
                     }
-                    else if(temparr[3]=="no")
+                    else if(temparr[1]=="no")
                     {
                         var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Start<i class="material-icons right">send</i>'                       
 
@@ -810,7 +807,7 @@ function submit_interview(cnfrm){
                     
                   
                 
-                var str = txt1+txt2+txt6+txt3+txt5+txt4;
+                var str = txt1+txt6+txt3+txt5+txt4;
                 $("#todolistbody").append(str)             
             }            
         }    
