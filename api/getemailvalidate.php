@@ -28,19 +28,19 @@ if($cursor)
                 if(count($rc) > 0)
                 {
                         $getselectednames =  $db->tokens->findOne(array("prf"=>$digit13[0],"pos"=>$digit13[1],"iid"=>$digit13[2],"email"=>$doc['email']));
-                        $members_arr[$i]=array($doc['full_name'],$doc['email'],$doc['afterselection']);
+                        $members_arr[$i]=array($doc['full_name'],$doc['email'],$doc['afterselection'],$doc['postfilled']);
                         $i+=1;   
                 }
                 else
                 {
                     if($doc['afterselection'] != "2")
                     {
-                        $members_arr[$i]=array($doc['full_name'],$doc['email'],$doc['afterselection']);
+                        $members_arr[$i]=array($doc['full_name'],$doc['email'],$doc['afterselection'],$doc['postfilled']);
                         $i+=1;
                     }
                     else if($doc['afterselection'] == "2")
                     {
-                        $members_arr[$i]=array($doc['full_name'],$doc['email'],"5");
+                        $members_arr[$i]=array($doc['full_name'],$doc['email'],"5",$doc['postfilled']);
                         $i+=1;
                     }
                     else

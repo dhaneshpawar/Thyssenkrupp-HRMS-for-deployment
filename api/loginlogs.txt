@@ -508,3 +508,20 @@ Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		14/06/2020	10:14:02 PM	Login
 Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		14/06/2020	10:14:10 PM	Logout
 Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		14/06/2020	10:22:14 PM	Login
 >>>>>>> 7b1bb4719e0828f254ebf369255062b028e0d0a0
+
+Atharva	asdeshpande@mitaoe.ac.in	sales		15/06/2020	02:48:25 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		15/06/2020	02:51:56 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		15/06/2020	02:59:49 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		15/06/2020	02:59:55 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		15/06/2020	03:15:02 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		15/06/2020	03:15:08 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		15/06/2020	03:15:53 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		15/06/2020	03:16:01 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		15/06/2020	03:17:06 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		15/06/2020	03:17:41 PM	Login
+Atharva	asdeshpande@mitaoe.ac.in	sales		15/06/2020	03:22:13 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		15/06/2020	03:22:20 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		15/06/2020	03:37:53 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		15/06/2020	03:38:00 PM	Login
+Pragati	psgaikwad@mitaoe.ac.in	sales		15/06/2020	03:48:04 PM	Logout
+Atharva	asdeshpande@mitaoe.ac.in	sales		15/06/2020	03:48:10 PM	Login

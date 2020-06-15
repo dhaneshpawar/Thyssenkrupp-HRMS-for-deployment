@@ -116,7 +116,8 @@ if($cursor)
                     "fromdate" => $fromdate,
                     "todate" => $todate,
                     "managername" => $managername,
-                    "managermail" => $managermail
+                    "managermail" => $managermail,
+                    "postfilled" => ""
                     
                 );
                 $result = $collection->updateOne(array("token" => $token),array('$set'=>$values));
