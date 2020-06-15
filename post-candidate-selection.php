@@ -233,7 +233,7 @@ $('#appletter').change(function(){
         {
            
                 var f = $('#appletter').val()
-                $('#letter1').replaceWith(f)     
+                $('#letter1').text(f)     
         }
         else
         {
@@ -252,7 +252,7 @@ $('#relletter').change(function(){
         {
            
                 var f = $('#relletter').val()
-                $('#letter2').replaceWith(f)     
+                $('#letter2').text(f)     
         }
         else
         {
@@ -269,7 +269,7 @@ $('#salarybreak').change(function(){
         {
            
                 var f = $('#salarybreak').val()
-                $('#letter3').replaceWith(f)     
+                $('#letter3').text(f)     
         }
         else
         {
@@ -287,7 +287,7 @@ $('#pastpayslip').change(function(){
         {
            
                 var f = $('#pastpayslip').val()
-                $('#letter4').replaceWith(f)     
+                $('#letter4').text(f)     
         }
         else
         {
@@ -303,7 +303,7 @@ $('#cancelcheck').change(function(){
         {
            
                 var f = $('#cancelcheck').val()
-                $('#letter5').replaceWith(f)     
+                $('#letter5').text(f)     
         }
         else
         {
