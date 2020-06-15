@@ -1,4 +1,5 @@
 <?php
+//error_reporting(0);
 if(isset($_COOKIE['sid']))
 {
   include 'api/db.php';
@@ -369,9 +370,10 @@ console.log(para)
                 $("#emailrow4").hide()
                 for(let i=0;i<para.length;i++)
                 {
-                    for(let j=0;j<3;j++)
+                    for(let j=0;j<4;j++)
                     {
                         temparr[j] = para[i][j];
+                        console.log(temparr[j]);
                         
                     }
                     var status;
@@ -382,7 +384,7 @@ console.log(para)
                         console.log("Name : ",temparr[0])
                         var txt0 = '<tr><td><p>'+temparr[0]+'</p></td>'
                         var txt1 = '<td><p>'+temparr[1]+'</p></td>'
-                        var txt2 = '<td><button class="btn waves-effect green" id="'+temparr[1]+'" onclick="evaluateMail(this.id)">Validate Candidate'                       
+                        var txt2 = '<td><button class="btn waves-effect green" id="'+temparr[1]+'"  onclick="evaluateMail(this.id)">Validate Candidate'                       
                         var txt3 = ' </button></td></tr>' 
                         var str = txt0+txt1+txt2+txt3;
                         $(status).append(str)
@@ -396,6 +398,7 @@ console.log(para)
                         var txt3 = ' </button></td></tr>' 
                         var str =txt0+txt1+txt2+txt3;
                         $(status).append(str)
+                        
                     }
                     else if(temparr[2] == "2")
                     {
@@ -427,6 +430,11 @@ console.log(para)
                         var str = txt0+txt1+txt2+txt3;
                         $(status).append(str)
                     }
+                    if(temparr[3] != "filled"){
+                            
+                            document.getElementById(temparr[1]).disabled = true;
+
+                        }
                 
                     
 
