@@ -44,6 +44,19 @@ if($cursor)
 
     //Inserting a new interview in interviews collection 
     $insertinvrecord = $db->interviews->insertOne(array("rid"=>$rid,"prf"=>$digit13[0],'pos'=>$digit13[1],"iid"=>$digit13[2],"members"=>$_POST['emails'],"times"=>$_POST['times'],"modtimes"=>$_POST['times'],"dates"=>$_POST['dates'],"moddates"=>$_POST['dates'],"evaluated"=>array(),"intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"status"=>"0","invstatus"=>"0","accepted"=>"no"));
+    
+    $date = date_default_timezone_set('Asia/Kolkata');
+           
+    $today = date("Y-m-d H-i-s");
+
+                        //Current user
+
+    $newData=array('$set' => array("status" => "assigned","assign_time"=>$today));
+
+    $db->generalized->updateOne(array("prf"=>$digit13[0]),$newData);
+
+
+
     if($insertinvrecord)
     {
         

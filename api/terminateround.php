@@ -26,6 +26,18 @@ if(isset($_POST) || $cursor)
     $selected=$_POST['emails'];
     $arr = array();
 
+
+    $date = date_default_timezone_set('Asia/Kolkata');
+           
+    $today = date("Y-m-d H-i-s");
+
+                        //Current user
+
+    $newData=array('$set' => array("status" => "completed","comp_time"=>$today));
+
+    $db->generalized->updateOne(array("prf"=>$digit13[0]),$newData);
+
+
     if($selected == 'nomail')
     {
         $db->rounds->updateMany(array("rid"=>$digit13[3],"prf"=>$digit13[0],"iid"=>$digit13[2],"pos"=>$digit13[1]),array('$set'=>array("status"=>"completed","completevalidate"=>"novalidate")));

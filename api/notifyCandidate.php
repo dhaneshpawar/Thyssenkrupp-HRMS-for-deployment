@@ -18,6 +18,19 @@ if($cursor)
         $result = $db->interviews->findOne($criteria);
         $res = $db->interviews->updateOne($criteria,array('$set'=>array("sent"=>"done","accepted"=>"yes")));
 
+
+
+
+        $date = date_default_timezone_set('Asia/Kolkata');
+           
+        $today = date("Y-m-d H-i-s");
+
+                        //Current user
+
+        $newData=array('$set' => array("status" => "ongoing","accepted_time"=>$today));
+
+        $db->generalized->updateOne(array("prf"=>$prf13[0]),$newData);
+
         foreach($result['members'] as $d)
         {
             $name = $db->tokens->findOne(array("email"=>$d));
