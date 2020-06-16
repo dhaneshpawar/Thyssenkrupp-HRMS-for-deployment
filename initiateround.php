@@ -269,10 +269,7 @@ $(document).ready(function(){
   $("#showmembersdiv").hide()
   $("#loader").hide()
   
-  $('.datepicker').datepicker
-  ({
-      minDate:new Date(),
-  })
+  $('.datepicker').datepicker();
   $('.timepicker').timepicker();
   $('.modal').modal();
 
@@ -587,7 +584,9 @@ function createnextround(id)
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+          minDate:new Date()
+        });
         
       }
       
@@ -616,7 +615,9 @@ function createnextround(id)
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+          minDate:new Date()
+        });
       }
     }
     }
@@ -783,7 +784,9 @@ function getit(){
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+          minDate:new Date()
+        });
         
       }
       
@@ -812,7 +815,9 @@ function getit(){
        
         $('#adddetail').append(str)
         $('.timepicker').timepicker();
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+          minDate:new Date()
+        });
       }
     }
     }
