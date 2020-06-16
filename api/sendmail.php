@@ -72,6 +72,10 @@ if($cursor)
                     {
                         $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","expiry"=>$expdate,"iid"=>$instanceid));
                         
+                        //Current date and time
+                      
+
+
 
                     }
 
@@ -106,6 +110,17 @@ if($cursor)
                     fwrite($fp, "\n".$d."\t".$prf."\t".$m."\t".$dept);
                     fclose($fp);  
                     echo "sent";
+
+                    $date = date_default_timezone_set('Asia/Kolkata');
+           
+                    $today = date("Y-m-d H-i-s");
+
+                     //Current user
+
+                     $newData=array('$set' => array("status" => "initiated","init_time"=>$today));
+
+                     $db->generalized->updateOne(array("prf"=>$_POST['prf']),$newData);
+
                 }
                 else
                 {
@@ -146,7 +161,17 @@ if($cursor)
                     else
                     {
                         $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","expiry"=>$expdate,"iid"=>$instanceid));
-                   
+                        $date = date_default_timezone_set('Asia/Kolkata');
+           
+                        $today = date("Y-m-d H-i-s");
+
+                        //Current user
+
+                        $newData=array('$set' => array("status" => "initiated","init_time"=>$today));
+
+                        $db->generalized->updateOne(array("prf"=>$_POST['prf']),$newData);
+
+
                     }
                     
                     $mail->ClearAddresses();
@@ -179,6 +204,18 @@ if($cursor)
                     fwrite($fp, "\n".$d."\t".$prf."\t".$m."\t".$dept);
                     fclose($fp);  
                     echo "sent";
+
+                    $date = date_default_timezone_set('Asia/Kolkata');
+           
+                    $today = date("Y-m-d H-i-s");
+
+                    //Current user
+
+                    $newData=array('$set' => array("status" => "initiated","init_time"=>$today));
+
+                    $db->generalized->updateOne(array("prf"=>$_POST['prf']),$newData);
+
+
                 }
                 else
                 {
@@ -257,6 +294,18 @@ if($cursor)
                     fwrite($fp, "\n".$d."\t".$prf."\t".$m."\t".$dept);
                     fclose($fp);  
                     echo "sent";
+
+                    $date = date_default_timezone_set('Asia/Kolkata');
+           
+                    $today = date("Y-m-d H-i-s");
+
+                    //Current user
+
+                    $newData=array('$set' => array("status" => "initiated","init_time"=>$today));
+
+                    $db->generalized->updateOne(array("prf"=>$_POST['prf']),$newData);
+
+
                 }
                 else
                 {

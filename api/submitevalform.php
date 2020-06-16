@@ -40,7 +40,7 @@ include "db.php";
             echo $namecancelcheck;
             echo "<br>".$mailid;
             $criteria=array("email"=>$mailid);
-            $info=array("appletter"=>$nameappletter,"relletter"=>$namerelletter,"salarybreakup"=>$namesalarybreak,"uan"=>$uan,"pastpayslip"=>$namepastpayslip,"cancelledcheck"=>$namecancelcheck,"nom1"=>$nom1,"nom2"=>$nom2,"nom3"=>$nom3,"nom4"=>$nom4);
+            $info=array("appletter"=>$nameappletter,"relletter"=>$namerelletter,"salarybreakup"=>$namesalarybreak,"uan"=>$uan,"pastpayslip"=>$namepastpayslip,"cancelledcheck"=>$namecancelcheck,"nom1"=>$nom1,"nom2"=>$nom2,"nom3"=>$nom3,"nom4"=>$nom4,"postfilled"=>"filled");
             $queryInsert=$db->tokens->updateOne($criteria,array('$set'=>$info));
 
             if($queryInsert)

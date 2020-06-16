@@ -708,8 +708,9 @@ function submit_interview(cnfrm){
         },
         
         success:function(para)
-        {   
+        {   console.log(para)
             para = JSON.parse(para)
+            console.log( para)
             //para = [['PRF1-INSTANCE1-ROUND1','some date','some time'],['PRF2-INSTANCE2-ROUND2','some date','some time']]
             var temparr=[]; 
             

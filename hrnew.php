@@ -66,12 +66,20 @@ width: 100%;
   width: 19%;
 }
 
+
+
 }
 
 @media screen and (max-width: 800px)
 {
 #megblock, #selectedrow{
 width: 350%;
+}
+
+
+#fileformatmodal
+{
+  margin-top:5%;
 }
 
 #deptchoice{
@@ -429,14 +437,16 @@ function xyz(x)
                                         <a class="btn blue darken-1">
                                         <input id="uploadcsv" type="file" accept=".csv"  required  name="uploadcsv" onchange="readURL(this)"><p id='myfile0'> Select file<i class="material-icons right">open_in_browser</i> </p></a>
                                     </label>
+                                    <a class="btn red" id="fileformatmodal" style="margin-left:2%" onclick="mymodalopen()"><i class="material-icons right">format_align_justify</i>FILE FORMAT</a>
                                     <br><br><br>
+                                    
                             <button type="submit" onclick="showupdump()" class="btn blue darken-1" name="submit" id="submit" value="Upload"><i class="material-icons right">send</i>Upload</button
-                          
+                            
                         </form>
                         <br>
                       
           </center>
-          <b class="red-text">The Mail Dump File Should Contain Following Columns <br> 1. SrNo. <br> 2. Email </b>  
+          
 
 
 
@@ -480,6 +490,19 @@ function xyz(x)
   <div id="nodata" style="margin-left:40%;color:white;background-color:red;width:15%;height:5%;border-radius:5px;text-align:center;">
     <b>NO PRF's AVAILABLE</b>
   </div>
+
+
+  <div id="modal3" class="modal" style="width:50%;">
+    <div class="modal-content" >
+    <table class="white-text teal">
+      <tr>
+        <th>SrNo.</th>
+        <th>Email Address</th>
+      </tr>
+    </table>
+    </div>
+    <center><b class="red-text">Please ensure that the file to be uploaded must have above columns only</b></center>
+  </div>
   
 </body>
 <style>
@@ -509,6 +532,12 @@ function xyz(x)
         alert('Invalid File\n Only CSV Files Accepted')
         $('#uploadcsv').val(" ")
       }
+}
+
+function mymodalopen()
+{
+  
+  $("#modal3").modal('open');
 }
 
 $('#dumpdiv').hide();
@@ -584,6 +613,7 @@ var dept=[]
 $(document).ready(function(){
   $("#loader").hide();
   $('.modal').modal();
+  
   $('#zonechoice').hide();
   $("#uploaddump").hide()
   $("#nodata").hide()

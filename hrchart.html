@@ -124,14 +124,18 @@
                 // ajax call for filling up chart details
                 //provide data for 2 donut chart 1 pie chart and 1 linear graph(linear graph data is the latest ongoing rounf data)
                 $.ajax({
-                    url:'demo.txt',
+                    url:'http://localhost/hrms/api/getGeneralizedData.php',
                     type:'GET',
-                    success:function(para,para2,para3,para4,para5)
+                    success:function(paradata,para2,para3,para4,para5)
                     {
                         // give numbers here demo data
-                        para=[50,20,10,30]//graph 1 data
-                        para2=[50,20]//graph2 data
-                        para3=[30,45,45]//graph 3 data 
+                        console.log(paradata);
+                        para=paradata.general;
+                        para2=paradata.initiateddata;
+                        para3=paradata.completeddata;
+                        para=[para.initiated,para.ongoing,para.completed,para.avail]//graph 1 data
+                        para2=[para2.init,para2.assigned]//graph2 data
+                        para3=[para3.compl_not_hr2,para3.validated,para3.completed]//graph 3 data 
 
                         //linear graph data , here provide latest prfs data that is ongoing 
                         para4 = {mylabel:['Initiated', 'Round 1 Completed', 'Round 2 completed', 'Instance Ended','offer letter sent'],digit13:'123356-12-123-02'}

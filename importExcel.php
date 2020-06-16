@@ -53,6 +53,14 @@ if(isset($_FILES))
     $csvFile = "PRFDumps/".$csvFile;
 
     $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
+    $uid="";
+    if($cursor){
+        foreach($cursor as $key=>$val){
+            if($key=='uid'){
+                $uid=$val;
+            }
+        }
+    }
 
     $csv = readCSV($csvFile);
     // echo count($csv);
@@ -111,6 +119,15 @@ if(isset($_FILES))
                         array('$setOnInsert'=>$val),
                         array("upsert"=>true)
                     );
+
+                    
+                    $date = date_default_timezone_set('Asia/Kolkata');
+           
+                    $today = date("Y-m-d H-i-s");
+
+                    $db->generalized->insertOne(array("prf"=>$csv[$i][0],"uid"=>$uid,"init_time"=>"NA","comp_time"=>"NA","assign_time"=>"NA","accepted_time"=>"NA","creation_time"=>$today,"status"=>"avail"));
+
+                    
                     
             
         

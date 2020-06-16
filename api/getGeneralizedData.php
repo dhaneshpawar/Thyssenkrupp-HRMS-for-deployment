@@ -27,7 +27,58 @@ if($cursor){
     
     $currentrounds=array("uid"=>$uid,"ongoing"=>$ongoing,"avail"=>$avail,"completed"=>$completed,"initiated"=>$initiated);
 
-    echo json_encode($currentrounds);
+    //about initiated rounds
+
+     $initiated_not_assign=$collection->count(array('status'=>'initiated'));
+ 
+     $assigned=$collection->count(array('status'=>"assigned"));
+ 
+     $initiateddata=array("init"=>$initiated_not_assign,"assigned"=>$assigned);
+        
+
+    //about completed rounds
+
+    $collection=$db->tokens;
+
+    $validate_process=$collection->find(['afterselection'=>['$exists'=>true]]);
+    $validateprocessprfs=array();
+    $validatedprfs=array();
+    $completedprfs=array();
+    if($validate_process){
+
+
+        foreach($validate_process as $key=>$val){
+            //echo "here   ".$val->prf." "."<br>".$val->afterselection;
+            if(($val->afterselection=="0" or $val->afterselection=="1" or  $val->afterselection=="4")  and in_array($val->prf,$validateprocessprfs)==false){
+                $validateprocessprfs[]=$val->prf;
+
+            }
+
+
+            
+            else if(($val->afterselection=="2" or $val->afterselection=="5")  and (in_array($val->prf,$validatedprfs)==false)){
+                $validatedprfs[]=$val->prf;
+
+            }
+
+
+            
+            else if(($val->afterselection=="6")  and in_array($val->prf,$completedprfs)==false){
+                $completedprfs[]=$val->prf;
+
+            }
+
+        }
+
+        $completeddata=array("compl_not_hr2"=>$validateprocessprfs,"validated"=>$validatedprfs,"completed"=>$completedprfs);
+    }
+    else{
+
+        $completeddata=array("compl_not_hr2"=>0,"validated"=>0,"completed"=>0);
+
+    }
+
+    echo json_encode(array("general"=>$currentrounds,"initiateddata"=>$initiateddata,"completeddata"=>$completeddata,"para4"=>"ok","para5"=>"ok"));
 
 }
 else{
