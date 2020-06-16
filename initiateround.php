@@ -60,6 +60,24 @@ if(isset($_COOKIE['sid']))
 </head>
 <body>
 
+<!-- No data modal starts here -->
+  <!-- Modal Structure -->
+  <div id="nodatamodal" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>No Data Avilable</h2></center>
+      
+    </div>
+    <div class="modal-footer">
+      <center>
+      <a class="modal-close waves-effect green btn" >OK<i class="material-icons left" >check_box</i></a>
+      </center>
+    </div>
+  </div>
+<!-- no data modal ends here -->
+
 <!-- modal 1 starts here -->
   <div id="modal1" class="modal">
     <div class="modal-content">
@@ -306,6 +324,7 @@ $(document).ready(function(){
       
       else
       {
+        $("#nodatamodal").modal("open");
         console.log("No Data Found")
         $("#nodata").fadeIn(400)
       }

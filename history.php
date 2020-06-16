@@ -73,6 +73,24 @@ width: 350%;
 </head>
 
 <body>
+
+<!-- No data modal starts here -->
+  <!-- Modal Structure -->
+  <div id="nodatamodal" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>No Data Avilable</h2></center>
+      
+    </div>
+    <div class="modal-footer">
+      <center>
+      <a class="modal-close waves-effect green btn" >OK<i class="material-icons left" >check_box</i></a>
+      </center>
+    </div>
+  </div>
+<!-- no data modal ends here -->
 <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
 
   <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
@@ -547,7 +565,7 @@ $("#emailcollection").append(txt);
 }
 var arr=[]
 $(document).ready(function(){
-
+  $('.modal').modal();
 $('#zonechoice').hide();
 
   $('#allocation').hide();
@@ -609,7 +627,7 @@ success:function(arr)
   if(arr == 'No data')
   {
     $('#nodata').fadeIn(300);
-  
+    $("#nodatamodal").modal("open");
   }
   else
   {
@@ -690,7 +708,7 @@ $('#zonechoice').change(function(){
     if(arr == 'No data')
     {
       $('#nodata').fadeIn(300);
-    
+      $("#nodatamodal").modal("open");
     }
     else
     {
@@ -730,22 +748,31 @@ $('#zonechoice').change(function(){
     // data:{'arr1':arr1},
     success : function(para)
     {
-      // console.log(para+"<br>")
-      para=JSON.parse(para)
-      // window.data=para
-      // para=['1001','Developer','North','Sales','5','ongoing']
-      console.log("This is the data came from backend = ",para)
-      console.log("this is length : "+para.length)
-      for(let i=0;i<para.length;i++)
+
+      if(para == "No Data")
       {
-        arr[i]=para[i];
+        $("#nodatamodal").modal("open");
       }
-     
-      for(let j=0;j<arr.length;j++)
+      else
       {
-        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][5]+'</td><td id="status">'+arr[j][6]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
-       $('#rawdata').append(x);
+        // console.log(para+"<br>")
+        para=JSON.parse(para)
+        // window.data=para
+        // para=['1001','Developer','North','Sales','5','ongoing']
+        console.log("This is the data came from backend = ",para)
+        console.log("this is length : "+para.length)
+        for(let i=0;i<para.length;i++)
+        {
+          arr[i]=para[i];
+        }
+      
+        for(let j=0;j<arr.length;j++)
+        {
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][5]+'</td><td id="status">'+arr[j][6]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'
+        $('#rawdata').append(x);
+        }
       }
+
      
     },
   })

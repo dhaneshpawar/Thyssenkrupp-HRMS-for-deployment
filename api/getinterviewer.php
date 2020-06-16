@@ -15,7 +15,14 @@ if($cursor)
         $arr[$i]=array($d['prf'],$d['rid'],$d['iid'],$d['intvmail'],$d['invstatus'],$d['date'],$d['time'],$d['invname'],$d['dept'],$d['designation'],$d['accepted'],$d['iperson'],$d['ilocation'],$d['sent']);
         $i++;
     }
-    echo json_encode($arr);
+    if(count($arr)==0)
+    {
+        echo "No Data";
+    }
+    else
+    {
+        echo json_encode($arr);
+    }
 }
 else
 {

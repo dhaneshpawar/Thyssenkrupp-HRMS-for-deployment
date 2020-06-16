@@ -21,7 +21,14 @@ if($cursor)
         $arr2[$i] = $arr;
         $i=$i+1;
     }
-    echo(json_encode($arr2));
+    if(count($arr2)==0)
+    {
+        echo "No Data";
+    }
+    else
+    {
+        echo(json_encode($arr2));
+    }
 
 }
 else
