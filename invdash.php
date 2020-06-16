@@ -86,6 +86,23 @@ if(isset($_COOKIE['sid']))
 </style>
 
     <body>
+        <!-- No data modal starts here -->
+            <!-- Modal Structure -->
+            <div id="nodatamodal" class="modal">
+                <div class="modal-content">
+                <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+                <br>
+                
+                <center><h2>No Data Avilable</h2></center>
+                
+                </div>
+                <div class="modal-footer">
+                <center>
+                <a class="modal-close waves-effect green btn" >OK<i class="material-icons left" >check_box</i></a>
+                </center>
+                </div>
+            </div>
+        <!-- no data modal ends here -->
 
         <!-- modal1 starts here -->
         <div id="modal1" class="modal">
@@ -708,109 +725,118 @@ function submit_interview(cnfrm){
         },
         
         success:function(para)
-        {   console.log(para)
-            para = JSON.parse(para)
-            console.log( para)
-            //para = [['PRF1-INSTANCE1-ROUND1','some date','some time'],['PRF2-INSTANCE2-ROUND2','some date','some time']]
-            var temparr=[]; 
-            
-            for(let i = 0 ;i<para.length;i++)
+        {   
+            if(para == "No Data")
             {
-                for(let j=0;j<4;j++)
+                $("#nodatamodal").modal("open");
+            }
+            else
+            {
+                console.log(para)
+                para = JSON.parse(para)
+                console.log( para)
+                //para = [['PRF1-INSTANCE1-ROUND1','some date','some time'],['PRF2-INSTANCE2-ROUND2','some date','some time']]
+                var temparr=[]; 
+                
+                for(let i = 0 ;i<para.length;i++)
                 {
-                    temparr[j] = para[i][j];
+                    for(let j=0;j<4;j++)
+                    {
+                        temparr[j] = para[i][j];
+                    }
+                    console.log("Status - ",temparr[3])
+                    
+                    var status = temparr[1]=="yes" ||temparr[1]=="pending"?"disabled":" ";
+                    var txt1 = '<tr><td><b>'+temparr[0]+'</b></td>'
+                    var txt6 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'*2" onclick="displayreadonlymail(this.id)">See Members<i class="material-icons right">send</i>'                       
+                    var txt5 = '<td><button class="btn waves-effect green"  id="act'+temparr[0]+'" onclick="openmodal3(this.id)" '+status+'>Accept<i class="material-icons right">send</i></button></td>' 
+                    var txt4 = '<td><button class="btn waves-effect red"  id="act'+temparr[0]+'1" '+status+' onclick="openmodal(this.id)">Reject<i class="material-icons right">send</i></button></td>' 
+                
+                
+
+                    
+                    // const time = new Intl.DateTimeFormat('en-US', options).format(tempdate)
+                    // console.log(time)
+
+
+                    // console.log("Existing : ",mydate);
+                    // console.log("curr : ",currdate);
+
+                    // console.log("Existing : ",temparr[2]);
+                    // console.log("curr : ",time);
+                    // // alert(temparr)
+                    // //CONCAT CURRENT TIME 
+                    // tempampcursplit=time.split(" ");
+                    // tempcurtimesplit=tempampcursplit[0].split(":")
+                    // hours=parseInt(tempcurtimesplit[0]);
+                    // tempcurintertime="" + hours+tempcurtimesplit[1];
+                    // // alert("Hud "+tempcurintertime)
+
+                    // // CALCULATED current time 
+                    // curintertime=parseInt(tempcurintertime);
+
+                    // //logic comparing
+                    // tempampmsplit=temparr[2].split(" ");
+                    // if(tempampmsplit[1]=="PM")
+                    // {
+                        
+                    //     temptimesplit=tempampmsplit[0].split(":")
+                    //     if(temptimesplit[0]=="12")
+                    //     {
+                    //         hours=parseInt(temptimesplit[0]);
+                    //     }
+                    //     else
+                    //     {
+                    //         hours=parseInt(temptimesplit[0])+12;
+                    //     }
+                    
+                    //     tempintertime="" + hours+temptimesplit[1];
+                    //     intertime=parseInt(tempintertime);
+                    //     // alert("Hud PM "+tempintertime)
+                    // }
+                    // else if(tempampmsplit[1]=="AM")
+                    // {
+                    //     temptimesplit=tempampmsplit[0].split(":")
+                    //     hours=parseInt(temptimesplit[0]);
+                    //     tempintertime="" + hours+temptimesplit[1];
+                    //     // alert("Hud am "+tempintertime)
+                    //     intertime=parseInt(tempintertime);
+                    // }
+                    // console.log("Curr date - ",currdate)
+                    // console.log("Exisitng date - ",mydate)
+                    // console.log("entered2");
+                    // console.log("Existing : ",intertime);
+                    // console.log("curr : ",curintertime);
+                    // console.log("Existing date : ",mydate);
+                    // console.log("curr date : ",currdate);
+                        //comparing time 
+                        if(temparr[1]=="yes")
+                        {
+                            $("#status").hide()
+                        
+                                var txt3 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
+                                console.log("valid");
+                        
+                        }
+                        else if(temparr[1]=="pending")
+                        {
+                                var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
+                                console.log("valid");
+                        }
+                        else if(temparr[1]=="no")
+                        {
+                            var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Start<i class="material-icons right">send</i>'                       
+
+                        }
+                        
+                        
+                    
+                    
+                    var str = txt1+txt6+txt3+txt5+txt4;
+                    $("#todolistbody").append(str)             
                 }
-                console.log("Status - ",temparr[3])
-                
-                var status = temparr[1]=="yes" ||temparr[1]=="pending"?"disabled":" ";
-                var txt1 = '<tr><td><b>'+temparr[0]+'</b></td>'
-                var txt6 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'*2" onclick="displayreadonlymail(this.id)">See Members<i class="material-icons right">send</i>'                       
-                var txt5 = '<td><button class="btn waves-effect green"  id="act'+temparr[0]+'" onclick="openmodal3(this.id)" '+status+'>Accept<i class="material-icons right">send</i></button></td>' 
-                var txt4 = '<td><button class="btn waves-effect red"  id="act'+temparr[0]+'1" '+status+' onclick="openmodal(this.id)">Reject<i class="material-icons right">send</i></button></td>' 
-               
-               
-
-                
-                // const time = new Intl.DateTimeFormat('en-US', options).format(tempdate)
-                // console.log(time)
-
-
-                // console.log("Existing : ",mydate);
-                // console.log("curr : ",currdate);
-
-                // console.log("Existing : ",temparr[2]);
-                // console.log("curr : ",time);
-                // // alert(temparr)
-                // //CONCAT CURRENT TIME 
-                // tempampcursplit=time.split(" ");
-                // tempcurtimesplit=tempampcursplit[0].split(":")
-                // hours=parseInt(tempcurtimesplit[0]);
-                // tempcurintertime="" + hours+tempcurtimesplit[1];
-                // // alert("Hud "+tempcurintertime)
-
-                // // CALCULATED current time 
-                // curintertime=parseInt(tempcurintertime);
-
-                // //logic comparing
-                // tempampmsplit=temparr[2].split(" ");
-                // if(tempampmsplit[1]=="PM")
-                // {
-                    
-                //     temptimesplit=tempampmsplit[0].split(":")
-                //     if(temptimesplit[0]=="12")
-                //     {
-                //         hours=parseInt(temptimesplit[0]);
-                //     }
-                //     else
-                //     {
-                //         hours=parseInt(temptimesplit[0])+12;
-                //     }
-                   
-                //     tempintertime="" + hours+temptimesplit[1];
-                //     intertime=parseInt(tempintertime);
-                //     // alert("Hud PM "+tempintertime)
-                // }
-                // else if(tempampmsplit[1]=="AM")
-                // {
-                //     temptimesplit=tempampmsplit[0].split(":")
-                //     hours=parseInt(temptimesplit[0]);
-                //     tempintertime="" + hours+temptimesplit[1];
-                //     // alert("Hud am "+tempintertime)
-                //     intertime=parseInt(tempintertime);
-                // }
-                // console.log("Curr date - ",currdate)
-                // console.log("Exisitng date - ",mydate)
-                // console.log("entered2");
-                // console.log("Existing : ",intertime);
-                // console.log("curr : ",curintertime);
-                // console.log("Existing date : ",mydate);
-                // console.log("curr date : ",currdate);
-                    //comparing time 
-                    if(temparr[1]=="yes")
-                    {
-                        $("#status").hide()
-                      
-                            var txt3 = '<td><button class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
-                            console.log("valid");
-                      
-                    }
-                    else if(temparr[1]=="pending")
-                    {
-                            var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Conduct Interview<i class="material-icons right">send</i>'                       
-                            console.log("valid");
-                    }
-                    else if(temparr[1]=="no")
-                    {
-                        var txt3 = '<td><button disabled class="btn waves-effect green"  id="'+temparr[0]+'" onclick="displayMail(this.id)">Start<i class="material-icons right">send</i>'                       
-
-                    }
-                    
-                    
-                  
-                
-                var str = txt1+txt6+txt3+txt5+txt4;
-                $("#todolistbody").append(str)             
-            }            
+            }
+                       
         }    
 
     })

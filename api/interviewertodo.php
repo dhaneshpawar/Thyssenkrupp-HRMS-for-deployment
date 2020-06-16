@@ -29,7 +29,15 @@ if($cursor)
                 $arr[$i] = array($prf,$acc, $invstat); 
                 $i+=1;  
             }
-            print_r( json_encode($arr));
+
+            if(count($arr)==0)
+            {
+               echo "No Data";
+            }
+            else
+            {
+                echo(json_encode($arr));
+            }
             
         }
     

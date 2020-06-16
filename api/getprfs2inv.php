@@ -42,7 +42,15 @@ if($cursor1)
                 $i++;  
             }
         }
-        echo json_encode($arr);
+
+        if(count($arr)==0)
+        {
+            echo "No Data";
+        }
+        else
+        {
+            echo json_encode($arr);
+        }
     }
 }
 else

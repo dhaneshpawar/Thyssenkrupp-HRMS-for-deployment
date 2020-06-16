@@ -19,7 +19,14 @@ if($cursor1)
             $arr[$i] =array("prf"=>$doc['prf'],"members"=>$doc['email'],"pos"=>$doc['position'],"name"=>$getselectednames['full_name'],"status"=>$getselectednames['afterselection']);
             $i++;
         }
-        echo json_encode($arr);
+        if(count($arr)==0)
+        {
+            echo "No Data";
+        }
+        else
+        {
+            echo json_encode($arr);
+        }
     }
 }
 else

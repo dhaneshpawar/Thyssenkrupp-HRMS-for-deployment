@@ -72,6 +72,25 @@ width: 350%;
 </head>
 
 <body>
+
+<!-- No data modal starts here -->
+  <!-- Modal Structure -->
+  <div id="nodatamodal" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>No Data Avilable</h2></center>
+      
+    </div>
+    <div class="modal-footer">
+      <center>
+      <a class="modal-close waves-effect green btn" >OK<i class="material-icons left" >check_box</i></a>
+      </center>
+    </div>
+  </div>
+<!-- no data modal ends here -->
+
 <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
 
   <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
@@ -219,35 +238,43 @@ function sendmailtoinv(x,name)
 var ctr = 0
 var arr=[]
 $(document).ready(function(){ 
-
+  $('.modal').modal();
  $.ajax({
     url:'http://localhost/hrms/api/seerequestletters.php',
     type:'POST',
     success : function(para)
     {
-      console.log(para)
-      para = JSON.parse(para)
-      console.log(para)
-      // alert(para.length)
+      if(para == "No Data")
+      {
+        $("#nodatamodal").modal("open");
+      }
+      else
+      {
+        console.log(para)
+        para = JSON.parse(para)
+        console.log(para)
+        // alert(para.length)
 
-      for(let i=0;i<para.length;i++)
-      {
-        arr[i]=para[i];
+        for(let i=0;i<para.length;i++)
+        {
+          arr[i]=para[i];
+        }
+      
+        for(let j=0;j<arr.length;j++)
+        {
+          //Changed by sarang - 10/01/2020
+          var candidate = arr[j][5];
+          console.log("prf : ",arr[j][0]);
+          console.log("pos : ",arr[j][1]);
+          console.log("iid : ",arr[j][2]);
+          console.log("rid : ",arr[j][3]);
+          digit13=arr[j][0]+'-'+arr[j][1]+'-'+arr[j][2]+'-'+arr[j][3];
+          console.log("Digit13",digit13)
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="pos">'+arr[j][1]+'</td><td id="iid">'+arr[j][2]+'</td><td id="rid">'+arr[j][3]+'</td><td id="'+j+'4" >'+arr[j][4]+'</td><td id="'+j+'5" >'+arr[j][5]+'</td><td id="interviewername">'+arr[j][6]+'</td><td id="interviewermail">'+arr[j][7]+'</td><td><a name="'+arr[j][7]+'" id="'+j+'-'+digit13+'" class="btn green darken-1" onclick="sendmailtoinv(this.id,this.name)">Send Letter</a></td></tr>'
+        $('#rawdata').append(x);
       }
-     
-      for(let j=0;j<arr.length;j++)
-      {
-        //Changed by sarang - 10/01/2020
-        var candidate = arr[j][5];
-        console.log("prf : ",arr[j][0]);
-        console.log("pos : ",arr[j][1]);
-        console.log("iid : ",arr[j][2]);
-        console.log("rid : ",arr[j][3]);
-        digit13=arr[j][0]+'-'+arr[j][1]+'-'+arr[j][2]+'-'+arr[j][3];
-        console.log("Digit13",digit13)
-        var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="pos">'+arr[j][1]+'</td><td id="iid">'+arr[j][2]+'</td><td id="rid">'+arr[j][3]+'</td><td id="'+j+'4" >'+arr[j][4]+'</td><td id="'+j+'5" >'+arr[j][5]+'</td><td id="interviewername">'+arr[j][6]+'</td><td id="interviewermail">'+arr[j][7]+'</td><td><a name="'+arr[j][7]+'" id="'+j+'-'+digit13+'" class="btn green darken-1" onclick="sendmailtoinv(this.id,this.name)">Send Letter</a></td></tr>'
-       $('#rawdata').append(x);
       }
+
     },
   })
   

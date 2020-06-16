@@ -79,6 +79,23 @@ function abort_round(confr)
 </script>
 <body>
 
+<!-- No data modal starts here -->
+  <!-- Modal Structure -->
+  <div id="nodatamodal" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>No Data Avilable</h2></center>
+      
+    </div>
+    <div class="modal-footer">
+      <center>
+      <a class="modal-close waves-effect green btn" >OK<i class="material-icons left" >check_box</i></a>
+      </center>
+    </div>
+  </div>
+<!-- no data modal ends here -->
 <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
 
   <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
@@ -308,6 +325,7 @@ $.ajax(
       if(para=='no data')
       {
         $('#nodata').fadeIn(600)
+        $("#nodatamodal").modal("open");
       }
       else if(para == "404")
       {

@@ -107,6 +107,23 @@ width: 350%;
 
 <body>
 
+<!-- No data modal starts here -->
+  <!-- Modal Structure -->
+  <div id="nodatamodal" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>No Data Avilable</h2></center>
+      
+    </div>
+    <div class="modal-footer">
+      <center>
+      <a class="modal-close waves-effect green btn" >OK<i class="material-icons left" >check_box</i></a>
+      </center>
+    </div>
+  </div>
+<!-- no data modal ends here -->
 
   <!-- Modal Structure -->
   <!-- modal1 starts here -->
@@ -624,40 +641,48 @@ $(document).ready(function(){
     // data:{'arr1':arr1},
     success : function(para)
     {
-      console.log(para+"<br>")
-      para=JSON.parse(para)
-      // window.data=para
-      // para=['1001','Developer','North','Sales','5','ongoing']
-      console.log("this is length : "+para.length)
-      for(let i=0;i<=para.length;i++)
+      if(para == "No Data")
       {
-        arr[i]=para[i];
-        
+        $("#nodatamodal").modal("open");
       }
-      dept[0]="All"
-      for(let i =1 ;i<para.length;i++)
+      else
       {
-        dept[i] = para[i-1][3]
-      }
-      uniquedept = removeusingSet(dept);
-      
-      for(i=0;i<uniquedept.length;i++)
-      {
-        var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
-         $('#deptchoice').append(str);
-      }
-      for(let j=0;j<arr.length-1;j++)
-      {
-        
-        if(arr[j][6] == "initiated")
+        console.log(para+"<br>")
+        para=JSON.parse(para)
+        // window.data=para
+        // para=['1001','Developer','North','Sales','5','ongoing']
+        console.log("this is length : "+para.length)
+        for(let i=0;i<=para.length;i++)
         {
-          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
-        }else
-        {
-          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
+          arr[i]=para[i];
+          
         }
-       $('#rawdata').append(x);
+        dept[0]="All"
+        for(let i =1 ;i<para.length;i++)
+        {
+          dept[i] = para[i-1][3]
+        }
+        uniquedept = removeusingSet(dept);
+        
+        for(i=0;i<uniquedept.length;i++)
+        {
+          var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
+          $('#deptchoice').append(str);
+        }
+        for(let j=0;j<arr.length-1;j++)
+        {
+          
+          if(arr[j][6] == "initiated")
+          {
+            var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
+          }else
+          {
+            var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
+          }
+        $('#rawdata').append(x);
+        }
       }
+      
      
     },
   })
@@ -764,49 +789,59 @@ type:"POST",
 data: {"dept": $('#deptchoice').val()},
 success:function(arr)
 { 
-  // console.log("this are prflist = ",arr.length)
-  arr=JSON.parse(arr);
-  console.log("this are prflist = ",arr.length)
-  for(let j=0;j<arr.length;j++)
+
+  if(arr == "No Data")
   {
-    
-    if(arr[j][6] == "initiated")
-        {
-          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
-        }else
-        {
-          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
-        }
-
-    $('#rawdata').append(x);
+    $("#nodatamodal").modal("open");
   }
-  $('#zonechoice').fadeIn(300);
+  else
+  {
 
-  //---------------------------------Sarang -------------get unique zones
-  $.ajax({
-          url:'http://localhost/hrms/api/getzones.php',
-          type:'POST',
-          // data:{'arr1':arr1},
-          success : function(para)
+    // console.log("this are prflist = ",arr.length)
+    arr=JSON.parse(arr);
+    console.log("this are prflist = ",arr.length)
+    for(let j=0;j<arr.length;j++)
+    {
+      
+      if(arr[j][6] == "initiated")
           {
-             zone=[]
-            para = JSON.parse(para)
+            var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
+          }else
+          {
+            var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
+          }
 
-            for(let i =0 ;i<para.length;i++)
-            {
-              zone[i] = para[i]
-            }
-            $("#zonechoice").empty();
-            $("#zonechoice").append('<option value="" disabled selected style="color: white">Select Zone</option>')
-            uniquezone = removeusingSet(zone);
+      $('#rawdata').append(x);
+    }
+    $('#zonechoice').fadeIn(300);
 
-            for(i=0;i<uniquezone.length;i++)
+    //---------------------------------Sarang -------------get unique zones
+    $.ajax({
+            url:'http://localhost/hrms/api/getzones.php',
+            type:'POST',
+            // data:{'arr1':arr1},
+            success : function(para)
             {
-              var str = '<option value="'+uniquezone[i]+'"  style="color: white">'+uniquezone[i]+'</option>'
-              $('#zonechoice').append(str);
-            }
-          },
-        })
+              zone=[]
+              para = JSON.parse(para)
+
+              for(let i =0 ;i<para.length;i++)
+              {
+                zone[i] = para[i]
+              }
+              $("#zonechoice").empty();
+              $("#zonechoice").append('<option value="" disabled selected style="color: white">Select Zone</option>')
+              uniquezone = removeusingSet(zone);
+
+              for(i=0;i<uniquezone.length;i++)
+              {
+                var str = '<option value="'+uniquezone[i]+'"  style="color: white">'+uniquezone[i]+'</option>'
+                $('#zonechoice').append(str);
+              }
+            },
+          })
+  }
+
 }
 
 })
@@ -835,6 +870,7 @@ $('#zonechoice').change(function(){
     console.log(arr)
     if(arr == "No data")
     {
+      $("#nodatamodal").modal("open");
       console.log("Entered");
       $('#nodata').fadeIn(300);
     

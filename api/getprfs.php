@@ -20,8 +20,14 @@ if($cursor)
             $arr[$i] =array($doc['prf'],$c['position'],$doc['poszone'],$doc['dept'],$doc['pos'],$doc['iid'],$doc['status']);
             $i++;
         }
-        
-        echo json_encode($arr);
+        if(count($arr)==0)
+        {
+            echo "No data";
+        }
+        else
+        {
+            echo json_encode($arr);
+        }
     }
     }
 else

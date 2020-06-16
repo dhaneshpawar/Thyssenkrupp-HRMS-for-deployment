@@ -284,25 +284,21 @@ function merafun(s)
 </script>
 
   <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger"  id="asdasd" onclick='merafun(this.id)'>Modal</a>
+  <a class="waves-effect waves-light btn modal-trigger"  id="asdasd" onclick='$("#nodatamodal").modal("open")'>Modal no data</a>
   <a class="waves-effect waves-light btn modal-trigger"  id="asdasd12" onclick='merafun(this.id)'>Modal12</a>
 
   <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  <div id="nodatamodal" class="modal">
     <div class="modal-content">
       <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
       <br>
       
-      <center><h2>Are You Sure ?</h2></center>
-      <center><p>This Round Will Be Removed From The Process.</p></center>
-      <div id="appending_id">
-
-      </div>
+      <center><h2>No Data Avilable</h2></center>
+      
     </div>
     <div class="modal-footer">
       <center>
-      <a onclick="merafun2(true)" class="modal-close waves-effect green btn" >Confirm<i class="material-icons left" >check_box</i></a>
-      <a onclick="merafun2(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
+      <a class="modal-close waves-effect green btn" >OK<i class="material-icons left" >check_box</i></a>
       </center>
     </div>
   </div>

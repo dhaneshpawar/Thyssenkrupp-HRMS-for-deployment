@@ -76,6 +76,24 @@ width: 350%;
 
 <body>
 
+<!-- No data modal starts here -->
+    <!-- Modal Structure -->
+    <div id="nodatamodal" class="modal">
+        <div class="modal-content">
+        <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+        <br>
+        
+        <center><h2>No Data Avilable</h2></center>
+        
+        </div>
+        <div class="modal-footer">
+        <center>
+        <a class="modal-close waves-effect green btn" >OK<i class="material-icons left" >check_box</i></a>
+        </center>
+        </div>
+    </div>
+<!-- no data modal ends here -->
+
 <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
 
 <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
@@ -285,53 +303,58 @@ $("#emailcollection").append(txt);
 }
 var arr=[]
 $(document).ready(function(){
-
+  $('.modal').modal();
  $.ajax({
     url:'http://localhost/hrms/api/getprfshr2.php',
     type:'POST',
     // data:{'arr1':arr1},
     success : function(para)
     {
-      // console.log(para)
-      para=JSON.parse(para)
-      // window.data=para
-      // para=['1001','Developer','North','Sales','5','ongoing']
-      console.log("This is the data came from backend = ",para)
-      console.log("this is length : "+para.length)
-      for(let j=0;j<para.length;j++)
+      if(para == "No Data")
       {
-        if(para[j].status == "1")
-        {
-          status = "Revalidation"
-        }
-        if(para[j].status == "2")
-        {
-          status = "Validated"
-        }
-        if(para[j].status == "3")
-        {
-          status = "Revalidation"
-        }
-        if(para[j].status == "4")
-        {
-          status = "Revalidation"
-        }
-        if(para[j].status == "5")
-        {
-          status = "Offer Letter Requested"
-        }
-        if(para[j].status == "6")
-        {
-          status = "Offer Letter Sent"
-        }
-        var x='<tr id="rows"><td id="prf" value="'+para[j].prf+'">'+para[j].prf+'</td><td id="pos">'+para[j].pos+'</td><td id="zone">'+para[j].name+'</td><td id="dept">'+para[j].members+'</td><td id="dept">'+status+'</td></tr>'
-       $('#rawdata').append(x);
+        $("#nodatamodal").modal("open");
       }
-     
-      for(let j=0;j<arr.length;j++)
+      else
       {
-       
+        // console.log(para)
+        para=JSON.parse(para)
+          // window.data=para
+          // para=['1001','Developer','North','Sales','5','ongoing']
+          console.log("This is the data came from backend = ",para)
+          console.log("this is length : "+para.length)
+          for(let j=0;j<para.length;j++)
+          {
+            if(para[j].status == "1")
+            {
+              status = "Revalidation"
+            }
+            if(para[j].status == "2")
+            {
+              status = "Validated"
+            }
+            if(para[j].status == "3")
+            {
+              status = "Revalidation"
+            }
+            if(para[j].status == "4")
+            {
+              status = "Revalidation"
+            }
+            if(para[j].status == "5")
+            {
+              status = "Offer Letter Requested"
+            }
+            if(para[j].status == "6")
+            {
+              status = "Offer Letter Sent"
+            }
+            var x='<tr id="rows"><td id="prf" value="'+para[j].prf+'">'+para[j].prf+'</td><td id="pos">'+para[j].pos+'</td><td id="zone">'+para[j].name+'</td><td id="dept">'+para[j].members+'</td><td id="dept">'+status+'</td></tr>'
+          $('#rawdata').append(x);
+        }
+        
+        
       }
+      
      
     },
   })
