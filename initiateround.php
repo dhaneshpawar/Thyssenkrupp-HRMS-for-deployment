@@ -78,6 +78,20 @@ if(isset($_COOKIE['sid']))
   </div>
 <!-- no data modal ends here -->
 
+<!-- refresh data modal starts here -->
+  <!-- Modal Structure -->
+  <div id="refreshmodal" class="modal">
+    <div class="modal-content">
+      <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
+      <br>
+      
+      <center><h2>Please Wait Refreshing</h2></center>
+      
+    </div>
+
+  </div>
+<!-- refresh data modal ends here -->
+
 <!-- modal 1 starts here -->
   <div id="modal1" class="modal">
     <div class="modal-content">
@@ -124,7 +138,7 @@ if(isset($_COOKIE['sid']))
 </nav>
 <br><br>
 <!-- nav and side menu ended -->
-                  <button class="btn waves-effect green" style="float:right;margin-top: 18px;margin-right: 18px " id="rfresh" onclick="getit()">Refresh</button>
+                  
 
                   <br><br>
 
@@ -160,6 +174,8 @@ if(isset($_COOKIE['sid']))
 
                   <div class="row">
                     <div class="col s5 offset-m3" id=showmembersdiv>
+                  
+
                       <table class="stripped">
                       <thead>
                         <tr class="blue darken-1 white-text">
@@ -227,6 +243,8 @@ if(isset($_COOKIE['sid']))
                               </div>
                             </div>
                           </div>
+                          <button class="btn waves-effect green" style="float:right;margin-bottom: 10px;" id="rfresh" onclick="getit()">Refresh</button>
+                          
                           <table class="striped">
                             <thead>
                               <tr>
@@ -509,7 +527,7 @@ function createnextround(id)
   // console.log(zone)
   console.log(id_round)
   
-  var p1='<b>ID:'+id_round+'<b>'
+  var p1='<b id="rid">ID:'+id_round+'<b>'
   $('#showmembersdiv').hide(); 
   $('#rid').replaceWith(p1);
   $.ajax({
@@ -703,15 +721,17 @@ function abort_round(confr)
 }
 
 function getit(){
-
-  var cutme = $('#rid').val();
+  
+  var cutme = $('#rid').text();
   cutme = cutme.split(":");
   cutme = cutme[1];
+  console.log(cutme)
 
   $("#nomems").empty()
 
   console.log("cutme   = = ",cutme)
-
+  $('#showmembersdiv').hide()
+  $("#refreshmodal").modal("open");
   $.ajax({
     url:'http://localhost/hrms/api/baseroundmembers.php',
     type:'POST',
@@ -720,6 +740,7 @@ function getit(){
          },
     success:function(para)
     {
+      $("#refreshmodal").modal("close");
       $('#allocatingcandidate').fadeIn(600);
       para = JSON.parse(para)
       var arr1=[]
