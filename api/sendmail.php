@@ -71,12 +71,6 @@ if($cursor)
                     else
                     {
                         $db->tokens->insertOne(array("email"=>$d,"token"=>$token,"prf"=>$_POST['prf'],"dept"=>$_POST['dept'],"pos"=>$_POST['pos'],"position"=>$_POST['position'],"rg"=>$cursor["rg"],"rid"=>"00","expiry"=>$expdate,"iid"=>$instanceid));
-                        
-                        //Current date and time
-                      
-
-
-
                     }
 
                     $mail->ClearAddresses();

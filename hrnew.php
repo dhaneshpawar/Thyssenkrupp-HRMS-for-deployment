@@ -225,12 +225,13 @@ width: 350%;
           <select id='deptchoice' class="dropdown-trigger btn blue darken-1 ">
           <option value="" disabled selected style="color: white">Select Department</option>
           </select>
+       
           <select id='zonechoice' class="dropdown-trigger btn blue darken-1 ">
           <option value="" disabled selected style="color: white">Select Zone</option>
         </select>
           <br>
         <br>
-
+<div style="color:white;width:18%;background-color:green;border-radius:2px;font-weight:bold;"> Showing <p id="result" style="display:inline;"> </p> PRF of <p id="result1" style="display:inline;"> </p> PRF</div><br>
  <div class="row" id="megblock">
 
 <div class="col s12  blue lighten-4" >
@@ -606,6 +607,7 @@ function filterbydept()
       {
         var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
          $('#deptchoice').append(str);
+
       }
       
 
@@ -635,6 +637,7 @@ $(document).ready(function(){
   $("#uploaddump").hide()
   $("#nodata").hide()
   $("#ordiv").hide()
+
  $.ajax({
     url:'http://localhost/hrms/api/getprfdump.php',
     type:'POST',
@@ -657,6 +660,9 @@ $(document).ready(function(){
           arr[i]=para[i];
           
         }
+        document.getElementById("result").innerHTML = arr.length;
+        document.getElementById("result1").innerHTML = arr.length;
+
         dept[0]="All"
         for(let i =1 ;i<para.length;i++)
         {
@@ -667,8 +673,13 @@ $(document).ready(function(){
         for(i=0;i<uniquedept.length;i++)
         {
           var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
+          
           $('#deptchoice').append(str);
         }
+        countdept = uniquedept.length;
+        $strs = '<span class="new badge">4</span>';
+        $("#badges").append($strs)
+
         for(let j=0;j<arr.length-1;j++)
         {
           
@@ -792,6 +803,7 @@ success:function(arr)
 
   if(arr == "No Data")
   {
+    document.getElementById("result").innerHTML = 0;
     $("#nodatamodal").modal("open");
   }
   else
@@ -800,6 +812,9 @@ success:function(arr)
     // console.log("this are prflist = ",arr.length)
     arr=JSON.parse(arr);
     console.log("this are prflist = ",arr.length)
+
+    //Count of result, filtered
+    document.getElementById("result").innerHTML = arr.length;
     for(let j=0;j<arr.length;j++)
     {
       
@@ -870,6 +885,7 @@ $('#zonechoice').change(function(){
     console.log(arr)
     if(arr == "No data")
     {
+      document.getElementById("result").innerHTML = 0;
       $("#nodatamodal").modal("open");
       console.log("Entered");
       $('#nodata').fadeIn(300);
@@ -881,7 +897,7 @@ $('#zonechoice').change(function(){
       console.log("This is my data : "+arr)
       arr=JSON.parse(arr);
       console.log("this are prflist = ",arr)
-  
+      document.getElementById("result").innerHTML = arr.length;
       for(let j=0;j<arr.length;j++)
       {
         if(arr[j][6] == "initiated")
