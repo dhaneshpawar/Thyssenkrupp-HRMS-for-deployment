@@ -54,6 +54,23 @@ if(isset($_COOKIE['sid']))
   margin-left:31% !important;
   margin-top:18% !important; 
 }
+
+#notified {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.95)  url(loader2.gif)  no-repeat center center !important;
+  z-index: 10000;
+}
+#notified > #txt{
+  font-size:23px;
+  color:lightskyblue;
+  margin-left:31% !important;
+  margin-top:18% !important; 
+}
 </style>
 
 
@@ -182,6 +199,7 @@ if(isset($_COOKIE['sid']))
                           <br>
                           <th>Sr No.</th>
                           <th>Email ID</th>
+                          <th><button id="notify" class="waves-effect orange  btn">Notify candidates</button>
                         </tr>
                       </thead>
                       
@@ -277,6 +295,12 @@ if(isset($_COOKIE['sid']))
                       <b>Please wait.. while we schedule this interview</b>
                     </div>
                   </div>
+                  
+                  <div id="notified">
+                    <div id="txt">
+                      <b>Sending a reminder mail to these candidates..</b>
+                    </div>
+                  </div>
     </div>        
                           
     <style>
@@ -304,6 +328,7 @@ $(document).ready(function(){
   $("#expiry").hide()
   $("#showmembersdiv").hide()
   $("#loader").hide()
+  $("#notified").hide()
   
   $('.datepicker').datepicker();
   $('.timepicker').timepicker();
@@ -552,6 +577,7 @@ function createnextround(id)
           $("#showmembersdiv").fadeIn(1200);
             for(let i=0;i<para[1];i++)
             {
+              console.log("Members - "+para[2][i])
               j = parseInt(i)
               j += 1
               var membersdata='<tr><td>'+j+'</td><td>'+para[2][i]+'</td</tr>'
@@ -564,6 +590,32 @@ function createnextround(id)
           $("#showmembersdiv").fadeOut(100);
 
         }    
+      })
+      $("#notify").click(function()
+      {
+        $("#notified").show()
+        console.log("Notified");
+        $.ajax({
+        url:'http://localhost/hrms/api/resendappblank.php',
+        type:'POST',
+        data:{
+              "id":id_round,
+              "emails":para[2]
+            },
+        success:function(para)
+        {
+          if(para == "success")
+          {
+              $("#notified").hide()
+              window.setTimeout(function(){location.reload()},1000)
+          }
+          else
+          {
+              $("#notified").hide()
+              window.setTimeout(function(){location.reload()},1000)
+          }
+        }
+        })
       })
        console.log("this are base round mems  = ",para)
 
