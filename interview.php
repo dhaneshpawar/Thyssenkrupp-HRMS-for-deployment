@@ -111,7 +111,7 @@ if(window.screen.width <= 720)
     <div class="nav-wrapper blue darken-1">
       <a href="#!" class="brand-logo left" style="margin-left: 2%;"><i id="showsidenbutton" class="material-icons">menu</i>
     </a>
-    <a href="/hrms/" class="brand-logo center">thyssenkrupp</a>
+    <a href="/hrms/" class="brand-logo center">thyssenkrupp Elevators</a>
     </div>
 </nav>
 <br><br>
