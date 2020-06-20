@@ -49,7 +49,7 @@ if(isset($_COOKIE['sid']))
         <div class="nav-wrapper blue darken-1">
        
        
-          <a href="#!" class="brand-logo center">thyssenkrupp</a>
+          <a href="#!" class="brand-logo center">thyssenkrupp Elevators</a>
           <div id="logoutuser" class="row">
     <button class="btn waves-effect blue darken-1" type="submit" name="action" style="float:right;margin-top: 18px;margin-right: 18px ">LOGOUT</button>
   </div>
