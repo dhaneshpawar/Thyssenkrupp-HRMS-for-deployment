@@ -550,3 +550,4 @@ Pragati	psgaikwad@mitaoe.ac.in	sales		21/06/2020	07:45:49 PM	Login
 Pragati	psgaikwad@mitaoe.ac.in	sales		21/06/2020	08:10:35 PM	Logout
 Pragati	psgaikwad@mitaoe.ac.in	sales		21/06/2020	08:10:43 PM	Login
 Pragati	psgaikwad@mitaoe.ac.in	sales		21/06/2020	08:12:46 PM	Logout
+Pragati	psgaikwad@mitaoe.ac.in	sales		21/06/2020	10:22:33 PM	Login

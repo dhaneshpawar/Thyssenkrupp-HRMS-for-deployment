@@ -378,18 +378,19 @@
                 $("#tableParent").fadeIn(200)
                 // ajax call for retriving validate candidate
                 $.ajax({
-                    url:'demo.txt',
+                    url:'http://localhost/hrms/api/getinitiateprfDeatils.php',
                     type:'GET',
                     success:function(para)
                     {
+                        console.log(para)
                         // give details in this format demo data:
-                        para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
+                        //para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
                         $("#tableBody").text('')
                         var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th></tr></thead>'
                         $("#tableBody").append(headings)
-                        for(let i=0;i<para.length;i++)
+                        for(let i=0;i<para.data.length;i++)
                         {   
-                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td></tr>'
+                            var str1 = '<tr><td>'+para.data[i].prf+'</td><td>'+para.data[i].pos+'</td><td>'+para.data[i].iid+'</td><td>'+para.data[i].rid+'</td></tr>'
                             $('#tableBody').append(str1) 
                         }
                         $('.modal').modal("open");
@@ -405,18 +406,18 @@
                 $("#tableParent").fadeIn(200)
                 // ajax call for retriving re-validation candidate
                 $.ajax({
-                    url:'demo.txt',
+                    url:'http://localhost/hrms/api/getongoingprfDeatils.php',
                     type:'GET',
                     success:function(para)
                     {
                         // give details in this format demo data:
-                        para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
+                        //para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
                         $("#tableBody").text('')
                         var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th></tr></thead>'
                         $("#tableBody").append(headings)
-                        for(let i=0;i<para.length;i++)
+                        for(let i=0;i<para.data.length;i++)
                         {   
-                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td></tr>'
+                            var str1 = '<tr><td>'+para.data[i].prf+'</td><td>'+para.data[i].pos+'</td><td>'+para.data[i].iid+'</td><td>'+para.data[i].rid+'</td></tr>'
                             $('#tableBody').append(str1) 
                         }
                         $('.modal').modal("open");
@@ -432,18 +433,18 @@
                 $("#tableParent").fadeIn(200)
                 // ajax call for retriving validated candidate
                 $.ajax({
-                    url:'demo.txt',
+                    url:'http://localhost/hrms/api/getcompletedprf.php',
                     type:'GET',
                     success:function(para)
                     {
                         // give details in this format demo data:
-                        para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
+                        //para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
                         $("#tableBody").text('')
                         var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th></tr></thead>'
                         $("#tableBody").append(headings)
-                        for(let i=0;i<para.length;i++)
+                        for(let i=0;i<para.data.length;i++)
                         {   
-                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td></tr>'
+                            var str1 = '<tr><td>'+para.data[i].prf+'</td><td>'+para.data[i].pos+'</td><td>'+para.data[i].iid+'</td><td>'+para.data[i].rid+'</td></tr>'
                             $('#tableBody').append(str1) 
                         }
                         $('.modal').modal("open");
@@ -494,7 +495,7 @@
                     success:function(para)
                     {
                         // give details in this format demo data:
-                        para = {prf:['111','222'],pos:['1','2'],iid:['9','8'],rid:['5','6'],members:[['abc@gmail.com','pqr@gmail.com'],['ac@gmail.com','qr@gmail.com','pr@gmail.com']]};
+                       // para = {prf:['111','222'],pos:['1','2'],iid:['9','8'],rid:['5','6'],members:[['abc@gmail.com','pqr@gmail.com'],['ac@gmail.com','qr@gmail.com','pr@gmail.com']]};
                         console.log(para.members[0].length)
                         $("#tableBody").text('')
                         var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th><th>Members</th></tr></thead>'
