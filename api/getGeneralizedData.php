@@ -32,8 +32,11 @@ if($cursor){
      $initiated_not_assign=$collection->count(array('status'=>'initiated'));
  
      $assigned=$collection->count(array('status'=>"assigned"));
+
+     
+     $accepted=$collection->count(array('status'=>"ongoing"));
  
-     $initiateddata=array("init"=>$initiated_not_assign,"assigned"=>$assigned);
+     $initiateddata=array("init"=>$initiated_not_assign,"assigned"=>$assigned,"accepted"=>$accepted);
         
 
     //about completed rounds
@@ -44,6 +47,7 @@ if($cursor){
     $validateprocessprfs=array();
     $validatedprfs=array();
     $completedprfs=array();
+    $offerrequestedmem=array();
     if($validate_process){
 
 
@@ -56,8 +60,14 @@ if($cursor){
 
 
             
-            else if(($val->afterselection=="2" or $val->afterselection=="5")  and (in_array($val->prf,$validatedprfs)==false)){
+            else if(($val->afterselection=="2")  and (in_array($val->prf,$validatedprfs)==false)){
                 $validatedprfs[]=$val->prf;
+
+            }
+
+            
+            else if(($val->afterselection=="5")  and (in_array($val->prf,$offerrequestedmem)==false)){
+                $offerrequestedmem[]=$val->prf;
 
             }
 
@@ -70,7 +80,7 @@ if($cursor){
 
         }
 
-        $completeddata=array("compl_not_hr2"=>$validateprocessprfs,"validated"=>$validatedprfs,"completed"=>$completedprfs);
+        $completeddata=array("compl_not_hr2"=>$validateprocessprfs,"validated"=>$validatedprfs,"olrequest"=>$offerrequestedmem,"completed"=>$completedprfs);
     }
     else{
 

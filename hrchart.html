@@ -134,8 +134,8 @@
                         para2=paradata.initiateddata;
                         para3=paradata.completeddata;
                         para=[para.initiated,para.ongoing,para.completed,para.avail]//graph 1 data
-                        para2=[para2.init,para2.assigned]//graph2 data
-                        para3=[para3.compl_not_hr2,para3.validated,para3.completed]//graph 3 data 
+                        para2=[para2.init,para2.assigned,para2.accepted]//graph2 data
+                        para3=[para3.compl_not_hr2,para3.validated,para3.olrequest,para3.completed]//graph 3 data 
 
                         //linear graph data , here provide latest prfs data that is ongoing 
                         para4 = {mylabel:['Initiated', 'Round 1 Completed', 'Round 2 completed', 'Instance Ended','offer letter sent'],digit13:'123356-12-123-02'}
@@ -200,11 +200,12 @@
                             data: {
                                 datasets: [{
                                     data: para2,
-                                    backgroundColor: ["#0277bd", "#5d4037"],
+                                    backgroundColor: ["#0277bd", "#5d4037","green"],
                                 }],
                                 labels: [
                                     'Only Initiated',
                                     'Interviewer Assigned',
+                                    'Accepted by Interviewer'
                                 ]
                             },
                             options: {
@@ -238,11 +239,12 @@
                             data: {
                                 datasets: [{
                                     data: para3,
-                                    backgroundColor: ["#7e57c2", "#81c784","#d4e157"],
+                                    backgroundColor: ["#7e57c2", "#81c784","yellow","#d4e157"],
                                 }],
                                 labels: [
                                     'completed but not by hr2',
                                     'validated',
+                                    'offer letter requested',
                                     'offer letter sent',
                                     
                                 ],
@@ -457,18 +459,18 @@
                 $("#tableParent").fadeIn(200)
                 // ajax call for retriving validated candidate
                 $.ajax({
-                    url:'demo.txt',
+                    url:'http://localhost/hrms/api/getopenprfDetails.php',
                     type:'GET',
                     success:function(para)
+
                     {
-                        // give details in this format demo data:
-                        para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
+                        //para = [['111','222','33','1'],['111','222','33','2'],['111','222','33','5']];
                         $("#tableBody").text('')
                         var headings = '<thead><tr><th>PRF</th><th>POSITION</th><th>IID</th><th>RID</th></tr></thead>'
                         $("#tableBody").append(headings)
-                        for(let i=0;i<para.length;i++)
+                        for(let i=0;i<para.data.length;i++)
                         {   
-                            var str1 = '<tr><td>'+para[i][0]+'</td><td>'+para[i][1]+'</td><td>'+para[i][2]+'</td><td>'+para[i][3]+'</td></tr>'
+                            var str1 = '<tr><td>'+para.data[i].prf+'</td><td>'+para.data[i].pos+'</td><td>'+para.data[i].iid+'</td><td>'+para.data[i].rid+'</td></tr>'
                             $('#tableBody').append(str1) 
                         }
                         $('.modal').modal("open");
