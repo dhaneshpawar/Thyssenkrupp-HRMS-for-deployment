@@ -251,10 +251,22 @@ $("#ifonhold").hide()
 $("#ifselected").hide()    
 $('.datepicker').datepicker();
 var name = localStorage.getItem('currentemail')
-var id=localStorage.getItem('id')
-window.digit13=id
-var str = "<b>Instance:</b> "+id+" <b>Applicant Email:</b> "+name;
-$("#candidatename").append(str)
+$.ajax({
+    url:"http://localhost/hrms/api/getnameevaluation.php",
+    type:"POST",
+    data : { "email":name },
+    success:function(para)
+    {
+        if(para != "error")
+        {
+            var id=localStorage.getItem('id')
+            window.digit13=id
+            var str = "<b>PRF ID:</b> "+id+"<br><b>Candidate  Name:</b> "+para;
+            $("#candidatename").append(str)
+        }
+    }
+})
+
 
 
 $("#submit").click(function(){
