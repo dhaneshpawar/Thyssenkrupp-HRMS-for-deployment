@@ -551,3 +551,22 @@ Pragati	psgaikwad@mitaoe.ac.in	sales		21/06/2020	08:10:35 PM	Logout
 Pragati	psgaikwad@mitaoe.ac.in	sales		21/06/2020	08:10:43 PM	Login
 Pragati	psgaikwad@mitaoe.ac.in	sales		21/06/2020	08:12:46 PM	Logout
 Pragati	psgaikwad@mitaoe.ac.in	sales		21/06/2020	10:22:33 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:36:32 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:38:15 PM	Logout
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		22/06/2020	07:38:34 PM	Login
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		22/06/2020	07:38:47 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:39:55 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:41:10 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:42:00 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:42:29 PM	Logout
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		22/06/2020	07:42:34 PM	Login
+Pragati Gaikwad	psgaikwad@mitaoe.ac.in	sales		22/06/2020	07:42:47 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:42:53 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:43:09 PM	Logout
+Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		22/06/2020	07:43:14 PM	Login
+Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		22/06/2020	07:43:20 PM	Logout
+Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		22/06/2020	07:43:24 PM	Login
+Sarang Barshikar	skbarshikar@mitaoe.ac.in	sales		22/06/2020	07:43:34 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:43:39 PM	Login
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	07:44:18 PM	Logout
+Dhanesh Pawar	dbpawar@mitaoe.ac.in	sales		22/06/2020	09:01:17 PM	Login
