@@ -126,7 +126,7 @@ $_SESSION['positionapplied'] = $position;
                                                 </div>
                                         </div>
                                         
-                                    </div><br><br>
+                                    </div><br>
                                 
                                      
                                     <b style="font-size:20px;">Candidate CV</b>
@@ -140,37 +140,76 @@ $_SESSION['positionapplied'] = $position;
                                                         <input class="file-path validate" type="text">
                                                 </div>
                                         </div>
-                                        <br><br>
+                                        
                                       
                                           <div class="row">
                                                 <div class="input-field col s6">
                                                         <input id="aadharno" name="aadharno" type="number" class="validate" required aria-required="true">
                                                         <label for="aadharno">Aadhar Card Number</label>
-                                                        
-                                                      </div> 
+                                                </div> 
                                           </div>                                           
-
+                                        <b class="blue-text" style="font-size:20px;">Candidate Name</b>
                                         <div class="row">
 
-                                            <div class="input-field col s12">
-                                              <input id="full_name" name="full_name" type="text" class="validate" required aria-required="true">
-                                              <label for="full_name">Full Name</label>
+                                            <div class="input-field col s4">
+                                              <input id="last_name" name="last_name" type="text" class="validate" required aria-required="true">
+                                              <label for="last_name">Last Name</label>
+                                            </div>
+
+                                            <div class="input-field col s4">
+                                              <input id="mid_name" name="middle_name" type="text" class="validate" required aria-required="true">
+                                              <label for="mid_name">Middle Name</label>
+                                            </div>
+
+                                            <div class="input-field col s4">
+                                              <input id="first_name" name="first_name" type="text" class="validate" required aria-required="true">
+                                              <label for="first_name">First Name</label>
+                                            </div>
+                                          </div>
+                                          <b class="blue-text" style="font-size:20px;">Present Address</b>
+                                          <div class="row">
+                                                
+                                            <div class="input-field col s4">
+                                              <input   id="street" name="street" type="text" class="validate" required aria-required="true">
+                                              <label for="street">Street</label>
+                                            </div>
+
+                                            <div class="input-field col s4">
+                                              <input   id="Locality" name="Locality" type="text" class="validate" required aria-required="true">
+                                              <label for="Locality">Locality</label>
+                                            </div>
+
+                                            <div class="input-field col s4">
+                                              <input   id="City" name="City" type="text" class="validate" required aria-required="true">
+                                              <label for="City">City</label>
+                                            </div>
+
+                                            <div class="input-field col s4">
+                                              <input   id="State" name="State" type="text" class="validate" required aria-required="true">
+                                              <label for="State">State</label>
+                                            </div>
+
+                                            <div class="input-field col s4">
+                                              <input   id="Pincode" name="Pincode" type="number" class="validate" required aria-required="true">
+                                              <label for="Pincode">Pincode</label>
                                             </div>
                                           </div>
 
+                                          <b class="blue-text" style="font-size:20px">Contact Details</b>
                                           <div class="row">
-                                            <div class="input-field col s12">
-                                              <input   id="address" name="address" type="text" class="validate" required aria-required="true">
-                                              <label for="address">Present Address</label>
-                                              
-                                            </div>
-                                          </div>
-
-
-                                          <div class="row">
-                                            <div class="input-field col s12">
+                                            <div class="input-field col s6">
                                               <input id="unumber" maxlength="10" onchange="checkcont(this.id)" name="unumber" type="number" class="validate" required aria-required="true">
                                               <label for="unumber">Contact number</label>
+                                            </div>
+
+                                            <div class="input-field col s2">
+                                              <input id="stdcode" maxlength="10" name="stdcode" type="number" class="validate" required aria-required="true">
+                                              <label for="stdcode">STD Code</label>
+                                            </div>
+
+                                            <div class="input-field col s4">
+                                              <input id="pnumber" maxlength="10" name="pnumber" type="number" class="validate" required aria-required="true">
+                                              <label for="pnumber">Telphone number</label>
                                             </div>
                                           </div>
                                           <div class="row">
@@ -340,13 +379,13 @@ $_SESSION['positionapplied'] = $position;
 
                                           <div class="row">
                                                 <div class="input-field col s6">
-                                                  <input id="jdate" name="jdate" type="text"  required>
+                                                  <input id="jdate" name="jdate" type="text" class="datepicker" required>
                                                   <label for="jdate" style="font-size: 11px">If Selected, how soon you can join us?</label>
                                                 </div>
-    
+                                                
                                                 
                                                 <div class="input-field col s6">
-                                                    <input id="notice" name="notice" type="text"  required>
+                                                    <input id="notice" name="notice" type="number" required onchange="checknotice(this.id)">
                                                     <label for="notice" style="font-size: 11px">Notice Period In Current Oraganization</label>
                                                 </div>
 
@@ -626,13 +665,27 @@ $_SESSION['positionapplied'] = $position;
                                                 
                                                 <div class="input-field col s6">
                                                         <input id="cnoref" type="text" disabled value="Contact Number" style="color: black">
-                                                        
+       
                                                 </div>
     
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="contref0" name="contref0[]" type="number" class="validate" onchange="changecont(this.id)"required aria-required="true"/>
+                                                        <input id="contref0" name="contref0[]" type="number" class="validate" onchange="checkcont(this.id)" required aria-required="true"/>
                                                         <label for="contref0">Reference</label>
+                                                </div>
+
+                                                <div class="input-field col s6">
+                                                        <input id="phoneref" type="text" disabled value="LandLine Number" style="color: black">
+       
+                                                </div>
+    
+                                                <div class="input-field col s3">
+                                                        <input id="stdcoderef0" name="stdcoderef0[]" type="number" class="validate" required aria-required="true"/>
+                                                        <label for="stdcoderef0">STD  Code</label>
+                                                </div>
+                                                <div class="input-field col s3">
+                                                        <input id="phoneref0" name="phoneref0[]" type="number" class="validate" required aria-required="true"/>
+                                                        <label for="phoneref0">Reference</label>
                                                 </div>
                                                 
                                                 
@@ -707,6 +760,9 @@ var expctr=0
 var ctr=0
 var ctr2=0
 
+var cdate=new Date();
+var cyear=cdate.getFullYear();
+
 function checkcont(x)
 {
         var id="#"+x;
@@ -722,16 +778,28 @@ function checkcont(x)
        
 
 }
+
+function checknotice(x)
+{
+        var id="#"+x;
+        var noticeperiod=$(id).val();
+        if(noticeperiod.length!=3)
+        {
+                alert("Enter Valid Notice Period")
+                $(id).val(" ")
+        }
+}
 function addnewexp(x)
 {
         expctr = expctr+1
         //var str = 'myexpdiv'+ctr
-       
+
+
         var txt='<div class="col s12" id="myexpdiv"><div class="input-field col s6"><input name="orgname0[]" id="orgname'+expctr+'" type="text" class="validate"   aria-required="true"><label for="orgname'+expctr+'" style="font-size: 11px">Current Organization Name</label></div><div class="input-field col s6"><input name="olddesignation0[]" id="olddesignation'+expctr+'" type="text" class="validate"   aria-required="true"><label for="olddesignation'+expctr+'" style="font-size: 11px">Designation</label></div><div class="input-field col s6"><input name="fromdate0[]" id="fromdate'+expctr+'" type="text" class="datepicker" ><label for="fromdate'+expctr+'" style="font-size: 11px;">From</label></div><div class="input-field col s6"><input name="todate0[]" id="todate'+expctr+'" type="text" class="datepicker"><label for="todate'+expctr+'" style="font-size: 11px;">To</label></div><div class="input-field col s6"><input name="managername0[]" id="managername'+expctr+'" type="text" class="validate"   aria-required="true"><label for="managername'+expctr+'" style="font-size: 11px">Reporting Manager Name</label></div><div class="input-field col s6"><input name="managermail0[]" id="managermail'+expctr+'" type="email" class="validate"   aria-required="true"><label for="managermail'+expctr+'" style="font-size: 11px">Enter Manager Email</label></div><div class="row" id="addnextexp"><a class="btn-floating btn" onclick="addnewexp(this)"><i class="material-icons">add</i></a></div></div>'
         $("#mainexpdiv").append(txt);
         $('.datepicker').datepicker({
                         //dateFormat:"dd/mm/yy",
-                        yearRange:[1960,2019],
+                        yearRange:[1960,cyear],
                         changeMonth:true,
                         
                         //changeYear:true
@@ -744,7 +812,7 @@ function addnewref(x)
 {
 
         ctr2 = ctr2+1
-        var txt='<div id="ref" class="col"><div class="input-field col s6"><input id="child2" type="text" disabled value="Name" style="color: black"></div><div class="input-field col s6"><input name="nameref0[]" id="nameref'+ctr2+'" type="text"><label for="nameref'+ctr2+'">Reference</label></div><div class="input-field col s6"><input id="child2" type="text" disabled value="Designation" style="color: black"></div><div class="input-field col s6"><input name="designationref0[]" id="designationref'+ctr2+'" type="text"><label for="designationref'+ctr2+'">Reference</label></div><div class="input-field col s6"> <input id="child2" type="text" disabled value="Company Name" style="color: black"></div><div class="input-field col s6"><input name="cmpnmref0[]" id="cmpnmref'+ctr2+'" type="text"><label for="cpmnmref'+ctr2+'">Reference </label></div><div class="input-field col s6"><input id="child2" type="text" disabled value="Contact Number" style="color: black"></div><div class="input-field col s6"><input name="contref0[]" id="contref'+ctr2+'" type="number"><label for="contref'+ctr2+'">Reference</label></div><div class="input-field col s6"><input id="child2" type="text" disabled value="Email" style="color: black"></div><div class="input-field col s6"><input name="mailref0[]" id="mailref'+ctr2+'" type="email"><label for="mailref'+ctr2+'">Reference</label></div><div class="col s6" id="addnextref"><a class="btn-floating btn" onclick="addnewref(this)"><i class="material-icons">add</i></a></div></div>'
+        var txt='<div id="ref" class="col"><div class="input-field col s6"><input id="child2" type="text" disabled value="Name" style="color: black"></div><div class="input-field col s6"><input name="nameref0[]" id="nameref'+ctr2+'" type="text"><label for="nameref'+ctr2+'">Reference</label></div><div class="input-field col s6"><input id="child2" type="text" disabled value="Designation" style="color: black"></div><div class="input-field col s6"><input name="designationref0[]" id="designationref'+ctr2+'" type="text"><label for="designationref'+ctr2+'">Reference</label></div><div class="input-field col s6"> <input id="child2" type="text" disabled value="Company Name" style="color: black"></div><div class="input-field col s6"><input name="cmpnmref0[]" id="cmpnmref'+ctr2+'" type="text"><label for="cpmnmref'+ctr2+'">Reference </label></div><div class="input-field col s6"><input id="child2" type="text" disabled value="Contact Number" style="color: black"></div><div class="input-field col s6"><input name="contref0[]" id="contref'+ctr2+'" type="number" onchange="checkcont(this.id)" required><label for="contref'+ctr2+'">Reference</label></div><div class="input-field col s6"><input id="phoneref" type="text" disabled value="LandLine Number" style="color: black"></div><div class="input-field col s3"><input id="stdcoderef'+ctr2+'" name="stdcoderef0[]" type="number" class="validate" required aria-required="true"/><label for="stdcoderef'+ctr2+'">STD  Code</label></div><div class="input-field col s3"><input id="phoneref'+ctr2+'" name="phoneref0[]" type="number" class="validate" required aria-required="true"/><label for="phoneref'+ctr2+'">Reference</label></div><div class="input-field col s6"><input id="child2" type="text" disabled value="Email" style="color: black"></div><div class="input-field col s6"><input name="mailref0[]" id="mailref'+ctr2+'" type="email"><label for="mailref'+ctr2+'">Reference</label></div><div class="col s6" id="addnextref"><a class="btn-floating btn" onclick="addnewref(this)"><i class="material-icons">add</i></a></div></div>'
         $("#mainref").append(txt);
 }
 
@@ -811,13 +879,11 @@ $(document).ready(function(){
                
         
 
-        $('.datepicker').datepicker({
-                        //dateFormat:"dd/mm/yy",
-                        yearRange:[1919,2019],
-                        changeMonth:true,
-                        
-                        //changeYear:true
-               
+        $('.datepicker').datepicker
+        ({
+                yearRange:[1919,cyear],
+                changeMonth:true,
+                
         });            
 
         $('.filled-in').on('change', function() {

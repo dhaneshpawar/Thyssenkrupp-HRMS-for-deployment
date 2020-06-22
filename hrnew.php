@@ -170,12 +170,15 @@ width: 350%;
       </table>
       
     </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="float:left;color:red">Close</a>
+    </div>
 
   </div>
   <!-- modal1 ends here -->
 
   <!-- modal2 starts here -->
-  <div id="modal2" class="modal">
+  <!-- <div id="modal2" class="modal">
     <div class="modal-content">
       <center><i class="material-icons large " style="color: #ff5252;">error_outline</i></center>
       <br>
@@ -190,7 +193,7 @@ width: 350%;
       <a onclick="withdraw(false)" class="modal-close waves-effect red btn">Cancel<i class="material-icons left">highlight_off</i></a>
       </center>
     </div>
-  </div>
+  </div> -->
   <!-- modal2 ends here -->
 
   <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
@@ -245,7 +248,7 @@ width: 350%;
           <th>No. of Positions</th>
           <th>Status</th>
           <th>Initiate</th>
-          <th>Withdraw</th>
+          <!-- <th>Withdraw</th> -->
       </tr>
     </thead>
 
@@ -311,36 +314,36 @@ function openmodal(cid)
   $("#modal2").modal("open")
 }
 
-function withdraw(confr)
-{
-  var btn_id = $('#bid').attr('name')
-  if(confr)
-  {
-    $.ajax({
-      url:'http://localhost/hrms/api/withdrawposition.php',
-      type:'POST',
-      data:{'id':btn_id},
-      success : function(para)
-      {
-        if(para == "success")
-        {
-          alert("Position Withdrawn Successfully")
-          window.setTimeout(function(){location.reload()},400)
-        }
-        else if(para == "fail")
-        {
-          alert("Position Can't be Withdrawn")
-        }
-        else
-        {
-          alert("Error Occured")
-        }
-      }
+// function withdraw(confr)
+// {
+//   var btn_id = $('#bid').attr('name')
+//   if(confr)
+//   {
+//     $.ajax({
+//       url:'http://localhost/hrms/api/withdrawposition.php',
+//       type:'POST',
+//       data:{'id':btn_id},
+//       success : function(para)
+//       {
+//         if(para == "success")
+//         {
+//           alert("Position Withdrawn Successfully")
+//           window.setTimeout(function(){location.reload()},400)
+//         }
+//         else if(para == "fail")
+//         {
+//           alert("Position Can't be Withdrawn")
+//         }
+//         else
+//         {
+//           alert("Error Occured")
+//         }
+//       }
   
-    })  
-  }
+//     })  
+//   }
     
-}
+// }
 
 
 function showmodal(x)
@@ -520,6 +523,9 @@ function xyz(x)
     </table>
     </div>
     <center><b class="red-text">Please ensure that the file to be uploaded must have above columns only</b></center>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="color:red">Close</a>
+    </div>
   </div>
   
 </body>
@@ -685,10 +691,10 @@ $(document).ready(function(){
           
           if(arr[j][6] == "initiated")
           {
-            var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
+            var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'
           }else
           {
-            var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
+            var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'          
           }
         $('#rawdata').append(x);
         }
@@ -820,10 +826,10 @@ success:function(arr)
       
       if(arr[j][6] == "initiated")
           {
-            var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
+            var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'
           }else
           {
-            var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
+            var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'          
           }
 
       $('#rawdata').append(x);
@@ -902,10 +908,10 @@ $('#zonechoice').change(function(){
       {
         if(arr[j][6] == "initiated")
         {
-          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'
+          var x='<tr id="rows" style="background-color:orange;"><td id="prf" value="'+arr[j][0]+'"><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'
         }else
         {
-          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td><td><a class="btn green darken-1" id="'+arr[j][0]+'" onclick="openmodal(this.id)">Withdraw</a></td></tr>'          
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'" ><b class="modal-trigger" href="#modal1" id="'+arr[j][0]+'" onclick=showmodal(this.id) style="cursor:pointer">'+arr[j][0]+'</b></td><td id="pos">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="status">'+arr[j][5]+'</td><td><a id="'+arr[j][0]+"*"+arr[j][1]+"*"+arr[j][2]+"*"+arr[j][3]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn green darken-1" onclick="xyz(this.id)">Initiate</a></td></tr>'          
         }
         $('#rawdata').append(x);
       }
