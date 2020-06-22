@@ -87,18 +87,115 @@ if($cursor)
 
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/reupload.php?token='.$mails.'&expdate='.$expdate;
                 $mail->Subject = 'Your Application at tkEI - Re-enter the requisite details';
-                $mail->Body    = nl2br('Dear '.$find['full_name'].',
+                $mail->Body ='
+                    <head>
+                
+                    </head>
+                    <body style="background-color:white;"> 
+                        <table align="center" border="0" cellpadding="0" cellspacing="0"
+                            width="750" bgcolor="white";"> 
+                            <tbody> 
+                                <tr> 
+                                    <td align="center"> 
+                                
+                                        <table align="center" border="0" cellpadding="0"
+                                            cellspacing="0" class="col-550" width="750"> 
+                                            <tbody> 
+                                                <tr> 
+                                                    <td align="center" style="background-color: rgb(0,160,246); 
+                                                            height: 50px;">  
+                                                            <p style="font-size:30px;color:white;">
+															thyssenkrup Elevators
+															</p>
+                                                        </a> 
+                                                    </td> 
+                                                </tr> 
+                                            </tbody> 
+                                        </table> 
+                                    </td> 
+                                </tr> 
+                                <tr style="display: inline-block;"> 
+                                    <td style="height: 150px; 
+                                            padding: 20px; 
+                                            border: none; 
+                                            border-bottom: 2px solid #361B0E; 
+                                            background-color: white;"> 
+                                        
+                                    
+                                        <p class="data"
+                                        style="text-align: justify-all; 
+                                                align-items: center; 
+                                                font-size: 18px; 
+                                                padding-bottom: 12px;"> 
+                                                Dear '.$find['full_name'].',
+                                                <br><br>
+                                                We are pleased to confirm that we have received your documents. Thank you. Please be
+                                                updated that some more clarity is required on the following.
+                                                <br><br>
+                                                Click <a href='.$url.'>here</a> to reupload documents
+                                                <br><br>
+                                                You are required to complete the same at the earliest.
+                                                <br><br>
+                                                In-case of any query, feel free to reach out to recruitment@tkeap.com
+                                                
+                                                tkEI Recruiting Team.
+                                        </p> 
+                                    <center><img src="cid:logoimg" width="70" height="70">
+                                    <p style="font-size: 20px;color: #2196F3;">engineering.tomorrow.together</p>
+                                    </center>
 
-                We are pleased to confirm that we have received your documents. Thank you. Please be
-                updated that some more clarity is required on the following.
+                                    </td> 
+                                </tr> 
+                                <tr style="border: none; 
+                                background-color: rgb(0,160,246); 
+                                height: 40px; 
+                                color:white; 
+                                padding-bottom: 20px; 
+                                text-align: center;"> 
+                                    
+                    <td height="40px" align="center"> 
+                       
+                        <a href="#"
+                        style="border:none; 
+                            text-decoration: none; 
+                            padding: 5px;"> 
+                                
+                        <img height="30"
+                        src= 
+                    "https://extraaedgeresources.blob.core.windows.net/demo/salesdemo/EmailAttachments/icon-twitter_20190610074030.png"
+                        width="30" /> 
+                        </a> 
+                        
+                        <a href="#"
+                        style="border:none; 
+                        text-decoration: none; 
+                        padding: 5px;"> 
+                        
+                        <img height="30"
+                        src= 
+                    "https://extraaedgeresources.blob.core.windows.net/demo/salesdemo/EmailAttachments/icon-linkedin_20190610074015.png"
+                    width="30" /> 
+                        </a> 
+                        
+                        <a href="#"
+                        style="border:none; 
+                        text-decoration: none; 
+                        padding: 5px;"> 
+                        
+                        <img height="20"
+                        src= 
+                    "https://extraaedgeresources.blob.core.windows.net/demo/salesdemo/EmailAttachments/facebook-letter-logo_20190610100050.png"
+                            width="24"
+                            style="position: relative; 
+                                padding-bottom: 5px;" /> 
+                        </a> 
+                    </td> 
+                    </tr> 
 
-                Click <a href='.$url.'>here</a> to reupload documents
-                
-                You are required to complete the same at the earliest.
-                
-                In-case of any query, feel free to reach out to recruitment@tkeap.com
-                
-                tkEI Recruiting Team.');
+                            </tbody> 
+                        </table> 
+                    </body> ';
+                    
                 if($mail->send()) 
                 {
                     echo "sent invalid";
@@ -115,7 +212,109 @@ if($cursor)
                 $mail->addAddress($mails);
                 $token=sha1($mails);
                 $mail->Subject = 'Document Verification Successfull';
-                $mail->Body    = 'All your documents are valid you can visit us for further information';
+                $mail->Body ='
+                <head>
+            
+                </head>
+                <body style="background-color:white;"> 
+                    <table align="center" border="0" cellpadding="0" cellspacing="0"
+                        width="750" bgcolor="white";"> 
+                        <tbody> 
+                            <tr> 
+                                <td align="center"> 
+                            
+                                    <table align="center" border="0" cellpadding="0"
+                                        cellspacing="0" class="col-550" width="750"> 
+                                        <tbody> 
+                                            <tr> 
+                                                <td align="center" style="background-color: rgb(0,160,246); 
+                                                        height: 50px;">  
+                                                        <p style="font-size:30px;color:white;">
+                                                        thyssenkrup Elevators
+                                                        </p>
+                                                    </a> 
+                                                </td> 
+                                            </tr> 
+                                        </tbody> 
+                                    </table> 
+                                </td> 
+                            </tr> 
+                            <tr style="display: inline-block;"> 
+                                <td style="height: 150px; 
+                                        padding: 20px; 
+                                        border: none; 
+                                        border-bottom: 2px solid #361B0E; 
+                                        background-color: white;"> 
+                                    
+                                
+                                    <p class="data"
+                                    style="text-align: justify-all; 
+                                            align-items: center; 
+                                            font-size: 18px; 
+                                            padding-bottom: 12px;"> 
+                                            Dear Candidate,
+                                            <br><br>
+                                            All your documents are valid you can visit us for further information
+                                            <br><br>
+                                            In-case of any query, feel free to reach out to recruitment@tkeap.com
+                                            <br><br>
+                                            tkEI Recruiting Team.
+                                    </p> 
+                                <center><img src="cid:logoimg" width="70" height="70">
+                                <p style="font-size: 20px;color: #2196F3;">engineering.tomorrow.together</p>
+                                </center>
+
+                                </td> 
+                            </tr> 
+                            <tr style="border: none; 
+                            background-color: rgb(0,160,246); 
+                            height: 40px; 
+                            color:white; 
+                            padding-bottom: 20px; 
+                            text-align: center;"> 
+                                
+                <td height="40px" align="center"> 
+                   
+                    <a href="#"
+                    style="border:none; 
+                        text-decoration: none; 
+                        padding: 5px;"> 
+                            
+                    <img height="30"
+                    src= 
+                "https://extraaedgeresources.blob.core.windows.net/demo/salesdemo/EmailAttachments/icon-twitter_20190610074030.png"
+                    width="30" /> 
+                    </a> 
+                    
+                    <a href="#"
+                    style="border:none; 
+                    text-decoration: none; 
+                    padding: 5px;"> 
+                    
+                    <img height="30"
+                    src= 
+                "https://extraaedgeresources.blob.core.windows.net/demo/salesdemo/EmailAttachments/icon-linkedin_20190610074015.png"
+                width="30" /> 
+                    </a> 
+                    
+                    <a href="#"
+                    style="border:none; 
+                    text-decoration: none; 
+                    padding: 5px;"> 
+                    
+                    <img height="20"
+                    src= 
+                "https://extraaedgeresources.blob.core.windows.net/demo/salesdemo/EmailAttachments/facebook-letter-logo_20190610100050.png"
+                        width="24"
+                        style="position: relative; 
+                            padding-bottom: 5px;" /> 
+                    </a> 
+                </td> 
+                </tr> 
+
+                        </tbody> 
+                    </table> 
+                </body> ';
                 if(!$mail->send()) 
                 {
                     echo "notsent valid";
