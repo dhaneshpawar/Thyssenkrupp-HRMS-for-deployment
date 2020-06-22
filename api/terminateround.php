@@ -1,5 +1,6 @@
 <?php 
 include 'db.php';
+
 include 'maildetails.php';
 
 $cnt = 0;
@@ -20,7 +21,7 @@ $ctr=0;
 
 
 $cursor = $db->session->findOne(array("sid" => $_COOKIE['sid']));
-if(isset($_POST) || $cursor)
+if(isset($_POST) and $cursor)
 {
     $digit13 = preg_split('/[-]/', $_POST['prf']);
     $selected=$_POST['emails'];

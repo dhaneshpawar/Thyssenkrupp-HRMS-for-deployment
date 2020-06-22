@@ -166,7 +166,7 @@ function abort_round(confr)
 
                       <div class="input-field col s3 m3 white-text" >
                         <input id="imail" type="text" >
-                        <label class="active" for="iname" required>Interwiever Mail ID</label>
+                        <label class="active" for="imail" required>Interwiever Mail ID</label>
                       </div>
 
                       <div class="input-field col s3 m3 white-text" >
@@ -202,6 +202,43 @@ function abort_round(confr)
 
                     <div class="row">
                       <button class="btn waves-effect blue darken-1 col m3 s3 offset-m4" type="submit" id='allocatesubmit'>Submit
+                      <i class="material-icons right">send</i>
+                      </button>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" id="allocation2" >
+              <div class="col s12 m12" style="border: solid 5p">
+                <div class="card white">
+                  <div class="card-content blue-text">
+                    <div class="row">
+                  
+                    <div class="input-field col s3 m3 " >
+                        <input id="hr2name" type="text" class="text">
+                        <label class="active" for="hr2name" id="hr2name" required>HR2 Name</label>
+                      </div>  
+
+                      <div class="input-field col s3 m3 white-text" >
+                        <input id="hr2mail" type="text" >
+                        <label class="active" for="hr2mail" required>HR2 Mail ID</label>
+                      </div>
+                      <div class="input-field col s3 m3 " >
+                          <input id="hr2dept" type="text" class="text">
+                          <label class="active" for="hr2dept" id="hr2dept" required>HR2 Department</label>
+                        </div>                                    
+                        <div class="input-field col s3 m3 " >
+                          <input id="hr2desg" type="text" class="text">
+                          <label class="active" for="hr2desg" id="hr2desg" required>HR2 Designation</label>
+                        </div>
+      
+                    </div>
+                      
+                    
+                    <div class="row">
+                      <button class="btn waves-effect blue darken-1 col m3 s3 offset-m4" type="submit" id='allocatesubmit2'>Submit
                       <i class="material-icons right">send</i>
                       </button>
                     </div>
@@ -364,8 +401,11 @@ $.ajax(
 
 
 $('#allocation').hide();
+$('#allocation2').hide();
+
 $('#allocatingcandidate').hide();
 
+});
 
 $('#submit').click(function()
 {
@@ -404,6 +444,103 @@ $('#submit').click(function()
 
     }                      
 })
+
+
+
+
+
+// Function for round Completion (AD)
+$('#allocatesubmit2').click(function()
+{
+  $("#waiting").fadeIn(600);
+  var groupid=window.groupid
+  var hr2name = $('#hr2name').val();
+  var hr2dept = $('#hr2dept').val();
+  var hr2desg = $('#hr2desg').val();
+  var hr2mail = $('#hr2mail').val();
+
+  $('#allocation2').hide(600);
+  if(hr2mail != "" && hr2name != "" && hr2dept != "" && hr2desg != "")
+  {
+    $("#pleasewait").fadeIn(600);
+
+    $('#allocation2').hide(600);
+    for(let i=0;i<selectedmailID.length;i++)
+    {
+      var b = selectedmailID[i]
+      b = b+'date'
+      b2 = b+'2'
+      console.log(b)
+      console.log(b2)
+      selecteddate.push($(b).val()) 
+      selecteddate2.push($(b2).val()) 
+      console.log("Email:",selectedmail[i]) 
+    }
+    $.ajax({
+    url:'http://localhost/hrms/api/terminateround.php',
+    type:'POST',
+    data:{
+      "allmembers":window.allmembers,
+      "emails":selectedmail,
+      "iname":hr2name,
+      "intvmail":hr2mail,
+      "prf":groupid,
+      "idesg":hr2desg,
+      "dept":hr2dept
+    },
+    success:function(para)
+    {
+      alert(para)
+      $("#waiting").hide();
+      console.log("This is : ",para)
+      if(para == "nomails")
+      {
+        alert("Complete")
+        window.setTimeout(function(){location.reload()},1000)
+      }
+      if(para=="sent")
+      {
+        $('#sentsuccess').fadeIn(600)
+        $('#sendingmail').hide()
+        window.setTimeout(function(){location.reload()},1000)
+        for(let i=0;i<selectedmail.length;i++)
+        {
+          var ml = selectedmail[i];
+          var id = allmail.indexOf(ml) 
+          var str='#check'+id+'row';
+          $(str).remove();
+          $("#waiting").hide();
+        }
+        selectedmail = []
+      }
+      else
+      {
+        alert("Mail was not sent.")
+        $('#sendingmail').hide()
+
+      }
+      console.log((para))
+      $(str).remove();
+
+    }
+
+
+              
+  })
+  }
+  })
+
+
+
+
+
+
+
+
+
+
+
+// Function for inv assignment
 
 $('#allocatesubmit').click(function()
 {
@@ -475,8 +612,7 @@ $('#allocatesubmit').click(function()
     })
   }
 
- })
-})   
+ })  
 
 var ctr=0
 function selection(x)
@@ -613,56 +749,15 @@ function terminateround(confrm)
       console.log(groupid)
       if(confrm)
       {
+        alert(confrm)
+        $('#allocation2').fadeIn(600);
         $('#sendingmail').fadeIn(600)
-        $("#allocatingcandidate").hide()
-        // id_round = id
-        // var str = "#"+id_round+"row";
-        // alert(selectedmail.length);
         if(selectedmail.length==0)
         {
           selectedmail="nomail";
         }
-        // alert(selectedmail);
 
         
-        $.ajax({
-        url:'http://localhost/hrms/api/terminateround.php',
-        type:'POST',
-        data:{
-          'prf':groupid,
-          "emails":selectedmail,
-          "allmembers":window.allmembers
-
-          },
-        success:function(para)
-        {
-          console.log("This is : ",para)
-          if(para == "nomails")
-          {
-            alert("Complete")
-            window.setTimeout(function(){location.reload()},1000)
-          }
-          if(para=="sent")
-          {
-            $('#sentsuccess').fadeIn(600)
-            $('#sendingmail').hide()
-            window.setTimeout(function(){location.reload()},1000)
-
-          }
-          else
-          {
-            alert("Mail was not sent.")
-            $('#sendingmail').hide()
-
-          }
-          console.log((para))
-          $(str).remove();
-
-       }
-    
-    
-                  
-      })
     }
 }
 }
