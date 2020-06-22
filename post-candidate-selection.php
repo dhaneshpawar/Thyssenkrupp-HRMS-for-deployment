@@ -65,8 +65,8 @@ input[id="uan"]
                 </div>
         </div>
     <!-- details submitted warning ends here -->
-
-    <form id="myForm"method="POST" action="http://localhost/hrms/api/submitevalform.php" enctype="multipart/form-data" id="postForm">
+    
+    <form id="myForm" method="POST" action="http://localhost/hrms/api/submitevalform.php" enctype="multipart/form-data">
     
     <div class="row">
         <div class="col s12 m6 offset-m3">
@@ -179,8 +179,10 @@ input[id="uan"]
 <script>
 
 $("#myform").submit(function(){
-        console.log("Hello")
+        
         $('#loader').show()
+        window.location.href="documentsubmittedsuccesfully.html"
+
 })
 $(document).ready(function(){
         $("#details").hide();
