@@ -57,7 +57,7 @@ if(isset($_COOKIE['sid']))
 </nav>
 <br><br>
 <center>
- <p id="candidatename" style="color: green;font-size: 30px"><b>Applicant Email:&nbsp; <?php echo $_GET['aid'] ; ?></b></p>
+ <p id="candidatename" style="color: green;font-size: 30px"><b></b></p>
 </center>        
 <div class="row">
     <div class="col s12 m6 offset-m3">
@@ -274,6 +274,23 @@ function clicked(x)
     $("#obj").attr("data",v)
 }
 $(document).ready(function(){
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const cemail = urlParams.get('aid')
+$.ajax({
+url:"http://localhost/hrms/api/getnameevaluation.php",
+type:"POST",
+data : { "email":cemail },
+success:function(para)
+{
+    if(para != "error")
+    {
+        var str = "<b>Candidate  Name: "+para+"</b>";
+        $("#candidatename").append(str)
+    }
+}
+})
 
 $('.modal').modal();
 $("#problem").hide()  
