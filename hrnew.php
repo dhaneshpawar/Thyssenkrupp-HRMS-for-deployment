@@ -196,7 +196,7 @@ width: 350%;
   </div> -->
   <!-- modal2 ends here -->
 
-  <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000">
+  <div id="sidenn" class="w3-sidebar blue w3-bar-block sidemenu" style="z-index: 1000;overflow-y:hidden">
 
 <h3 class="w3-bar-item white"> <center><a href="/hrms/">Home</a>
 <i id="remin" class="material-icons" style="float: right;cursor: pointer;">close</i></center>   
