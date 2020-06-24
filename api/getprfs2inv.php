@@ -38,7 +38,7 @@ if($cursor1)
                     $status = "On Hold";
                 }
                 
-                $arr[$i] =array("prf"=>$doc['prf'],"email"=>$q['email'],"members"=>$q['full_name'],"pos"=>$doc['pos'],"rid"=>$doc['rid'],"iid"=>$doc['iid'],"date"=>$doc['date'],"progress"=>$getStatus['progress'],"status"=>$status) ;
+                $arr[$i] =array("prf"=>$doc['prf'],"email"=>$q['email'],"members"=>$q['full_name'],"pos"=>$doc['pos'],"rid"=>$doc['rid'],"iid"=>$doc['iid'],"date"=>$doc['dates'][$j],"progress"=>$getStatus['progress'],"status"=>$status) ;
                 $i++;  
             }
         }

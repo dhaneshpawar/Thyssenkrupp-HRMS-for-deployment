@@ -1212,7 +1212,19 @@ $("#bcomplete").hide()
 $('.modal').modal();
 var m = localStorage.getItem('currentemail')
 
-var str = "<b>Candidate :</b> "+m
+$.ajax({
+    url:"http://localhost/hrms/api/getnameevaluation.php",
+    data:{
+        "email" : m
+    },
+    type:"POST",
+    success:function(para)
+    {
+       window.name = para 
+    }
+})
+
+var str = "<center><b>Candidate Name : "+window.name+"</b></center>"
 $("#mail").append(str)
 $("#rcv1").hide()
 $("#raf1").hide()

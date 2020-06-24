@@ -140,20 +140,116 @@ include 'db.php';
                     $mail->addAddress($result1['email']);
 
                     $mail->Subject = 'Update on your application at thyssenkrupp for '.$res['position'].'position';
-                    $mail->Body    = nl2br('Dear '.$fullname.' ,
+                    $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                    $mail->isHTML(true); 
+                    $mail->Body ='
+                    <body style="background-color:white;"> 
+                        <table align="center" border="0" cellpadding="0" cellspacing="0"
+                            width="750" bgcolor="white";"> 
+                            <tbody> 
+                                <tr> 
+                                    <td align="center"> 
+                                
+                                        <table align="center" border="0" cellpadding="0"
+                                            cellspacing="0" class="col-550" width="750"> 
+                                            <tbody> 
+                                                <tr> 
+                                                    <td align="center" style="background-color: rgb(0,160,246); 
+                                                            height: 50px;">  
+                                                            <p style="font-size:30px;color:white;">
+															thyssenkrup Elevators
+															</p>
+                                                        </a> 
+                                                    </td> 
+                                                </tr> 
+                                            </tbody> 
+                                        </table> 
+                                    </td> 
+                                </tr> 
+                                <tr style="display: inline-block;"> 
+                                    <td style="height: 150px; 
+                                            padding: 20px; 
+                                            border: none; 
+                                            border-bottom: 2px solid #361B0E; 
+                                            background-color: white;"> 
+                                        
+                                    
+                                        <p class="data"
+                                        style="text-align: justify-all; 
+                                                align-items: center; 
+                                                font-size: 18px; 
+                                                padding-bottom: 12px;"> 
+                                                Dear '.$fullname.' ,
+                                                <br><br>
+                                                We are pleased to confirm that we have received your application. Thank you. We aim to get back to you
+                                                as soon as possible to let you know about the further process.
+                                                <br><br>
+                                                Your CV/resume has been submitted for the following position :
+                                                
+                                                    '.$res['department'].' - '.$res['position'].' 
+                                                 <br><br>
+                                                In the meantime, if you wish to know more about the organisation. Please click <a href ="https://www.thyssenkrupp-elevator.com/in/">here</a>
+                                                    <br><br>
+                                                In-case of any query, feel free to reach out to recruitment@tkeap.com
+                                                
+                                                tkEI Recruiting Team.
+                                        </p> 
+                                    <center><img src="cid:logoimg" width="70" height="70">
+                                    <p style="font-size: 20px;color: #2196F3;">engineering.tomorrow.together</p>
+                                    </center>
 
-                    We are pleased to confirm that we have received your application. Thank you. We aim to get back to you
-                    as soon as possible to let you know about the further process.
-                    
-                    Your CV/resume has been submitted for the following position :
-                    
-                        '.$res['department'].' - '.$res['position'].' 
-                    
-                    In the meantime, if you wish to know more about the organisation. Please click <a href ="https://www.thyssenkrupp-elevator.com/in/">here</a>
-                    
-                    In-case of any query, feel free to reach out to recruitment@tkeap.com
-                    
-                    tkEI Recruiting Team.');
+                                    </td> 
+                                </tr> 
+                                <tr style="border: none; 
+                                background-color: rgb(0,160,246); 
+                                height: 40px; 
+                                color:white; 
+                                padding-bottom: 20px; 
+                                text-align: center;"> 
+                                    
+                    <td height="40px" align="center"> 
+                       
+                        <a href="#"
+                        style="border:none; 
+                            text-decoration: none; 
+                            padding: 5px;"> 
+                                
+                        <img height="30"
+                        src= 
+                    "https://extraaedgeresources.blob.core.windows.net/demo/salesdemo/EmailAttachments/icon-twitter_20190610074030.png"
+                        width="30" /> 
+                        </a> 
+                        
+                        <a href="#"
+                        style="border:none; 
+                        text-decoration: none; 
+                        padding: 5px;"> 
+                        
+                        <img height="30"
+                        src= 
+                    "https://extraaedgeresources.blob.core.windows.net/demo/salesdemo/EmailAttachments/icon-linkedin_20190610074015.png"
+                    width="30" /> 
+                        </a> 
+                        
+                        <a href="#"
+                        style="border:none; 
+                        text-decoration: none; 
+                        padding: 5px;"> 
+                        
+                        <img height="20"
+                        src= 
+                    "https://extraaedgeresources.blob.core.windows.net/demo/salesdemo/EmailAttachments/facebook-letter-logo_20190610100050.png"
+                            width="24"
+                            style="position: relative; 
+                                padding-bottom: 5px;" /> 
+                        </a> 
+                    </td> 
+                    </tr> 
+
+                            </tbody> 
+                        </table> 
+                    </body> ';
+
 
                     
                     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';

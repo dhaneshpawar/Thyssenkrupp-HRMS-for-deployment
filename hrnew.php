@@ -461,7 +461,7 @@ function xyz(x)
                                     <a class="btn red" id="fileformatmodal" style="margin-left:2%" onclick="mymodalopen()"><i class="material-icons right">format_align_justify</i>FILE FORMAT</a>
                                     <br><br><br>
                                     
-                            <button type="submit" onclick="showupdump()" class="btn blue darken-1" name="submit" id="submit" value="Upload"><i class="material-icons right">send</i>Upload</button
+                            <button type="submit" onclick="showupdump()" class="btn blue darken-1" name="submit" id="submit" value="Upload"><i class="material-icons right">send</i>Upload</button>
                             
                         </form>
                         <br>

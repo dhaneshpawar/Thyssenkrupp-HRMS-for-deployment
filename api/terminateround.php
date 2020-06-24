@@ -59,6 +59,8 @@ if(isset($_POST) and $cursor)
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/post-candidate-selection.php?token='.$d.'&explink='.$expdate;
 
                 $mail->Subject = 'Your interview with thyssenkrupp for the '.$q1['position'].' position -Further Details';
+                $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                $mail->isHTML(true); 
                 $mail->Body ='
                     <head>
                 

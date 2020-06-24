@@ -5,17 +5,20 @@ if($cursor)
 {
     include 'maildetails.php';
     
-
     $mail->setFrom('thyssenkrupp@tkep.com', 'tkei');
     $mail->addReplyTo(Email, 'Information');
     $mail->isHTML(true);   
-
     $email = $_POST['mail'];
-
     $candidate = $_POST['candidate'];
+
+    $getfullnameCand = $db->tokens->findOne(array("prf"=>$_POST['prf'],"email"=>$candidate),array( "full_name"=>1,"_id" => 1));
+    $getfullprfinfo = $db->prfs->findOne(array("prf"=>$_POST['prf']),array( "department"=>1,"position"=>1,"_id" => 1));
+
     $mail->addAddress($email);
 
     $mail->Subject = 'Update regarding offer letter';
+    $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+    $mail->isHTML(true); 
     $mail->Body ='
     <head>
 
@@ -56,7 +59,13 @@ if($cursor)
                                 align-items: center; 
                                 font-size: 18px; 
                                 padding-bottom: 12px;"> 
-                                Offer Letter Sent to '.$candidate.'
+                                Offer Letter Sent to <br><br>
+                                Name - '.$getfullnameCand['full_name'].'
+                                Email - '.$candidate.'
+                                PRF - '.$_POST['prf'].'
+                                Position - '.$getfullprfinfo['position'].'
+                                Department - '.$getfullprfinfo['department'].'
+
                         </p> 
                     <center><img src="cid:logoimg" width="70" height="70">
                     <p style="font-size: 20px;color: #2196F3;">engineering.tomorrow.together</p>

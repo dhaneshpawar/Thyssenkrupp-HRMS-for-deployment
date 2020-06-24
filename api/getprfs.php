@@ -22,7 +22,7 @@ if($cursor)
         }
         if(count($arr)==0)
         {
-            echo "No data";
+            echo "No Data";
         }
         else
         {

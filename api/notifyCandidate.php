@@ -38,6 +38,8 @@ if($cursor)
             $_SESSION['posi'] = $name['position'];
             $mail->addAddress($d);
             $mail->Subject = "Invitation to interview with thyssenkrupp for the ". $name['position']." position";
+            $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+            $mail->isHTML(true); 
             $mail->Body ='
             <head>
         
@@ -160,6 +162,8 @@ if($cursor)
         $r = $db->prfs->findOne(array("prf"=>$prf13[0]));
         $mail->addAddress($result['intvmail']);
         $mail->Subject = 'Interview schedule for '.$r['department'].' - '.$r['position'].'';
+        $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+        $mail->isHTML(true); 
         $mail->Body ='
                     <head>
                 

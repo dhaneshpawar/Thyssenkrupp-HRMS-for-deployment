@@ -33,6 +33,8 @@ if($cursor)
         {
             $mail->addAddress($_POST["intvmail"]);
             $mail->Subject = 'Interview schedule for '.$result3['department'].' - '.$result3['position'].' .';
+            $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+            $mail->isHTML(true); 
             $mail->Body ='
                     <head>
                 

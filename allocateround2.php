@@ -144,14 +144,6 @@ if(isset($_COOKIE['sid']))
                                   </div>       
                                     <div class="row">
                                         <div class="input-field col s3 m3 " >
-                                          <input id="idate" type="text" required class="datepicker">
-                                          <label  for="idate">Date</label>
-                                        </div>
-                                        <div class="input-field col s3 m3 " >
-                                          <input id="itime" type="text" class="timepicker" required>
-                                          <label class="active" for="itime">Time</label>
-                                        </div>
-                                        <div class="input-field col s3 m3 " >
                                           <input id="idept" type="text" class="text" required>
                                           <label class="active" for="idept" id="idept">Interviewer Department</label>
                                         </div>                                    
@@ -291,8 +283,7 @@ $(document).ready(function(){
       // alert("Old " +oldintv);
       var imail = $('#imail').val();
       var iname = $('#iname').val();
-      var idate = $('#idate').val();
-      var itime = $('#itime').val();
+     
       var idept = $('#idept').val();
       var idesg = $('#idesg').val();
       var iloc = $('#location').val();
@@ -308,9 +299,7 @@ $(document).ready(function(){
           //dept needed to be submitted
           'oldintv':oldintv,
           'emails':selectedmail,
-          'intv':imail,
-          'date':idate,
-          'time':itime,
+          'intv':imail,  
           'dates':dates,
           'times':times,
           'prf':iid,

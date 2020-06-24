@@ -78,7 +78,7 @@ if($cursor)
                             "prf"=>$digit13[0],
                             "intvmail"=>$invname,
                             ),
-                        array('$set'=>array("date"=>$_POST['date'],"time"=>$_POST['time'],"dates"=>$dates,"moddates"=>$dates,"times"=>$times,"modtimes"=>$times,"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"invstatus"=>"0")));
+                        array('$set'=>array("dates"=>$dates,"moddates"=>$dates,"times"=>$times,"modtimes"=>$times,"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"invstatus"=>"0")));
                         $result=$db->interviews->updateOne(
                             array("rid"=>$digit13[3],
                                 'iid'=>$digit13[2],
@@ -106,7 +106,7 @@ if($cursor)
                     else
                     {
                         //Start - Create new document if the new interviewer doesnt exists.
-                        $result=$db->interviews->updateOne(array("rid"=>$digit13[3],"prf"=>$digit13[0],"pos"=>$digit13[1],"iid"=>$digit13[2],"intvmail"=>$_POST['oldintv']),array('$set'=>array("intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"date"=>$_POST['date'],"time"=>$_POST['time'],"dates"=>$dates,"moddates"=>$dates,"times"=>$times,"modtimes"=>$times,"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"invstatus"=>"0")));
+                        $result=$db->interviews->updateOne(array("rid"=>$digit13[3],"prf"=>$digit13[0],"pos"=>$digit13[1],"iid"=>$digit13[2],"intvmail"=>$_POST['oldintv']),array('$set'=>array("intvmail"=>$_POST['intv'],"invname"=>$_POST['iname'],"designation"=>$_POST['idesg'],"dept"=>$_POST['idept'],"dates"=>$dates,"moddates"=>$dates,"times"=>$times,"modtimes"=>$times,"ilocation"=>$_POST['iloc'],"iperson"=>$_POST['iperson'],"invstatus"=>"0")));
                         //END - Create new document if the new interviewer doesnt exists.
                     }
         

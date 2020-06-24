@@ -81,6 +81,8 @@ if($cursor)
         $dashurl="http://localhost/hrms/invdash.php";
         $mail->addAddress($_POST['intv']);
         $mail->Subject = 'Interview schedule for '.$result3['department'].' - '.$result3['position'].' .';
+        $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+        $mail->isHTML(true); 
         $mail->Body ='
         <head>
     

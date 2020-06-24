@@ -121,7 +121,7 @@ width: 350%;
 <!-- nav and side menu ended -->
 
  <div class="row" id="firsttb">
-<div class="col s10  offset-m1 blue lighten-4">
+<div class="col s12 blue lighten-4">
   <table class="striped">
     <thead>
       <tr>
@@ -270,7 +270,7 @@ $(document).ready(function(){
           console.log("rid : ",arr[j][3]);
           digit13=arr[j][0]+'-'+arr[j][1]+'-'+arr[j][2]+'-'+arr[j][3];
           console.log("Digit13",digit13)
-          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="pos">'+arr[j][1]+'</td><td id="iid">'+arr[j][2]+'</td><td id="rid">'+arr[j][3]+'</td><td id="'+j+'4" >'+arr[j][4]+'</td><td id="'+j+'5" >'+arr[j][5]+'</td><td id="interviewername">'+arr[j][6]+'</td><td id="interviewermail">'+arr[j][7]+'</td><td><a name="'+arr[j][7]+'" id="'+j+'-'+digit13+'" class="btn green darken-1" onclick="sendmailtoinv(this.id,this.name)">Send Letter</a></td></tr>'
+          var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="pos">'+arr[j][1]+'</td><td id="iid">'+arr[j][2]+'</td><td id="rid">'+arr[j][3]+'</td><td id="'+j+'4" >'+arr[j][4]+'</td><td id="'+j+'5" >'+arr[j][5]+'</td><td id="interviewername">'+arr[j][6]+'</td><td id="interviewermail">'+arr[j][7]+'</td><td><a name="'+arr[j][7]+'" id="'+j+'-'+digit13+'-'+'" class="btn green darken-1" onclick="sendmailtoinv(this.id,this.name)">Send Letter</a></td></tr>'
         $('#rawdata').append(x);
       }
       }

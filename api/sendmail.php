@@ -50,6 +50,8 @@ if($cursor)
                     $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position;
 
                     $mail->Subject = "Invitation to interview with thyssenkrupp for the ". $positionorg." position";
+                    $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                    $mail->isHTML(true);  
                     $mail->Body ='
                     <body style="background-color:white;"> 
                         <table align="center" border="0" cellpadding="0" cellspacing="0"
@@ -228,6 +230,8 @@ if($cursor)
                     $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position;
 
                     $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
+                    $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                    $mail->isHTML(true); 
                     $mail->Body ='
                     <body style="background-color:white;"> 
                         <table align="center" border="0" cellpadding="0" cellspacing="0"
@@ -419,6 +423,8 @@ if($cursor)
                     $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position;
 
                     $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
+                    $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                    $mail->isHTML(true); 
                     $mail->Body ='
                     <body style="background-color:white;"> 
                         <table align="center" border="0" cellpadding="0" cellspacing="0"
