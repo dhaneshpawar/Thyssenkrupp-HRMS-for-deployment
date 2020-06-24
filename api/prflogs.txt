@@ -73,4 +73,8 @@ Date		PRF	Initiated By		Department
 2020/06/21	431780	asdeshpande@mitaoe.ac.in	Service-Operations
 2020/06/21	431790	asdeshpande@mitaoe.ac.in	Service-Operations
 2020/06/21	433957	asdeshpande@mitaoe.ac.in	Service-Operations
+<<<<<<< HEAD
 2020/06/23	441194	asdeshpande@mitaoe.ac.in	U-Human Resources
+=======
+2020/06/23	433977	asdeshpande@mitaoe.ac.in	Service-Operations
+>>>>>>> 7b5b14d06b08a8aaff7336b7e6a163efdb4abb0f

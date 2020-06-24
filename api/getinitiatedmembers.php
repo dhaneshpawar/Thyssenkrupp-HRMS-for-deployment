@@ -17,32 +17,46 @@ if($cursor)
     }
 
     $dataforinitiate=array();
-
+    $prf=[];
+    $iid=[];
+    $rid=[];
+    $pos=[];
+    $allmembers=[];
     foreach($prfs as $val){
         $cur_prf=$db->rounds->findOne(array("prf"=>$val,"rid"=>"00"));
 
         if($cur_prf){
-            
+            //echo "members".$cur_prf->$val;
             $members=array();
 
             foreach($cur_prf->members as $member){
                 $members[]=$member;
             }
+
+            $prf[]=$val;       
+            $pos[]=$cur_prf->pos;
+            $iid[]=$cur_prf->iid;
+            $rid[]=$cur_prf->rid;
+            $allmembers[]=$members;
+            
+            
+            
                 
-            $object=array(
-                "prf"=>$val,
-                "position"=>$cur_prf->position,
-                "pos"=>$cur_prf->pos,
-                "iid"=>$cur_prf->iid,
-                "rid"=>$cur_prf->rid,
-              //  "members"=>$members
+            // $object=array(
+            //     "prf"=>$val,
+            //     "position"=>$cur_prf->position,
+            //     "pos"=>$cur_prf->pos,
+            //     "iid"=>$cur_prf->iid,
+            //     "rid"=>$cur_prf->rid,
+            //    "members"=>$members
 
                 
-            );
+            // );
 
-            $dataforinitiate[]=$object;
         }
     }
+
+    $dataforinitiate=array("prf"=>$prf,"iid"=>$iid,"rid"=>$rid,"pos"=>$pos,"members"=>$allmembers);
 
     echo json_encode(array("data"=>$dataforinitiate));
 
