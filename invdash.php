@@ -901,7 +901,14 @@ function submit_interview(cnfrm){
                     if(time[1] == "PM")
                     {
                         time = time[0].split(":")
-                        hrs = Number(time[0])+12
+                        if(time[0] != "12")
+                        {
+                            hrs = Number(time[0])+12
+                        }
+                        else
+                        {
+                            hrs = Number(time[0])
+                        }
                         time= String(hrs)+time[1]
                         console.log(time)
                     }
