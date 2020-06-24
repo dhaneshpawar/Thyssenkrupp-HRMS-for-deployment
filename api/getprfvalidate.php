@@ -15,8 +15,8 @@ if($cursor)
         $orderCount1 =count(iterator_to_array($cursor1));
         if($orderCount1 == 0)
         {
-            //Changed by sarang - 10/01/2020
-            $cursor = $db->rounds->find(array("status"=>"completed","completevalidate"=>"inprocess"));
+            //Find Document for particular HR2
+            $cursor = $db->rounds->find(array("status"=>"completed","completevalidate"=>"inprocess","hr2name"=>$cursor['name'],"hr2mail"=>$cursor['mail']));
             
             $i = 0;
             foreach($cursor as $document)
