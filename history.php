@@ -128,6 +128,8 @@ width: 350%;
           <option value="" disabled selected style="color: white">Select Zone</option>
  </select>
 <!-- Filter Added End-->
+<div style="color:white;width:18%;background-color:green;border-radius:2px;font-weight:bold;"> 
+        Showing <p id="result" style="display:inline;"> </p> PRF of <p id="result1" style="display:inline;"> </p> PRF</div><br>
 
  <div class="row" id="firsttb">
 <div class="col s12  blue lighten-4">
@@ -482,6 +484,7 @@ function xyz(x)
 
               success:function(para)
               {
+                
                 console.log("para : ",para)
                 
                 $("#select").click()
@@ -602,6 +605,7 @@ $.ajax({
       }
       uniquedept = removeusingSet(dept);
       console.log(uniquedept)
+
       for(i=0;i<uniquedept.length;i++)
       {
         var str = '<option value="'+uniquedept[i]+'"  style="color: white">'+uniquedept[i]+'</option>'
@@ -628,6 +632,9 @@ success:function(arr)
   {
     $('#nodata').fadeIn(300);
     $("#nodatamodal").modal("open");
+    document.getElementById("result").innerHTML = 0;
+    document.getElementById("result1").innerHTML = 0;
+
   }
   else
   {
@@ -637,6 +644,9 @@ success:function(arr)
     
     arr=JSON.parse(arr);
     console.log("this are prflist = ",arr)
+
+    document.getElementById("result").innerHTML = arr.length;
+    document.getElementById("result1").innerHTML = arr.length;
 
     for(let j=0;j<arr.length;j++)
     {
@@ -709,11 +719,15 @@ $('#zonechoice').change(function(){
     {
       $('#nodata').fadeIn(300);
       $("#nodatamodal").modal("open");
+      document.getElementById("result").innerHTML = 0;
+      document.getElementById("result1").innerHTML = 0;
+
     }
     else
     {
-      
-  
+      document.getElementById("result").innerHTML = arr.length;
+      document.getElementById("result1").innerHTML = arr.length;
+
       $('#nodata').hide();
       console.log("This is my data : "+arr)
       arr=JSON.parse(arr);
@@ -748,10 +762,13 @@ $('#zonechoice').change(function(){
     // data:{'arr1':arr1},
     success : function(para)
     {
-
+      // console.log("Hello WOrld");
       if(para == "No Data")
       {
         $("#nodatamodal").modal("open");
+        document.getElementById("result").innerHTML =0;
+        document.getElementById("result1").innerHTML = 0;
+
       }
       else
       {
@@ -766,6 +783,9 @@ $('#zonechoice').change(function(){
           arr[i]=para[i];
         }
       
+          document.getElementById("result").innerHTML = para.length;
+          document.getElementById("result1").innerHTML = para.length;
+
         for(let j=0;j<arr.length;j++)
         {
           var x='<tr id="rows"><td id="prf" value="'+arr[j][0]+'">'+arr[j][0]+'</td><td id="position">'+arr[j][1]+'</td><td id="zone">'+arr[j][2]+'</td><td id="dept">'+arr[j][3]+'</td><td id="posno">'+arr[j][4]+'</td><td id="iid">'+arr[j][5]+'</td><td id="status">'+arr[j][6]+'</td><td width="25%"><a id="'+arr[j][0]+"*"+arr[j][4]+"*"+arr[j][5]+'" class="btn small green darken-1" onclick="xyz(this.id)">View Details</a></td></tr>'

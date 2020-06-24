@@ -99,6 +99,8 @@ if($count==1) //if round collection is present
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position2;
 
                 $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
+                $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                $mail->isHTML(true); 
                 $mail->Body ='
                     <body style="background-color:white;"> 
                         <table align="center" border="0" cellpadding="0" cellspacing="0"
@@ -258,6 +260,8 @@ if($count==1) //if round collection is present
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position2;
 
                 $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
+                $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                $mail->isHTML(true); 
                 $mail->Body ='
                 <body style="background-color:white;"> 
                     <table align="center" border="0" cellpadding="0" cellspacing="0"
@@ -423,6 +427,8 @@ else
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$position2;
 
                 $mail->Subject = "Update on your application at thyssenkrupp for ". $position." position";
+                $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                $mail->isHTML(true); 
                 $mail->Body ='
                     <body style="background-color:white;"> 
                         <table align="center" border="0" cellpadding="0" cellspacing="0"

@@ -87,6 +87,8 @@ if($cursor)
 
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/reupload.php?token='.$mails.'&expdate='.$expdate;
                 $mail->Subject = 'Your Application at tkEI - Re-enter the requisite details';
+                $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                $mail->isHTML(true); 
                 $mail->Body ='
                     <head>
                 
@@ -212,6 +214,8 @@ if($cursor)
                 $mail->addAddress($mails);
                 $token=sha1($mails);
                 $mail->Subject = 'Document Verification Successfull';
+                $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                $mail->isHTML(true); 
                 $mail->Body ='
                 <head>
             

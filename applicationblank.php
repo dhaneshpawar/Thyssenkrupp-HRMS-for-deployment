@@ -143,9 +143,11 @@ $_SESSION['positionapplied'] = $position;
                                         
                                       
                                           <div class="row">
+                                        <b style="font-size:20px;margin-left:2%;">Aadhaar Card Number</b><br>
+
                                                 <div class="input-field col s6">
                                                         <input id="aadharno" name="aadharno" type="number" class="validate" required aria-required="true">
-                                                        <label for="aadharno">Aadhar Card Number</label>
+                                                        <label for="aadharno">Aadhaar Card Number</label>
                                                 </div> 
                                           </div>                                           
                                         <b class="blue-text" style="font-size:20px;">Candidate Name</b>
@@ -155,15 +157,13 @@ $_SESSION['positionapplied'] = $position;
                                               <input id="last_name" name="last_name" type="text" class="validate" required aria-required="true">
                                               <label for="last_name">Last Name</label>
                                             </div>
-
-                                            <div class="input-field col s4">
-                                              <input id="mid_name" name="middle_name" type="text" class="validate" required aria-required="true">
-                                              <label for="mid_name">Middle Name</label>
-                                            </div>
-
                                             <div class="input-field col s4">
                                               <input id="first_name" name="first_name" type="text" class="validate" required aria-required="true">
                                               <label for="first_name">First Name</label>
+                                            </div>
+                                            <div class="input-field col s4">
+                                              <input id="mid_name" name="middle_name" type="text" class="validate" required aria-required="true">
+                                              <label for="mid_name">Middle Name</label>
                                             </div>
                                           </div>
                                           <b class="blue-text" style="font-size:20px;">Present Address</b>

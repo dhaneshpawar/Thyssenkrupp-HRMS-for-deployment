@@ -36,6 +36,8 @@
                 $token=sha1($d);
                 $url='http://'.$_SERVER['SERVER_NAME'].'/hrms/applicationblank.php?token='.$token.'&position='.$positionorg;
                 $mail->Subject = "Final Reminder - Invitation to interview with thyssenkrupp for the ". $positionorg." position";
+                $mail->AddEmbeddedImage("../public/logo.png", "logoimg", "../public/logo.png");
+                $mail->isHTML(true); 
                 $mail->Body ='
                     <head>
                 
