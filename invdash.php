@@ -294,7 +294,7 @@ if(isset($_COOKIE['sid']))
                     </table>
                     <center>
                     <br><br>
-                    <b style="color:green;">If No Candidates Found, You Can Click Below Button</b><br><br>
+                    <b style="color:green;">You Can Click the Below Button only if all the candidates are evaluated</b><br><br>
                     <button class="btn waves-effect blue darken-1" id="submitinterview" onclick='$("#modal2").modal("open")'>Complete Interview</button>
                     
                     
@@ -697,6 +697,7 @@ function submit_interview(cnfrm){
         $("#accept").hide()
         $('.modal').modal();
         $('#reason_line').hide()
+        $('#submitinterview').attr('disabled',true)
          window.mail = "<?php echo $cursor["mail"]; ?>"
          $('.timepicker').timepicker();
        // mail = JSON.stringify(mail)
@@ -878,19 +879,9 @@ function submit_interview(cnfrm){
     
             success:function(para)
             {   
-                console.log(para)
-                para = JSON.parse(para)
-                var splittime = currtime.split(":")
-                var finaltime = splittime[0]+splittime[1]
-                console.log("My time is - "+finaltime)
+                console.log("This is this - "+para)
 
-
-                $("#emailrow").show(600)
-                $("#emailbody").text("")
-                // Dummy Data
-                //para = ['Tanny@gmail.com',"rb@gmail.com","ad@gmail.com"]
-                
-                for(let i =0 ;i< para.length;i++)
+                if(para == 0)
                 {
                     setDate = new Date(para[i][2])
                     // setDate = new Date("May 25, 2020")
@@ -933,43 +924,105 @@ function submit_interview(cnfrm){
                         var txt6 = '<td><button disabled class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
                     }
                     else
-                    {
-                        if(time <= finaltime)
-                        {
-                            // alert("Set time is lesser than current")
-                            var txt5 = '<td><button  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="openmodal2(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
-                            var txt6 = '<td><button  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+                    $('#submitinterview').attr('disabled',false)
+                    $("#emailrow").show(600)
+                }
+                else
+                {
+                    para = JSON.parse(para);
+                    window.countCand = para.length;
+                    console.log("New window var - "+window.countCand)
+                    var splittime = currtime.split(":")
+                    var finaltime = splittime[0]+splittime[1]
+                    console.log("My time is - "+finaltime)
 
+                    $("#emailrow").show(600)
+                    $("#emailbody").text("")
+                    // Dummy Data
+                    //para = ['Tanny@gmail.com',"rb@gmail.com","ad@gmail.com"]
+                    
+                    for(let i =0 ;i< para.length;i++)
+                    {
+                        setDate = new Date(para[i][2])
+                        // setDate = new Date("May 25, 2020")
+                        // const time = new Intl.DateTimeFormat('en-US', options).format(setDate)
+                        console.log("Set Time - "+para[i][3])
+                        var time = para[i][3]
+                        time = time.split(" ")
+                        if(time[1] == "PM")
+                        {
+                            time = time[0].split(":")
+                            hrs = Number(time[0])+12
+                            time= String(hrs)+time[1]
+                            console.log(time)
                         }
                         else
                         {
-                            // alert("Set time is greater than current")
-                            var txt5 = '<td><button disabled  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="openmodal2(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
-                            var txt6 = '<td><button disabled  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
-
+                            time = time[0].split(":")
+                            time= time[0]+time[1]
+                            console.log(time)
                         }
-                    }
-                  
-                    var str = txt1+txt2+txt3+txt4+txt5+txt6;
-                    $('.timepicker').timepicker();
-                    $('.datepicker').datepicker();
-                    $("#emailbody").append(str)
+                        console.log("Final current time - "+finaltime)
+                        console.log("Final db time - "+time)
+                        setDate.setHours(0,0,0,0)
+                        console.log(setDate)
+                        // var status = para[i][2]=="yes"?"disabled":" ";
+                        var txt1 = '<tr id="'+para[i][1]+'"><td ><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td>'
+                        var txt2 = '<td ><p >'+para[i][1]+'</p></td>'
+                        var txt3 = '<td ><input disabled id="check'+i+'date2" value="'+para[i][2]+'" class="datepicker" ></td>'
+                        var txt4 = '<td ><input disabled type="text"  id="'+i+'tp" value="'+para[i][3]+'" class="timepicker"></td>'
+                        if(setDate >currdate)
+                        {
+                            var txt5 = '<td><button disabled class="btn waves-effect green"  id="'+para[i][1]+'" onclick="openmodal2(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                            var txt6 = '<td><button disabled class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+                        }
+                        else
+                        {
+                            if(time <= finaltime)
+                            {
+                                // alert("Set time is lesser than current")
+                                var txt5 = '<td><button  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="openmodal2(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                                var txt6 = '<td><button  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
 
+                            }
+                            else
+                            {
+                                // alert("Set time is greater than current")
+                                var txt5 = '<td><button disabled  class="btn waves-effect green"  id="'+para[i][1]+'" onclick="openmodal2(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                                var txt6 = '<td><button disabled  class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+
+                            }
+                        }
                     
+                        var str = txt1+txt2+txt3+txt4+txt5+txt6;
+                        $('.timepicker').timepicker();
+                        $('.datepicker').datepicker();
+                        $("#emailbody").append(str)
+
+                        
+                    }
                 }
+
             }
         })
     }
-
+ 
     // function for jumping to evaluation form
     function evaluateMail(p)
     {   
         if(p)
         {
-        localStorage.setItem('currentemail',$('#bid2').attr('name'))
-        localStorage.setItem('id',window.digit13)
-        $(document.getElementById($('#bid2').attr('name'))).remove()
-        window.open("http://localhost/hrms/evaluation.php", '_blank');
+            localStorage.setItem('currentemail',$('#bid2').attr('name'))
+            localStorage.setItem('id',window.digit13)
+            $(document.getElementById($('#bid2').attr('name'))).remove()
+            window.countCand = window.countCand -1;
+            console.log("window.countCand - "+window.countCand)
+            if(window.countCand == 0)
+            {
+                $('#submitinterview').attr('disabled',false);
+                window.setTimeout(function(){location.reload()},1000)
+            }
+            window.open("http://localhost/hrms/evaluation.php", '_blank');
         }
     }
 

@@ -322,6 +322,7 @@ $("#submit").click(function(){
                 $("#submitting").hide()
                 $("#submitted").show(600)
                 alert("Details Submitted..!!")
+
                 window.close()
                 
             }

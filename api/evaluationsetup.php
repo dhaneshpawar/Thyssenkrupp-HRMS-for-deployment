@@ -26,7 +26,14 @@ if($cursor)
                 $arr[$i]=array($getselectednames['full_name'],$d,$result['dates'][$i],$result['times'][$i]);
                 $i++;
             }
+            if(count($arr)==0)
+            {
+                echo count($arr);
+            }
+            else
+            {
              echo json_encode($arr);
+            }
         }
         else
         {
