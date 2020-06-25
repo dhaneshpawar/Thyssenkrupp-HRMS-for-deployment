@@ -177,9 +177,13 @@ if(isset($_POST) and $cursor)
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
                 $result=$db->tokens->updateOne(array("email"=>$d),array('$set'=>array("afterselection"=>'0')));
                 $result=$db->rounds->updateOne(array("prf"=>$digit13[0],"pos"=>$digit13[1],'iid'=>$digit13[2],"rid"=>$digit13[3]),array('$addToSet'=>array('selected'=>$d)),array('safe'=>true,'timeout'=>5000,'upsert'=>true));
+
+                //  Query to add HR2 info to rounds
+                $result3 = $db->rounds->updateOne(array("prf"=>$digit13[0],"pos"=>$digit13[1],'iid'=>$digit13[2],"rid"=>$digit13[3]),array('$set'=>array("hr2name"=>$_POST['hr2name'],"hr2mail"=>$_POST['hr2mail'],"hr2desg"=>$_POST['hr2desg'],"hr2dept"=>$_POST['hr2dept'])));
                 
                  //Query to update round id in token of member
                  $criteria2=array("prf"=>$digit13[0],"pos"=>$digit13[1],'iid'=>$digit13[2],"rid"=>$digit13[3],"email"=>$d); 
+
                  $db->tokens->updateOne($criteria2,array('$set'=>array("progress"=>"Selected")));
                  
 

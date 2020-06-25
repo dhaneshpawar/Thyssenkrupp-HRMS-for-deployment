@@ -482,11 +482,11 @@ $('#allocatesubmit2').click(function()
     data:{
       "allmembers":window.allmembers,
       "emails":selectedmail,
-      "iname":hr2name,
-      "intvmail":hr2mail,
+      "hr2name":hr2name,
+      "hr2mail":hr2mail,
       "prf":groupid,
-      "idesg":hr2desg,
-      "dept":hr2dept
+      "hr2desg":hr2desg,
+      "hr2dept":hr2dept
     },
     success:function(para)
     {

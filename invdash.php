@@ -883,6 +883,47 @@ function submit_interview(cnfrm){
 
                 if(para == 0)
                 {
+                    setDate = new Date(para[i][2])
+                    // setDate = new Date("May 25, 2020")
+                    // const time = new Intl.DateTimeFormat('en-US', options).format(setDate)
+                    console.log("Set Time - "+para[i][3])
+                    var time = para[i][3]
+                    time = time.split(" ")
+                    if(time[1] == "PM")
+                    {
+                        time = time[0].split(":")
+                        if(time[0] != "12")
+                        {
+                            hrs = Number(time[0])+12
+                        }
+                        else
+                        {
+                            hrs = Number(time[0])
+                        }
+                        time= String(hrs)+time[1]
+                        console.log(time)
+                    }
+                    else
+                    {
+                        time = time[0].split(":")
+                        time= time[0]+time[1]
+                        console.log(time)
+                    }
+                    console.log("Final current time - "+finaltime)
+                    console.log("Final db time - "+time)
+                    setDate.setHours(0,0,0,0)
+                    console.log(setDate)
+                    // var status = para[i][2]=="yes"?"disabled":" ";
+                    var txt1 = '<tr id="'+para[i][1]+'"><td ><a href="http://localhost/hrms/applicationblank_readonly.php?aid='+para[i][1]+'"  target="_blank" ><p >'+para[i][0]+'</p></a></td>'
+                    var txt2 = '<td ><p >'+para[i][1]+'</p></td>'
+                    var txt3 = '<td ><input disabled id="check'+i+'date2" value="'+para[i][2]+'" class="datepicker" ></td>'
+                    var txt4 = '<td ><input disabled type="text"  id="'+i+'tp" value="'+para[i][3]+'" class="timepicker"></td>'
+                    if(setDate >currdate)
+                    {
+                        var txt5 = '<td><button disabled class="btn waves-effect green"  id="'+para[i][1]+'" onclick="openmodal2(this.id)">Evaluate<i class="material-icons right">send</i></button></td>'                       
+                        var txt6 = '<td><button disabled class="btn waves-effect red"  id="'+para[i][1]+'" onclick="openmodal4(this.id)">Absent<i class="material-icons right">send</i></button></td></tr>' 
+                    }
+                    else
                     $('#submitinterview').attr('disabled',false)
                     $("#emailrow").show(600)
                 }
