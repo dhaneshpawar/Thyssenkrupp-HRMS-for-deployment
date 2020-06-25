@@ -322,6 +322,8 @@ $("#submit").click(function(){
                 $("#submitting").hide()
                 $("#submitted").show(600)
                 alert("Details Submitted..!!")
+                var name = localStorage.getItem('currentemail')
+
                 window.close()
                 
             }
